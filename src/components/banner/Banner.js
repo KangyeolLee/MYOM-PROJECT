@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { Component } from 'react'
+import M from 'materialize-css';
 
-const banner = (props) => {
-	
-	return(
-	<div className="container">
-		
-		<img src="" />
-	</div>
-	)
+class Banner extends Component {
+  componentDidMount() {
+    M.AutoInit();
+  }
+  render() {
+    return(
+      <div class="parallax-container">
+        <div class="parallax"><img src="img/sample.jpg" alt='sample' /></div>
+      </div>
+    )
+  }
 }
+
+export default Banner;
