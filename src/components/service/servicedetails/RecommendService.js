@@ -6,7 +6,7 @@ const RecommendService = ({recommendable}) => {
       <div className="card">
         <div className="card-image">
           <img className='' src={recommendable.src} alt=""/>
-          <span className="card-title">{recommendable.title}</span>
+          <span className="card-title black">{recommendable.title}</span>
         </div>
       </div>
     </div>

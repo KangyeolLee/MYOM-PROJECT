@@ -22,8 +22,7 @@ const mapStateToProps = (state) => {
   console.log(state);
   return {
     themas: state.services.themas,
-    bests: state.services.bests,
-    recommends: state.services.recommends
+    bests: state.services.bests
   }
 }
 
