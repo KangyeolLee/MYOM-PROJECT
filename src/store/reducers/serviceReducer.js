@@ -14,42 +14,48 @@ const initState = {
   ],
   recommends: [
     {
-      PARIS : [
+      category : 'PARIS',
+      contents : [
         { title : 'example01', src : 'img/' },
         { title : 'example02', src : 'img/' },
         { title : 'example03', src : 'img/' }
       ]
     }, 
     {
-      KOREA : [
+      category : 'KOREA',
+      contents : [
         { title : 'example01', src : 'img/' },
         { title : 'example02', src : 'img/' },
         { title : 'example03', src : 'img/' }
       ]
     },
     {
-      INDIA : [
+      category : 'INDIA',
+      contents : [
         { title : 'example01', src : 'img/' },
         { title : 'example02', src : 'img/' },
         { title : 'example03', src : 'img/' }
       ]
     },
     {
-      GERMANY : [
+      category : 'GERMANY',
+      contents : [
         { title : 'example01', src : 'img/' },
         { title : 'example02', src : 'img/' },
         { title : 'example03', src : 'img/' }
       ]
     },
     {
-      CHINA : [
+      category : 'CHINA',
+      contents : [
         { title : 'example01', src : 'img/' },
         { title : 'example02', src : 'img/' },
         { title : 'example03', src : 'img/' }
       ]
     },
     {
-      SPAIN : [
+      category : 'SPAIN',
+      contents : [
         { title : 'example01', src : 'img/' },
         { title : 'example02', src : 'img/' },
         { title : 'example03', src : 'img/' }
