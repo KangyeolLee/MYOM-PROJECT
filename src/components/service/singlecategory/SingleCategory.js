@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import RecommendService from '../servicedetails/RecommendService';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class SingleCategory extends Component {
   render() {
-    const thema = this.props.match.params.id;
-    const { specific_themas } = this.props;
-    console.log(specific_themas)
-
+    const thema = this.props.match.params.category;
+    const { specific_themas, match } = this.props;
+    console.log(match);
     return (
       <div className="container">
         <h2 className='red-text text-darken-3'>{thema}</h2>
@@ -19,7 +19,9 @@ class SingleCategory extends Component {
                 <div className="row">
                   { item.contents && item.contents.map(content => {
                     return (
-                      <RecommendService recommendable={content} key={content.key} />
+                      <Link to={`${match.url}/${content.key}`} key={content.key}>
+                        <RecommendService recommendable={content} />
+                      </Link>
                     )
                   })}
                 </div>

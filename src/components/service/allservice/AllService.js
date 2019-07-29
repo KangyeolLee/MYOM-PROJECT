@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 
 const AllService = (props) => {
   const { recommends } = props;
-  console.log(recommends);
+  const { match } = props;
+  console.log(props);
   return (
     <div className="container">
       <ul className="collection">
@@ -21,7 +22,9 @@ const AllService = (props) => {
               <div className="row recommendable">
                 { item.contents && item.contents.map(content => {
                   return (
-                    <RecommendService recommendable={content} key={content.key}/>
+                    <Link to={`${match.url}/${item.category}/${content.key}`} key={content.key}>
+                      <RecommendService recommendable={content} key={content.key}/>
+                    </Link>
                   )
                 })}
               </div>

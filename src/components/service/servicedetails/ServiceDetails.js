@@ -8,7 +8,7 @@ const ServiceDetails = () => {
 		<div className="container service-details">
 			<div className="row">
 				<div className="col s6 m6 l6">
-					<img src= "img/theme/korea.jpg" />
+					<img src= "../../img/theme/korea.jpg" alt="" className='responsive-img'/>
 				</div>
 				<div className="col s6 m6 l6 push-l1 productIntro">
 					<div className="card">

@@ -17,11 +17,11 @@ class App extends Component {
           <Navbar />
             <Switch>
               <Route exact path='/' component={Dashboard} />
-              <Route path='/thema/:id' component={SingleCategory} />
+              <Route exact path='/thema/:category' component={SingleCategory} />
+              <Route exact path='/thema/:category/:id' component={ServiceDetails} />
               <Route path='/thema' component={AllService} />
               <Route path='/productIntro' component={ProviderIntro} />
               <Route path='/registerProvider' component={RegisterProvider} />
-              <Route path='/servicedetails' component= { ServiceDetails } />
             </Switch>
         </div>
       </BrowserRouter>
