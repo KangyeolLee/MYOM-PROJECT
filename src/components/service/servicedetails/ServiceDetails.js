@@ -42,7 +42,7 @@ const ServiceDetails = () => {
 						<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, fugit blanditiis voluptatem facilis porro qui sunt reiciendis voluptatibus enim, asperiores voluptates deserunt, deleniti voluptas consequuntur vitae quo et quia odit.</p>
 						<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, fugit blanditiis voluptatem facilis porro qui sunt reiciendis voluptatibus enim, asperiores voluptates deserunt, deleniti voluptas consequuntur vitae quo et quia odit.</p>
 						<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, fugit blanditiis voluptatem facilis porro qui sunt reiciendis voluptatibus enim, asperiores voluptates deserunt, deleniti voluptas consequuntur vitae quo et quia odit.</p>
-						
+
 					</div>
 				</div>
 				<div className="col s12 l12 m12">
