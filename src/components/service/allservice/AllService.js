@@ -12,7 +12,7 @@ const AllService = (props) => {
       <ul className="collection">
         { recommends && recommends.map(item => {
           return (
-            <li className="collection-item">
+            <li className="collection-item" key={item.key}>
               <h4>{item.category}
                 <Link to={'/thema/' + item.category} className='secondary-content'>
                   <span className="waves-effect waves-light btn">더보기</span>
@@ -21,7 +21,7 @@ const AllService = (props) => {
               <div className="row recommendable">
                 { item.contents && item.contents.map(content => {
                   return (
-                    <RecommendService recommendable={content} />
+                    <RecommendService recommendable={content} key={content.key}/>
                   )
                 })}
               </div>
@@ -36,8 +36,6 @@ const AllService = (props) => {
 const mapStateToProps = (state) => {
   console.log(state);
   return {
-    themas: state.services.themas,
-    bests: state.services.bests,
     recommends: state.services.recommends
   }
 }
