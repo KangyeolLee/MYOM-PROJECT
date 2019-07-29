@@ -58,14 +58,14 @@ const ServiceDetails = () => {
 					<ul className="collection productReview">
 						<li className="collection-header"><h4>Reviews</h4></li>
 						<li className="collection-item avatar">
-							<img src="img/theme/korea.jpg" className="circle"/>
+							<img src="../../img/theme/korea.jpg" className="circle"/>
 							<span className="title">넘모 좋았어용</span>
 							<p>이야 진짜 영상퀄리티 쥑임다 <br/>
 								꼭써보십쇼
 							</p>
 						</li>
 						<li className="collection-item avatar">
-							<img src="img/theme/paris.jpg" className="circle"/>
+							<img src="../../img/theme/paris.jpg" className="circle"/>
 							<span className="title">넘모 좋았어용</span>
 							<p>이야 진짜 영상퀄리티 쥑임다 <br/>
 								꼭써보십쇼
