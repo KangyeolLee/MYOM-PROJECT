@@ -13,7 +13,7 @@ class Banner extends Component {
         <img src="/img/banner/sample.jpg" alt="" className='responsive-img'/>
         <div className="container">
           <div className="btn-wrapper">
-            <Link to='/' className='btnForMore white-text btn yellow darken-3 waves-effect waves-light'>둘러보기</Link>
+            <Link to='/thema' className='btnForMore white-text btn yellow darken-3 waves-effect waves-light'>둘러보기</Link>
             <Link to='/' className='btnForSubmit white-text btn yellow darken-3 waves-effect waves-light'>등록하기</Link>
           </div>
         </div>
