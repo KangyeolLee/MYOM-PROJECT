@@ -6,6 +6,7 @@ import ProviderIntro from './components/provider/ProviderIntro';
 import SingleCategory from './components/service/singlecategory/SingleCategory';
 import AllService from './components/service/allservice/AllService';
 import RegisterProvider from './components/provider/RegisterProvider';
+import ServiceDetails from './components/service/servicedetails/ServiceDetails'
 import 'materialize-css/dist/css/materialize.min.css';
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
               <Route path='/thema' component={AllService} />
               <Route path='/productIntro' component={ProviderIntro} />
               <Route path='/registerProvider' component={RegisterProvider} />
+              <Route path='/servicedetails' component= { ServiceDetails } />
             </Switch>
         </div>
       </BrowserRouter>
