@@ -4,6 +4,7 @@ import Navbar from './components/layout/Navbar'
 import Dashboard from './components/dashboard/Dashboard';
 import SingleCategory from './components/service/singlecategory/SingleCategory';
 import AllService from './components/service/allservice/AllService';
+import ServiceDetails from './components/service/servicedetails/ServiceDetails'
 import 'materialize-css/dist/css/materialize.min.css';
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
               <Route exact path='/' component={Dashboard} />
               <Route path='/thema/:id' component={SingleCategory} />
               <Route path='/thema' component={AllService} />
+              <Route path='/servicedetails' component= { ServiceDetails } />
             </Switch>
         </div>
       </BrowserRouter>
