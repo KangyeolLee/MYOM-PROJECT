@@ -1,0 +1,7 @@
+.card .card-image img {
+  height: 200px;
+}
+.card .card-image .card-title {
+  left: 50% !important;
+  transform: translateX(-50%);
+}

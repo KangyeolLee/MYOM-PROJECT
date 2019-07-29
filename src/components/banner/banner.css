@@ -1,0 +1,21 @@
+.banner .container {
+  position: relative;
+  height: 355px;
+}
+
+.banner img {
+  position: absolute;
+  width: 100vw;
+  max-height: 355px;
+  min-height: 355px;
+}
+
+.banner .container .btn-wrapper {
+  position: absolute;
+  bottom: 3rem;
+}
+
+.banner .container .btn-wrapper .btn {
+  width: 15rem;
+  margin-right: 3rem;
+}
