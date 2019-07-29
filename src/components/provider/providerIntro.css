@@ -1,0 +1,20 @@
+.productIntro .divider {
+  height: 2px;
+  width: 15rem;
+  margin: auto;
+  margin-top: 10rem;
+}
+
+.lastIntro {
+  position: relative;
+}
+.lastIntro h2 {
+  padding: 5rem 0 0 5rem;
+}
+.lastIntro span {
+  left: 5rem;
+}
+.lastIntro img {
+  position: absolute;
+  z-index: -1;
+}

@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Dashboard from './components/dashboard/Dashboard';
+import ProviderIntro from './components/provider/ProviderIntro';
 import SingleCategory from './components/service/singlecategory/SingleCategory';
 import AllService from './components/service/allservice/AllService';
+import RegisterProvider from './components/provider/RegisterProvider';
 import 'materialize-css/dist/css/materialize.min.css';
 
 class App extends Component {
@@ -16,6 +18,8 @@ class App extends Component {
               <Route exact path='/' component={Dashboard} />
               <Route path='/thema/:id' component={SingleCategory} />
               <Route path='/thema' component={AllService} />
+              <Route path='/productIntro' component={ProviderIntro} />
+              <Route path='/registerProvider' component={RegisterProvider} />
             </Switch>
         </div>
       </BrowserRouter>

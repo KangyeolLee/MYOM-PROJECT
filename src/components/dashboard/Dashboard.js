@@ -6,11 +6,11 @@ import { connect } from 'react-redux';
 
 class Dashboard extends Component {
   render() {
-    const { themas, bests, recommends } = this.props;
-    console.log(themas, bests, recommends)
+    const { themas, bests } = this.props;
+    const path = this.props.match.path;
     return (
       <div className="dashboard">
-        <Banner />
+        <Banner type={path}/>
         <Theme themas={themas} />
         <BestReviews bests={bests} />
       </div>
@@ -19,7 +19,6 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     themas: state.services.themas,
     bests: state.services.bests

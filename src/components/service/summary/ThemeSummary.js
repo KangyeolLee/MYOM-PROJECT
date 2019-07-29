@@ -14,3 +14,5 @@ const ThemeSummary = ({thema}) => {
 }
 
 export default ThemeSummary;
+
+// components/summary 하 RecommendService 컴포넌트 내 주석 참고 바람
