@@ -8,6 +8,7 @@ class Dashboard extends Component {
   render() {
     const { themas, bests } = this.props;
     const path = this.props.match.path;
+    console.log(this.props);
     return (
       <div className="dashboard">
         <Banner type={path}/>
@@ -21,7 +22,10 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
   return {
     themas: state.services.themas,
-    bests: state.services.bests
+    bests: state.services.bests,
+    firestore: state.firestore,
+    firebase: state.firebase,
+    auth: state.auth
   }
 }
 

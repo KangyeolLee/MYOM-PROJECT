@@ -8,7 +8,7 @@ class ProviderIntro extends Component {
     console.log(this.props);
     const imgSrc = this.props.match.path;
     return (
-      <div className="productIntro">
+      <div className="providerIntro">
         <Banner type={imgSrc}/>
         <div className="container">
           <div className="row">
