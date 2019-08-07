@@ -10,7 +10,8 @@ class Banner extends Component {
   render() {
     let path = this.props.type;       // 클릭경로를 자동으로 읽어와서
     if(path === '/') path = 'sample'; // 해당하는 배너이미지를 노출 (메인홈 or 프로덕트 소개 페이지)
-    const btnInBanner = path === 'sample'
+
+    const btnInBanner = (path === 'sample')
       ? ( 
         <div className="container">
           <div className="btn-wrapper">
@@ -19,7 +20,14 @@ class Banner extends Component {
           </div>
         </div>
       )
-      : <div className="container"></div>;
+      : (
+        <div className="container">
+          <div className="btn-wrapper">
+            <Link to='/registerProvider' className='btnForMore white-text btn yellow darken-3 waves-effect waves-light'>등록하기</Link>
+          </div>
+        </div>
+      )
+
     return(
       <header className='banner'>
         <img src={"/img/banner/" + path +'.jpg'} alt="" className='responsive-img'/>

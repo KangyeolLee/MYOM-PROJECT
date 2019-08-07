@@ -11,7 +11,7 @@ class BestReviews extends Component {
         <div className="row">
           { bests && bests.map(item => {
             return (
-              <Link to='/' key={item.src}>
+              <Link to={`/thema/${item.category}/${item.id}`} key={item.src}>
                 <BestReviewsSummary best={item} />
               </Link>
             )
