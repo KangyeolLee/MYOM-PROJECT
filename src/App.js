@@ -11,6 +11,7 @@ import ServiceDetails from './components/service/servicedetails/ServiceDetails'
 import 'materialize-css/dist/css/materialize.min.css';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
+import Purchase from './components/consumer/Purchase'
 
 class App extends Component {
   render(){
@@ -28,6 +29,7 @@ class App extends Component {
                 <Route path='/registerProvider' component={RegisterProvider} />
                 <Route path='/signin' component={SignIn} />
                 <Route path='/signup' component={SignUp} />
+                <Route path='/purchase' component={Purchase} />
               </Switch>
           </div>
         </ScrollTop>
