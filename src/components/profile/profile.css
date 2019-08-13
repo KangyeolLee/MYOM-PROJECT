@@ -11,3 +11,35 @@
 .my_profile .row{
 	margin-top: 2rem;
 }
+
+.alarm-onoff label .lever{
+	margin: 15px 0 0 10px;
+}
+
+.alarm-setting h6{
+	font-weight: bold;
+}
+
+.alarm-setting{
+	border: 1px solid rgb(224,224,224);
+	padding: 16px;
+	margin-top: 9px;
+}
+
+.changepwd {
+	border: 1px solid rgb(224,224,224);
+	padding: 16px;
+	margin-top : 9px;
+}
+
+.withdrawal {
+	border: 1px solid rgb(224,224,224);
+	padding: 16px;
+	margin-top : 9px;
+	position: relative;
+}
+
+.withdrawal_button {
+	margin-top: 16px;
+}
+
