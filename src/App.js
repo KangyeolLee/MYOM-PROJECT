@@ -12,6 +12,8 @@ import 'materialize-css/dist/css/materialize.min.css';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import Purchase from './components/consumer/Purchase'
+import PurchaseDone from './components/consumer/PurchaseDone'
+import UserProfile from './components/profile/UserProfile'
 
 class App extends Component {
   render(){
@@ -30,6 +32,8 @@ class App extends Component {
                 <Route path='/signin' component={SignIn} />
                 <Route path='/signup' component={SignUp} />
                 <Route path='/purchase' component={Purchase} />
+                <Route path='/purchasedone' component= { PurchaseDone } />
+                <Route path='/profile' component = { UserProfile } />
               </Switch>
           </div>
         </ScrollTop>
