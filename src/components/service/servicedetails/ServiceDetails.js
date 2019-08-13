@@ -4,6 +4,7 @@ import './servicedetails.css'
 import RecommendService from './RecommendService';
 import M from 'materialize-css';
 //import { imgLoader } from '../summary/imgLoader';
+import { Link } from 'react-router-dom';
 
 class ServiceDetails extends Component {
   state = {
@@ -53,7 +54,7 @@ class ServiceDetails extends Component {
                       <p><i className="material-icons">check</i>FHD</p>
                     </div>
                   </div>
-                  <div className="btn waves-effect waves-light">구매하기</div>
+                  <Link to='../../purchase' className="btn waves-effect waves-light">구매하기</Link>
                 </div>
                 <div id="priceTag2">
                   <h5>200,000원</h5>

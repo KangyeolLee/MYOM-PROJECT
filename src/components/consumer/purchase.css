@@ -1,0 +1,78 @@
+.purchase-page1 h4{
+	margin-top: 4rem;
+	margin-bottom: 3rem;
+}
+
+.basic-purchase thead {
+	background-color:  rgb(241, 241, 241);
+}
+
+.basic-purchase{
+	margin-bottom: 20px;
+	line-height: 2rem;
+}
+
+.option-purchase thead {
+	background-color: rgb(245, 208, 208);
+}
+
+.purchase-form {
+	border: 1px solid rgb(241,241,241);
+	padding: 16px;
+}
+
+.option-purchase label{
+	color: black;
+}
+
+.purchase-price {
+	margin-top: 30px;
+	border: 1px solid rgb(241,241,241);
+}
+.panel-heading {
+	background-color: rgb(241,241,241);
+	padding: 10px;
+}
+.panel-body {
+	margin-top: 20px;
+	font-weight: bold;
+}
+
+.purchase-method {
+	margin-top: 30px;
+	border: 1px solid rgb(241,241,241);
+}
+
+.purchase-method .panel-body{
+	padding-bottom: 20px;
+}
+
+.purchase-method .panel-body p{
+	display: inline !important ;
+	margin-right: 8rem;
+}
+
+.purchase-method span{
+	color: black;
+}
+.tax {
+	margin-top: 30px;
+	border: 1px solid rgb(241,241,241);
+}
+
+.tax .panel-body {
+	padding: 10px;
+}
+
+.purchase-btn {
+	margin-top: 30px;
+	width: 24rem;
+}
+
+.purchasedone-btn {
+	margin-right: 10px;
+}
+
+.purchasedone-btns {
+	margin-top: 5rem;
+}

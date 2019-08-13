@@ -16,6 +16,9 @@ import PaymentDetails from './components/mypage/PaymentDetails';
 import CouponPage from './components/mypage/CouponPage';
 import EstimatePage from './components/mypage/EstimatePage';
 import OrderManage from './components/mypage/OrderManage';
+import Purchase from './components/consumer/Purchase'
+import PurchaseDone from './components/consumer/PurchaseDone'
+import UserProfile from './components/profile/UserProfile'
 
 class App extends Component {
   render(){
@@ -38,6 +41,9 @@ class App extends Component {
                 <Route path='/coupons' component={CouponPage} />
                 <Route path='/estimate' component={EstimatePage} />
                 <Route path='/orderManage' component={OrderManage} />
+                <Route path='/purchase' component={Purchase} />
+                <Route path='/purchasedone' component= { PurchaseDone } />
+                <Route path='/profile' component = { UserProfile } />
               </Switch>
           </div>
         </ScrollTop>
