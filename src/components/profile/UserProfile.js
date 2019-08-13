@@ -15,7 +15,7 @@ const UserProfile = () => {
 							<div className="col l3">
 								<div className="profile-img center">
 									<img src="https://placeimg.com/127/127/any" alt="" className="circle responsive-img"/>
-									<a href="" className="btn waves-effect-waves-light white black-text">이미지 수정</a>
+									<a href="#" className="btn waves-effect-waves-light white black-text">이미지 수정</a>
 								</div>
 							</div>
 							<div className="col l5 push-l1">

@@ -36,10 +36,40 @@
 	border: 1px solid rgb(224,224,224);
 	padding: 16px;
 	margin-top : 9px;
-	position: relative;
 }
 
 .withdrawal_button {
 	margin-top: 16px;
 }
 
+.certifications {
+	border: 1px solid rgb(224,224,224);
+	padding: 16px;
+	margin-top : 9px;
+	width: 800px;
+}
+
+.cert_phone {
+	margin-top: 30px;
+}
+
+.cert_group_radio {
+	display: flex;
+	border: 1px solid rgb(224,224,224);
+}
+
+.cert_group_radio span {
+	margin-right: 4rem;
+}
+
+.padding_zero{
+	padding: 0px !important;
+}
+
+.pro_cert{
+	margin-top: 24px;
+}
+
+.terms{
+	margin-top: 24px;
+}

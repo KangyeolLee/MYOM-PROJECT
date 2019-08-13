@@ -22,6 +22,7 @@ import UserProfile from './components/profile/UserProfile'
 import AlarmSetting from './components/profile/AlarmSetting'
 import Changepwd from './components/profile/Changepwd'
 import Withdrawal from './components/profile/Withdrawal'
+import Certifications from './components/profile/Certifications'
 
 class App extends Component {
   render(){
@@ -50,6 +51,7 @@ class App extends Component {
                 <Route path='/alarmsetting' component = { AlarmSetting } />
                 <Route path='/changepwd' component= { Changepwd } />
                 <Route path='/withdrawal' component= { Withdrawal } />
+                <Route path='/certifications' component= { Certifications } />
               </Switch>
           </div>
         </ScrollTop>

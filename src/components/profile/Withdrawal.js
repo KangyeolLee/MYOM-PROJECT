@@ -16,7 +16,7 @@ const Withdrawal = () => {
 								<form action="#">
 									<p>
 										<label>
-											<input className="with-gap" type="radio" name="withdrawal-menu" checked/>
+											<input className="with-gap" type="radio" name="withdrawal-menu"/>
 											<span>다른 계정이름으로 사용하기 위해서</span>
 										</label>
 									</p>
