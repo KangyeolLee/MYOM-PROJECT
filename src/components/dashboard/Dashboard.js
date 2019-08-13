@@ -8,7 +8,6 @@ class Dashboard extends Component {
   render() {
     const { themas, bests } = this.props;
     const path = this.props.match.path;
-    console.log(this.props);
     return (
       <div className="dashboard">
         <Banner type={path}/>

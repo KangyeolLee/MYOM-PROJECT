@@ -11,6 +11,11 @@ import ServiceDetails from './components/service/servicedetails/ServiceDetails'
 import 'materialize-css/dist/css/materialize.min.css';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
+import ProfileSetting from './components/mypage/ProfileSetting';
+import PaymentDetails from './components/mypage/PaymentDetails';
+import CouponPage from './components/mypage/CouponPage';
+import EstimatePage from './components/mypage/EstimatePage';
+import OrderManage from './components/mypage/OrderManage';
 
 class App extends Component {
   render(){
@@ -28,6 +33,11 @@ class App extends Component {
                 <Route path='/registerProvider' component={RegisterProvider} />
                 <Route path='/signin' component={SignIn} />
                 <Route path='/signup' component={SignUp} />
+                <Route path='/profileSetting' component={ProfileSetting} />
+                <Route path='/paymentDetails' component={PaymentDetails} />
+                <Route path='/coupons' component={CouponPage} />
+                <Route path='/estimate' component={EstimatePage} />
+                <Route path='/orderManage' component={OrderManage} />
               </Switch>
           </div>
         </ScrollTop>

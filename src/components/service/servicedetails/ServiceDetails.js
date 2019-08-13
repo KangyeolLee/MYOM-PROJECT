@@ -3,19 +3,29 @@ import { connect } from 'react-redux';
 import './servicedetails.css'
 import RecommendService from './RecommendService';
 import M from 'materialize-css';
+//import { imgLoader } from '../summary/imgLoader';
 
 class ServiceDetails extends Component {
-  componentDidMount() {
-    M.AutoInit();
+  state = {
+    imgSrc : ''
   }
 
+  componentDidMount() {
+    M.AutoInit();
+    // storage.ref(`images/theme`).child('korea.jpg').getDownloadURL().then(url => this.setState({
+    //   imgSrc : url
+    // }));
+
+    //imgLoader(this.props);
+  }
+ 
   render() {
     const { suggestion } = this.props;
     return (
       <div className="container service-details">
         <div className="row">
           <div className="col s6 m6 l6">
-            <img src= "../../img/theme/korea.jpg" alt="" className='responsive-img'/>
+            <img id='details_mainImg' src="../../img/theme/korea.jpg" alt="" className='responsive-img'/>
           </div>
           <div className="col s6 m6 l6 productIntro">
             <div className="card">

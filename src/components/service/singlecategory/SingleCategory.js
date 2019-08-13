@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RecommendService from '../servicedetails/RecommendService';
+import CategoryFilter from '../../layout/CategoryFilter';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -10,6 +11,7 @@ class SingleCategory extends Component {
     console.log(match);
     return (
       <div className="container">
+        <CategoryFilter />
         <h2 className='red-text text-darken-3'>{thema}</h2>
         <ul className="collection">
           { specific_themas && specific_themas.map(item => {
