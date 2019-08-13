@@ -1,0 +1,12 @@
+.categoryFilter, .categoryFilter nav {
+  height: 0;
+  width: inherit !important;
+}
+
+.categoryFilter nav .tabs .tab a {
+  color: black;
+}
+
+.categoryFilter .nav-content {
+  width: 50%;
+}

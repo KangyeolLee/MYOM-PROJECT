@@ -1,0 +1,79 @@
+.profileSetting .profileInfo .col {
+  margin: 2rem 0 2rem 0;
+}
+.profileSetting .btn-floating {
+  width: 10rem;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileSetting .btn-floating i {
+  font-size: 8rem !important;
+}
+
+.profileSetting .inline-block {
+  display: inline-block;
+  margin-right: 3rem;
+}
+
+.profileSetting .score_wrapper {
+  margin-top: 1.5rem;
+}
+
+.profileSetting #profileView2 .collection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileSetting #profileView2 .serviceRegisterBox {
+  margin: 5rem 0 5rem 0;
+  cursor: pointer;
+}
+.profileSetting #profileView2 .serviceRegisterBox i {
+  display: flex;
+  justify-content: center;
+}
+
+.profileSetting #profileView3 .collection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profileSetting #profileView3 .collection div {
+  margin: 5rem 0 5rem 0;
+}
+
+.profileSetting #profileView4 .collection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileSetting #profileView4 .collection .starsWithScore {
+  margin: 2rem 0 2rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.profileSetting .timeline {
+  border-left: 1px solid #e6e6e6;
+  padding-left: 1.5rem;
+  margin-left: 1.5rem;
+}
+
+.profileSetting .timeline li {
+  position: relative;
+}
+.profileSetting .timeline li::before {
+  left: calc(-1.5rem + -3px);
+  box-shadow: 0 0 0 2px #e6e6e6;
+  background-color: #fff;
+  position: absolute;
+  width: 5px;
+  content: '';
+  height: 5px;
+  border-radius: 50%;
+}

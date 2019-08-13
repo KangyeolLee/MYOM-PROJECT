@@ -1,6 +1,8 @@
 import React from 'react';
+//import { imgLoader } from '../summary/imgLoader';
 
 const ThemeSummary = ({thema}) => {
+  //imgLoader(thema);
   return (
     <div className="col s4">
       <div className="card">

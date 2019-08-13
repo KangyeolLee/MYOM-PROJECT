@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import M from 'materialize-css';
 import './banner.css';
 
 class Banner extends Component {
-  componentDidMount() {
-    M.AutoInit();
-  }
   render() {
     let path = this.props.type;       // 클릭경로를 자동으로 읽어와서
     if(path === '/') path = 'sample'; // 해당하는 배너이미지를 노출 (메인홈 or 프로덕트 소개 페이지)

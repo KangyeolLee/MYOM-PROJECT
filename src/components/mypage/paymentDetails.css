@@ -1,0 +1,12 @@
+.paymentDetails .collection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paymentDetails .collection-item-wrapper {
+  margin: 3rem 0 3rem 0;
+}
+.paymentDetails .collection-item-wrapper i {
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,12 @@
+.ordersManage .collection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ordersManage .collection-item-wrapper {
+  margin: 3rem 0 3rem 0;
+}
+.ordersManage .collection-item-wrapper i {
+  display: flex;
+  justify-content: center;
+}
