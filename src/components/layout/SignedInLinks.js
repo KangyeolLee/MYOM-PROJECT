@@ -24,11 +24,11 @@ class SignedInLinks extends Component {
         {/* about dropdown option for UserMyPage */}
         <ul id="dropdown_mypage" className="dropdown-content">
           <li><a href="#!">계정 설정</a></li>
-          <li><NavLink to='/orderManage'>구매 관리</NavLink></li>
-          <li><NavLink to='/estimate'>견적 요청</NavLink></li>
-          <li><NavLink to='/paymentDetails'>결제 내역</NavLink></li>
+          <li><NavLink to='/mypageBuyer/orderManage'>구매 관리</NavLink></li>
+          <li><NavLink to='/mypageBuyer/estimate'>견적 요청</NavLink></li>
+          <li><NavLink to='/mypageBuyer/paymentDetails'>결제 내역</NavLink></li>
           <li><NavLink to='/profileSetting'>프로필 관리</NavLink></li>
-          <li className="divider" tabindex='-1'></li>
+          <li className="divider" tabIndex='-1'></li>
           <li><a onClick={this.props.signOut}>로그아웃</a></li>
         </ul>
       </ul>

@@ -9,7 +9,7 @@ class OrderManage extends Component {
   }
   render() {
     return (
-      <div className="container ordersManage">
+      <div className="ordersManage">
         <div className="row">
           <h4>구매 관리</h4>
           <div className="col s12">
@@ -46,7 +46,7 @@ class OrderManage extends Component {
 
             </form>
 
-            <div className="collection row">
+            <div className="collection">
               <div className="collection-item-wrapper">
                 <i className="material-icons large">info_outline</i>
                 <p>내역이 없습니다</p>
@@ -77,7 +77,7 @@ class OrderManage extends Component {
 
             </form>
 
-            <div className="collection row">
+            <div className="collection">
               <div className="collection-item-wrapper">
                 <i className="material-icons large">info_outline</i>
                 <p>내역이 없습니다</p>
@@ -108,7 +108,7 @@ class OrderManage extends Component {
 
             </form>
 
-            <div className="collection row">
+            <div className="collection">
               <div className="collection-item-wrapper">
                 <i className="material-icons large">info_outline</i>
                 <p>내역이 없습니다</p>
@@ -139,7 +139,7 @@ class OrderManage extends Component {
 
             </form>
 
-            <div className="collection row">
+            <div className="collection">
               <div className="collection-item-wrapper">
                 <i className="material-icons large">info_outline</i>
                 <p>내역이 없습니다</p>
@@ -170,7 +170,7 @@ class OrderManage extends Component {
 
             </form>
 
-            <div className="collection row">
+            <div className="collection">
               <div className="collection-item-wrapper">
                 <i className="material-icons large">info_outline</i>
                 <p>내역이 없습니다</p>
@@ -201,7 +201,7 @@ class OrderManage extends Component {
 
             </form>
 
-            <div className="collection row">
+            <div className="collection">
               <div className="collection-item-wrapper">
                 <i className="material-icons large">info_outline</i>
                 <p>내역이 없습니다</p>

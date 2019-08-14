@@ -8,14 +8,14 @@ class CouponPage extends Component {
   }
   render() {
     return (
-      <div className="container .coupons">
+      <div className="coupons">
         <form action="" className="row">
-          <h4 className='col s5'>보유한 쿠폰 <font color='red'>1</font>개</h4>
+          <h4 className='col s4'>보유한 쿠폰 <font color='red'>1</font>개</h4>
           <div className="input-field col s6">
             <input type="text" id="coupon_code"/>
             <label htmlFor="coupon_code">프로모션 코드를 입력해주세요</label>
           </div>
-          <div className="input-field col s1">
+          <div className="input-field col s2">
             <button className="btn grey darken-3"> 입력 </button>
           </div>
         </form>
@@ -38,7 +38,7 @@ class CouponPage extends Component {
             </tr>
           </tbody>
         </table>
-        
+         
         <WarningComponent />
       </div>
     )

@@ -8,7 +8,7 @@ class EstimatePage extends Component {
   }
   render() {
     return (
-      <div className="container estimate">
+      <div className="estimate">
         <div className="row">
           <h4>나의 견적 요청</h4>
           <div className="col s12">
@@ -24,7 +24,7 @@ class EstimatePage extends Component {
             <div className="collection-item-wrapper center">
               <p className='grey-text'>등록된 맞춤 견적 요청이 없습니다.</p>
               <p className='grey-text'>요청글을 등록하여 맟춤 견적을 받아보세요!</p>
-              <img width='300' src="img/sample.png" alt=""/><br/>
+              <img width='300' src="../img/sample.png" alt=""/><br/>
               <div className="btn-large waves-effect">맞춤견적 요청하기</div>
             </div>
           </div>
@@ -33,7 +33,7 @@ class EstimatePage extends Component {
             <div className="collection-item-wrapper center">
               <p className='grey-text'>등록된 맞춤 견적 요청이 없습니다.</p>
               <p className='grey-text'>요청글을 등록하여 맟춤 견적을 받아보세요!</p>
-              <img width='300' src="img/sample2.png" alt=""/><br/>
+              <img width='300' src="../img/sample2.png" alt=""/><br/>
               <div className="btn-large waves-effect">맞춤견적 요청하기</div>
             </div>
           </div>
@@ -42,7 +42,7 @@ class EstimatePage extends Component {
             <div className="collection-item-wrapper center">
               <p className='grey-text'>등록된 맞춤 견적 요청이 없습니다.</p>
               <p className='grey-text'>요청글을 등록하여 맟춤 견적을 받아보세요!</p>
-              <img width='300' src="img/sample3.png" alt=""/><br/>
+              <img width='300' src="../img/sample3.png" alt=""/><br/>
               <div className="btn-large waves-effect">맞춤견적 요청하기</div>
             </div>
           </div>
@@ -51,7 +51,7 @@ class EstimatePage extends Component {
             <div className="collection-item-wrapper center">
               <p className='grey-text'>등록된 맞춤 견적 요청이 없습니다.</p>
               <p className='grey-text'>요청글을 등록하여 맟춤 견적을 받아보세요!</p>
-              <img width='300' src="img/sample4.png" alt=""/><br/>
+              <img width='300' src="../img/sample4.png" alt=""/><br/>
               <div className="btn-large waves-effect">맞춤견적 요청하기</div>
             </div>
           </div>

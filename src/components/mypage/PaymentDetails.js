@@ -9,7 +9,7 @@ class PaymentDetails extends Component {
   }
   render() {
     return (
-      <div className="container paymentDetails">
+      <div className="paymentDetails">
         <h4>결제 내역</h4>
         <form action="" className='row'>
           <div className="input-field col s1">

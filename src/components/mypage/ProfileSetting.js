@@ -3,7 +3,7 @@ import './profileSetting.css';
 import M from 'materialize-css';
 
 class ProfileSetting extends Component {
-  componentDidMount() {
+  componentDidMount() { 
     M.AutoInit();
   }
 
@@ -36,21 +36,46 @@ class ProfileSetting extends Component {
               </div>
   
               <a href='#modal_profile_register' className="modal-trigger waves-effect waves-light btn right">프로필 등록 / 수정</a>
-              <div id="modal_profile_register" className='modal'>
+              <div id="modal_profile_register" className='modal modal-fixed-footer'>
                 <div className="modal-content">
-                  <nav>
-                  <div className="nav-wrapper">
-                    <div className="col s12 grey">
-                      <a href="#!" className="breadcrumb">전문가 소개</a>
-                      <a href="#!" className="breadcrumb">전문분야</a>
-                      <a href="#!" className="breadcrumb">보유 기술</a>
-                      <a href="#!" className="breadcrumb">학력 및 전공</a>
-                      <a href="#!" className="breadcrumb">자격증</a>
-                      <a href="#!" className="breadcrumb">경력사항</a>
-                    </div>
-                  </div>
+                  <nav className='z-depth-0'>
+                    <a href="#!" className="breadcrumb">전문가 소개</a>
+                    <a href="#!" className="breadcrumb">전문분야</a>
+                    <a href="#!" className="breadcrumb">보유 기술</a>
+                    <a href="#!" className="breadcrumb">학력 및 전공</a>
+                    <a href="#!" className="breadcrumb">자격증</a>
+                    <a href="#!" className="breadcrumb">경력사항</a>
                   </nav>
+
+                  <div className="row modal-row">
+                    <div className="col s7">
+                      <div className="row">
+                        <div style={{margin: '0 .75rem'}} className='col s3 btn-floating grey lighten-1'><i className="large material-icons">person</i></div>
+                        <div className="col s8 input-field input-data-limits right">
+                          <input className='validate' type="text" id="providerNickname" data-length='17' value='의욕적인벚나무7292'/>
+                          <label className='active' htmlFor="providerNickname">전문가닉네임</label>
+                        </div>
+                        <div className="col s12 input-field input-data-limits">
+                          <textarea type="text" className="materialize-textarea" id="providerIntroducing" data-length='255' placeholder='자기소개' />
+                          <label className='active' htmlFor="providerIntroducing">자기소개</label>
+                        </div>
+                      </div>  
+                    </div>
+
+                    <div className="col s5">
+                      <div className="collection row">
+                        show screen
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
+
+                <div style={{padding: '4px 24px'}} className="modal-footer">
+                  <a href="#!" className="left btn waves-effect"><i class="left material-icons">chevron_left</i>이전</a>
+                  <a href="#!" className="right btn waves-effect"><i class="right material-icons">chevron_right</i>다음</a>
+                </div>
+
               </div>
             </div>
   

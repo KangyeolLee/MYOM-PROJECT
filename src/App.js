@@ -11,6 +11,7 @@ import ServiceDetails from './components/service/servicedetails/ServiceDetails'
 import 'materialize-css/dist/css/materialize.min.css';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
+import MypageForBuyer from './components/mypage/MypageForBuyer';
 import ProfileSetting from './components/mypage/ProfileSetting';
 import PaymentDetails from './components/mypage/PaymentDetails';
 import CouponPage from './components/mypage/CouponPage';
@@ -36,11 +37,12 @@ class App extends Component {
                 <Route path='/registerProvider' component={RegisterProvider} />
                 <Route path='/signin' component={SignIn} />
                 <Route path='/signup' component={SignUp} />
+                <Route path='/mypageBuyer' component={MypageForBuyer} />}
                 <Route path='/profileSetting' component={ProfileSetting} />
-                <Route path='/paymentDetails' component={PaymentDetails} />
-                <Route path='/coupons' component={CouponPage} />
-                <Route path='/estimate' component={EstimatePage} />
-                <Route path='/orderManage' component={OrderManage} />
+                <Route path='/mypageBuyer/paymentDetails' component={PaymentDetails} />
+                <Route path='/mypageBuyer/coupons' component={CouponPage} />
+                <Route path='/mypageBuyer/estimate' component={EstimatePage} />
+                <Route path='/mypageBuyer/orderManage' component={OrderManage} />
                 <Route path='/purchase' component={Purchase} />
                 <Route path='/purchasedone' component= { PurchaseDone } />
                 <Route path='/profile' component = { UserProfile } />
