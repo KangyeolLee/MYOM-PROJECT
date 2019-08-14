@@ -58,6 +58,7 @@ const Certifications = () => {
 								<h6>약관 동의 및 서명</h6>
 								<div className="divider"></div>
 								<h6>묨 판매홍보 대행 약관</h6>
+								
 							</div>
 						</div>
 					</div>

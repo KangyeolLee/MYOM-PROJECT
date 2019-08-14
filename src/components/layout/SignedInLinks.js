@@ -18,12 +18,12 @@ class SignedInLinks extends Component {
     return (
       <ul className="right">
         <li><NavLink to='/registerProvider'>판매자 등록</NavLink></li>
-        <li><NavLink to='/profileSetting' className='btn btn-floating grey lighten-1'><i className='material-icons'>person</i></NavLink></li>
+        <li><NavLink to='/profile' className='btn btn-floating grey lighten-1'><i className='material-icons'>person</i></NavLink></li>
         <li className='dropdown-trigger no-autoinit' data-target='dropdown_mypage'><span style={{display: 'flex'}}>{this.props.profile.initials}님&nbsp;<i className="material-icons">arrow_drop_down</i></span></li>
 
         {/* about dropdown option for UserMyPage */}
         <ul id="dropdown_mypage" className="dropdown-content">
-          <li><a href="#!">계정 설정</a></li>
+          <li><NavLink to='/profile'>계정 설정</NavLink></li>
           <li><NavLink to='/mypageBuyer/orderManage'>구매 관리</NavLink></li>
           <li><NavLink to='/mypageBuyer/estimate'>견적 요청</NavLink></li>
           <li><NavLink to='/mypageBuyer/paymentDetails'>결제 내역</NavLink></li>
