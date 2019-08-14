@@ -11,3 +11,65 @@
 .my_profile .row{
 	margin-top: 2rem;
 }
+
+.alarm-onoff label .lever{
+	margin: 15px 0 0 10px;
+}
+
+.alarm-setting h6{
+	font-weight: bold;
+}
+
+.alarm-setting{
+	border: 1px solid rgb(224,224,224);
+	padding: 16px;
+	margin-top: 9px;
+}
+
+.changepwd {
+	border: 1px solid rgb(224,224,224);
+	padding: 16px;
+	margin-top : 9px;
+}
+
+.withdrawal {
+	border: 1px solid rgb(224,224,224);
+	padding: 16px;
+	margin-top : 9px;
+}
+
+.withdrawal_button {
+	margin-top: 16px;
+}
+
+.certifications {
+	border: 1px solid rgb(224,224,224);
+	padding: 16px;
+	margin-top : 9px;
+	width: 800px;
+}
+
+.cert_phone {
+	margin-top: 30px;
+}
+
+.cert_group_radio {
+	display: flex;
+	border: 1px solid rgb(224,224,224);
+}
+
+.cert_group_radio span {
+	margin-right: 4rem;
+}
+
+.padding_zero{
+	padding: 0px !important;
+}
+
+.pro_cert{
+	margin-top: 24px;
+}
+
+.terms{
+	margin-top: 24px;
+}

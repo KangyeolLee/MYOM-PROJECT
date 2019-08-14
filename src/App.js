@@ -20,6 +20,10 @@ import OrderManage from './components/mypage/OrderManage';
 import Purchase from './components/consumer/Purchase'
 import PurchaseDone from './components/consumer/PurchaseDone'
 import UserProfile from './components/profile/UserProfile'
+import AlarmSetting from './components/profile/AlarmSetting'
+import Changepwd from './components/profile/Changepwd'
+import Withdrawal from './components/profile/Withdrawal'
+import Certifications from './components/profile/Certifications'
 
 class App extends Component {
   render(){
@@ -46,6 +50,10 @@ class App extends Component {
                 <Route path='/purchase' component={Purchase} />
                 <Route path='/purchasedone' component= { PurchaseDone } />
                 <Route path='/profile' component = { UserProfile } />
+                <Route path='/alarmsetting' component = { AlarmSetting } />
+                <Route path='/changepwd' component= { Changepwd } />
+                <Route path='/withdrawal' component= { Withdrawal } />
+                <Route path='/certifications' component= { Certifications } />
               </Switch>
           </div>
         </ScrollTop>
