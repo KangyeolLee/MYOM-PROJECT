@@ -58,7 +58,7 @@ const Withdrawal = () => {
 						<div className="row">
 							<div className="input-field col l10">
 								<input type="text" className="validate" id="withdrawal_email"/>
-								<label for="withdrawal_email">이메일 주소</label>
+								<label htmlFor="withdrawal_email">이메일 주소</label>
 							</div>
 						</div>
 						<div>* 무상으로 지급된 묨캐시는 탈퇴와 함께 자동 소멸됩니다.</div>

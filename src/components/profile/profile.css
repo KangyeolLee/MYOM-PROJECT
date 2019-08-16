@@ -2,6 +2,10 @@
 	margin-top : 2rem;
 }
 
+.profile-img{
+	display: grid;
+}
+
 .my_profile {
 	border: 1px solid rgb(224,224,224);
 	padding: 16px;
