@@ -42,3 +42,18 @@ export const signUp = (newUser) => {
     })
   }
 }
+
+export const withdrawal = (user) => {
+  return(dispatch, getState, { getFirebase }) =>{
+    const firebase = getFirebase();
+    let userInfo = firebase.auth().currentUser;
+    if(user.email === userInfo.email){
+      userInfo.delete()
+      .then(() => {
+        dispatch( {type: 'DELETE_SUCCESS'})
+      }).catch((err) => {
+        dispatch({type: 'DELETE_ERROR', err})
+      })
+    }
+  }
+}
