@@ -23,7 +23,7 @@ class MyServices extends Component {
 
           <div id="sellAll">
             <div className="collection">
-              <div className="collection-wrapper">
+              <div className="collection-wrapper center">
                 <p className="grey-text lighten-2">등록한 서비스가 없습니다</p>
                 <p className="grey-text lighten-2">서비스를 등록하여 판매를 시작해보세요!</p>
                 <a href="#!" className="red lighten-2 white-text btn waves-effect">판매 시작하기</a>
@@ -33,7 +33,7 @@ class MyServices extends Component {
 
           <div id="selling">
             <div className="collection">
-              <div className="collection-wrapper">
+              <div className="collection-wrapper center">
                 <p className="grey-text lighten-2">등록한 서비스가 없습니다</p>
                 <p className="grey-text lighten-2">서비스를 등록하여 판매를 시작해보세요!</p>
                 <a href="#!" className="red lighten-2 white-text btn waves-effect">판매 시작하기</a>
@@ -43,7 +43,7 @@ class MyServices extends Component {
 
           <div id="waiting">
             <div className="collection">
-              <div className="collection-wrapper">
+              <div className="collection-wrapper center">
                 <p className="grey-text lighten-2">등록한 서비스가 없습니다</p>
                 <p className="grey-text lighten-2">서비스를 등록하여 판매를 시작해보세요!</p>
                 <a href="#!" className="red lighten-2 white-text btn waves-effect">판매 시작하기</a>
@@ -53,7 +53,7 @@ class MyServices extends Component {
 
           <div id="forbidden">
             <div className="collection">
-              <div className="collection-wrapper">
+              <div className="collection-wrapper center">
                 <p className="grey-text lighten-2">등록한 서비스가 없습니다</p>
                 <p className="grey-text lighten-2">서비스를 등록하여 판매를 시작해보세요!</p>
                 <a href="#!" className="red lighten-2 white-text btn waves-effect">판매 시작하기</a>
@@ -63,7 +63,7 @@ class MyServices extends Component {
 
           <div id="notAllowed">
             <div className="collection">
-              <div className="collection-wrapper">
+              <div className="collection-wrapper center">
                 <p className="grey-text lighten-2">등록한 서비스가 없습니다</p>
                 <p className="grey-text lighten-2">서비스를 등록하여 판매를 시작해보세요!</p>
                 <a href="#!" className="red lighten-2 white-text btn waves-effect">판매 시작하기</a>
