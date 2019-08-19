@@ -3,7 +3,8 @@ import ProfileSideNav from './ProfileSideNav'
 import './profile.css'
 
 const AlarmSetting = () => {
-	return(
+  return( 
+    
 		<div className="container profile">
 			<div className="row">
 				<ProfileSideNav />
@@ -21,11 +22,11 @@ const AlarmSetting = () => {
 								<div className="col l2">
 									<h6>앱푸시</h6>
 									<div className="switch alarm-onoff">
-										<label>
+										<label className='col s12'>
 											<input type="checkbox"/>
 											<span className="lever"></span>
 										</label>
-										<label>
+										<label className='col s12'>
 											<input type="checkbox"/>
 											<span className="lever"></span>
 										</label>
@@ -34,11 +35,11 @@ const AlarmSetting = () => {
 								<div className="col l2">
 									<h6>SMS</h6>
 									<div className="switch alarm-onoff">
-										<label>
+										<label className='col s12'>
 											<input type="checkbox"/>
 											<span className="lever"></span>
 										</label>
-										<label>
+										<label className='col s12'>
 											<input type="checkbox"/>
 											<span className="lever"></span>
 										</label>
@@ -47,11 +48,11 @@ const AlarmSetting = () => {
 								<div className="col l2">
 									<h6>이메일</h6>
 									<div className="switch alarm-onoff">
-										<label>
+										<label className='col s12'>
 											<input type="checkbox"/>
 											<span className="lever"></span>
 										</label>
-										<label>
+										<label className='col s12'>
 											<input type="checkbox"/>
 											<span className="lever"></span>
 										</label>

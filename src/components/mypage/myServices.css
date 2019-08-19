@@ -1,0 +1,8 @@
+.myServices .collection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.myServices .collection .collection-wrapper {
+  margin: 3rem 0 3rem 0;
+}

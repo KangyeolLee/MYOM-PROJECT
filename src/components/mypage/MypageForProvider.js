@@ -1,27 +1,27 @@
 import React, { Component } from 'react'
 import MyPageSidenav from './MyPageSidenav';
-import CouponPage from './CouponPage';
 import EstimatePage from './EstimatePage';
 import OrderManage from './OrderManage';
-import PaymentDetails from './PaymentDetails';
+import MyServices from './MyServices';
+import ProfitsManage from './ProfitsManage';
 
-class MypageForBuyer extends Component {
+class MypageForProvider extends Component {
   renderSwitch(curURL) {
     switch(curURL) {
-      case '/mypageBuyer/paymentDetails':
-        return <PaymentDetails />;
+      case '/mypageProvider/myServices':
+        return <MyServices />;
 
-      case '/mypageBuyer/coupons':
-        return <CouponPage />;
+      case '/mypageProvider/profitsManage':
+        return <ProfitsManage />;
       
-      case '/mypageBuyer/estimate':
-        return <EstimatePage pathname={curURL}/>;
+      case '/mypageProvider/requestsPage':
+        return <EstimatePage pathname= {curURL}/>;
 
-      case '/mypageBuyer/orderManage':
+      case '/mypageProvider/sellManage':
         return <OrderManage pathname= {curURL}/>;
 
       default:  {/* 기본값 지정 */}
-        return this.props.history.push('/mypageBuyer/estimate');
+        return this.props.history.push('/mypageProvider/requestsPage'); 
     }
   }
   render() {
@@ -44,4 +44,4 @@ class MypageForBuyer extends Component {
   }
 }
 
-export default MypageForBuyer;
+export default MypageForProvider;

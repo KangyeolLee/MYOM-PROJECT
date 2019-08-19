@@ -1,0 +1,28 @@
+.profitsManage .recharts {
+  margin: 4rem 0 8rem 0;
+}
+
+.profitsManage .collection.profits_details {
+  display: flex;
+  padding: 2rem 0 2rem 0;
+}
+.profitsManage .collection.profits_details .collection-wrapper:nth-child(1) {
+  display: flex;
+}
+.profitsManage .collection.profits_details .collection-wrapper:nth-child(1) {
+  border-right: 1px solid rgb(214, 207, 207);
+}
+.profitsManage .collection.profits_details .collection-wrapper:nth-child(2) {
+  border-right: 1px solid rgb(214, 207, 207);
+}
+
+#profitsLog .collection, #depositsLog .collection, #taxDetails .collection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#profitsLog .collection .collection-wrapper,
+#depositsLog .collection .collection-wrapper,
+#taxDetails .collection .collection-wrapper {
+  margin: 3rem 0 3rem 0;
+}

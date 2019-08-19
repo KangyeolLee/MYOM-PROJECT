@@ -24,6 +24,7 @@ import AlarmSetting from './components/profile/AlarmSetting'
 import Changepwd from './components/profile/Changepwd'
 import Withdrawal from './components/profile/Withdrawal'
 import Certifications from './components/profile/Certifications'
+import MypageForProvider from './components/mypage/MypageForProvider';
 
 class App extends Component {
   render(){
@@ -43,10 +44,11 @@ class App extends Component {
                 <Route path='/signup' component={SignUp} />
                 <Route path='/mypageBuyer' component={MypageForBuyer} />}
                 <Route path='/profileSetting' component={ProfileSetting} />
-                <Route path='/mypageBuyer/paymentDetails' component={PaymentDetails} />
+                {/* <Route path='/mypageBuyer/paymentDetails' component={PaymentDetails} />
                 <Route path='/mypageBuyer/coupons' component={CouponPage} />
                 <Route path='/mypageBuyer/estimate' component={EstimatePage} />
-                <Route path='/mypageBuyer/orderManage' component={OrderManage} />
+                <Route path='/mypageBuyer/orderManage' component={OrderManage} /> */}
+                <Route path='/mypageProvider' component={MypageForProvider} />
                 <Route path='/purchase' component={Purchase} />
                 <Route path='/purchasedone' component= { PurchaseDone } />
                 <Route path='/profile' component = { UserProfile } />

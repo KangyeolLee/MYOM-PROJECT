@@ -20,11 +20,11 @@ const UserProfile = () => {
 							</div>
 							<div className="input-field col l8">
 								<input disabled value="chris0319@naver.com" id="my_email" type="text" />
-								<label for="my_email">이메일</label>
+								<label className='active' htmlFor="my_email">이메일</label>
 							</div>
 							<div className="input-field col l8">
 								<input disabled value="언틸번아웃 짱!" id="my_nickname" type="text" />
-								<label for="my_nickname">닉네임</label>
+								<label className='active' htmlFor="my_nickname">닉네임</label>
 							</div>
 						</div>
 					</div>

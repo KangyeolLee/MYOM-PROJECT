@@ -6,6 +6,9 @@ class ProfileSetting extends Component {
   componentDidMount() { 
     M.AutoInit();
   }
+  handleChange = (e) => {
+    console.log(e);
+  }
 
   render() {
     return (
@@ -52,7 +55,7 @@ class ProfileSetting extends Component {
                       <div className="row">
                         <div style={{margin: '0 .75rem'}} className='col s3 btn-floating grey lighten-1'><i className="large material-icons">person</i></div>
                         <div className="col s8 input-field input-data-limits right">
-                          <input className='validate' type="text" id="providerNickname" data-length='17' value='의욕적인벚나무7292'/>
+                          <input onChange={this.handleChange} className='validate' type="text" id="providerNickname" data-length='17' value='의욕적인벚나무7292'/>
                           <label className='active' htmlFor="providerNickname">전문가닉네임</label>
                         </div>
                         <div className="col s12 input-field input-data-limits">
@@ -72,8 +75,8 @@ class ProfileSetting extends Component {
                 </div>
 
                 <div style={{padding: '4px 24px'}} className="modal-footer">
-                  <a href="#!" className="left btn waves-effect"><i class="left material-icons">chevron_left</i>이전</a>
-                  <a href="#!" className="right btn waves-effect"><i class="right material-icons">chevron_right</i>다음</a>
+                  <a href="#!" className="left btn waves-effect"><i className="left material-icons">chevron_left</i>이전</a>
+                  <a href="#!" className="right btn waves-effect"><i className="right material-icons">chevron_right</i>다음</a>
                 </div>
 
               </div>

@@ -14,15 +14,15 @@ const Changepwd = () => {
 						<div className="row">
 							<div className="input-field col l12">
 								<input type="password" id="oldpwd" className="validate"/>
-								<label for="oldpwd">현재 비밀번호</label>
+								<label htmlFor="oldpwd">현재 비밀번호</label>
 							</div>
 							<div className="input-field col l6">
 								<input type="password" id="newpwd" className="validate"/>
-								<label for="newpwd">변경할 비밀번호</label>
+								<label htmlFor="newpwd">변경할 비밀번호</label>
 							</div>
 							<div className="input-field col l6">
 								<input type="password" id="chknewpwd" className="validate"/>
-								<label for="chknewpwd">변경할 비밀번호 재입력</label>
+								<label htmlFor="chknewpwd">변경할 비밀번호 재입력</label>
 							</div>
 						</div>
 					</div>
