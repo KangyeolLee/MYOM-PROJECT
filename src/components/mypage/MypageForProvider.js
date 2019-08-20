@@ -4,6 +4,7 @@ import EstimatePage from './EstimatePage';
 import OrderManage from './OrderManage';
 import MyServices from './MyServices';
 import ProfitsManage from './ProfitsManage';
+import ProfileSetting from './ProfileSetting';
 
 class MypageForProvider extends Component {
   renderSwitch(curURL) {
@@ -15,12 +16,15 @@ class MypageForProvider extends Component {
         return <ProfitsManage />;
       
       case '/mypageProvider/requestsPage':
-        return <EstimatePage pathname= {curURL}/>;
+        return <EstimatePage pathname= {curURL} />;
 
       case '/mypageProvider/sellManage':
-        return <OrderManage pathname= {curURL}/>;
+        return <OrderManage pathname= {curURL} />;
 
-      default:  {/* 기본값 지정 */}
+      case '/mypageProvider/profileSetting':
+        return <ProfileSetting />
+
+      default:  // 기본값 지정
         return this.props.history.push('/mypageProvider/requestsPage'); 
     }
   }

@@ -47,13 +47,23 @@ export const withdrawal = (user) => {
   return(dispatch, getState, { getFirebase }) =>{
     const firebase = getFirebase();
     let userInfo = firebase.auth().currentUser;
-    if(user.email === userInfo.email){
+    // if(user.email === userInfo.email){
+    //   userInfo.delete()
+    //   .then(() => {
+    //     dispatch( {type: 'DELETE_SUCCESS'})
+    //   }).catch((err) => {
+    //     dispatch({type: 'DELETE_ERROR', err})
+    //   })
+    // }
+    if(user.email !== userInfo.email) {
+      alert('아이디가 일치하지 않습니다')
+    } else {
       userInfo.delete()
-      .then(() => {
-        dispatch( {type: 'DELETE_SUCCESS'})
+        .then(() => {
+        dispatch({type:'DELETE_SUCCESS'})
       }).catch((err) => {
-        dispatch({type: 'DELETE_ERROR', err})
-      })
+        dispatch({type:'DELETE_ERROR', err})
+      });
     }
   }
 }

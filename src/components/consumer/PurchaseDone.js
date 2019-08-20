@@ -1,6 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import './purchase.css'
+import React from 'react';
+import './purchase.css';
 
 const PurchaseDone = () => {
 	return(

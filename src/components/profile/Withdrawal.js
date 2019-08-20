@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { withdrawal } from '../../store/actions/authAction'
 import { Redirect } from 'react-router-dom'
 import './profile.css'
-import authReducer from '../../store/reducers/authReducer';
 
 class Withdrawal extends Component {
 	state = {

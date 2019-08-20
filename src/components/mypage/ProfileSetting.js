@@ -12,7 +12,7 @@ class ProfileSetting extends Component {
 
   render() {
     return (
-      <div className="container profileSetting">
+      <div className="profileSetting">
         <div className="profileInfo collection row">
           <div className="col s2">
             <div className='btn-floating grey lighten-1'><i className="large material-icons">person</i></div>

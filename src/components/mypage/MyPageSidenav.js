@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import M from 'materialize-css';
 import './mypageSidenav.css';
 
-class MyPageForBuyer extends Component {
+class MyPageSidenav extends Component {
   componentDidMount() {
     M.AutoInit();
   }
@@ -89,7 +89,7 @@ class MyPageForBuyer extends Component {
 
             <NavLink to='/mypageProvider/myServices' className='collapsible-direct black-text'>나의 서비스</NavLink>
             <NavLink to='/mypageProvider/profitsManage' className='collapsible-direct black-text'>수익 관리</NavLink>
-          
+            <NavLink to='/mypageProvider/profileSetting' className='collapsible-direct black-text'>프로필 관리</NavLink>
           </ul>
         </div>
       );
@@ -100,4 +100,4 @@ class MyPageForBuyer extends Component {
   }
 }
 
-export default MyPageForBuyer;
+export default MyPageSidenav;

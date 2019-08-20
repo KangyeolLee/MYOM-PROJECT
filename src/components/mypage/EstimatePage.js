@@ -79,7 +79,7 @@ class EstimatePage extends Component {
               <div className="collection-item-wrapper center">
                 <p className='grey-text'>맞춤견적을 제안한 내역이 없습니다.</p>
                 <img width='300' src="../img/sample.png" alt=""/><br/>
-                <div className="btn-large waves-effect">맞춤견적 요청하기</div>
+                <div className="btn-large waves-effect">견적 보내러가기</div>
               </div>
             </div>
 
@@ -87,7 +87,7 @@ class EstimatePage extends Component {
               <div className="collection-item-wrapper center">
                 <p className='grey-text'>맞춤견적을 제안한 내역이 없습니다.</p>
                 <img width='300' src="../img/sample2.png" alt=""/><br/>
-                <div className="btn-large waves-effect">맞춤견적 요청하기</div>
+                <div className="btn-large waves-effect">견적 보내러가기</div>
               </div>
             </div>
 
@@ -95,7 +95,7 @@ class EstimatePage extends Component {
               <div className="collection-item-wrapper center">
                 <p className='grey-text'>맞춤견적을 제안한 내역이 없습니다.</p>
                 <img width='300' src="../img/sample3.png" alt=""/><br/>
-                <div className="btn-large waves-effect">맞춤견적 요청하기</div>
+                <div className="btn-large waves-effect">견적 보내러가기</div>
               </div>
             </div>
 
@@ -103,7 +103,7 @@ class EstimatePage extends Component {
               <div className="collection-item-wrapper center">
                 <p className='grey-text'>맞춤견적을 제안한 내역이 없습니다.</p>
                 <img width='300' src="../img/sample4.png" alt=""/><br/>
-                <div className="btn-large waves-effect">맞춤견적 요청하기</div>
+                <div className="btn-large waves-effect">견적 보내러가기</div>
               </div>
             </div>
 

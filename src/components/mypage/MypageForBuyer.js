@@ -15,12 +15,12 @@ class MypageForBuyer extends Component {
         return <CouponPage />;
       
       case '/mypageBuyer/estimate':
-        return <EstimatePage pathname={curURL}/>;
+        return <EstimatePage pathname={curURL} />;
 
       case '/mypageBuyer/orderManage':
-        return <OrderManage pathname= {curURL}/>;
+        return <OrderManage pathname= {curURL} />;
 
-      default:  {/* 기본값 지정 */}
+      default:  // 기본값 지정
         return this.props.history.push('/mypageBuyer/estimate');
     }
   }

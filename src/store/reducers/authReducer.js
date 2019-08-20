@@ -25,10 +25,12 @@ const authReducer = (state=initState, action) => {
       return {...state, authError: action.err.message}
 
     case 'DELETE_SUCCESS':
-      console.log('withdrawal success');
+      alert('회원탈퇴에 성공하였습니다!');
       return state;
+       
     case 'DELETE_ERROR':
-      console.log('withdrawal error')
+      console.log('withdrawal failed')
+      return state;
 
     default:
       return state;
