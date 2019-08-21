@@ -7,6 +7,7 @@ import M from 'materialize-css';
 import { Link } from 'react-router-dom';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
+import ServiceDescSummary from '../summary/ServiceDescSummary';
 //import firebaseConnect from 'react-redux-firebase/lib/firebaseConnect'
 
 class ServiceDetails extends Component {
@@ -25,12 +26,13 @@ class ServiceDetails extends Component {
  
   render() {
     const { suggestion, service } = this.props;
-    console.log(service)
+    const { description, inquiry, reviews, prices } = service;
+    console.log(description, inquiry, reviews, prices, service.id);
     return (
       <div className="container service-details">
         <div className="row">
           <div className="col s6 m6 l6">
-            <img id='details_mainImg' src="../../img/theme/korea.jpg" alt="" className='responsive-img'/>
+            <img id='details_mainImg' src={service.imgURL} alt="" className='responsive-img'/>
           </div>
           <div className="col s6 m6 l6 productIntro">
             <div className="card">
@@ -101,54 +103,8 @@ class ServiceDetails extends Component {
         </div>
 
         <div className="productMainIntro">
-          <div className="row service-description">
-            <div className="col s3">
-              <h3>서비스 설명</h3>
-            </div>
-            <div className="col s9">
-              { /* product.mainIntro */}
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, fugit blanditiis voluptatem facilis porro qui sunt reiciendis voluptatibus enim, asperiores voluptates deserunt, deleniti voluptas consequuntur vitae quo et quia odit.</p>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, fugit blanditiis voluptatem facilis porro qui sunt reiciendis voluptatibus enim, asperiores voluptates deserunt, deleniti voluptas consequuntur vitae quo et quia odit.</p>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, fugit blanditiis voluptatem facilis porro qui sunt reiciendis voluptatibus enim, asperiores voluptates deserunt, deleniti voluptas consequuntur vitae quo et quia odit.</p>
-            </div>
-          </div>
-
-          <div className="row working-description">
-            <div className="col s3">
-              <h3>작업 방식</h3>
-            </div>
-            <div className="col s9">
-              { /* product.mainIntro */}
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, fugit blanditiis voluptatem facilis porro qui sunt reiciendis voluptatibus enim, asperiores voluptates deserunt, deleniti voluptas consequuntur vitae quo et quia odit.</p>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, fugit blanditiis voluptatem facilis porro qui sunt reiciendis voluptatibus enim, asperiores voluptates deserunt, deleniti voluptas consequuntur vitae quo et quia odit.</p>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, fugit blanditiis voluptatem facilis porro qui sunt reiciendis voluptatibus enim, asperiores voluptates deserunt, deleniti voluptas consequuntur vitae quo et quia odit.</p>
-            </div>
-          </div>
-
-          <div className="row working-description">
-            <div className="col s3">
-              <h3>작업 과정</h3>
-            </div>
-            <div className="col s9">
-              { /* product.mainIntro */}
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, fugit blanditiis voluptatem facilis porro qui sunt reiciendis voluptatibus enim, asperiores voluptates deserunt, deleniti voluptas consequuntur vitae quo et quia odit.</p>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, fugit blanditiis voluptatem facilis porro qui sunt reiciendis voluptatibus enim, asperiores voluptates deserunt, deleniti voluptas consequuntur vitae quo et quia odit.</p>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, fugit blanditiis voluptatem facilis porro qui sunt reiciendis voluptatibus enim, asperiores voluptates deserunt, deleniti voluptas consequuntur vitae quo et quia odit.</p>
-            </div>
-          </div>
-
-          <div className="row working-description">
-            <div className="col s3">
-              <h3>작업 스타일</h3>
-            </div>
-            <div className="col s9">
-              { /* product.mainIntro */}
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, fugit blanditiis voluptatem facilis porro qui sunt reiciendis voluptatibus enim, asperiores voluptates deserunt, deleniti voluptas consequuntur vitae quo et quia odit.</p>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, fugit blanditiis voluptatem facilis porro qui sunt reiciendis voluptatibus enim, asperiores voluptates deserunt, deleniti voluptas consequuntur vitae quo et quia odit.</p>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, fugit blanditiis voluptatem facilis porro qui sunt reiciendis voluptatibus enim, asperiores voluptates deserunt, deleniti voluptas consequuntur vitae quo et quia odit.</p>
-            </div>
-          </div>
-
+          { description && description.map(item => <ServiceDescSummary desc={item} key={item.title}/> )}
+          {/* 고유 key 값으로 변경해야함.. */}
         </div>
 
         <div className="row productQnA">  
@@ -204,6 +160,7 @@ class ServiceDetails extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(state);
   const id = ownProps.match.params.id;
   const services = state.firestore.data.services;
   const service = services ? services['2cG7F5gRxkkUx23VsW4D'] : id;
@@ -215,11 +172,9 @@ const mapStateToProps = (state, ownProps) => {
 
 export default compose(
   firestoreConnect((props) => [     // 추후 props.match.params.id 로 document id를 불러올 것!
-    { collection: 'services' },
-    { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D', subcollections: [{ collection: 'description' }]},
+    { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D' },
     { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D', subcollections: [{ collection: 'inquiry' }]},
-    { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D', subcollections: [{ collection: 'prices' }]},
     { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D', subcollections: [{ collection: 'reviews' }]}
-  ]),
+  ]),    
   connect(mapStateToProps)
 )(ServiceDetails);
