@@ -5,6 +5,9 @@ import RecommendService from './RecommendService';
 import M from 'materialize-css';
 //import { imgLoader } from '../summary/imgLoader';
 import { Link } from 'react-router-dom';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
+//import firebaseConnect from 'react-redux-firebase/lib/firebaseConnect'
 
 class ServiceDetails extends Component {
   state = {
@@ -21,7 +24,8 @@ class ServiceDetails extends Component {
   }
  
   render() {
-    const { suggestion } = this.props;
+    const { suggestion, service } = this.props;
+    console.log(service)
     return (
       <div className="container service-details">
         <div className="row">
@@ -199,10 +203,23 @@ class ServiceDetails extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.match.params.id;
+  const services = state.firestore.data.services;
+  const service = services ? services['2cG7F5gRxkkUx23VsW4D'] : id;
   return {
-    suggestion : state.services.suggestion
+    suggestion : state.services.suggestion,
+    service
   }
 }
 
-export default connect(mapStateToProps)(ServiceDetails);
+export default compose(
+  firestoreConnect((props) => [     // 추후 props.match.params.id 로 document id를 불러올 것!
+    { collection: 'services' },
+    { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D', subcollections: [{ collection: 'description' }]},
+    { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D', subcollections: [{ collection: 'inquiry' }]},
+    { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D', subcollections: [{ collection: 'prices' }]},
+    { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D', subcollections: [{ collection: 'reviews' }]}
+  ]),
+  connect(mapStateToProps)
+)(ServiceDetails);

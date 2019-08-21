@@ -14,7 +14,7 @@ const initState = {
   ],
   specific_themas : [
     {
-      category : '전체 서비스',
+      category : '최다 평점 획득',
       contents : [
         { key : 'st01_1', title : 'sample01', src : '/img' },
         { key : 'st01_2', title : 'sample02', src : '/img' },
@@ -22,7 +22,7 @@ const initState = {
       ]
     },
     {
-      category : '스페셜 서비스',
+      category : '최다 작업 수행',
       contents : [
         { key : 'st02_1', title : 'sample01', src : '/img' },
         { key : 'st02_2', title : 'sample02', src : '/img' },
@@ -30,7 +30,7 @@ const initState = {
       ]
     },
     {
-      category : '판타스틱 서비스',
+      category : '최고 빠른 작업',
       contents : [
         { key : 'st03_1', title : 'sample01', src : '/img' },
         { key : 'st03_2', title : 'sample02', src : '/img' },

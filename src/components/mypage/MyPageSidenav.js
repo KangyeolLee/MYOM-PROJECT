@@ -18,7 +18,7 @@ class MyPageSidenav extends Component {
           <div className='profile-infos'>
             <div className='btn-floating grey lighten-1'><i className="large material-icons">person</i></div>
             <h5>의욕적인벚나무7292</h5>
-            <Link to="/mypageProvider" className="btn-large red darken-3 waves-effect"><i className="material-icons left">repeat</i>전문가로 전환하기</Link>
+            <Link to="/mypageProvider/requestsPage" className="btn-large red darken-3 waves-effect"><i className="material-icons left">repeat</i>전문가로 전환하기</Link>
           </div>
           <ul className="collapsible z-depth-0">
             <li>
@@ -58,7 +58,7 @@ class MyPageSidenav extends Component {
           <div className='profile-infos'>
             <div className='btn-floating grey lighten-1'><i className="large material-icons">person</i></div>
             <h5>의욕적인벚나무7292</h5>
-            <Link to="/mypageBuyer" className="btn-large yellow darken-3 waves-effect"><i className="material-icons left">repeat</i>의뢰인으로 전환하기</Link>
+            <Link to="/mypageBuyer/estimate" className="btn-large yellow darken-3 waves-effect"><i className="material-icons left">repeat</i>의뢰인으로 전환하기</Link>
           </div>
           <ul className="collapsible z-depth-0">
             <li>
