@@ -26,6 +26,7 @@ import Withdrawal from './components/profile/Withdrawal'
 import Certifications from './components/profile/Certifications'
 import MypageForProvider from './components/mypage/MypageForProvider';
 import BasicProductData from './components/product/BasicProductData'
+import ServiceRegister from './components/serviceForm/ServiceRegister';
 
 
 class App extends Component {
@@ -59,6 +60,7 @@ class App extends Component {
                 <Route path='/withdrawal' component= { Withdrawal } />
                 <Route path='/certifications' component= { Certifications } />
                 <Route path='/product' component= {BasicProductData} />
+                <Route path='/serviceRegister' component={ServiceRegister} />
               </Switch>
           </div>
         </ScrollTop>

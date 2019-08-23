@@ -1,3 +1,5 @@
+import { Redirect } from 'react-router-dom';
+
 const initState = {
   themas: [
     { title : 'transition', src : 'img/theme/paris.jpg' },
@@ -103,6 +105,14 @@ const initState = {
 
 const serviceRuducer = (state=initState, action) => {
   switch(action.type) {
+    case 'REGISTER_SERVICE_SUCCESS':
+      console.log('service register success');
+      return state;
+
+    case 'REGISTER_SERVICE_ERROR':
+      console.log('service register failed');
+      return state;
+
     default:
       return state;
   }

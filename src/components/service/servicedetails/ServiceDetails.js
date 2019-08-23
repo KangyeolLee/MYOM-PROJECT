@@ -29,7 +29,7 @@ class ServiceDetails extends Component {
   render() {
     const { suggestion, service, inquiry, reviews } = this.props;
     const { description, prices } = service;
-
+    
     return (
       <div className="container service-details">
         <div className="row">
@@ -99,7 +99,7 @@ class ServiceDetails extends Component {
 const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
   const services = state.firestore.data.services;
-  const service = services ? services['2cG7F5gRxkkUx23VsW4D'] : id;
+  const service = services ? services[id] : id;
   console.log(state);
   return {
     suggestion : state.services.suggestion,
@@ -111,9 +111,9 @@ const mapStateToProps = (state, ownProps) => {
 
 export default compose(
   firestoreConnect((props) => [     // 추후 props.match.params.id 로 document id를 불러올 것!
-    { collection: 'services' },
-    { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D', subcollections: [{collection: 'reviews'}], storeAs: 'reviews' },
-    { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D', subcollections: [{collection: 'inquiry'}], storeAs: 'inquiry' },
+    { collection: 'services', doc: props.match.params.id },
+    { collection: 'services', doc: props.match.params.id, subcollections: [{collection: 'reviews'}], storeAs: 'reviews' },
+    { collection: 'services', doc: props.match.params.id, subcollections: [{collection: 'inquiry'}], storeAs: 'inquiry' },
   ]),
   // firestoreConnect((props) => [
   //   // { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D' },
