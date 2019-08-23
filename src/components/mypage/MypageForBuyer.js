@@ -44,4 +44,4 @@ class MypageForBuyer extends Component {
   }
 }
 
-export default MypageForBuyer;
+export default MypageForBuyer; 

@@ -8,6 +8,7 @@ class PaymentDetails extends Component {
     M.AutoInit();
   }
   render() {
+    
     return (
       <div className="paymentDetails">
         <h4>결제 내역</h4>

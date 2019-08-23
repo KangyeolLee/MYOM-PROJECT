@@ -1,9 +1,9 @@
 import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
+// import 'firebase/firestore';
+// import 'firebase/auth';
 
 export const signIn = (cred) => {
-  return(dispatch, getState, { getFirebase }) => {
+  return(dispatch) => {
     //const firebase = getFirebase();
     firebase.auth().signInWithEmailAndPassword(
       cred.email,
@@ -17,7 +17,7 @@ export const signIn = (cred) => {
 }
 
 export const signOut = () => {
-  return(dispatch, getState, { getFirebase }) => {
+  return(dispatch) => {
     //const firebase = getFirebase();
     firebase.auth().signOut()
       .then(() => {
@@ -27,7 +27,7 @@ export const signOut = () => {
 }
 
 export const signUp = (newUser) => {
-  return(dispatch, getState, { getFirebase, getFirestore }) => {
+  return(dispatch, getState, { getFirestore }) => {
     //const firebase = getFirebase();
     const firestore = getFirestore();
     firebase.auth().createUserWithEmailAndPassword(
@@ -48,7 +48,7 @@ export const signUp = (newUser) => {
 }
 
 export const withdrawal = (user) => {
-  return(dispatch, getState, { getFirebase }) =>{
+  return(dispatch) =>{
     //const firebase = getFirebase();
     let userInfo = firebase.auth().currentUser;
     // if(user.email === userInfo.email){
