@@ -25,6 +25,8 @@ import Changepwd from './components/profile/Changepwd'
 import Withdrawal from './components/profile/Withdrawal'
 import Certifications from './components/profile/Certifications'
 import MypageForProvider from './components/mypage/MypageForProvider';
+import BasicProductData from './components/product/BasicProductData'
+
 
 class App extends Component {
   render(){
@@ -56,6 +58,7 @@ class App extends Component {
                 <Route path='/changepwd' component= { Changepwd } />
                 <Route path='/withdrawal' component= { Withdrawal } />
                 <Route path='/certifications' component= { Certifications } />
+                <Route path='/product' component= {BasicProductData} />
               </Switch>
           </div>
         </ScrollTop>
