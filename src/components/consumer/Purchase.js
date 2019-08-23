@@ -6,7 +6,9 @@ class Purchase extends Component {
 	componentDidMount() {
     M.AutoInit();
   }
+  
 	render(){
+    console.log(this.props);
 		return(
 			<div className="container purchase-page1">
 				<h4>주문하기</h4>
@@ -23,7 +25,7 @@ class Purchase extends Component {
 							<tr>
 								<td><strong>1분 미만의 영상 제작</strong> <br/> 러닝타임 (초) : 60초 <br/> 자막 삽입 <br/> 배경음악 <br/> 로고 삽입 <br/> Full HD (1080p) </td>
 								<td>5일</td>
-								<td>120,000원</td>
+								<td>{this.props.location.price}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -137,25 +139,25 @@ class Purchase extends Component {
 					<div className="panel-body">
 						<p>
 							<label>
-								<input name="method" class="with-gap" type="radio"/>
+								<input name="method" className="with-gap" type="radio"/>
 								<span>신용카드</span>
 							</label>
 						</p>
 						<p>
 							<label>
-								<input name="method" class="with-gap" type="radio"/>
+								<input name="method" className="with-gap" type="radio"/>
 								<span>실시간 계좌이체</span>
 							</label>
 						</p>
 						<p>
 							<label>
-								<input name="method" class="with-gap" type="radio"/>
+								<input name="method" className="with-gap" type="radio"/>
 								<span>무통장입금</span>
 							</label>
 						</p>
 						<p>
 							<label>
-								<input name="method" class="with-gap" type="radio"/>
+								<input name="method" className="with-gap" type="radio"/>
 								<span>휴대폰</span>
 							</label>
 						</p>

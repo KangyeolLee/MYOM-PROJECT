@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import ServiceDescSummary from '../summary/ServiceDescSummary';
+import ServicePricesSummary from '../summary/ServicePricesSummary';
 //import firebaseConnect from 'react-redux-firebase/lib/firebaseConnect'
 
 class ServiceDetails extends Component {
@@ -25,9 +26,9 @@ class ServiceDetails extends Component {
   }
  
   render() {
-    const { suggestion, service } = this.props;
-    const { description, inquiry, reviews, prices } = service;
-    console.log(inquiry);
+    const { service, suggestion } = this.props;
+    const { description, prices, inquiry, reviews } = service;
+    console.log(service);
     return (
       <div className="container service-details">
         <div className="row">
@@ -38,14 +39,16 @@ class ServiceDetails extends Component {
             <div className="card">
               <div className="card-tabs">
                 <div className="tabs tabs-fixed-width">
-                  <li className="tab"><a href="#priceTag1" className="active">STANDARD</a></li>
-                  <li className="tab"><a href="#priceTag2">DELUXE</a></li>
-                  <li className="tab"><a href="#priceTag3">PREMIUM</a></li>
+                  <li className="tab"><a href="#priceTag0" className="active">STANDARD</a></li>
+                  <li className="tab"><a href="#priceTag1">DELUXE</a></li>
+                  <li className="tab"><a href="#priceTag2">PREMIUM</a></li>
                 </div>
               </div>
 
               <div className="card-content">
-                <div id="priceTag1">
+                { prices && prices.map((item, i) => <ServicePricesSummary autoInit={M} index={i} price={item} key={`${item + i}`}/>)}
+                
+                {/* <div id="priceTag1">
                   <h5>100,000원</h5>
                   <div className="divider"></div>
                   <p>인트로 및 기본틀 제작</p>
@@ -95,9 +98,10 @@ class ServiceDetails extends Component {
                     </div>
                   </div>
                   <div className="btn waves-effect waves-light">구매하기</div>
-                </div>
-              </div>
+                </div> */}
 
+
+              </div>
             </div>
           </div>
         </div>
@@ -160,25 +164,25 @@ class ServiceDetails extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-//  const id = ownProps.match.params.id;
-//  const services = state.firestore.data.services;
-//  const service = services ? services['2cG7F5gRxkkUx23VsW4D'] : id;
-//  console.log(state);
+  const id = ownProps.match.params.id;
+  const services = state.firestore.data.services;
+  const service = services ? services['2cG7F5gRxkkUx23VsW4D'] : id;
+  console.log(state);
   return {
-    services: state.firestore.ordered.services,
-    reviews: state.firestore.ordered.reviews,
-    inquiry: state.firestore.ordered.inquiry
+    suggestion : state.services.suggestion,
+    service
   }
 }
 
 export default compose(
-  firestoreConnect((props) => [{     // 추후 props.match.params.id 로 document id를 불러올 것!
-    collection: 'services',
-    doc: '2cG7F5gRxkkUx23VsW4D',
-    subcollections: [{ collection: 'reviews'}],
-    storeAs: 'reviews',
-    subcollections: [{ collection: 'inquiry'}],
-    storeAs: 'inquiry'
-  }]),    
+  firestoreConnect((props) => [     // 추후 props.match.params.id 로 document id를 불러올 것!
+    { collection: 'services' },
+    { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D', subcollections: [{collection: 'reviews'}], storeAs: 'reviews' },
+    { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D', subcollections: [{collection: 'inquiry'}], storeAs: 'inquiry' },
+  ]),
+  // firestoreConnect((props) => [
+  //   // { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D' },
+  //   { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D', subcollections: [{ collection: 'reviews' }]}
+  // ]),   
   connect(mapStateToProps)
 )(ServiceDetails);
