@@ -27,9 +27,15 @@ class ServiceDetails extends Component {
   }
  
   render() {
+<<<<<<< HEAD
     const { suggestion, service, inquiry, reviews } = this.props;
     const { description, prices } = service;
 
+=======
+    const { service, suggestion } = this.props;
+    const { description, prices, inquiry, reviews } = service;
+    console.log(service);
+>>>>>>> 981ce800f565482f47fad83a937860083c0d9689
     return (
       <div className="container service-details">
         <div className="row">
@@ -97,15 +103,19 @@ class ServiceDetails extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
   const id = ownProps.match.params.id;
   const services = state.firestore.data.services;
   const service = services ? services['2cG7F5gRxkkUx23VsW4D'] : id;
+  console.log(state);
   return {
     suggestion : state.services.suggestion,
+<<<<<<< HEAD
     service,
     reviews: state.firestore.ordered.reviews,
     inquiry: state.firestore.ordered.inquiry
+=======
+    service
+>>>>>>> 981ce800f565482f47fad83a937860083c0d9689
   }
 }
 
