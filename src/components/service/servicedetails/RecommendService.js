@@ -5,8 +5,8 @@ const RecommendService = ({recommendable}) => {
     <div className="col s4">
       <div className="card">
         <div className="card-image">
-          <img className='' src={recommendable.src} alt=""/>
-          <span className="card-title black">{recommendable.title}</span>
+          <img className='' src={recommendable.imgURL} alt=""/>
+          <span className="card-title black">{recommendable.category}</span>
         </div>
       </div>
     </div>

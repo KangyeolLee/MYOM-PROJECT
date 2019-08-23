@@ -3,33 +3,41 @@ import RecommendService from '../servicedetails/RecommendService';
 import CategoryFilter from '../../layout/CategoryFilter';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 
 class SingleCategory extends Component {
   render() {
     const thema = this.props.match.params.category;
-    const { specific_themas, match } = this.props;
+    const { serviceList, match } = this.props;
     console.log(match);
     return (
       <div className="container">
         <CategoryFilter />
         <h2 className='red-text text-darken-3'>{thema}</h2>
         <ul className="collection">
-          { specific_themas && specific_themas.map(item => {
-            return (
-              <li className="collection-item" key={item.category}>
-                <h4>{item.category}</h4>
-                <div className="row">
-                  { item.contents && item.contents.map(content => {
-                    return (
-                      <Link to={`${match.url}/${content.key}`} key={content.key}>
-                        <RecommendService recommendable={content} />
-                      </Link>
-                    )
-                  })}
-                </div>
-              </li>
-            )
-          })}
+          <li className="collection-item row">
+            <h4>최다 평점 획득</h4>
+          </li>
+
+          <li className="collection-item row">
+            <h4>최다 작업 수행</h4>
+          </li>
+
+          <li className="collection-item row">
+            <h4>최고 빠른 작업</h4>
+          </li>
+
+          <li className="collection-item row">
+            <h4>전체</h4>
+            { serviceList && serviceList.map(item => {
+              return (
+                <Link to={`${match.url}/${item.id}`} key={item.id}>
+                  <RecommendService recommendable={item} />
+                </Link>
+              )
+            })}
+          </li>
         </ul>
       </div>
     )
@@ -37,7 +45,12 @@ class SingleCategory extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    specific_themas: state.services.specific_themas
+    serviceList: state.firestore.ordered.services
   }
 }
-export default connect(mapStateToProps)(SingleCategory);
+export default compose(
+  firestoreConnect([
+    { collection: 'services'}
+  ]),
+  connect(mapStateToProps)
+)(SingleCategory);

@@ -1,11 +1,11 @@
 const initState = {
   themas: [
-    { title : 'paris', src : 'img/theme/paris.jpg' },
-    { title : 'korea', src : 'img/theme/korea.jpg' },
-    { title : 'china', src : 'img/theme/china.jpg' },
-    { title : 'spain', src : 'img/theme/spain.jpg' },
-    { title : 'germany', src : 'img/theme/germany.jpg' },
-    { title : 'india', src : 'img/theme/india.jpg' }
+    { title : 'transition', src : 'img/theme/paris.jpg' },
+    { title : 'colorUpdate', src : 'img/theme/korea.jpg' },
+    { title : 'techniqu1', src : 'img/theme/china.jpg' },
+    { title : 'techniqu2', src : 'img/theme/spain.jpg' },
+    { title : 'techniqu3', src : 'img/theme/germany.jpg' },
+    { title : 'techniqu4', src : 'img/theme/india.jpg' }
   ],
   bests: [
     { category : 'PARIS', id : 'Pu2',  src : 'img/bestReviews/review_sample01.jpg', title : '베스트 후기1', content : 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, velit. Praesentium nesciunt similique, illo rem ullam dolorem maiores sint eaque fugiat ea. Ut nesciunt molestiae, quae nobis tenetur magnam incidunt.'},

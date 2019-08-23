@@ -8,7 +8,7 @@ class ServicePricesSummary extends Component {
   }
 
   render() {
-    const {autoInit, index, price} = this.props;
+    const { index, price } = this.props;
     return (
       <div id={`${'priceTag' + index}`} >
         <h5>{price.price}</h5>

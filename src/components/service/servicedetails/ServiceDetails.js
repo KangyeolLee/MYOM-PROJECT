@@ -4,11 +4,12 @@ import './servicedetails.css'
 import RecommendService from './RecommendService';
 import M from 'materialize-css';
 //import { imgLoader } from '../summary/imgLoader';
-import { Link } from 'react-router-dom';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import ServiceDescSummary from '../summary/ServiceDescSummary';
 import ServicePricesSummary from '../summary/ServicePricesSummary';
+import ServiceInquirySummary from '../summary/ServiceInquirySummary';
+import ServiceReviewsSummary from '../summary/ServiceReviewsSummary';
 //import firebaseConnect from 'react-redux-firebase/lib/firebaseConnect'
 
 class ServiceDetails extends Component {
@@ -26,9 +27,9 @@ class ServiceDetails extends Component {
   }
  
   render() {
-    const { suggestion, service } = this.props;
-    const { description, inquiry, reviews, prices } = service;
-    console.log(description, inquiry, reviews, prices, service.id);
+    const { suggestion, service, inquiry, reviews } = this.props;
+    const { description, prices } = service;
+
     return (
       <div className="container service-details">
         <div className="row">
@@ -46,62 +47,10 @@ class ServiceDetails extends Component {
               </div>
 
               <div className="card-content">
-                { prices && prices.map((item, i) => <ServicePricesSummary autoInit={M} index={i} price={item} key={`${item + i}`}/>)}
-                
-                {/* <div id="priceTag1">
-                  <h5>100,000원</h5>
-                  <div className="divider"></div>
-                  <p>인트로 및 기본틀 제작</p>
-                  <p>유튜브 자막 제작 및 기본 편집</p>
-                  <div className="row">
-                    <div className="col s6">
-                      <p><i className="material-icons">check</i>자막</p>
-                      <p><i className="material-icons">check</i>편집</p>
-                    </div>
-                    <div className="col s6">
-                      <p><i className="material-icons">check</i>음악</p>
-                      <p><i className="material-icons">check</i>FHD</p>
-                    </div>
-                  </div>
-                  <Link to='../../purchase' className="btn waves-effect waves-light">구매하기</Link>
-                </div>
-                <div id="priceTag2">
-                  <h5>200,000원</h5>
-                  <div className="divider"></div>
-                  <p>인트로 및 기본틀 제작</p>
-                  <p>유튜브 자막 제작 및 기본 편집</p>
-                  <div className="row">
-                    <div className="col s6">
-                      <p><i className="material-icons">check</i>자막</p>
-                      <p><i className="material-icons">check</i>편집</p>
-                    </div>
-                    <div className="col s6">
-                      <p><i className="material-icons">check</i>음악</p>
-                      <p><i className="material-icons">check</i>FHD</p>
-                    </div>
-                  </div>
-                  <div className="btn waves-effect waves-light">구매하기</div>
-                </div>
-                <div id="priceTag3">
-                  <h5>300,000원</h5>
-                  <div className="divider"></div>
-                  <p>인트로 및 기본틀 제작</p>
-                  <p>유튜브 자막 제작 및 기본 편집</p>
-                  <div className="row">
-                    <div className="col s6">
-                      <p><i className="material-icons">check</i>자막</p>
-                      <p><i className="material-icons">check</i>편집</p>
-                    </div>
-                    <div className="col s6">
-                      <p><i className="material-icons">check</i>음악</p>
-                      <p><i className="material-icons">check</i>FHD</p>
-                    </div>
-                  </div>
-                  <div className="btn waves-effect waves-light">구매하기</div>
-                </div> */}
-
-
+                { prices && prices.map((item, i) => <ServicePricesSummary index={i} price={item} key={`${item + i}`}/>)}
+                {/* 고유 key 값으로 변경해야함.. */}
               </div>
+
             </div>
           </div>
         </div>
@@ -115,10 +64,7 @@ class ServiceDetails extends Component {
           <div className="col s12 l12 m12">
             <h3>문의하기</h3>
             <ul className="collection">
-              <li className="collection-item"><div>홈페이지 제작 문의드립니다..</div></li>
-              <li className="collection-item"><div>질문있습니다..</div></li>
-              <li className="collection-item"><div>앙질문띠.</div></li>
-              <li className="collection-item"><div>질문있습니다.</div></li>
+              { inquiry && inquiry.map(item => <ServiceInquirySummary inquiry={item} key={item.id} /> )}
             </ul>
           </div>
         </div>
@@ -127,20 +73,7 @@ class ServiceDetails extends Component {
           <div className="col s12 l12 m12">
             <h3>Reviews</h3>
             <ul className="collection">
-              <li className="collection-item avatar">
-                <img alt ='' src="../../img/theme/korea.jpg" className="circle"/>
-                <span className="title">넘모 좋았어용</span>
-                <p>이야 진짜 영상퀄리티 쥑임다 <br/>
-                  꼭써보십쇼
-                </p>
-              </li>
-              <li className="collection-item avatar">
-                <img alt = '' src="../../img/theme/paris.jpg" className="circle"/>
-                <span className="title">넘모 좋았어용</span>
-                <p>이야 진짜 영상퀄리티 쥑임다 <br/>
-                  꼭써보십쇼
-                </p>
-              </li>
+              { reviews && reviews.map(item => <ServiceReviewsSummary review={item} key={item.id} />)}
             </ul>
           </div>
         </div>
@@ -169,8 +102,10 @@ const mapStateToProps = (state, ownProps) => {
   const services = state.firestore.data.services;
   const service = services ? services['2cG7F5gRxkkUx23VsW4D'] : id;
   return {
-    // suggestion : state.services.suggestion,
-    service
+    suggestion : state.services.suggestion,
+    service,
+    reviews: state.firestore.ordered.reviews,
+    inquiry: state.firestore.ordered.inquiry
   }
 }
 
