@@ -6,6 +6,7 @@ import { serviceRegister } from '../../store/actions/serviceFormAction';
 class ServiceRegister extends Component {
   state = {
     service_type: '',
+    service_img: '',
     service_desc: '',
     service_process: '',
     service_doing: '',
@@ -33,6 +34,12 @@ class ServiceRegister extends Component {
     })
   }
 
+  uploadFile = (e) => {
+    this.setState({
+      [e.target.id] : e.target.files[0]
+    })
+  }
+
   render() {
     console.log(this.state, this.props.history);
     return (
@@ -56,7 +63,7 @@ class ServiceRegister extends Component {
             <div className="file-field input-field col s6 offset-s4">
               <div className="btn">
                 <i className="material-icons">file_upload</i>
-                <input type="file"/>
+                <input type="file" id='service_img' onChange={this.uploadFile} />
               </div>
               <div className="file-path-wrapper">
                 <input type="text" className="file-path validate" placeholder='이미지 파일을 업로드 하세요' />
