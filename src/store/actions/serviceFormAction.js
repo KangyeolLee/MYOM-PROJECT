@@ -9,7 +9,9 @@ export const serviceRegister = (serviceData, history) => {
       .then(() => {
         storageRef.getDownloadURL()
           .then((url) => {
+            // services collection's document
             docRef.set({
+              serviceProvider: serviceData.service_provider,
               category: serviceData.service_type,
               description: [
                 { title: '서비스 설명', contents: serviceData.service_desc},
@@ -25,7 +27,7 @@ export const serviceRegister = (serviceData, history) => {
                 { price: serviceData.service_price_premium, contents: serviceData.premium_desc },
               ]
             });
-
+            // services collections's sub-collection's document: reviews
             docRef.collection('reviews').add({
               contents: '',
               profile: '',
@@ -33,7 +35,7 @@ export const serviceRegister = (serviceData, history) => {
               timestamp: '',
               userID: '',
             });
-
+            // services collections's sub-collection's document: inquiry
             docRef.collection('inquiry').add({
               comment: null,
               contents: '',

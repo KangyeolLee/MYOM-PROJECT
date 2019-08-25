@@ -5,6 +5,7 @@ import { serviceRegister } from '../../store/actions/serviceFormAction';
 
 class ServiceRegister extends Component {
   state = {
+    service_provider: this.props.auth.uid,
     service_type: '',
     service_img: '',
     service_desc: '',
@@ -41,7 +42,7 @@ class ServiceRegister extends Component {
   }
 
   render() {
-    console.log(this.state, this.props.history);
+    console.log(this.state, this.props);
     return (
       <div className="container">
         <div className="row">
@@ -127,9 +128,14 @@ class ServiceRegister extends Component {
     )
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth
+  }
+}
 const mapDispatchToProps = (dispatch) => {
   return {
     serviceRegister: (serviceData, history) => dispatch(serviceRegister(serviceData, history))
   }
 }
-export default connect(null, mapDispatchToProps)(ServiceRegister);
+export default connect(mapStateToProps, mapDispatchToProps)(ServiceRegister);

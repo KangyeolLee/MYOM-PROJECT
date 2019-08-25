@@ -3,14 +3,13 @@ import { connect } from 'react-redux';
 import './servicedetails.css'
 import RecommendService from './RecommendService';
 import M from 'materialize-css';
-//import { imgLoader } from '../summary/imgLoader';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import ServiceDescSummary from '../summary/ServiceDescSummary';
 import ServicePricesSummary from '../summary/ServicePricesSummary';
 import ServiceInquirySummary from '../summary/ServiceInquirySummary';
 import ServiceReviewsSummary from '../summary/ServiceReviewsSummary';
-//import firebaseConnect from 'react-redux-firebase/lib/firebaseConnect'
+
 
 class ServiceDetails extends Component {
   state = {
@@ -19,11 +18,6 @@ class ServiceDetails extends Component {
 
   componentDidMount() {
     M.AutoInit();
-    // storage.ref(`images/theme`).child('korea.jpg').getDownloadURL().then(url => this.setState({
-    //   imgSrc : url
-    // }));
-
-    //imgLoader(this.props);
   }
  
   render() {
