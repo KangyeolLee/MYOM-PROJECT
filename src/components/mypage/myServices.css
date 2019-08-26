@@ -6,3 +6,12 @@
 .myServices .collection .collection-wrapper {
   margin: 3rem 0 3rem 0;
 }
+.myServices .collection .collection-item {
+  display: flex;
+}
+
+.myServices .collection.notEmpty {
+  display: block;
+  justify-content: unset;
+  align-items: unset;
+}
