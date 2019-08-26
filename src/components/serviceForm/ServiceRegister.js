@@ -42,14 +42,14 @@ class ServiceRegister extends Component {
   }
 
   render() {
-    console.log(this.state, this.props);
+    console.log(this.state.error, this.props);
     return (
       <div className="container">
         <div className="row">
           <form onSubmit={this.handleSubmit} className='col s12'>
 
             <div className="input-field col s2">
-              <select defaultValue={'DEFAULT'} name="" id="service_type" onChange={this.handleChange}>
+              <select defaultValue={'DEFAULT'} name="" id="service_type" onChange={this.handleChange} required>
                 <option value="DEFAULT" disabled>스타일 편집기법</option>
                 <option value="transition">transition</option>
                 <option value="colorFix">colorFix</option>
@@ -73,7 +73,7 @@ class ServiceRegister extends Component {
 
 
             <div className="input-field col s12">
-              <textarea type="text" id="service_desc" className="materialize-textarea" onChange={this.handleChange}/>
+              <textarea type="text" id="service_desc" className="materialize-textarea" required onChange={this.handleChange}/>
               <label htmlFor="service_desc">서비스 설명</label>
             </div>
             <div className="input-field col s12">
