@@ -21,6 +21,8 @@ export const serviceRegister = (serviceData, history) => {
               ],
               filter: null,
               imgURL: url,
+              inquiryCount: 0,
+              reviewCount: 0,
               prices: [
                 { price: serviceData.service_price_standard, contents: serviceData.standard_desc },
                 { price: serviceData.service_price_deluxe, contents: serviceData.deluxe_desc },

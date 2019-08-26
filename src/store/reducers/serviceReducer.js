@@ -1,5 +1,3 @@
-import { Redirect } from 'react-router-dom';
-
 const initState = {
   themas: [
     { title : 'transition', src : 'img/theme/paris.jpg' },
