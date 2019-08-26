@@ -18,7 +18,7 @@ class Changepwd extends Component{
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		this.props.changePwd(this.state);
+		this.props.changePwd(this.state, this.props.history);
 	}
 
 		render(){
@@ -64,7 +64,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
 	return{
-		changePwd: (pwdInfo) => dispatch(changePwd(pwdInfo))
+		changePwd: (pwdInfo, history) => dispatch(changePwd(pwdInfo, history))
 	}
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Changepwd);

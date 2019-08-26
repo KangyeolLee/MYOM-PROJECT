@@ -94,7 +94,7 @@ export const withdrawal = (user) => {
 //   }
 // }
 
-export const changePwd = (pwdInfo) => {
+export const changePwd = (pwdInfo, history) => {
   // const reauthenticate = (currentPassword) => {
   //   let user = firebase.auth().currentUser;
   //   let cred = firebase.auth.EmailAuthProvider.credential(
@@ -113,12 +113,13 @@ export const changePwd = (pwdInfo) => {
       }else{
         user.updatePassword(pwdInfo.newpwd).then(() =>{
           dispatch({type: 'PWDUPDATE_SUCCESS'});
+          history.push('/');
         }).catch((err) => {
-          dispatch({type:'PWDUPDATE_ERROR', err})
+          dispatch({type:'PWDUPDATE_ERROR', err});
         });
       }
     }).catch((err) => {
-      dispatch({type:'REAUTHENTICATE_ERROR', err})
+      dispatch({type:'REAUTHENTICATE_ERROR', err});
     });
   }
 }
