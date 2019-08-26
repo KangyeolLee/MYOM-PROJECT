@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 import { Link } from 'react-router-dom';
 import './theme.css';
 import ThemeSummary from '../service/summary/ThemeSummary';
 
 class Theme extends Component {
+  state = {
+    imgUrl : ''
+  }
+
+  componentDidMount() {
+
+  }
   render() {
-    const {themas} = this.props;
+    const {themas, dashboard} = this.props;
+    console.log(dashboard);
     return (
       <div className="container Theme">
         <p className='center flow-text'>This is the Thema area</p>
@@ -24,4 +35,14 @@ class Theme extends Component {
   }
 }
 
-export default Theme;
+const mapStateToProps = (state) => {
+  const dashboard = state.firestore.data.dashboard;
+  return {
+    dashboard
+  }
+}
+
+export default compose (
+  firestoreConnect((props) => [{ collection: 'dashboard', doc: 'pwTCKksmBbMrar96bLX7'}]),
+  connect(mapStateToProps)
+ )(Theme)
