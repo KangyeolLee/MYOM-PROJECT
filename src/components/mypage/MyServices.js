@@ -41,8 +41,8 @@ class MyServices extends Component {
                     </div>
                   )
                   : services.map(item => {
-                    return (
-                      <div className="collection notEmpty" key={item.id}>
+                    return (                 
+                      <div className="collection notEmpty">
                         <div className="collection-item">
                           <div className="image-area">
                             <img src={item.imgURL} alt="" width={300} height={200} />
@@ -57,6 +57,7 @@ class MyServices extends Component {
                             </div>
                           </div>
                         </div>
+                        <Link to={`/thema/${item.category}/${item.id}`} key={item.id}></Link>
                       </div>
                     )
                   })
