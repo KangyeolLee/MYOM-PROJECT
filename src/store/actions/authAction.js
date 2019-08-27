@@ -42,8 +42,19 @@ export const signUp = (newUser) => {
     }).then(() => {
       dispatch({type: 'SIGNUP_SUCCESS'})
     }).catch((err) => {
-      dispatch({type: 'SIGNUP_ERROR', err})
-    })
+      switch(err.code) {
+        case 'auth/email-already-in-use':
+          dispatch({type: 'EMAILUSED_ERROR'});
+        case 'auth/invalid-email':
+          dispatch({type: 'EMAILINVALID_ERROR'});
+        case 'auth/operation-not-allowed':
+          dispatch({type: 'OPERATION_ERROR'});
+        case 'auth/weak-password':
+          dispatch({type: 'WEAKPWD_ERROR'});
+        default: 
+          dispatch({type: 'SIGNUP_ERROR'});
+      }
+    });
   }
 }
 
@@ -94,7 +105,7 @@ export const withdrawal = (user) => {
 //   }
 // }
 
-export const changePwd = (pwdInfo) => {
+export const changePwd = (pwdInfo, history) => {
   // const reauthenticate = (currentPassword) => {
   //   let user = firebase.auth().currentUser;
   //   let cred = firebase.auth.EmailAuthProvider.credential(
@@ -107,19 +118,30 @@ export const changePwd = (pwdInfo) => {
   return(dispatch) => {
     let user = firebase.auth().currentUser;
     let cred = firebase.auth.EmailAuthProvider.credential(user.email, pwdInfo.oldpwd);
-    user.reauthenticateWithCredential(cred)
-      .then(() => {
-        if(pwdInfo.newpwd !== pwdInfo.chknewpwd){
-          alert('변경할 비밀번호와 재입력 값이 다릅니다.');
-        }else{
-          user.updatePassword(pwdInfo.newpwd).then(() =>{
-            dispatch({type: 'PWDUPDATE_SUCCESS'});
-          }).catch((err) => {
-            dispatch({type:'PWDUPDATE_ERROR', err})
-          });
-        }
-      }).catch((err) => {
-      dispatch({type:'REAUTHENTICATE_ERROR', err})
+    user.reauthenticateWithCredential(cred).then(() => {
+      if(pwdInfo.newpwd !== pwdInfo.chknewpwd){
+        alert('변경할 비밀번호와 재입력 값이 다릅니다.');
+      }else{
+        user.updatePassword(pwdInfo.newpwd).then(() =>{
+          dispatch({type: 'PWDUPDATE_SUCCESS'});
+          history.push('/');
+        }).catch((err) => {
+          dispatch({type:'PWDUPDATE_ERROR', err});
+        });
+      }
+    }).catch((err) => {
+      dispatch({type:'REAUTHENTICATE_ERROR', err});
+    });
+  }
+}
+
+export const resetPwdEmail = (user) => {
+  return(dispatch) => {
+    firebase.auth().sendPasswordResetEmail(user.email)
+    .then(()=> {
+      dispatch({type: 'SENDRESETEMAIL_SUCCESS'});
+    }).catch((err) => {
+      dispatch({type: 'SENDRESETEMAIL_ERROR'}, err);
     });
   }
 }

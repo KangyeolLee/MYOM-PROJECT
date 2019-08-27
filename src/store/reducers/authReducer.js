@@ -43,6 +43,30 @@ const authReducer = (state=initState, action) => {
     case 'REAUTHENTICATE_ERROR':
       alert('기존의 비밀번호를 다시 입력해주세요.');
       return state; 
+    
+    case 'SENDRESETEMAIL_SUCCESS':
+      alert('비밀번호 재설정 이메일을 발송해드렸습니다.');
+      return state;
+
+    case 'SENDRESETEMAIL_ERROR':
+      alert('입력하신 이메일로 가입된 정보가 없습니다.');
+      return state;
+    
+    case 'EMAILUSED_ERROR':
+      alert('이미 가입된 이메일입니다.');
+      return state;
+    
+    case 'EMAILINVALID_ERROR':
+      alert('이미 가입됐으나 인증이 안된 이메일입니다. 이메일 인증을 해주세요.');
+      return state;
+    
+    case 'OPERATION_ERROR':
+      alert('회원가입 중 오류가 발생했습니다. 새로고침하고 다시 시도해주세요.');
+      return state;
+    
+    case 'WEAKPWD_ERROR':
+      alert('비밀번호가 보안에 취약합니다. 다시 설정해주세요.');
+      return state;
 
     default:
       return state;
