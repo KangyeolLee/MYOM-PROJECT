@@ -42,8 +42,19 @@ export const signUp = (newUser) => {
     }).then(() => {
       dispatch({type: 'SIGNUP_SUCCESS'})
     }).catch((err) => {
-      dispatch({type: 'SIGNUP_ERROR', err})
-    })
+      switch(err.code) {
+        case 'auth/email-already-in-use':
+          dispatch({type: 'EMAILUSED_ERROR'});
+        case 'auth/invalid-email':
+          dispatch({type: 'EMAILINVALID_ERROR'});
+        case 'auth/operation-not-allowed':
+          dispatch({type: 'OPERATION_ERROR'});
+        case 'auth/weak-password':
+          dispatch({type: 'WEAKPWD_ERROR'});
+        default: 
+          dispatch({type: 'SIGNUP_ERROR'});
+      }
+    });
   }
 }
 
@@ -120,6 +131,17 @@ export const changePwd = (pwdInfo, history) => {
       }
     }).catch((err) => {
       dispatch({type:'REAUTHENTICATE_ERROR', err});
+    });
+  }
+}
+
+export const resetPwdEmail = (user) => {
+  return(dispatch) => {
+    firebase.auth().sendPasswordResetEmail(user.email)
+    .then(()=> {
+      dispatch({type: 'SENDRESETEMAIL_SUCCESS'});
+    }).catch((err) => {
+      dispatch({type: 'SENDRESETEMAIL_ERROR'}, err);
     });
   }
 }

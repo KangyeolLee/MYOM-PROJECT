@@ -27,7 +27,7 @@ import Certifications from './components/profile/Certifications'
 import MypageForProvider from './components/mypage/MypageForProvider';
 import BasicProductData from './components/product/BasicProductData'
 import ServiceRegister from './components/serviceForm/ServiceRegister';
-
+import ForgotIdPwd from './components/auth/ForgotIdPwd';
 
 class App extends Component {
   render(){
@@ -61,6 +61,7 @@ class App extends Component {
                 <Route path='/certifications' component= { Certifications } />
                 <Route path='/product' component= {BasicProductData} />
                 <Route path='/serviceRegister' component={ServiceRegister} />
+                <Route path= '/forgotIdPwd' component={ForgotIdPwd} />
               </Switch>
           </div>
         </ScrollTop>

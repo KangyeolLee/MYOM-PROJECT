@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { signIn } from '../../store/actions/authAction';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import './signin.css';
 
 class SignIn extends Component {
@@ -40,6 +40,9 @@ class SignIn extends Component {
               <div className="input-field center">
                 <button className="btn pink lighten-1">로그인</button>
                 <div className="red-text center">{ authError ? <p>{authError}</p> : null }</div>
+              </div>
+              <div className="forgotidpwd center">
+                <Link to='/forgotIdPwd'>아이디/비밀번호찾기</Link>
               </div>
             </form>
           </div>
