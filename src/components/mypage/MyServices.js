@@ -29,7 +29,17 @@ class MyServices extends Component {
           <div id="sellAll">
             { 
               !isLoaded(services)
-                ? '로딩중입니다...'
+                ? (
+                  <div style={{padding: '5rem 0'}}className="collection preloader-wrapper col s12">
+                    <div className="preloader-wrapper small active center">
+                      <div className="spinner-layer spinner-red-only">
+                        <div className="circle-clipper left"><div className="circle"></div></div>
+                        <div className="gap-patch"><div className="circle"></div></div>
+                        <div className="circle-clipper right"><div className="circle"></div></div>
+                      </div>
+                    </div>
+                  </div>
+                )
                 : isEmpty(services)
                   ? (
                     <div className="collection">
@@ -42,7 +52,7 @@ class MyServices extends Component {
                   )
                   : services.map(item => {
                     return (                 
-                      <div className="collection notEmpty">
+                      <div className="collection notEmpty" key={item.id}>
                         <div className="collection-item">
                           <div className="image-area">
                             <img src={item.imgURL} alt="" width={300} height={200} />
@@ -56,8 +66,8 @@ class MyServices extends Component {
                               <p>등록된 리뷰개수 : {item.reviewCount}</p>
                             </div>
                           </div>
+                          <Link to={`/thema/${item.category}/${item.id}`}>게시글 보러가기</Link>
                         </div>
-                        <Link to={`/thema/${item.category}/${item.id}`} key={item.id}></Link>
                       </div>
                     )
                   })
@@ -75,13 +85,13 @@ class MyServices extends Component {
           </div>
 
           <div id="waiting">
-            <div className="collection">
+           <div className="collection">
               <div className="collection-wrapper center">
                 <p className="grey-text lighten-2">등록한 서비스가 없습니다</p>
                 <p className="grey-text lighten-2">서비스를 등록하여 판매를 시작해보세요!</p>
                 <Link to="/serviceRegister" className="red lighten-2 white-text btn waves-effect">판매 시작하기</Link>
               </div>
-            </div>
+            </div>   
           </div>
 
           <div id="forbidden">
@@ -117,6 +127,6 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect((props) => [
-    { collection: 'services', where: [ 'serviceProvider', '==', props.auth.uid], storeAs: 'services' },
+    { collection: 'services', where: [ 'serviceProvider', '==', props.auth.uid], orderBy: ['timestamp', 'desc'], storeAs: 'services' },
   ]),
 )(MyServices);

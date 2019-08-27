@@ -107,17 +107,18 @@ export const changePwd = (pwdInfo) => {
   return(dispatch) => {
     let user = firebase.auth().currentUser;
     let cred = firebase.auth.EmailAuthProvider.credential(user.email, pwdInfo.oldpwd);
-    user.reauthenticateWithCredential(cred).then(() => {
-      if(pwdInfo.newpwd !== pwdInfo.chknewpwd){
-        alert('변경할 비밀번호와 재입력 값이 다릅니다.');
-      }else{
-        user.updatePassword(pwdInfo.newpwd).then(() =>{
-          dispatch({type: 'PWDUPDATE_SUCCESS'});
-        }).catch((err) => {
-          dispatch({type:'PWDUPDATE_ERROR', err})
-        });
-      }
-    }).catch((err) => {
+    user.reauthenticateWithCredential(cred)
+      .then(() => {
+        if(pwdInfo.newpwd !== pwdInfo.chknewpwd){
+          alert('변경할 비밀번호와 재입력 값이 다릅니다.');
+        }else{
+          user.updatePassword(pwdInfo.newpwd).then(() =>{
+            dispatch({type: 'PWDUPDATE_SUCCESS'});
+          }).catch((err) => {
+            dispatch({type:'PWDUPDATE_ERROR', err})
+          });
+        }
+      }).catch((err) => {
       dispatch({type:'REAUTHENTICATE_ERROR', err})
     });
   }

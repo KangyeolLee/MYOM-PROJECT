@@ -5,10 +5,9 @@ import { Link } from 'react-router-dom';
 import RecommendService from '../servicedetails/RecommendService';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { firestoreConnect } from 'react-redux-firebase';
+import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 
 const AllService = (props) => {
-  const { recommends } = props;
   const { match, serviceList } = props;
   console.log(props);
   return (
@@ -29,13 +28,30 @@ const AllService = (props) => {
 
         <li className="collection-item row">
           <h4>전체</h4>
-          { serviceList && serviceList.map(item => {
-            return (
-              <Link to={`${match.url}/${item.category}/${item.id}`} key={item.id}>
-                <RecommendService recommendable={item} />
-              </Link>
-            )
-          })}
+          {
+            !isLoaded(serviceList)
+              ? (
+                <div className="preloader-wrapper">
+                  <div className="preloader-wrapper small active center">
+                    <div className="spinner-layer spinner-red-only">
+                      <div className="circle-clipper left"><div className="circle"></div></div>
+                      <div className="gap-patch"><div className="circle"></div></div>
+                      <div className="circle-clipper right"><div className="circle"></div></div>
+                    </div>
+                  </div>
+                </div>
+              )
+              : isEmpty(serviceList)
+                ? <div>아직 등록된 서비스가 없습니다.</div>
+                : serviceList.map(item => {
+                  return (
+                    <Link to={`${match.url}/${item.category}/${item.id}`} key={item.id}>
+                      <RecommendService recommendable={item} />
+                    </Link>
+                  )
+                })
+          }
+          
         </li>
       </ul>
 
