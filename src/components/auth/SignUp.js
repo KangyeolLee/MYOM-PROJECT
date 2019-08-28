@@ -24,7 +24,7 @@ class SignUp extends Component {
     if(auth.uid) return <Redirect to='/' />
     return (
       <div className="container">
-        <form onSubmit={this.handleSubmit} className='white'>
+        <form onSubmit={this.handleSubmit} className='white' id="signUp_submit">
           <h5 className="grey-text text-darken-3">회원가입</h5>
           <div className="input-field">
             <label htmlFor="email">아이디</label>

@@ -18,10 +18,11 @@ const authReducer = (state=initState, action) => {
 
     case 'SIGNUP_SUCCESS':
       console.log('signup success');
+      alert('회원가입이 완료되셨습니다. 가입하신 이메일 주소로 인증메일을 보냈으니 인증을 완료해주세요.')
       return {...state, authError: null}
 
     case 'SIGNUP_ERROR':
-      console.log('signup error', action.err.message);
+      console.log('signup error', action.err, action.err.message);
       return {...state, authError: action.err.message}
 
     case 'DELETE_SUCCESS':
@@ -66,6 +67,14 @@ const authReducer = (state=initState, action) => {
     
     case 'WEAKPWD_ERROR':
       alert('비밀번호가 보안에 취약합니다. 다시 설정해주세요.');
+      return state;
+
+    case 'SENDEMAILVERIFICATION_SUCCESS':
+      console.log('send verification email')
+      return state;
+    
+    case 'SENDEMAILVERIFICATION_ERROR':
+      console.log('send verification email failed');
       return state;
 
     default:

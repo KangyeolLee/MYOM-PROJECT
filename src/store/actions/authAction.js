@@ -34,6 +34,12 @@ export const signUp = (newUser) => {
       newUser.email,
       newUser.password
     ).then((res) => {
+      res.user.sendEmailVerification()
+      .then(() => {
+        dispatch({type: 'SENDEMAILVERIFICATION_SUCCESS'});
+      }).catch((err) => {
+        dispatch({type:"SENDEMAILVERIFICATION_ERROR", err});
+      })
       return firestore.collection('users').doc(res.user.uid).set({
         firstName: newUser.firstName,
         lastName: newUser.lastName,
@@ -45,16 +51,20 @@ export const signUp = (newUser) => {
       switch(err.code) {
         case 'auth/email-already-in-use':
           dispatch({type: 'EMAILUSED_ERROR'});
+          break;
         case 'auth/invalid-email':
           dispatch({type: 'EMAILINVALID_ERROR'});
+          break;
         case 'auth/operation-not-allowed':
           dispatch({type: 'OPERATION_ERROR'});
+          break;
         case 'auth/weak-password':
           dispatch({type: 'WEAKPWD_ERROR'});
+          break;
         default: 
-          dispatch({type: 'SIGNUP_ERROR'});
+          dispatch({type: 'SIGNUP_ERROR', err});
       }
-    });
+    })
   }
 }
 
@@ -145,3 +155,4 @@ export const resetPwdEmail = (user) => {
     });
   }
 }
+
