@@ -2,8 +2,8 @@
 	margin-top : 2rem;
 }
 
-.profile-img{
-	display: grid;
+.imgUpload_btn {
+	margin-left: 16.36px;
 }
 
 .my_profile {
@@ -76,4 +76,13 @@
 
 .terms{
 	margin-top: 24px;
+}
+
+.file-field .btn {
+	height: 3rem;
+	line-height:3rem
+}
+
+.file-path-wrapper {
+	visibility: hidden;
 }

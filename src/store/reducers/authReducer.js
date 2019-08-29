@@ -75,6 +75,14 @@ const authReducer = (state=initState, action) => {
     case 'SENDEMAILVERIFICATION_ERROR':
       console.log('send verification email failed');
       return state;
+    
+    case 'PROFILEIMGREGISTER_SUCCESS':
+      console.log('img register success');
+      return state;
+    
+    case 'PROFILEIMGREGISTER_ERROR':
+      console.log('img register error');
+      return state;
 
     default:
       return state;

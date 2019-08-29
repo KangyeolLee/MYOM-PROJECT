@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { sendEmailVerification} from '../../store/actions/authAction';
 import './emailverification.css';
@@ -9,7 +9,9 @@ const EmailVerification = (props) => {
 		e.preventDefault();
 		props.sendEmailVerification();
 	} 
-	console.log(props);
+	const {auth} = props;
+	if(auth.emailVerified) return <Redirect to='/' />
+	
 	return(
 		<div className="container sendEmailVerification">
 			<div className="card">
@@ -26,6 +28,11 @@ const EmailVerification = (props) => {
 		</div>
 	)
 }
+const mapStateToProps = (state) => {
+	return{
+		auth: state.firebase.auth
+	}
+}
 
 const mapDispatchToProps = (dispatch) => {
 	return{
@@ -33,4 +40,4 @@ const mapDispatchToProps = (dispatch) => {
 	}
 }
 
-export default connect(null, mapDispatchToProps)(EmailVerification);
+export default connect(mapStateToProps , mapDispatchToProps)(EmailVerification);
