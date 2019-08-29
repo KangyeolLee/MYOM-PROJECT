@@ -23,7 +23,7 @@ class UserProfile extends Component {
 	}
 
 	render(){
-		const { profile, user } = this.props;
+		const { profile, auth, user } = this.props;
 		console.log(this.props);
 		return(
 			<div className="container profile">
@@ -51,7 +51,7 @@ class UserProfile extends Component {
 										</div>
 									</div>
 									<div className="input-field col l8">
-										<input disabled value="{user.email}" id="my_email" type="text" />
+										<input disabled value= {auth.email} id="my_email" type="text" />
 										<label className='active' htmlFor="my_email">이메일</label>
 									</div>
 									<div className="input-field col l8">
@@ -84,7 +84,8 @@ class UserProfile extends Component {
 // }
 const mapStateToProps = (state) => {
 	return {
-		profile : state.firebase.profile
+		profile : state.firebase.profile,
+		auth : state.firebase.auth
 	}
 }
 

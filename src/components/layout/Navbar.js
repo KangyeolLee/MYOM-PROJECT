@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLink';
 import { connect } from 'react-redux';
+import './navbar.css';
 
 const Navbar = (props) => {
   console.log(props);
@@ -12,9 +13,9 @@ const Navbar = (props) => {
 	return (
     <div className="navbar-fixed">
       <nav className='z-depth-0'>
-        <div className="nav-wrapper grey darken-3">
+        <div className="nav-wrapper grey lighten-4">
           <div className="container">
-            <Link to='/' className='brand-logo'>묨</Link>
+            <Link to='/' className='brand-logo'><img src="/img/logo/myom_logo6.png" width="80px" height="80px" className="myom_logo" /></Link>
             {links}
           </div>
         </div>
