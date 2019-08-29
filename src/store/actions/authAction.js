@@ -34,12 +34,6 @@ export const signUp = (newUser) => {
       newUser.email,
       newUser.password
     ).then((res) => {
-      res.user.sendEmailVerification()
-      .then(() => {
-        dispatch({type: 'SENDEMAILVERIFICATION_SUCCESS'});
-      }).catch((err) => {
-        dispatch({type:"SENDEMAILVERIFICATION_ERROR", err});
-      })
       return firestore.collection('users').doc(res.user.uid).set({
         firstName: newUser.firstName,
         lastName: newUser.lastName,
@@ -152,6 +146,18 @@ export const resetPwdEmail = (user) => {
       dispatch({type: 'SENDRESETEMAIL_SUCCESS'});
     }).catch((err) => {
       dispatch({type: 'SENDRESETEMAIL_ERROR'}, err);
+    });
+  }
+}
+
+export const sendEmailVerification = (user) => {
+  return(dispatch) => {
+    let user = firebase.auth().currentUser;
+    user.sendEmailVerification()
+    .then(() => {
+      dispatch({type: 'SENDEMAILVERIFICATION_SUCCESS'});
+    }).catch((err) => {
+      dispatch({type: 'SENDEMAILVERIFICATION_ERROR'}, err)
     });
   }
 }

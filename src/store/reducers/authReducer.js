@@ -18,7 +18,6 @@ const authReducer = (state=initState, action) => {
 
     case 'SIGNUP_SUCCESS':
       console.log('signup success');
-      alert('회원가입이 완료되셨습니다. 가입하신 이메일 주소로 인증메일을 보냈으니 인증을 완료해주세요.')
       return {...state, authError: null}
 
     case 'SIGNUP_ERROR':
