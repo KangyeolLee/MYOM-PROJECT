@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './servicedetails.css'
-import RecommendService from './RecommendService';
 import M from 'materialize-css';
 import { compose } from 'redux';
 import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
@@ -11,6 +10,8 @@ import ServiceInquirySummary from '../summary/ServiceInquirySummary';
 import ServiceReviewsSummary from '../summary/ServiceReviewsSummary';
 import InquiryRegister from '../../serviceForm/InquiryRegister';
 import ReviewsRegister from '../../serviceForm/ReviewsRegister';
+import ServicesRecommendsSummary from '../summary/ServicesRecommendsSummary';
+import Preloader from '../../functionalComponents/Preloader';
 
 
 class ServiceDetails extends Component {
@@ -21,12 +22,12 @@ class ServiceDetails extends Component {
   componentDidMount() {
     M.AutoInit();
   }
- 
+
   render() {
     if(!isLoaded(this.props.service)) return <div className='container'>로딩중...</div>
-    const { suggestion, service, inquiry, reviews } = this.props;
+    const { suggestion, service, inquiry, reviews, recommends } = this.props;
     const { description, prices } = service;
-    // console.log(this.props.inquiry, this.props.reviews);
+    console.log(recommends);
     return (
       <div className="container service-details">
         <div className="row">
@@ -64,17 +65,7 @@ class ServiceDetails extends Component {
               {/* { inquiry && inquiry.map(item => <ServiceInquirySummary inquiry={item} key={item.id}/> )} */}
               {
                 !isLoaded(inquiry)
-                  ? (
-                    <li className="collection-item">
-                      <div className="preloader-wrapper small active center">
-                        <div className="spinner-layer spinner-red-only">
-                          <div className="circle-clipper left"><div className="circle"></div></div>
-                          <div className="gap-patch"><div className="circle"></div></div>
-                          <div className="circle-clipper right"><div className="circle"></div></div>
-                        </div>
-                      </div>
-                    </li>
-                  )
+                  ? <Preloader />
                   : isEmpty(inquiry)
                     ? <li className="collection-item"><div>아직 등록된 문의가 없습니다.</div></li>
                     : inquiry.map(item => <ServiceInquirySummary inquiry={item} key={item.id} /> )
@@ -91,17 +82,7 @@ class ServiceDetails extends Component {
               {/* { reviews && reviews.map(item => <ServiceReviewsSummary review={item} key={item.id} />)} */}
               {
                 !isLoaded(reviews)
-                  ? (
-                    <li className="collection-item">
-                      <div className="preloader-wrapper small active center">
-                        <div className="spinner-layer spinner-red-only">
-                          <div className="circle-clipper left"><div className="circle"></div></div>
-                          <div className="gap-patch"><div className="circle"></div></div>
-                          <div className="circle-clipper right"><div className="circle"></div></div>
-                        </div>
-                      </div>
-                    </li>
-                  )
+                  ? <Preloader />
                   : isEmpty(reviews)
                     ? <li className="collection-item"><div>아직 등록된 리뷰가 없습니다.</div></li>
                     : reviews.map(item => <ServiceReviewsSummary review={item} key={item.id} /> )
@@ -115,11 +96,13 @@ class ServiceDetails extends Component {
           <div className="col s12">
             <h3>다른 모임 추천</h3>
             <ul className="collection">
-              { suggestion && suggestion.map(item => {
-                return (
-                  <RecommendService recommendable={item} key={item.key}/>
-                )
-              })}
+              {
+                !isLoaded(recommends)
+                  ? <Preloader />
+                  : isEmpty(recommends)
+                    ? <li className="collection-item"><div>추천 서비스가 없습니다..</div></li>
+                    : recommends.map(item => <ServicesRecommendsSummary serviceId={item.id} recommends={item} key={item.id}/>)
+              }
             </ul>
           </div>
         </div>
@@ -130,7 +113,7 @@ class ServiceDetails extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('state : ', state);
+  // console.log('state : ', state);
   const id = ownProps.match.params.id;
   const services = state.firestore.data.services;
   const service = services ? services[id] : id;
@@ -139,6 +122,7 @@ const mapStateToProps = (state, ownProps) => {
     service,
     reviews: state.firestore.ordered.reviews,
     inquiry: state.firestore.ordered.inquiry,
+    recommends: state.firestore.ordered.recommends,
   }
 }
 
@@ -148,6 +132,7 @@ export default compose(
     { collection: 'services', doc: props.match.params.id },
     { collection: 'services', doc: props.match.params.id, subcollections: [{collection: 'reviews', orderBy: ['timestamp', 'desc']}], storeAs: 'reviews' },
     { collection: 'services', doc: props.match.params.id, subcollections: [{collection: 'inquiry', orderBy: ['timestamp', 'desc']}], storeAs: 'inquiry' },
+    { collection: 'services', where: ['category', '==', props.service.category], limit: 3, storeAs: 'recommends'}
   ]),
   // firestoreConnect((props) => [
   //   // { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D' },

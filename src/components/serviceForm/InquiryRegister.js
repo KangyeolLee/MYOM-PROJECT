@@ -14,6 +14,10 @@ class InquiryRegister extends Component {
     })
   }
   handleSubmit = (e) => {
+    if(!this.props.auth.emailVerified) {
+      alert('이메일 인증이 필요합니다!');        
+      return e.preventDefault();
+    }
     e.preventDefault();
     document.querySelector('#inquiry_contents').value = '';
     document.querySelector('#inquiry_contents_forLabel').className = '';
@@ -32,14 +36,18 @@ class InquiryRegister extends Component {
     )
   }
 }
-
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+  }
+}
 const mapStateToDispatch = (dispatch) => {
   return {
     inquiryRegister: (docID, inquiryData) => dispatch(inquiryRegister(docID, inquiryData))
   }
 }
 
-export default connect(null, mapStateToDispatch)(InquiryRegister);
+export default connect(mapStateToProps, mapStateToDispatch)(InquiryRegister);
   // firestoreConnect((props) => [
   //   { collection: 'services', doc: props.serviceID, subcollections: [{ collection: 'inquiry'}], storeAs: 'inquiry' }
   // ])

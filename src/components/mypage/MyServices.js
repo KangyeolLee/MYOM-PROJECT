@@ -3,15 +3,35 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
+import Preloader from '../functionalComponents/Preloader';
+import Pagination from '../functionalComponents/Pagination';
 import M from 'materialize-css';
 import './myServices.css';
 
 class MyServices extends Component {
+  state = {
+    curPage: 1,
+    perPage: 5,
+  }
   componentDidMount() {
     M.AutoInit();
   }
+
+  paginate = (pageNum) => {
+    this.setState({
+      curPage: pageNum,
+    })
+  }
+
   render() {
     const { services } = this.props;
+    // options for Pagination
+    const { curPage, perPage } = this.state;
+    const indexOfLast = curPage * perPage;
+    const indexOfFirst = indexOfLast - perPage;
+    const currentServices = !isLoaded(services) ? null : services.slice(indexOfFirst, indexOfLast);
+    console.log(currentServices);
+
     return (
       <div className="myServices">
         <div className="row">
@@ -27,19 +47,9 @@ class MyServices extends Component {
           </div>
 
           <div id="sellAll">
-            { 
+            {
               !isLoaded(services)
-                ? (
-                  <div style={{padding: '5rem 0'}}className="collection preloader-wrapper col s12">
-                    <div className="preloader-wrapper small active center">
-                      <div className="spinner-layer spinner-red-only">
-                        <div className="circle-clipper left"><div className="circle"></div></div>
-                        <div className="gap-patch"><div className="circle"></div></div>
-                        <div className="circle-clipper right"><div className="circle"></div></div>
-                      </div>
-                    </div>
-                  </div>
-                )
+                ? <div className="collection"><Preloader /></div>
                 : isEmpty(services)
                   ? (
                     <div className="collection">
@@ -50,8 +60,7 @@ class MyServices extends Component {
                       </div>
                     </div>
                   )
-                  : services.map(item => {
-                    return (                 
+                  : currentServices.map(item => (
                       <div className="collection notEmpty" key={item.id}>
                         <div className="collection-item">
                           <div className="image-area">
@@ -69,9 +78,15 @@ class MyServices extends Component {
                           <Link to={`/thema/${item.category}/${item.id}`}>게시글 보러가기</Link>
                         </div>
                       </div>
-                    )
-                  })
+                  ))
             }
+
+            {
+              !isLoaded(services)
+                ? null
+                : <Pagination pages={Math.ceil(services.length / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
+            }
+            
           </div>
 
           <div id="selling">

@@ -8,8 +8,11 @@ import { compose } from 'redux';
 import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 
 const AllService = (props) => {
+  console.log('props : ', props);
+  const moreServices = (e) => {
+    console.log(e);
+  }
   const { match, serviceList } = props;
-  console.log(props);
   return (
     <div className="container">
       <CategoryFilter />
@@ -51,7 +54,7 @@ const AllService = (props) => {
                   )
                 })
           }
-          
+          <button onClick={(e) => moreServices(e)} className="waves-effect waves-teal right btn-flat">더 보기...</button>
         </li>
       </ul>
 
@@ -81,6 +84,7 @@ const AllService = (props) => {
 }
 
 const mapStateToProps = (state) => {
+  console.log('state : ', state)
   return {
     // recommends: state.services.recommends,
     serviceList: state.firestore.ordered.services
@@ -88,8 +92,8 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-  firestoreConnect([
-    { collection: 'services'}
+  firestoreConnect((props) => [
+    { collection: 'services', startAt: 0, limit: 6 }
   ]),
   connect(mapStateToProps)
 )(AllService);

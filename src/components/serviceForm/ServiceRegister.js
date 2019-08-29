@@ -42,7 +42,7 @@ class ServiceRegister extends Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log(this.state);
     return (
       <div className="container serviceRegister">
         <div className="row">
@@ -58,7 +58,7 @@ class ServiceRegister extends Component {
                 <option value="pommes">pommes</option>
                 <option value="sauerkraut">sauerkraut</option>   
               </select>
-              <input value={this.state.service_type} style={{margin:0, opacity:0, height:0, position: 'absolute'}} type="text" required/>     
+              <input defaultValue={this.state.service_type} style={{margin:0, opacity:0, height:0, position: 'absolute'}} type="text" required/>     
             </div>
 
             <div className="file-field input-field col s6 offset-s4">

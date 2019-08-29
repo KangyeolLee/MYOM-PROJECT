@@ -10,7 +10,6 @@ class SingleCategory extends Component {
   render() {
     const thema = this.props.match.params.category;
     const { serviceList, match } = this.props;
-    console.log(serviceList);
     return (
       <div className="container">
         <CategoryFilter />
@@ -55,6 +54,7 @@ class SingleCategory extends Component {
             }
           </li>
         </ul>
+
       </div>
     )
   }

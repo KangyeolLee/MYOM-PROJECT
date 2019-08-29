@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './purchase.css';
 import M from 'materialize-css';
+import { auth } from 'firebase';
 
 class Purchase extends Component {
 	componentDidMount() {

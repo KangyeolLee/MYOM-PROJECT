@@ -14,7 +14,10 @@ class ReviewsRegister extends Component {
     })
   }
   handleSubmit = (e) => {
-    e.preventDefault();
+    if(!this.props.auth.emailVerified) {  
+      alert('이메일 인증이 필요합니다!');      
+      return e.preventDefault();
+    }
     document.querySelector('#reviews_contents').value = '';
     document.querySelector('#reviews_contents_forLabel').className = '';
     this.props.reviewsRegister(this.props.serviceID, this.state);
@@ -38,13 +41,18 @@ class ReviewsRegister extends Component {
 //     auth: state.firebase.auth,
 //   }
 // }
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+  }
+}
 const mapStateToDispatch = (dispatch) => {
   return {
     reviewsRegister: (docID, reviewsData) => dispatch(reviewsRegister(docID, reviewsData))
   }
 }
 
-export default connect(null, mapStateToDispatch)(ReviewsRegister);
+export default connect(mapStateToProps, mapStateToDispatch)(ReviewsRegister);
   // firestoreConnect((props) => [
   //   { collection: 'services', doc: props.serviceID, subcollections: [{ collection: 'inquiry'}], storeAs: 'inquiry' }
   // ])
