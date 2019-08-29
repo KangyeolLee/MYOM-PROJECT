@@ -17,9 +17,9 @@ class SignedInLinks extends Component {
   render() {
     return (
       <ul className="right">
-        <li><NavLink to='/registerProvider'>판매자 등록</NavLink></li>
-        <li><NavLink to='/profile' className='btn btn-floating grey lighten-1'><i className='material-icons'>person</i></NavLink></li>
-        <li className='dropdown-trigger no-autoinit' data-target='dropdown_mypage'><span style={{display: 'flex'}}>{this.props.profile.initials}님&nbsp;<i className="material-icons">arrow_drop_down</i></span></li>
+        <li><NavLink to='/registerProvider' className="black-text">판매자 등록</NavLink></li>
+        <li><NavLink to='/profile' className='btn btn-floating grey lighten-1'><img src= {this.props.profile.profileImgURL} width="40px" height="40px" className="circle"/></NavLink></li>
+        <li className='dropdown-trigger no-autoinit' data-target='dropdown_mypage'><span className="black-text"style={{display: 'flex'}}>{this.props.profile.initials}님&nbsp;<i className="material-icons">arrow_drop_down</i></span></li>
 
         {/* about dropdown option for UserMyPage */}
         <ul id="dropdown_mypage" className="dropdown-content">
@@ -33,6 +33,13 @@ class SignedInLinks extends Component {
     )
   }
 }
+
+// const mapStateToProps = (state) => {
+//   return {
+//     profile : state.firebase.profile
+//   }
+// }
+
 const mapDispatchToProps = (dispatch) => {
   return {
     signOut: () => dispatch(signOut())

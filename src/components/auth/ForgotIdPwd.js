@@ -5,7 +5,7 @@ import './forgotIdPwd.css';
 import { resetPwdEmail } from '../../store/actions/authAction';
 
 class ForgotIdPwd extends Component {
-	state: {
+	state = {
 		name : '',
 		tel: '',
 		email: ''

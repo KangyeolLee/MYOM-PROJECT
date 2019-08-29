@@ -34,17 +34,10 @@ export const signUp = (newUser) => {
       newUser.email,
       newUser.password
     ).then((res) => {
-      res.user.sendEmailVerification()
-      .then(() => {
-        dispatch({type: 'SENDEMAILVERIFICATION_SUCCESS'});
-      }).catch((err) => {
-        dispatch({type:"SENDEMAILVERIFICATION_ERROR", err});
-      })
       return firestore.collection('users').doc(res.user.uid).set({
         firstName: newUser.firstName,
         lastName: newUser.lastName,
         initials: newUser.firstName[0] + newUser.lastName[0],
-        // imgURL: '',
       })
     }).then(() => {
       dispatch({type: 'SIGNUP_SUCCESS'})
@@ -154,6 +147,41 @@ export const resetPwdEmail = (user) => {
     }).catch((err) => {
       dispatch({type: 'SENDRESETEMAIL_ERROR'}, err);
     });
+  }
+}
+
+export const sendEmailVerification = (user) => {
+  return(dispatch) => {
+    let user = firebase.auth().currentUser;
+    user.sendEmailVerification()
+    .then(() => {
+      dispatch({type: 'SENDEMAILVERIFICATION_SUCCESS'});
+    }).catch((err) => {
+      dispatch({type: 'SENDEMAILVERIFICATION_ERROR'}, err)
+    });
+  }
+}
+
+export const profileImgRegister = (profileImg) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    const userAuth = getState().firebase.auth;
+    let docRef = firestore.collection('users').doc(userAuth.uid);
+    let storageRef = firebase.storage().ref('images/users/' + docRef.id).child(profileImg.profile_img.name);
+    storageRef.put(profileImg.profile_img)
+      .then(() => {
+        storageRef.getDownloadURL()
+          .then((url) => {
+            docRef.update({
+              profileImgURL: url
+            })
+          })
+      })
+    .then(()=>{
+      dispatch({type: 'PROFILEIMGREGISTER_SUCCESS'});
+    }).catch((err) => {
+      dispatch({type: 'PROFILEIMGREGISTER_ERROR', err});
+    })
   }
 }
 
