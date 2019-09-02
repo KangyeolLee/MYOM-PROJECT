@@ -75,7 +75,25 @@ class MyServices extends Component {
                               <p>등록된 리뷰개수 : {item.reviewCount}</p>
                             </div>
                           </div>
-                          <Link to={`/thema/${item.category}/${item.id}`}>게시글 보러가기</Link>
+                          <div className='link-wrapper'>
+                            <Link to={`/thema/${item.category}/${item.id}`}>게시글 보러가기</Link>
+                            <Link to={{
+                              pathname: '/serviceRegister',
+                              service_type: `${item.category}`,
+                              service_img: `${item.imgURL}`,
+                              service_desc: `${item.description[0].contents}`,
+                              service_process: `${item.description[1].contents}`,
+                              service_doing: `${item.description[2].contents}`,
+                              service_style: `${item.description[3].contents}`,
+                              service_price_standard: `${item.prices[0].price}`,
+                              service_price_deluxe: `${item.prices[1].price}`,
+                              service_price_premium: `${item.prices[2].price}`,
+                              standard_desc: `${item.prices[0].contents}`,
+                              deluxe_desc: `${item.prices[1].contents}`,
+                              premium_desc: `${item.prices[2].contents}` }}>
+                              게시글 수정하기</Link>
+                            <Link to=''>게시글 삭제하기</Link>
+                          </div>
                         </div>
                       </div>
                   ))

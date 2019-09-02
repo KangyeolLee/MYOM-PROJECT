@@ -27,7 +27,7 @@ class ServiceDetails extends Component {
     if(!isLoaded(this.props.service)) return <div className='container'>로딩중...</div>
     const { suggestion, service, inquiry, reviews, recommends } = this.props;
     const { description, prices } = service;
-    console.log(recommends);
+    // console.log(service);
     return (
       <div className="container service-details">
         <div className="row">
@@ -128,12 +128,15 @@ const mapStateToProps = (state, ownProps) => {
 
 export default compose(
   connect(mapStateToProps),
-   firestoreConnect((props) => [     // 추후 props.match.params.id 로 document id를 불러올 것!
-    { collection: 'services', doc: props.match.params.id },
-    { collection: 'services', doc: props.match.params.id, subcollections: [{collection: 'reviews', orderBy: ['timestamp', 'desc']}], storeAs: 'reviews' },
-    { collection: 'services', doc: props.match.params.id, subcollections: [{collection: 'inquiry', orderBy: ['timestamp', 'desc']}], storeAs: 'inquiry' },
-    { collection: 'services', where: ['category', '==', props.service.category], limit: 3, storeAs: 'recommends'}
-  ]),
+   firestoreConnect((props) => {
+    console.log('fstC : ', props);
+    return [     // 추후 props.match.params.id 로 document id를 불러올 것!
+      { collection: 'services', doc: props.match.params.id },
+      { collection: 'services', doc: props.match.params.id, subcollections: [{collection: 'reviews', orderBy: ['timestamp', 'desc']}], storeAs: 'reviews' },
+      { collection: 'services', doc: props.match.params.id, subcollections: [{collection: 'inquiry', orderBy: ['timestamp', 'desc']}], storeAs: 'inquiry' },
+      { collection: 'services', where: ['category', '==', props.match.params.category], limit: 3, storeAs: 'recommends'}
+    ]
+  }),
   // firestoreConnect((props) => [
   //   // { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D' },
   //   { collection: 'services', doc: '2cG7F5gRxkkUx23VsW4D', subcollections: [{ collection: 'reviews' }]}

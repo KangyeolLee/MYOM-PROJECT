@@ -6,18 +6,18 @@ import './serviceRegister.css';
 
 class ServiceRegister extends Component {
   state = {
-    service_type: '',
-    service_img: '',
-    service_desc: '',
-    service_process: '',
-    service_doing: '',
-    service_style: '',
-    service_price_standard: '',
-    service_price_deluxe: '',
-    service_price_premium: '',
-    standard_desc: '',
-    deluxe_desc: '',
-    premium_desc: ''
+    service_type: this.props.location.service_type || '',
+    service_img: this.props.location.service_img || '',
+    service_desc: this.props.location.service_desc || '',
+    service_process: this.props.location.service_process || '',
+    service_doing: this.props.location.service_doing || '',
+    service_style: this.props.location.service_style || '',
+    service_price_standard: this.props.location.service_price_standard || '',
+    service_price_deluxe: this.props.location.service_price_deluxe || '',
+    service_price_premium: this.props.location.service_price_premium || '',
+    standard_desc: this.props.location.standard_desc || '',
+    deluxe_desc: this.props.location.deluxe_desc || '',
+    premium_desc: this.props.location.premium_desc || ''
   }
 
   componentDidMount() {
@@ -42,14 +42,15 @@ class ServiceRegister extends Component {
   }
 
   render() {
-    console.log(this.state);
+    const checkActive = this.state.service_type ? 'active' : null;
+    
     return (
       <div className="container serviceRegister">
         <div className="row">
           <form onSubmit={this.handleSubmit} className='col s12'>
 
             <div className="input-field col s2 cssOptioned">
-              <select defaultValue={''} name="" id="service_type" onChange={this.handleChange} required>
+              <select name="" id="service_type" onChange={this.handleChange} value={this.state.service_type} required>
                 <option value='' disabled>편집기법 선택(필수)</option>
                 <option value="transition">transition</option>
                 <option value="colorFix">colorFix</option>
@@ -73,55 +74,63 @@ class ServiceRegister extends Component {
 
 
             <div className="input-field col s12">
-              <textarea type="text" id="service_desc" className="materialize-textarea" required onChange={this.handleChange} required/>
-              <label htmlFor="service_desc">서비스 설명</label>
+              <textarea type="text" id="service_desc" className="materialize-textarea" required onChange={this.handleChange} value={this.state.service_desc} required/>
+              <label className={checkActive} htmlFor="service_desc">서비스 설명</label>
             </div>
             <div className="input-field col s12">
-              <textarea type="text" id="service_process" className="materialize-textarea" onChange={this.handleChange} required/>
-              <label htmlFor="service_process">작업 과정</label>
+              <textarea type="text" id="service_process" className="materialize-textarea" onChange={this.handleChange} value={this.state.service_process} required/>
+              <label className={checkActive} htmlFor="service_process">작업 과정</label>
             </div>
             <div className="input-field col s12">
-              <textarea type="text" id="service_doing" className="materialize-textarea" onChange={this.handleChange} required/>
-              <label htmlFor="service_doing">작업 방식</label>
+              <textarea type="text" id="service_doing" className="materialize-textarea" onChange={this.handleChange} value={this.state.service_doing} required/>
+              <label className={checkActive} htmlFor="service_doing">작업 방식</label>
             </div>
             <div className="input-field col s12">
-              <textarea type="text" id="service_style" className="materialize-textarea" onChange={this.handleChange} required/>
-              <label htmlFor="service_style">작업 스타일</label>
+              <textarea type="text" id="service_style" className="materialize-textarea" onChange={this.handleChange} value={this.state.service_style} required/>
+              <label className={checkActive} htmlFor="service_style">작업 스타일</label>
             </div>
 
 
             <div className="input-field col s4">
-              <input type="text" id="service_price_standard" className="materialize-textarea" onChange={this.handleChange} required/>
-              <label htmlFor="service_price_standard">STANDARD 가격</label>
+              <input type="text" id="service_price_standard" className="materialize-textarea" onChange={this.handleChange} value={this.state.service_price_standard} required/>
+              <label className={checkActive} htmlFor="service_price_standard">STANDARD 가격</label>
             </div>
             <div className="input-field col s4">
-              <input type="text" id="service_price_deluxe" className="materialize-textarea" onChange={this.handleChange} required/>
-              <label htmlFor="service_price_deluxe">DELUXE 가격</label>
+              <input type="text" id="service_price_deluxe" className="materialize-textarea" onChange={this.handleChange} value={this.state.service_price_deluxe} required/>
+              <label className={checkActive} htmlFor="service_price_deluxe">DELUXE 가격</label>
             </div>
             <div className="input-field col s4">
-              <input type="text" id="service_price_premium" className="materialize-textarea" onChange={this.handleChange} required/>
-              <label htmlFor="service_price_premium">PREMIUM 가격</label>
+              <input type="text" id="service_price_premium" className="materialize-textarea" onChange={this.handleChange} value={this.state.service_price_premium} required/>
+              <label className={checkActive} htmlFor="service_price_premium">PREMIUM 가격</label>
             </div>
 
 
             <div className="input-field col s4">
-              <textarea type="text" id="standard_desc" className="materialize-textarea" onChange={this.handleChange} required/>
-              <label htmlFor="standard_desc">STANDARD 옵션</label>
+              <textarea type="text" id="standard_desc" className="materialize-textarea" onChange={this.handleChange} value={this.state.standard_desc} required/>
+              <label className={checkActive} htmlFor="standard_desc">STANDARD 옵션</label>
             </div>
             <div className="input-field col s4">
-              <textarea type="text" id="deluxe_desc" className="materialize-textarea" onChange={this.handleChange} required/>
-              <label htmlFor="deluxe_desc">STANDARD 옵션</label>
+              <textarea type="text" id="deluxe_desc" className="materialize-textarea" onChange={this.handleChange} value={this.state.deluxe_desc} required/>
+              <label className={checkActive} htmlFor="deluxe_desc">STANDARD 옵션</label>
             </div>
             <div className="input-field col s4">
-              <textarea type="text" id="premium_desc" className="materialize-textarea" onChange={this.handleChange} required/>
-              <label htmlFor="premium_desc">STANDARD 옵션</label>
+              <textarea type="text" id="premium_desc" className="materialize-textarea" onChange={this.handleChange} value={this.state.premium_desc} required/>
+              <label className={checkActive} htmlFor="premium_desc">STANDARD 옵션</label>
             </div>
 
-
-            <div className="input-field col s1 right">
-              <button className="btn red lighten-3">등록</button>
-            </div>
-
+            {
+              checkActive
+                ? (
+                  <div className="input-field col s1 right">
+                    <button name='update_btn' className="btn red lighten-3">수정</button>
+                  </div>
+                )
+                : (
+                  <div className="input-field col s1 right">
+                    <button name='create_btn' className="btn red lighten-3">등록</button>
+                  </div>
+                )
+            }
 
           </form>
         </div>

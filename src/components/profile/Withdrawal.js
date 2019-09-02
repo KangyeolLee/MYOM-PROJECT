@@ -22,7 +22,7 @@ class Withdrawal extends Component {
 	const { auth } = this.props;
 	if(!auth.uid) return <Redirect to ='/' />
 	return(
-		<div className="container profile">
+		<div className="container profile_deatails">
 			<div className="row">
 				<ProfileSideNav />
 				<div className="col l8">
