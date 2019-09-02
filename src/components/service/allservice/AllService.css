@@ -1,1 +1,7 @@
-
+.all_services_area .preloader {
+  /* for SingleCategory & AllService both */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: none;
+}

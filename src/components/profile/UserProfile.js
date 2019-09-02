@@ -26,7 +26,7 @@ class UserProfile extends Component {
 		const { profile, auth, user } = this.props;
 		console.log(this.props);
 		return(
-			<div className="container profile">
+			<div className="container profile_deatails">
 				<div className="row">
 					<ProfileSideNav />
 					<div className="col l8">

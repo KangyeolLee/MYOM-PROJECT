@@ -2,7 +2,7 @@ import React from 'react'
 
 const Preloader = () => {
   return (
-    <li className="collection-item">
+    <li className="collection-item preloader">
       <div className="preloader-wrapper small active center">
         <div className="spinner-layer spinner-red-only">
           <div className="circle-clipper left"><div className="circle"></div></div>

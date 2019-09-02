@@ -5,7 +5,7 @@ import './profile.css'
 const AlarmSetting = () => {
   return( 
     
-		<div className="container profile">
+		<div className="container profile_deatails">
 			<div className="row">
 				<ProfileSideNav />
 				<div className="col l8">
