@@ -63,25 +63,21 @@ export const signUp = (newUser) => {
 }
 
 export const withdrawal = (user) => {
-  return(dispatch) =>{
+  return(dispatch, getState, { getFirestore }) =>{
     //const firebase = getFirebase();
-    let userInfo = firebase.auth().currentUser;
-    // if(user.email === userInfo.email){
-    //   userInfo.delete()
-    //   .then(() => {
-    //     dispatch( {type: 'DELETE_SUCCESS'})
-    //   }).catch((err) => {
-    //     dispatch({type: 'DELETE_ERROR', err})
-    //   })
-    // }
+    const userInfo = firebase.auth().currentUser;
+    const firestore = getFirestore();
     if(user.email !== userInfo.email) {
       alert('아이디가 일치하지 않습니다')
     } else {
-      userInfo.delete()
+        firestore.collection('users').doc(userInfo.uid).delete()
         .then(() => {
-        dispatch({type:'DELETE_SUCCESS'})
-      }).catch((err) => {
-        dispatch({type:'DELETE_ERROR', err})
+          userInfo.delete()
+          .then(() => {
+          dispatch({type:'DELETE_SUCCESS'})
+          }).catch((err) => {
+          dispatch({type:'DELETE_ERROR', err})
+        });
       });
     }
   }
