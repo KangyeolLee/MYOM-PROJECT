@@ -28,10 +28,22 @@
 	box-shadow: 0 0 4px rgba(0,0,0,.05);
 	display: flex;
 	flex-direction: column;
+	height: 458px;
+}
+
+.post_summary .card-content{
+	height: 180px;
+	overflow: hidden !important;
 }
 
 .communityTemplate {
 	padding-left: 1.75rem;
 	padding-right: 1.75rem;
 	margin-left : 50px;
+}
+
+.profile_img {
+	width: 40px !important;
+	height: 40px !important;
+	position: relative !important;
 }

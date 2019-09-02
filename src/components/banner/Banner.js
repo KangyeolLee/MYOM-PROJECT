@@ -13,6 +13,7 @@ class Banner extends Component {
           <div className="btn-wrapper">
             <Link to='/thema' className='btnForMore white-text btn yellow darken-3 waves-effect waves-light'>둘러보기</Link>
             <Link to='/productIntro' className='btnForSubmit white-text btn yellow darken-3 waves-effect waves-light'>등록하기</Link>
+            <Link to='/community' className='btnForSubmit white-text btn yellow darken-3 waves-effect waves-light'>커뮤니티</Link>
           </div>
         </div>
       )

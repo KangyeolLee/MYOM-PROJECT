@@ -1,14 +1,19 @@
 import React from 'react'
+import moment from 'moment'
 
-const PostSummary = () => {
+const PostSummary = ({post}) => {
 	return(
 		<div className="card post_summary">
 				<div className="card-image">
-					<img src="img/theme/spain.jpg"/>
+					<img src= {post.post_img}/>
+					<a className="btn-floating halfway-fab btn-large white"><img src= {post.author_profileImg} className="circle profile_img" alt=""/></a>
 				</div>
 				<div className="card-content">
-					<span className="card-title">개꿀팁이구용</span>
-					<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+					<h6 className="card-title">{post.title}</h6>
+					<p>{post.content}</p>
+				</div>
+				<div className="card-action">
+					<p className="grey-text">{moment(post.createAt.toDate()).calendar()}</p>
 				</div>
 		</div>
 	)

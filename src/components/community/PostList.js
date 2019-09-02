@@ -2,14 +2,15 @@ import React from 'react'
 import PostSummary from './PostSummary'
 import { Link } from 'react-router-dom'
 
-const PostList = () => {
+const PostList = ({posts}) => {
 	return(
 		<div className="post-list">
-			<PostSummary />
-			<PostSummary />
-			<PostSummary />
-			<PostSummary />
-			
+			{ posts && posts.map(post => {
+				return (
+					<PostSummary post = { post } />
+				)
+			})}
+
 
 		</div>
 	)

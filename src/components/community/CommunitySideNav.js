@@ -7,8 +7,8 @@ const CommunitySideNav = () => {
 		<aside className="community_sidenav">
 			<div className="collection with-header">
 				<div className="collection-header"><h4>커뮤니티</h4></div>
-				<Link to='/profile' className="collection-item black-text">영상 Tip</Link>
-				<Link to='/certifications' className="collection-item black-text">자유게시판</Link>
+				<Link to='/community' className="collection-item black-text">Myom Tip</Link>
+				<Link to='/certifications' className="collection-item black-text">일반인 Tip</Link>
 			</div>
 		</aside>
 	)
