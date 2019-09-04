@@ -22,3 +22,17 @@
   margin-top: 2rem;
   margin-left: 2rem;
 }
+
+.myServices #service_delete_modal {
+  top: 50% !important;
+  width: 30% !important;
+  transform: scaleX(1) scaleY(1) translateY(-50%) !important;
+}
+
+.myServices #service_delete_modal .preloader {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0;
+}

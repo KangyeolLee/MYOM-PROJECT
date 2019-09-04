@@ -12,8 +12,6 @@ const Pagination = (props) => {
     )
   }
 
-  console.log(props, pageLinks);
-
   return (
     <ul className='center pagination'>
       { pageLinks }

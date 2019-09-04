@@ -1,4 +1,6 @@
 const initState = {
+  authError: null,
+  delete_retry: 1,
   themas: [
     { title : 'transition', src : 'img/theme/paris.jpg' },
     { title : 'colorFix', src : 'img/theme/korea.jpg' },
@@ -111,13 +113,57 @@ const serviceRuducer = (state=initState, action) => {
       console.log('service register failed');
       return state;
 
-    case 'CREATE_INQUIRY':
+    case 'CREATE_INQUIRY_SUCCESS':
       console.log('inquiry register success');
       return state;
     
     case 'CREATE_INQUIRY_ERROR':
       console.log('inquiry register failed', action.err.message);
       return state;
+
+    case 'CREATE_REVIEWS_SUCCESS':
+      console.log('reviews register success');
+      return state;
+    
+    case 'CREATE_REVIEWS_ERROR':
+      console.log('reviews register failed', action.err.message);
+      return state;
+
+    case 'UPDATE_SERVICE_SUCCESS':
+      console.log('service update success');
+      return state;
+
+    case 'UPDATE_SERVICE_ERROR':
+      console.log('service update failed');
+      return state;
+
+    case 'DELETE_SERVICE_SUCCESS':
+      console.log('service delete success');
+      return {...state, authError: null, delete_retry: 1};
+
+    case 'DELETE_SERVICE_ERROR':
+      console.log('service delete failed');
+      return state;
+
+    case 'CHECK_PASSWORD_ERROR':
+      console.log('check password failed');
+      return {...state, authError: '비밀번호가 맞지 않습니다.', delete_retry: state.delete_retry + 1};
+
+    case 'TOO_MANY_REQUESTS_FOR_VERIFICATION':
+      console.log('too many requests');
+      return {...state, authError: '비밀번호를 천천히 입력해주세요!', delete_retry: Math.random() };
+
+    case 'INIT_AUTHERROR_SUCCESS':
+      console.log('init authError completed');
+      return {...state, authError: null, delete_retry: 1};
+
+    case 'DELETE_SERVICE_ERROR_WITH_INQUIRY':
+      console.log('delete service error with inquiry');
+      return {...state, authError: '문의로 인해 서비스를 삭제할 수 없습니다.', delete_retry: Math.random() };
+
+    case 'DELETE_SERVICE_ERROR_WITH_REVIEWS':
+      console.log('delete service error with rivews');
+      return {...state, authError: '리뷰로 인해 서비스를 삭제할 수 없습니다.', delete_retry: Math.random() };
 
     default:
       return state;

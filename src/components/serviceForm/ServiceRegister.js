@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import M from 'materialize-css';
 import { connect } from 'react-redux';
-import { serviceRegister } from '../../store/actions/serviceFormAction';
+import { serviceRegister, serviceUpdate } from '../../store/actions/serviceFormAction';
 import './serviceRegister.css';
 
 class ServiceRegister extends Component {
   state = {
+    service_id: this.props.location.service_id || '',
     service_type: this.props.location.service_type || '',
     service_img: this.props.location.service_img || '',
     service_desc: this.props.location.service_desc || '',
@@ -17,7 +18,8 @@ class ServiceRegister extends Component {
     service_price_premium: this.props.location.service_price_premium || '',
     standard_desc: this.props.location.standard_desc || '',
     deluxe_desc: this.props.location.deluxe_desc || '',
-    premium_desc: this.props.location.premium_desc || ''
+    premium_desc: this.props.location.premium_desc || '',
+    check_update: this.props.location.check_update || false,
   }
 
   componentDidMount() {
@@ -26,7 +28,12 @@ class ServiceRegister extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.serviceRegister(this.state, this.props.history);
+    const check_btn_type = e.target.querySelector('button').name;
+    if(check_btn_type === 'update_btn') {
+      this.props.serviceUpdate(this.state, this.props.history);
+    } else {
+      this.props.serviceRegister(this.state, this.props.history);
+    }
   }
 
   handleChange = (e) => {
@@ -42,8 +49,9 @@ class ServiceRegister extends Component {
   }
 
   render() {
-    const checkActive = this.state.service_type ? 'active' : null;
-    
+    const { check_update, service_type, premium_desc} = this.state;
+    const checkActive = service_type && premium_desc ? 'active' : null;
+
     return (
       <div className="container serviceRegister">
         <div className="row">
@@ -59,7 +67,7 @@ class ServiceRegister extends Component {
                 <option value="pommes">pommes</option>
                 <option value="sauerkraut">sauerkraut</option>   
               </select>
-              <input defaultValue={this.state.service_type} style={{margin:0, opacity:0, height:0, position: 'absolute'}} type="text" required/>     
+              <input defaultValue={service_type} style={{margin:0, opacity:0, height:0, position: 'absolute'}} type="text" required/>     
             </div>
 
             <div className="file-field input-field col s6 offset-s4">
@@ -107,19 +115,19 @@ class ServiceRegister extends Component {
 
             <div className="input-field col s4">
               <textarea type="text" id="standard_desc" className="materialize-textarea" onChange={this.handleChange} value={this.state.standard_desc} required/>
-              <label className={checkActive} htmlFor="standard_desc">STANDARD 옵션</label>
+              <label className={checkActive} htmlFor="standard_desc">BASIC 옵션</label>
             </div>
             <div className="input-field col s4">
               <textarea type="text" id="deluxe_desc" className="materialize-textarea" onChange={this.handleChange} value={this.state.deluxe_desc} required/>
-              <label className={checkActive} htmlFor="deluxe_desc">STANDARD 옵션</label>
+              <label className={checkActive} htmlFor="deluxe_desc">PROFESSIONAL 옵션</label>
             </div>
             <div className="input-field col s4">
               <textarea type="text" id="premium_desc" className="materialize-textarea" onChange={this.handleChange} value={this.state.premium_desc} required/>
-              <label className={checkActive} htmlFor="premium_desc">STANDARD 옵션</label>
+              <label className={checkActive} htmlFor="premium_desc">PREMIUM 옵션</label>
             </div>
 
             {
-              checkActive
+              check_update
                 ? (
                   <div className="input-field col s1 right">
                     <button name='update_btn' className="btn red lighten-3">수정</button>
@@ -145,7 +153,8 @@ class ServiceRegister extends Component {
 // }
 const mapDispatchToProps = (dispatch) => {
   return {
-    serviceRegister: (serviceData, history) => dispatch(serviceRegister(serviceData, history))
+    serviceRegister: (serviceData, history) => dispatch(serviceRegister(serviceData, history)),
+    serviceUpdate: (serviceData, history) => dispatch(serviceUpdate(serviceData, history)),
   }
 }
 export default connect(null, mapDispatchToProps)(ServiceRegister);
