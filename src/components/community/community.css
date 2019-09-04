@@ -10,6 +10,10 @@
 	margin-right: 20px;
 }
 
+.sidenavbar .sidenav{
+	top: auto;
+}
+
 .post-list{
 	display: flex;
 	flex-wrap: wrap;
@@ -19,7 +23,7 @@
 }
 
 .post_summary {
-	width: calc(33.333% - 1.75rem);
+	width: 300px;
 	margin: .875rem;
 	position: relative;
 	background: #fff;
@@ -39,11 +43,30 @@
 .communityTemplate {
 	padding-left: 1.75rem;
 	padding-right: 1.75rem;
-	margin-left : 50px;
+	margin-left : 300px;
+}
+@media only screen and (max-width: 992px){
+	.communityTemplate{
+		margin-left: 0;
+	}
 }
 
 .profile_img {
 	width: 40px !important;
 	height: 40px !important;
 	position: relative !important;
+}
+
+.communityDashboard{
+	margin-right: 0;
+	position: relative;
+}
+
+.post-details .card-image img{
+	height: 350px;
+}
+@media only screen and (min-width: 992px){
+	.post-details .card-image img{
+		height: 500px;
+	}
 }

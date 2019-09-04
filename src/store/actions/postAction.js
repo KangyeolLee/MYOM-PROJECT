@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 
-export const createPost = (postData) => {
+export const createPost = (postData, category) => {
 	return(dispatch, getState, { getFirestore }) => {
 		//make async call to databasae
 		const firestore = getFirestore();
@@ -15,6 +15,7 @@ export const createPost = (postData) => {
 			//posts collection's document
 				docRef.set({
 					...postData,
+					category: category,
 					post_img: url,
 					author: profile.initials,
 					author_profileImg: profile.profileImgURL,

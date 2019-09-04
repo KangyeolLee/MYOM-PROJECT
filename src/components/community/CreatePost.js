@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createPost } from '../../store/actions/postAction'
 
@@ -24,12 +24,13 @@ class CreatePost extends Component {
 	
 	handleSubmit = (e) => {
 		e.preventDefault();
-		this.props.createPost(this.state);
+		this.props.createPost(this.state, this.props.match.params.category);
 	}
 
 	render(){
 		const { auth } = this.props;
-		if(!auth.uid) return <Redirect to ='/signin' />
+		console.log(this.props);
+		if(!auth.uid) return <Link to ='/signin' />
 		return(
 			<div className="container">
 				<form onSubmit={ this.handleSubmit }>
@@ -60,7 +61,7 @@ class CreatePost extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
 	return {
 		auth: state.firebase.auth
 	}
@@ -68,7 +69,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		createPost: (postData) => dispatch(createPost(postData))
+		createPost: (postData, category) => dispatch(createPost(postData,category))
 	}
 }
 
