@@ -29,6 +29,9 @@ import BasicProductData from './components/product/BasicProductData'
 import ServiceRegister from './components/serviceForm/ServiceRegister';
 import ForgotIdPwd from './components/auth/ForgotIdPwd';
 import EmailVerification from './components/auth/EmailVerification'
+import CommunityDashboard from './components/community/CommunityDashboard';
+import CreatePost from './components/community/CreatePost';
+import PostDetails from './components/community/PostDetails';
 
 class App extends Component {
   render(){
@@ -64,6 +67,9 @@ class App extends Component {
                 <Route path='/serviceRegister' component={ServiceRegister} />
                 <Route path= '/forgotIdPwd' component={ForgotIdPwd} />
                 <Route path= '/emailVerification' component = {EmailVerification} />
+                <Route exact path= '/community/:category' component = { CommunityDashboard } />
+                <Route exact path= '/community/:category/createPost' component = { CreatePost } />
+                <Route exact path= '/post/:id' component = { PostDetails }/>
               </Switch>
           </div>
         </ScrollTop>

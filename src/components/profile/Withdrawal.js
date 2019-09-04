@@ -79,7 +79,7 @@ class Withdrawal extends Component {
 									<div>* 무상으로 지급된 묨캐시는 탈퇴와 함께 자동 소멸됩니다.</div>
 									<p>환불 가능한 묨캐시가 있을 경우, 고객센터를 통해 환불 받으실 수 있습니다.</p>
 									<div className="input-field">
-										<button className="btn btn-large indigo right">회원탈퇴</button>
+										<button className="btn indigo right">회원탈퇴</button>
 									</div>
 								</form>
 							</div>

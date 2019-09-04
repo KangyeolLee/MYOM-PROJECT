@@ -38,6 +38,9 @@ export const signUp = (newUser) => {
         firstName: newUser.firstName,
         lastName: newUser.lastName,
         initials: newUser.firstName[0] + newUser.lastName[0],
+        email: newUser.email,
+        authority: 'user',
+        profileImgURL: 'https://firebasestorage.googleapis.com/v0/b/myom-89a5a.appspot.com/o/images%2Fusers%2FdefaultProfileImg%2FemptyProfileImg.png?alt=media&token=ad342b58-7306-4340-b8c1-6ad56351a7b6',
       })
     }).then(() => {
       dispatch({type: 'SIGNUP_SUCCESS'})
@@ -63,25 +66,21 @@ export const signUp = (newUser) => {
 }
 
 export const withdrawal = (user) => {
-  return(dispatch) =>{
+  return(dispatch, getState, { getFirestore }) =>{
     //const firebase = getFirebase();
-    let userInfo = firebase.auth().currentUser;
-    // if(user.email === userInfo.email){
-    //   userInfo.delete()
-    //   .then(() => {
-    //     dispatch( {type: 'DELETE_SUCCESS'})
-    //   }).catch((err) => {
-    //     dispatch({type: 'DELETE_ERROR', err})
-    //   })
-    // }
+    const userInfo = firebase.auth().currentUser;
+    const firestore = getFirestore();
     if(user.email !== userInfo.email) {
       alert('아이디가 일치하지 않습니다')
     } else {
-      userInfo.delete()
+        firestore.collection('users').doc(userInfo.uid).delete()
         .then(() => {
-        dispatch({type:'DELETE_SUCCESS'})
-      }).catch((err) => {
-        dispatch({type:'DELETE_ERROR', err})
+          userInfo.delete()
+          .then(() => {
+          dispatch({type:'DELETE_SUCCESS'})
+          }).catch((err) => {
+          dispatch({type:'DELETE_ERROR', err})
+        });
       });
     }
   }

@@ -4,12 +4,14 @@ import { combineReducers } from 'redux';
 import { firestoreReducer } from 'redux-firestore';
 import { firebaseReducer } from 'react-redux-firebase';
 import dashboardReducer from './dashboardReducer';
+import postReducer from './postReducer';
 // import firebaseReducer from 'react-redux-firebase/lib/reducer'
 // import { firestoreReducer } from 'redux-firestore'
 
 const rootReducer = combineReducers({
   auth: authReducer,
   services: serviceReducer,
+  posts: postReducer,
   dashboard: dashboardReducer,
   firestore: firestoreReducer,
   firebase: firebaseReducer

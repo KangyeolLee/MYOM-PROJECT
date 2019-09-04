@@ -37,7 +37,7 @@ class UserProfile extends Component {
 							<div className="row">
 								<div className="col l12">
 									<div className="col l4">
-										<div className="profile-img center">
+										<div className="profile-img">
 											<img src= {profile.profileImgURL} width="127px" height="127px" className="circle"/>
 											<div className="file-field input-field">
 												<div className="btn imgUpload_btn btn-small indigo">

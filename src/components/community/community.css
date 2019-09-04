@@ -1,0 +1,72 @@
+.community_sidenav{
+	width: 15rem;
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	background: #fff;
+	height: 100%;
+	top: 64px;
+	left: 0;
+	margin-right: 20px;
+}
+
+.sidenavbar .sidenav{
+	top: auto;
+}
+
+.post-list{
+	display: flex;
+	flex-wrap: wrap;
+	position: relative;
+	margin-left: -.875rem;
+	margin-right: -.875rem;
+}
+
+.post_summary {
+	width: 300px;
+	margin: .875rem;
+	position: relative;
+	background: #fff;
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+	box-shadow: 0 0 4px rgba(0,0,0,.05);
+	display: flex;
+	flex-direction: column;
+	height: 458px;
+}
+
+.post_summary .card-content{
+	height: 180px;
+	overflow: hidden !important;
+}
+
+.communityTemplate {
+	padding-left: 1.75rem;
+	padding-right: 1.75rem;
+	margin-left : 300px;
+}
+@media only screen and (max-width: 992px){
+	.communityTemplate{
+		margin-left: 0;
+	}
+}
+
+.btn-floating .profile_img {
+	width: inherit !important;
+	height: inherit !important;
+	position: relative !important;
+}
+
+.communityDashboard{
+	margin-right: 0;
+	position: relative;
+}
+
+.post-details .card-image img{
+	height: 350px;
+}
+@media only screen and (min-width: 992px){
+	.post-details .card-image img{
+		height: 500px;
+	}
+}
