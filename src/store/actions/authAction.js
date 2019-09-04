@@ -38,7 +38,9 @@ export const signUp = (newUser) => {
         firstName: newUser.firstName,
         lastName: newUser.lastName,
         initials: newUser.firstName[0] + newUser.lastName[0],
-        email: newUser.email
+        email: newUser.email,
+        authority: 'user',
+        profileImgURL: 'https://firebasestorage.googleapis.com/v0/b/myom-89a5a.appspot.com/o/images%2Fusers%2FdefaultProfileImg%2FemptyProfileImg.png?alt=media&token=ad342b58-7306-4340-b8c1-6ad56351a7b6',
       })
     }).then(() => {
       dispatch({type: 'SIGNUP_SUCCESS'})

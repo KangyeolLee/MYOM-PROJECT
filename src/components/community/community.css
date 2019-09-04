@@ -51,9 +51,9 @@
 	}
 }
 
-.profile_img {
-	width: 40px !important;
-	height: 40px !important;
+.btn-floating .profile_img {
+	width: inherit !important;
+	height: inherit !important;
 	position: relative !important;
 }
 

@@ -9,7 +9,6 @@ class SideNavTest extends Component {
 	}
 	render() {
 		const {profile} = this.props;
-		console.log(this.props);
 		return(
 			<div className="sidenavbar">
 				<ul id="slide-out" className="sidenav sidenav-fixed grey lighten-4">

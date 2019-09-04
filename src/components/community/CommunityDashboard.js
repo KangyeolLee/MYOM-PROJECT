@@ -15,7 +15,6 @@ class CommunityDashboard extends Component {
 	}
 	render(){
 		const { posts, profile, match } = this.props;
-		console.log(this.props);
 		return(
 			<div className="communityDashboard">
 				<SideNavTest profile={profile}/>
@@ -25,9 +24,11 @@ class CommunityDashboard extends Component {
 					</div>
 				</div>
 				<div className="fixed-action-btn">
+					{ (profile.authority === match.params.category) && 
 					<Link to={`${match.url}`+'/createPost'} className="btn-floating btn-large indigo">
 						<i className="large material-icons">mode_edit</i>
 					</Link>
+					}
 				</div>
 			</div>
 
@@ -36,7 +37,6 @@ class CommunityDashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-	console.log(state);
 	return{
 		posts: state.firestore.ordered.posts,
 		profile: state.firebase.profile
@@ -46,7 +46,6 @@ const mapStateToProps = (state) => {
 export default compose(
 	connect(mapStateToProps),
 	firestoreConnect((props) => {
-		console.log('in firestore : ', props);
 		return [{ collection: 'posts', where: ['category', '==', props.match.params.category ], orderBy: ['createAt','desc'] }]
 	}),
 )(CommunityDashboard);
