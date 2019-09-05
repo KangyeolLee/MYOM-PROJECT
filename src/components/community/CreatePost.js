@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { createPost } from '../../store/actions/postAction'
+import { createPost, postUpdate } from '../../store/actions/postAction'
 
 class CreatePost extends Component {
 	state = {
-		title: '',
-		content: '',
-		post_img: ''
+		post_id: this.props.location.post_id || '',
+		title: this.props.location.title ||'',
+		content: this.props.location.content ||'',
+		post_img: this.props.location.post_img ||'',
+		check_update: this.props.location.check_update || false,
 	}
 	
 	handleChange = (e) => {
@@ -24,12 +26,17 @@ class CreatePost extends Component {
 	
 	handleSubmit = (e) => {
 		e.preventDefault();
-		this.props.createPost(this.state, this.props.match.params.category);
+		const check_btn_type = e.target.querySelector('button').name;
+		if(check_btn_type === 'update_btn') {
+			this.props.postUpdate(this.state, this.props.match.params.category, this.props.history)
+		} else{
+			this.props.createPost(this.state, this.props.match.params.category, this.props.history);
+		}
 	}
 
 	render(){
 		const { auth } = this.props;
-		console.log(this.props);
+		const {check_update} = this.state;
 		if(!auth.uid) return <Link to ='/signin' />
 		return(
 			<div className="container">
@@ -37,11 +44,11 @@ class CreatePost extends Component {
 					<h5>새로운 포스팅 작성</h5>
 					<div className="input-field">
 						<label htmlFor="title">제목</label>
-						<input type="text" id="title" onChange={this.handleChange}/>
+						<input type="text" id="title" onChange={this.handleChange} value= {this.state.title} />
 					</div>
 					<div className="input-field">
 						<label htmlFor="content">포스트 내용</label>
-						<textarea id="content" className="materialize-textarea" onChange = { this.handleChange }></textarea>
+						<textarea id="content" className="materialize-textarea" onChange = { this.handleChange } value={this.state.content}></textarea>
 					</div>
 					<div className="file-field input-field">
 						<div className="btn indigo">
@@ -52,9 +59,19 @@ class CreatePost extends Component {
 							<input type="text" className="file-path validate" placeholder='이미지 파일을 업로드 하세요.'/>
 						</div>
 					</div>
-					<div className="input-field">
-						<button className="btn indigo right">작성하기</button>
-					</div>
+					{
+						check_update
+							? (
+							<div className="input-field">
+								<button name='update_btn' className="btn indigo right">수정하기</button>
+							</div>
+						)
+						: (
+							<div className="input-field">
+								<button name='create_btn' className="btn indigo right">작성하기</button>
+							</div>
+						)
+					}
 				</form>
 			</div>
 		)
@@ -69,7 +86,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		createPost: (postData, category) => dispatch(createPost(postData,category))
+		createPost: (postData, category, history) => dispatch(createPost(postData,category, history)),
+		postUpdate: (postData, category, history) => dispatch(postUpdate(postData,category,history))
 	}
 }
 

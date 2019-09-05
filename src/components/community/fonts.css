@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
+@font-face { font-family: 'KimNamyun'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/KimNamyun.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'KOMACON'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'S-CoreDream-2ExtraLight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'S-CoreDream-8Heavy'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-8Heavy.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'S-CoreDream-3Light'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff'); font-weight: normal; font-style: normal; }
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans:400') font-family: 'Black Han Sans', sans-serif;
+@font-face { font-family: 'HangeulNuri-Bold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/HangeulNuri-Bold.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'TmonMonsori'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/TmonMonsori.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'Chosunilbo_myungjo'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff'); font-weight: normal; font-style: normal; }
+@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css); .jejumyeongjo * { font-family: 'Jeju Myeongjo', serif; }
+@font-face { font-family: 'GyeonggiBatang'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiBatang.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'oACYCZno'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/oACYCZno.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumBarunpen'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumBarunpen.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'GoyangIlsan'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GoyangIlsan.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'YanoljaYacheR'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YanoljaYacheR.woff') format('woff'); font-weight: normal; font-style: normal; }
+.nanum{
+  font-family : Nanum Gothic, sans-serif;
+}
+
+.jeju{
+  font-family : Jeju Gothic, sans-serif;
+}
+
+.jejumyeongjo{
+  font-family: jejumyeongjo, sans-serif;
+}
+
+.namyun{
+  font-family: KimNamyun, sans-serif;
+}
+
+.cartoon{
+  font-family: KOMACON, sans-serif;
+}
+
+.scoreel{
+  font-family: S-CoreDream-2ExtraLight, sans-serif;
+}
+
+.scorehvy{
+  font-family: S-CoreDream-8Heavy, sans-serif;
+}
+
+.scorelt{
+  font-family: S-CoreDream-3Light, sans-serif;
+}
+
+.black-gothic{
+  font-family: Black Han Sans, sans-serif;
+}
+
+.hangeulnuri{
+  font-family: HangeulNuri-Bold, sans-serif;
+}
+
+.monsori{
+  font-family: TmonMonsori, sans-serif;
+}
+
+.chosun{
+  font-family: Chosunilbo_myungjo, sans-serif;
+}
+
+.gyeonggi{
+  font-family: GyeonggiBatang, sans-serif;
+}
+
+.hangeulgothic{
+  font-family: oACYCZno, sans-serif;
+}
+
+.nanumpen{
+  font-family: NanumBarunpen, sans-serif;
+}
+
+.goyang{
+  font-family: GoyangIlsan, sans-serif;
+}
+
+.yanolja{
+  font-family: YanoljaYacheR, sans-serif;
+}

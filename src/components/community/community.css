@@ -37,7 +37,24 @@
 
 .post_summary .card-content{
 	height: 180px;
-	overflow: hidden !important;
+	overflow:hidden;
+}
+.card-content .card-title {
+	white-space: nowrap;
+	overflow:hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+}
+.card-content .post-content{
+	height: 72px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
 }
 
 .communityTemplate {

@@ -51,7 +51,8 @@ class ServiceRegister extends Component {
   render() {
     const { check_update, service_type, premium_desc} = this.state;
     const checkActive = service_type && premium_desc ? 'active' : null;
-
+    console.log(this.props);
+    console.log(this.state);
     return (
       <div className="container serviceRegister">
         <div className="row">
