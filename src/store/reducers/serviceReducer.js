@@ -157,13 +157,9 @@ const serviceRuducer = (state=initState, action) => {
       console.log('init authError completed');
       return {...state, authError: null, delete_retry: 1};
 
-    case 'DELETE_SERVICE_ERROR_WITH_INQUIRY':
-      console.log('delete service error with inquiry');
-      return {...state, authError: '문의로 인해 서비스를 삭제할 수 없습니다.', delete_retry: Math.random() };
-
-    case 'DELETE_SERVICE_ERROR_WITH_REVIEWS':
-      console.log('delete service error with rivews');
-      return {...state, authError: '리뷰로 인해 서비스를 삭제할 수 없습니다.', delete_retry: Math.random() };
+    case 'DELETE_SERVICE_ERROR_WITH_INQUIRY&REVIEWS':
+      console.log('delete service error with inquiry or reviews');
+      return {...state, authError: '문의 및 리뷰로 인해 서비스를 삭제할 수 없습니다.', delete_retry: Math.random() };
 
     default:
       return state;

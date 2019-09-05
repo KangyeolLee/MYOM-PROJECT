@@ -64,58 +64,75 @@ export const serviceDelete = (curInstance, id, password) => {
     const firestore = getFirestore();
     const user = firebase.auth().currentUser;
     const credentials = firebase.auth.EmailAuthProvider.credential(user.email, password);
+    let key_for_subCollection = false;
     let docRef = firestore.collection('services').doc(id);
-
-    let subColl = docRef.collection('inquiry');
-    
+  
     user.reauthenticateWithCredential(credentials)
       .then(() => {
-        docRef.get().then((doc) => {
+        return docRef.get().then((doc) => {
           if(doc.exists) {
-            docRef.collection('inquiry').get().then(sub => {    // if inquiry sub-collection exists
-              if(sub.docs.length <= 0) {
-                dispatch({ type: 'DELETE_SERVICE_ERROR_WITH_INQUIRY' });
-                return;
+            return docRef.collection('inquiry').get().then(sub => {    // if inquiry sub-collection exists
+              if(sub.docs.length > 0) {    
+                // console.log('inquiry exists!')        
+                key_for_subCollection = true;
+                // { code : 'inquiry/already-exist' }
               }
-            });
-            docRef.collection('reviews').get().then(sub => {  // if reviews sub-collection exists
-              if(sub.docs.length <= 0) {
-                dispatch({ type: 'DELETE_SERVICE_ERROR_WITH_REVIEWS' });
-                return;
+            })
+            return docRef.collection('reviews').get().then(sub => {    // if reviews sub-collection exists
+              if(sub.docs.length > 0) {        
+                //console.log('reviews exists!')
+                key_for_subCollection = true;        
+                // throw new Error('reviews error!')
+                // { code : 'reviews/already-exist' }
               }
             })
           }
-
+        })
+      })
+      .then(() => {
+        if(key_for_subCollection) throw { code : 'inquiry&reviews/already-exist' }
+      })
+      .then(() => {
+        docRef.get().then((doc) => {
           const fromURL = doc.data().imgURL;
           const storageRef = firebase.storage().refFromURL(fromURL);
 
           storageRef.delete().then(() => {
             docRef.delete();
             curInstance.close();
+          })
         })
       })
-    }).then(() => {
-      dispatch({ type: 'DELETE_SERVICE_SUCCESS', })
-      // history.push('/mypageProvider/myServices');
-    }).catch((err) => {
-      switch(err.code) {
-        case "auth/wrong-password":
-          console.log(err)
-          dispatch({type: 'CHECK_PASSWORD_ERROR', err});
-          break;
-        
-        case "auth/too-many-requests":
-          console.log(err);
-          dispatch({type: 'TOO_MANY_REQUESTS_FOR_VERIFICATION'});
-          break;
+      .then(() => {
+        dispatch({ type: 'DELETE_SERVICE_SUCCESS', })
+        // history.push('/mypageProvider/myServices');
+      })
+      .catch((err) => {
+        console.log(err.code);
+        switch(err.code) {
+          case "auth/wrong-password":
+            console.log(err)
+            dispatch({type: 'CHECK_PASSWORD_ERROR', err});
+            break;
+          
+          case "auth/too-many-requests":
+            console.log(err);
+            dispatch({type: 'TOO_MANY_REQUESTS_FOR_VERIFICATION'});
+            break;
 
-        default:
-          console.log(err)
-          dispatch({ type: 'DELETE_SERVICE_ERROR' });
-      }
+          case 'inquiry&reviews/already-exist':
+            console.log(err);
+            dispatch({ type: 'DELETE_SERVICE_ERROR_WITH_INQUIRY&REVIEWS' });
+            break;
+
+          default:
+            console.log(err)
+            dispatch({ type: 'DELETE_SERVICE_ERROR' });
+        }
     })   
   }
 }
+
 export const serviceUpdate = (serviceData, history) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
@@ -164,14 +181,22 @@ export const inquiryRegister = (docID, inquiryData) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userAuth = getState().firebase.auth;
-    firestore.collection('services').doc(docID).collection('inquiry').add({
+    const docRef = firestore.collection('services').doc(docID);
+    docRef.collection('inquiry').add({
       comment: [],
       contents: inquiryData.inquiry_contents,
       userID: userAuth.email,
       uid: userAuth.uid,
       timestamp: new Date()
     }).then(() => {
-      dispatch({type: 'CREATE_INQUIRY_SUCCESS', inquiryData})
+      docRef.get().then((doc) => {
+        const inquiryCount = doc.data().inquiryCount;
+        docRef.update({
+          inquiryCount: inquiryCount + 1,
+        })
+      }).then(() => {
+        dispatch({type: 'CREATE_INQUIRY_SUCCESS', inquiryData})
+      })
     }).catch((err) => {
       dispatch({type: 'CREATE_INQUIRY_ERROR', err})
     })
@@ -182,17 +207,25 @@ export const reviewsRegister = (docID, reviewsData) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userAuth = getState().firebase.auth;
-    //const userProfile = getState().firebase.profile;
-    firestore.collection('services').doc(docID).collection('reviews').add({
+    const userProfile = getState().firebase.profile;
+    const docRef = firestore.collection('services').doc(docID);
+    docRef.collection('reviews').add({
       comment: [],
       stars: '',
-      //profile: userProfile,
+      profile: userProfile,
       contents: reviewsData.reviews_contents,
       userID: userAuth.email,
       uid: userAuth.uid,
       timestamp: new Date(),
     }).then(() => {
-      dispatch({type: 'CREATE_REVIEWS_SUCCESS', reviewsData})
+      docRef.get().then((doc) => {
+        const reviewCount = doc.data().reviewCount;
+        docRef.update({
+          reviewCount: reviewCount + 1,
+        })
+      }).then(() => {
+        dispatch({type: 'CREATE_REVIEWS_SUCCESS', reviewsData})
+      })
     }).catch((err) => {
       dispatch({type: 'CREATE_REVIEWS_ERROR', err})
     })

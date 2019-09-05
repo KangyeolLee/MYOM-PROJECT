@@ -85,7 +85,6 @@ class MyServices extends Component {
     const indexOfFirst = indexOfLast - perPage;
     const currentServices = !isLoaded(services) ? null : services.slice(indexOfFirst, indexOfLast);
 
-    console.log(loading, keyValue_loading, delete_retry);
     return (
       <div className="myServices">
 
@@ -262,7 +261,9 @@ const mapDispatchToProps = (dispatch) => {
 }
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect((props) => [
-    { collection: 'services', where: [ 'serviceProvider', '==', props.auth.uid], orderBy: ['timestamp', 'desc'], storeAs: 'services' },
-  ]),
+  firestoreConnect((props) => {
+    const uid = !isLoaded(props.auth.uid) ? null : props.auth.uid;
+    return [
+    { collection: 'services', where: [ 'serviceProvider', '==', uid], orderBy: ['timestamp', 'desc'], storeAs: 'services' },
+  ]}),
 )(MyServices);

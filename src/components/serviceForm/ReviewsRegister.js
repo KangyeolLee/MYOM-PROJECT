@@ -18,6 +18,7 @@ class ReviewsRegister extends Component {
       alert('이메일 인증이 필요합니다!');      
       return e.preventDefault();
     }
+    e.preventDefault();
     document.querySelector('#reviews_contents').value = '';
     document.querySelector('#reviews_contents_forLabel').className = '';
     this.props.reviewsRegister(this.props.serviceID, this.state);
