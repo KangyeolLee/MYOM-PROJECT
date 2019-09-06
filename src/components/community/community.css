@@ -35,6 +35,10 @@
 	height: 458px;
 }
 
+.postComment .collection {
+	overflow: unset;
+}
+
 .post_summary .card-content{
 	height: 180px;
 	overflow:hidden;
@@ -86,4 +90,10 @@
 	.post-details .card-image img{
 		height: 500px;
 	}
+}
+
+.postCommentSummary .dropdown-trigger {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
