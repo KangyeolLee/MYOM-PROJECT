@@ -255,7 +255,7 @@ export const _delete_inquiry = (service_id, inquiry_id) => {
       })
     })
     .then(() => {
-      dispatch({ type : 'DELETE_INQUIRY_SUCCESS '});
+      dispatch({ type : 'DELETE_INQUIRY_SUCCESS' });
     })
     .catch((err) => {
       dispatch({ type : 'DELETE_INQUIRY_ERROR', err })
@@ -321,5 +321,11 @@ export const _update_review = (service_id, review_id, updating_data) => {
     .catch((err) => {
       dispatch({ type: 'UPDATE_REVIEW_ERROR', err})
     })
+  }
+}
+
+export const _report_badUser = () => {
+  return (dispatch) => {
+    dispatch({type: 'REPORT_BADUSER_SUCCESS'})
   }
 }

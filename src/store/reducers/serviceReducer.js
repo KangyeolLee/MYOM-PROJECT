@@ -176,6 +176,26 @@ const serviceRuducer = (state=initState, action) => {
     case 'DELETE_INQUIRY_ERROR':
       console.log('delete inquiry error');
       return state;
+
+    case 'UPDATE_REVIEW_SUCCESS':
+      console.log('update review success');
+      return state;
+    
+    case 'UPDATE_REVIEW_ERROR':
+      console.log('update review error');
+      return state;
+
+    case 'UPDATE_INQUIRY_SUCCESS':
+      console.log('update inquiry success');
+      return state;
+
+    case 'UPDATE_INQUIRY_ERROR':
+      console.log('update inquriy error');
+      return state;
+
+    case 'REPORT_BADUSER_SUCCESS':
+      alert('신고 접수 되었습니다.');
+      return state;
       
     default:
       return state;

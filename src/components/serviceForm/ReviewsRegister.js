@@ -11,6 +11,8 @@ class ReviewsRegister extends Component {
   }
   handleCancel = (e) => {
     e.preventDefault();
+    const label = document.querySelector('#reviews_contents_forLabel');
+    label.classList.remove('active');
     this.setState({
       reviews_contents: '',
     })
@@ -49,9 +51,7 @@ class ReviewsRegister extends Component {
                 <textarea id={update_key} type='text' className="materialize-textarea" value={this.state[update_key]} onChange={this.handleChange} required />
                 <label className='active' htmlFor={update_key} id='reviews_contents_forLabel'>리뷰 수정</label>
                 <button className="btn waves-effect red lighten-3 right">수정</button>
-                {
-                  (this.state[update_key]) ? <button onClick={_check_update} className="btn-flat waves-effect right">취소</button> : null
-                }
+                <button onClick={_check_update} className="btn-flat waves-effect right">취소</button>      
               </div>
             </form>
           ) 
@@ -61,9 +61,15 @@ class ReviewsRegister extends Component {
                 <i className="material-icons prefix">mode_edit</i>
                 <textarea id='reviews_contents' type="text" className='materialize-textarea' value={this.state.reviews_contents} onChange={this.handleChange} required/>
                 <label id='reviews_contents_forLabel' htmlFor="reviews_contents">리뷰 등록</label>
-                <button className="btn waves-effect red lighten-3 right">리뷰 등록</button>
                 {
-                  (this.state.reviews_contents) ? <button onClick={this.handleCancel} className="btn-flat waves-effect right">취소</button> : null
+                  (this.state.reviews_contents) 
+                    ? (
+                      <Fragment>
+                      <button className="btn waves-effect red lighten-3 right">리뷰 등록</button>
+                      <button onClick={this.handleCancel} className="btn-flat waves-effect right">취소</button>
+                      </Fragment>
+                    )
+                    : null
                 }
               </div>
             </form>

@@ -3,7 +3,7 @@ import moment from 'moment';
 import M from 'materialize-css';
 import { connect } from 'react-redux';
 import './serviceInquirySummary.css';
-import { _delete_inquiry } from '../../../store/actions/serviceFormAction';
+import { _delete_inquiry, _report_badUser } from '../../../store/actions/serviceFormAction';
 import InquiryRegister from '../../serviceForm/InquiryRegister';
 
 class ServiceInquirySummary extends Component {
@@ -39,6 +39,11 @@ class ServiceInquirySummary extends Component {
     this.props._delete_inquiry(this.props.service_id, inquiry_id)
   }
 
+  report_badUser = (e) => {
+    e.preventDefault();
+    this.props._report_badUser();
+  }
+
   render() {
     const { service_id, inquiry, auth } = this.props;
     const { chk_update } = this.state;
@@ -55,7 +60,7 @@ class ServiceInquirySummary extends Component {
               <div className="inquiry_record grey-text">작성시간: { moment(inquiry.timestamp.toDate()).fromNow() }</div>
               <button className='dropdown-trigger waves-effect z-depth-0 transparent btn-floating right' data-target={inquiry.id}><i className='material-icons black-text'>more_vert</i></button>
 
-              <ul id={inquiry.id} tabIndex='0' className='dropdown-content'>
+              <ul id={inquiry.id} className='dropdown-content'>
                 {
                   (auth.isLoaded)
                     ? (auth.uid === inquiry.uid) 
@@ -67,7 +72,7 @@ class ServiceInquirySummary extends Component {
                       )
                       : (
                         <Fragment>
-                        <li><button className="btn-flat" style={{display: 'flex'}}><i className="material-icons">flag</i><span style={{marginLeft:'1rem'}}>신고</span></button></li>
+                        <li><button onClick={this.report_badUser} className="btn-flat" style={{display: 'flex'}}><i className="material-icons">flag</i><span style={{marginLeft:'1rem'}}>신고</span></button></li>
                         </Fragment>
                       )
                     : null
@@ -88,6 +93,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     _delete_inquiry: (service_id, inquiry_id) => dispatch(_delete_inquiry(service_id, inquiry_id)),
+    _report_badUser: () => dispatch(_report_badUser())
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(ServiceInquirySummary);
