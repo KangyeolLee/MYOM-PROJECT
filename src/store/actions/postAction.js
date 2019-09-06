@@ -156,3 +156,9 @@ export const _update_comment = (post_id, comment_id, updating_data) => {
 		}) 
 	}
 }
+
+export const _report_badUser = () => {
+  return (dispatch) => {
+    dispatch({type: 'REPORT_BADUSER_SUCCESS'})
+  }
+}

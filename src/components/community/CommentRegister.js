@@ -10,6 +10,8 @@ class CommentRegister extends Component{
 
 	handleCancel = (e) => {
 		e.preventDefault();
+		const label = document.querySelector('#comment_forLabel');
+		label.classList.remove('active');
 		this.setState({
 			comment: '',
 		})
@@ -44,7 +46,7 @@ class CommentRegister extends Component{
 			{
 				(update_key)
 					? (	
-						<form onSubmit={this.handleUpdate} className="collection-item">
+						<form onSubmit={this.handleUpdate} className="collection-item comment_form">
 							<div className="input-field">
 								<i className="material-icons prefix">mode_edit</i>
 								<textarea type="text" id= {update_key} className="materialize-textarea" onChange = {this.handleChange} value={this.state[update_key]} required/>
@@ -57,14 +59,20 @@ class CommentRegister extends Component{
 						</form>
 					) 
 					: (
-						<form onSubmit = {this.handleSubmit} className="collection-item">
+						<form onSubmit = {this.handleSubmit} className="collection-item comment_form">
 							<div className="input-field">
 								<i className="material-icons prefix">mode_edit</i>
 								<textarea type="text" id="comment" className="materialize-textarea" onChange = {this.handleChange} value={this.state.comment} required/>
-								<label htmlFor="comment" id="comment_forLabel">댓글</label>
-								<button className="btn waves-effect indigo right">등록</button>								
+								<label htmlFor="comment" id="comment_forLabel">댓글</label>							
 								{
-									(this.state.comment) ? <button onClick = {this.handleCancel} className="btn-flat waves-effect right">취소</button> : null
+									(this.state.comment) 
+									? (
+										<Fragment>
+											<button className="btn waves-effect indigo right">댓글 등록</button>
+											<button onClick = {this.handleCancel} className="btn-flat waves-effect right">취소</button> 
+										</Fragment> 
+									)
+									: null
 								}
 							</div>
 						</form>

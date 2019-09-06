@@ -37,6 +37,20 @@
 
 .postComment .collection {
 	overflow: unset;
+	white-space: pre-wrap;
+}
+
+.postComment .collection .collection-item:last-child{
+	border-bottom: 1px solid #e0e0e0
+}
+
+.comment_form{
+	overflow:hidden;
+}
+
+.postCommentSummary{
+	white-space: pre-wrap;
+	word-wrap: break-word;
 }
 
 .post_summary .card-content{

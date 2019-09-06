@@ -3,7 +3,7 @@ import moment from 'moment'
 import {connect} from 'react-redux'
 import M from 'materialize-css';
 import CommentRegister from './CommentRegister'
-import {_delete_comment} from '../../store/actions/postAction'
+import {_delete_comment, _report_badUser} from '../../store/actions/postAction'
 
 
 class PostCommentSummary extends Component {
@@ -36,6 +36,11 @@ class PostCommentSummary extends Component {
 		this.props._delete_comment(this.props.post_id, comment_id)
 	}
 
+	report_badUser = (e) => {
+		e.preventDefault();
+		this.props._report_badUser();
+	}
+
 	render(){
 		const { post_id, comment, profile, auth } = this.props;
 		const { chk_update } = this.state;
@@ -63,7 +68,7 @@ class PostCommentSummary extends Component {
 											)
 											: (
 												<Fragment>
-													<li><button className="btn-flat" style={{display: 'flex'}}><i className="material-icons">flag</i><span style={{marginLeft:'1rem'}}>신고</span></button></li>
+													<li><button onClick={this.report_badUser} className="btn-flat" style={{display: 'flex'}}><i className="material-icons">flag</i><span style={{marginLeft:'1rem'}}>신고</span></button></li>
 												</Fragment>
 											)
 										: null
@@ -87,6 +92,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return{
 		_delete_comment: (post_id, comment_id) => dispatch(_delete_comment(post_id, comment_id)),
+		_report_badUser: () => dispatch(_report_badUser())
 	}
 }
 
