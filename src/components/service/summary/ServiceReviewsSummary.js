@@ -3,7 +3,7 @@ import moment from 'moment';
 import M from 'materialize-css';
 import { connect } from 'react-redux';
 import './serviceReviewsSummary.css';
-import { _delete_review } from '../../../store/actions/serviceFormAction';
+import { _delete_review, _report_badUser } from '../../../store/actions/serviceFormAction';
 import ReviewsRegister from '../../serviceForm/ReviewsRegister';
 
 class ServiceInquirySummary extends Component {
@@ -37,8 +37,12 @@ class ServiceInquirySummary extends Component {
     this.props._delete_review(this.props.service_id, review_id)
   }
 
+  report_badUser = (e) => {
+    e.preventDefault();
+    this.props._report_badUser();
+  }
   render() {
-    const { service_id, review, profile, auth } = this.props;
+    const { service_id, review, auth } = this.props;
     const { chk_update } = this.state;
     
     return (
@@ -48,7 +52,7 @@ class ServiceInquirySummary extends Component {
           ? <ReviewsRegister _check_update={this.updateSubmit} serviceID={service_id} update_key={review.id} update_data={review.contents} />
           : (
             <pre className="collection-item avatar col s12 serviceReviewsSummary">
-              <img alt ='' src={profile.profileImgURL} className="circle review_profile"/>
+              <img alt ='' src={review.profile.profileImgURL} className="circle review_profile"/>
               <div className='review_contents'>{ review.contents } <span className='grey-text'> by { review.userID }</span></div>
               <div className="review_record grey-text">작성시간: { moment(review.timestamp.toDate()).fromNow() }</div>
               <button className='dropdown-trigger waves-effect z-depth-0 transparent btn-floating right' data-target={review.id}><i className='material-icons black-text'>more_vert</i></button>
@@ -65,7 +69,7 @@ class ServiceInquirySummary extends Component {
                       )
                       : (
                         <Fragment>
-                        <li><button className="btn-flat" style={{display: 'flex'}}><i className="material-icons">flag</i><span style={{marginLeft:'1rem'}}>신고</span></button></li>
+                        <li><button onClick={this.report_badUser} className="btn-flat" style={{display: 'flex'}}><i className="material-icons">flag</i><span style={{marginLeft:'1rem'}}>신고</span></button></li>
                         </Fragment>
                       )
                     : null
@@ -81,13 +85,13 @@ class ServiceInquirySummary extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    profile: state.firebase.profile,
     auth: state.firebase.auth,
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     _delete_review: (service_id, review_id) => dispatch(_delete_review(service_id, review_id)),
+    _report_badUser: () => dispatch(_report_badUser())
   }
 }
 

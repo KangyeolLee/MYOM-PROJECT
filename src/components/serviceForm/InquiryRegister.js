@@ -11,6 +11,8 @@ class InquiryRegister extends Component {
   }
   handleCancel = (e) => {
     e.preventDefault();
+    const label = document.querySelector('#inquiry_contents_forLabel');
+    label.classList.remove('active');
     this.setState({
       inquiry_contents: '',
     })
@@ -48,10 +50,8 @@ class InquiryRegister extends Component {
                 <i className="material-icons prefix">mode_edit</i>
                 <textarea id={update_key} type='text' className="materialize-textarea" value={this.state[update_key]} onChange={this.handleChange} required></textarea>
                 <label className='active' id='inquiry_contents_forLabel' htmlFor={update_key}>문의 수정</label>
-                <button className="btn waves-effect red lighten-3 right">수정</button>
-                {
-                  (this.state[update_key]) ? <button onClick={_check_update} className="btn-flat waves-effect right">취소</button> : null
-                }
+                <button className="btn waves-effect red lighten-3 right">수정</button> 
+                <button onClick={_check_update} className="btn-flat waves-effect right">취소</button>               
               </div>
             </form>
           )
@@ -60,10 +60,16 @@ class InquiryRegister extends Component {
               <div className="input-field col s12">
                 <i className="material-icons prefix">mode_edit</i>
                 <textarea id='inquiry_contents' type="text" className='materialize-textarea' value={this.state.inquiry_contents} onChange={this.handleChange} required/>
-                <label id='inquiry_contents_forLabel' htmlFor="inquiry_contents">문의 등록</label>
-                <button className="btn waves-effect red lighten-3 right">문의 등록</button>
+                <label id='inquiry_contents_forLabel' htmlFor="inquiry_contents">문의 등록</label>     
                 {
-                  (this.state.inquiry_contents) ? <button onClick={this.handleCancel} className='btn-flat waves-effect right'>취소</button> : null
+                  (this.state.inquiry_contents) 
+                    ? (
+                      <Fragment>
+                      <button className="btn waves-effect red lighten-3 right">문의 등록</button>
+                      <button onClick={this.handleCancel} className='btn-flat waves-effect right'>취소</button> 
+                      </Fragment>
+                    )
+                    : null
                 }
               </div>
             </form>
