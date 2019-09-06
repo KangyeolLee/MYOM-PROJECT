@@ -30,3 +30,7 @@
 	display: block;
 	clear: both;
 }
+
+.service-details .inquiry-collection, .service-details .review-collection {
+  overflow: unset;
+}

@@ -25,7 +25,7 @@ class ServiceDetails extends Component {
 
   render() {
     if(!isLoaded(this.props.service)) return <div className='container'>로딩중...</div>
-    const { suggestion, service, inquiry, reviews, recommends } = this.props;
+    const { service, inquiry, reviews, recommends, auth } = this.props;
     const { description, prices } = service;
 
     return (
@@ -38,8 +38,8 @@ class ServiceDetails extends Component {
             <div className="card">
               <div className="card-tabs">
                 <div className="tabs tabs-fixed-width">
-                  <li className="tab"><a href="#priceTag0" className="active">STANDARD</a></li>
-                  <li className="tab"><a href="#priceTag1">DELUXE</a></li>
+                  <li className="tab"><a href="#priceTag0" className="active">BASIC</a></li>
+                  <li className="tab"><a href="#priceTag1">PROFESSIONAL</a></li>
                   <li className="tab"><a href="#priceTag2">PREMIUM</a></li>
                 </div>
               </div>
@@ -61,14 +61,14 @@ class ServiceDetails extends Component {
         <div className="row productQnA">  
           <div className="col s12 l12 m12">
             <h3 className=''>문의하기</h3>           
-            <ul className="collection col s12">
+            <ul className="collection col s12 inquiry-collection">
               {/* { inquiry && inquiry.map(item => <ServiceInquirySummary inquiry={item} key={item.id}/> )} */}
               {
                 !isLoaded(inquiry)
                   ? <Preloader />
                   : isEmpty(inquiry)
                     ? <li className="collection-item"><div>아직 등록된 문의가 없습니다.</div></li>
-                    : inquiry.map(item => <ServiceInquirySummary inquiry={item} key={item.id} /> )
+                    : inquiry.map(item => <ServiceInquirySummary service_id={this.props.match.params.id} inquiry={item} key={item.id} /> )
               }
               <InquiryRegister serviceID={this.props.match.params.id} />
             </ul>            
@@ -78,14 +78,14 @@ class ServiceDetails extends Component {
         <div className="row productReview">
           <div className="col s12 l12 m12">
             <h3 className=''>Reviews</h3>    
-            <ul className="collection col s12">
+            <ul className="collection col s12 review-collection">
               {/* { reviews && reviews.map(item => <ServiceReviewsSummary review={item} key={item.id} />)} */}
               {
                 !isLoaded(reviews)
                   ? <Preloader />
                   : isEmpty(reviews)
                     ? <li className="collection-item"><div>아직 등록된 리뷰가 없습니다.</div></li>
-                    : reviews.map(item => <ServiceReviewsSummary review={item} key={item.id} /> )
+                    : reviews.map(item => <ServiceReviewsSummary service_id={this.props.match.params.id} review={item} key={item.id} /> )
               }
               <ReviewsRegister serviceID={this.props.match.params.id} />
             </ul>
@@ -106,7 +106,6 @@ class ServiceDetails extends Component {
             </ul>
           </div>
         </div>
-
       </div>
     )
   }   

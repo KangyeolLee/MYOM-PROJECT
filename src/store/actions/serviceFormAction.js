@@ -237,3 +237,89 @@ export const _init_authError = (authError) => {
     if(authError) dispatch({ type : 'INIT_AUTHERROR_SUCCESS'})
   }
 }
+
+export const _delete_inquiry = (service_id, inquiry_id) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    const userAuth = getState();
+    const docRef = firestore.collection('services').doc(service_id);
+    const subRef = docRef.collection('inquiry').doc(inquiry_id);
+
+    subRef.delete()
+    .then(() => {
+      return docRef.get().then((doc) => {
+        const inquiryCount = doc.data().inquiryCount;
+        docRef.update({
+          inquiryCount: inquiryCount - 1,
+        })
+      })
+    })
+    .then(() => {
+      dispatch({ type : 'DELETE_INQUIRY_SUCCESS '});
+    })
+    .catch((err) => {
+      dispatch({ type : 'DELETE_INQUIRY_ERROR', err })
+    })
+  }
+}
+export const _delete_review = (service_id, review_id) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    const userAuth = getState().firebase.auth;
+    const docRef = firestore.collection('services').doc(service_id);
+    const subRef = docRef.collection('reviews').doc(review_id);
+
+    subRef.delete()
+    .then(() => {
+      return docRef.get().then((doc) => {
+        const reviewCount = doc.data().reviewCount;
+        docRef.update({
+          reviewCount: reviewCount - 1,
+        })
+      })
+    })
+    .then(() => {
+      dispatch({ type : 'DELETE_REIVEW_SUCCESS' });
+    })
+    .catch((err) => {
+      dispatch({ type : 'DELETE_REIVEW_ERROR', err });
+    })
+  }
+}
+export const _update_inquiry = (service_id, inquiry_id, updating_data) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    const userAuth = getState().firebase.auth;
+    const docRef = firestore.collection('services').doc(service_id);
+    const subRef = docRef.collection('inquiry').doc(inquiry_id);
+
+    subRef.update({
+      contents: updating_data,
+    })
+    .then(() => {
+      dispatch({ type: 'UPDATE_INQUIRY_SUCCESS'})
+    })
+    .catch((err) => {
+      dispatch({ type: 'UPDATE_INQUIRY_ERROR', err})
+    })
+  }
+}
+
+export const _update_review = (service_id, review_id, updating_data) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    const userAuth = getState().firebase.auth;
+    const docRef = firestore.collection('services').doc(service_id);
+    const subRef = docRef.collection('reviews').doc(review_id);
+
+    subRef.update({
+      contents: updating_data,
+    })
+    .then(() => {
+      dispatch({ type: 'UPDATE_REVIEW_SUCCESS' })
+    })
+    .catch((err) => {
+      dispatch({ type: 'UPDATE_REVIEW_ERROR', err})
+    })
+  }
+}
