@@ -26,6 +26,9 @@ class SignIn extends Component {
     return (
       <div className="container signin">
         <div className="card">
+          <div className="card-image">
+              <img src="img/theme/paris.jpg" alt=""/>
+          </div>
           <div className="card-content">
             <span className="card-title">로그인</span>
             <form onSubmit={this.handleSubmit} className='white'>

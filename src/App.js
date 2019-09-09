@@ -32,6 +32,7 @@ import EmailVerification from './components/auth/EmailVerification'
 import CommunityDashboard from './components/community/CommunityDashboard';
 import CreatePost from './components/community/CreatePost';
 import PostDetails from './components/community/PostDetails';
+import ChatDashboard from './components/chats/ChatDashboard';
 
 class App extends Component {
   render(){
@@ -70,6 +71,7 @@ class App extends Component {
                 <Route exact path= '/community/:category' component = { CommunityDashboard } />
                 <Route exact path= '/community/:category/createPost' component = { CreatePost } />
                 <Route exact path= '/post/:id' component = { PostDetails }/>
+                <Route path= '/chatDashboard' component = { ChatDashboard} />
               </Switch>
           </div>
         </ScrollTop>

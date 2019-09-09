@@ -5,9 +5,10 @@ import PostList from './PostList'
 import M from 'materialize-css'
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
+import { firestoreConnect, isLoaded } from 'react-redux-firebase'
 import { compose } from 'redux'
 import './community.css'
+import Preloader from '../functionalComponents/Preloader';
 
 class CommunityDashboard extends Component {
 	componentDidMount(){
@@ -20,7 +21,11 @@ class CommunityDashboard extends Component {
 				<SideNavTest profile={profile}/>
 				<div className="communityTemplate">
 					<div className="contents">
-						<PostList posts= {posts}/>
+						{
+							!isLoaded(posts)
+								? <Preloader/>
+								: <PostList posts= {posts}/>
+						}	
 					</div>
 				</div>
 				<div className="fixed-action-btn">

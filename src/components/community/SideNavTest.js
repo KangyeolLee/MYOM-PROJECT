@@ -16,9 +16,9 @@ class SideNavTest extends Component {
 						<div className="background">
 							<img src="../img/theme/paris.jpg" />
 						</div>
-						<a href="#user"><img src={profile.profileImgURL} className="circle"/></a>
-						<a href="#name"><span className="white-text name">{profile.initials}</span></a>
-						<a href="#email"><span className="white-text email">{profile.email}</span></a>
+						<Link to='/profile'><img src={profile.profileImgURL} className="circle"/></Link>
+						<span className="white-text name">{profile.initials}</span>
+						<span className="white-text email">{profile.email}</span>
 					</div></li>
 					<li><Link to='/community/admin'><i className="material-icons">cloud</i>Myom Tip!</Link></li>
 					<li><Link to='/community/user'><i className="material-icons">cloud</i>User Tip!</Link></li>
