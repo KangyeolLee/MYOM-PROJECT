@@ -58,7 +58,7 @@ class App extends Component {
                 <Route path='/mypageBuyer/estimate' component={EstimatePage} />
                 <Route path='/mypageBuyer/orderManage' component={OrderManage} /> */}
                 <Route path='/mypageProvider' component={MypageForProvider} />
-                <Route path='/purchase' component={Purchase} />
+                <Route path='/purchase/:service_id' component={Purchase} />
                 <Route path='/purchasedone' component= { PurchaseDone } />
                 <Route path='/profile' component = { UserProfile } />
                 <Route path='/alarmsetting' component = { AlarmSetting } />

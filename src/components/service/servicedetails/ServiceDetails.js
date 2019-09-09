@@ -25,7 +25,7 @@ class ServiceDetails extends Component {
 
   render() {
     if(!isLoaded(this.props.service)) return <div className='container'>로딩중...</div>
-    const { service, inquiry, reviews, recommends, auth } = this.props;
+    const { service, inquiry, reviews, recommends } = this.props;
     const { description, prices } = service;
 
     return (
@@ -45,7 +45,7 @@ class ServiceDetails extends Component {
               </div>
 
               <div className="card-content">
-                { prices && prices.map((item, i) => <ServicePricesSummary index={i} price={item} key={`${item + i}`}/>)}
+                { prices && prices.map((item, i) => <ServicePricesSummary service_id={this.props.match.params.id} index={i} price={item} key={`${item + i}`}/>)}
                 {/* 고유 key 값으로 변경해야함.. */}
               </div>
 

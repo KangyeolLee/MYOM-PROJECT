@@ -196,6 +196,14 @@ const serviceRuducer = (state=initState, action) => {
     case 'REPORT_BADUSER_SUCCESS':
       alert('신고 접수 되었습니다.');
       return state;
+
+    case 'BUY_SERVICE_SUCCESS':
+      console.log('buy service success');
+      return state;
+
+    case 'BUY_SERVICE_ERROR':
+      console.log('buy service error', action.err.message);
+      return state;
       
     default:
       return state;

@@ -10,3 +10,11 @@
   display: flex;
   justify-content: center;
 }
+.ordersManage .collection .collection-item.preloader {
+  list-style: none;
+}
+.ordersManage .collection.notEmpty {
+  display: block;
+  justify-content: unset;
+  align-items: unset;
+}

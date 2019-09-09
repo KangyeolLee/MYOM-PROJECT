@@ -89,7 +89,7 @@ class AllService extends Component {
 
   render() {
     const { match, serviceList } = this.props;
-    const { moreServices, loading } = this.state;
+    const { moreServices } = this.state;
     console.log(moreServices);
 
     return (

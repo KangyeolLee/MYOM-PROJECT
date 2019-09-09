@@ -1,4 +1,4 @@
-.purchase-page1 h4{
+.purchase-page h4{
 	margin-top: 4rem;
 	margin-bottom: 3rem;
 }
@@ -69,8 +69,19 @@
 	width: 24rem;
 }
 
+.purchasedone {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+}
 .purchasedone-btn {
-	margin-right: 10px;
+  margin: 0 5rem;
+  display: flex;
+  justify-content: center;
+}
+.purchasedone-btn .homeIcon {
+  margin-right: 1.3rem;
 }
 
 .purchasedone-btns {

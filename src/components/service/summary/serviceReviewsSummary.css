@@ -1,3 +1,7 @@
+.serviceReviewsSummary {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 .serviceReviewsSummary .dropdown-trigger {
   position: absolute;
   top: 0;
