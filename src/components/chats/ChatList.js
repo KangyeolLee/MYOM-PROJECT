@@ -18,7 +18,7 @@ class ChatList extends Component {
 		console.log('new chat click');
 	}
 	selectChat = (index) => {
-		console.log('select chat', index);
+		this.props.selectChatFn(index);
 	}
 	render(){
 		const {classes} = this.props;

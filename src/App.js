@@ -33,6 +33,7 @@ import CommunityDashboard from './components/community/CommunityDashboard';
 import CreatePost from './components/community/CreatePost';
 import PostDetails from './components/community/PostDetails';
 import ChatDashboard from './components/chats/ChatDashboard';
+import chatDashboards from './components/chats/chatDashboards';
 
 class App extends Component {
   render(){
@@ -72,6 +73,7 @@ class App extends Component {
                 <Route exact path= '/community/:category/createPost' component = { CreatePost } />
                 <Route exact path= '/post/:id' component = { PostDetails }/>
                 <Route path= '/chatDashboard' component = { ChatDashboard} />
+                <Route path= '/chattest' component = { chatDashboards} />
               </Switch>
           </div>
         </ScrollTop>
