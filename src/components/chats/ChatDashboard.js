@@ -75,9 +75,10 @@ const mapStateToProps = (state) => {
 export default compose(
 	connect(mapStateToProps),
 	firestoreConnect((props) => {
+		const _usr = !isLoaded(props.profile.email) ? 'null' : props.profile.email;
 		return [
-			{ collection: 'chats', storeAs:'chatAll'},
-			{ collection: 'chats', where: ['deal', '==', true], storeAs:'chatInDeal'}
+				{ collection: 'chats' , where: ['users', 'array-contains', _usr] ,storeAs:'chatAll'},
+				{ collection: 'chats', where: ['deal', '==', true], storeAs:'chatInDeal'}
 		]
 	}),
 )(ChatDashboard);
