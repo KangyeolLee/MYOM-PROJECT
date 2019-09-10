@@ -1,41 +1,93 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import WarningComponent from './WarningComponent';
-import moment from 'moment';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import M from 'materialize-css';
 import './orderManage.css';
-import SearchBox from '../functionalComponents/SearchBox';
+import SearchBox_Datepicker from '../functionalComponents/SearchBox_Datepicker';
 import Preloader from '../functionalComponents/Preloader';
+import Pagination from '../functionalComponents/Pagination';
+import OrderManagementSummary from '../service/summary/OrderManagementSummary';
+import SearchBox_Range from '../functionalComponents/SearchBox_Range';
 
 class OrderManage extends Component {
+  state = {
+    all_count: 0,
+    request_count: 0,
+    proceed_count: 0,
+    complete_count: 0,
+    review_count: 0,
+    cancel_count: 0,
+    curPage: 1,
+    perPage: 5,
+  }
+
   componentDidMount() {
     M.AutoInit();
   }
+  componentDidUpdate(prevProps, prevState) {
+    if(this.props.purchaseList !== prevProps.purchaseList) {
+      const { purchaseList } = this.props;
+      let all_count, request_count, proceed_count, complete_count, review_count, cancel_count;
+      if(this.props.pathname.includes('mypageBuyer')) {
+        all_count = purchaseList.purchaseHistory.length;
+        request_count = purchaseList.purchaseHistory.filter(item => item.request !== true).length;
+        proceed_count = purchaseList.purchaseHistory.filter(item => item.proceed === true).length;
+        complete_count = purchaseList.purchaseHistory.filter(item => item.proceed !== true).length;
+        review_count = purchaseList.purchaseHistory.filter(item => item.review !== true).length;
+        cancel_count = 0;
+      } else {
+        all_count = purchaseList.workingList.length;
+        request_count = purchaseList.workingList.filter(item => item.request !== true).length;
+        proceed_count = purchaseList.workingList.filter(item => item.proceed === true).length;
+        complete_count = purchaseList.workingList.filter(item => item.proceed !== true).length;
+        review_count = purchaseList.workingList.filter(item => item.review !== true).length;
+        cancel_count = 0;
+      }
+      
+      this.setState({
+        all_count, request_count, proceed_count, complete_count, review_count, cancel_count,
+      })
+    }
+  }
+
+  paginate = (pageNum) => {
+    this.setState({
+      curPage: pageNum,
+    })
+  }
+  _init_curPage = () => {
+    this.setState({
+      curPage: 1,
+    })
+  }
+
   render() {
     const { pathname, purchaseList } = this.props;
+    const { curPage, perPage, all_count, request_count, proceed_count, complete_count, review_count, cancel_count } = this.state;
     const selectorValueForOrders = pathname.includes('mypageBuyer');
     const copied_purchaseList = !isLoaded(purchaseList) ? null : purchaseList.purchaseHistory.slice().reverse();
-    console.log(copied_purchaseList);
-    const finalResult = selectorValueForOrders
+    const copied_workingList = !isLoaded(purchaseList) ? null : purchaseList.workingList.slice().reverse();
+    let indexOfLast = curPage * perPage; let indexOfFirst = indexOfLast - perPage;
+    const finalResult = selectorValueForOrders 
       ? (
         <div className="ordersManage">
           <div className="row">
             <h4>구매 관리</h4>
             <div className="col s12">
               <ul className="tabs">
-                <li className="tab col s2"><a href="#orderAll">전체 (0)</a></li>
-                <li className="tab col s2"><a href="#orderRequest">요청사항 미작성 (0)</a></li>
-                <li className="tab col s2"><a href="#orderProceed">진행중 (0)</a></li>
-                <li className="tab col s2"><a href="#orderComplete">완료 (0)</a></li>
-                <li className="tab col s2"><a href="#orderReview">평가 미작성 (0)</a></li>
-                <li className="tab col s2"><a href="#orderCanceled">취소 (0)</a></li>
+                <li className="tab col s2"><a onClick={this._init_curPage} href="#orderAll">전체 ({all_count})</a></li>
+                <li className="tab col s2"><a onClick={this._init_curPage} href="#orderRequest">요청 미작성 ({request_count})</a></li>
+                <li className="tab col s2"><a onClick={this._init_curPage} href="#orderProceed">진행중 ({proceed_count})</a></li>
+                <li className="tab col s2"><a onClick={this._init_curPage} href="#orderComplete">완료 ({complete_count})</a></li>
+                <li className="tab col s2"><a onClick={this._init_curPage} href="#orderReview">평가 미작성 ({review_count})</a></li>
+                <li className="tab col s2"><a onClick={this._init_curPage} href="#orderCanceled">취소 ({cancel_count})</a></li>
               </ul>
             </div>
 
             <div id="orderAll">
-              <SearchBox num={0} />
+              <SearchBox_Datepicker num={0} />
               {
                 !isLoaded(purchaseList)
                   ? <div className="collection"><Preloader /></div>
@@ -48,33 +100,19 @@ class OrderManage extends Component {
                         </div>
                       </div>
                     )
-                    : (copied_purchaseList && copied_purchaseList.map(item => (
-                        <div className="collection notEmpty" key={item.date}>
-                          <div className="collection-item row">
-                            <div className="image-area col s4">
-                              <img src={item.imgURL} alt="" width={300} height={250}/>
-                            </div>
-                            <div className="options-area col s8">
-                              <p>옵션 : { item.options } </p>
-                              <p>구매일자 : { moment(item.date.toDate()).format('YYYY년 / MM월 / DD일 h:mm분') }</p>
-                              <p>진행상황 : { item.proceed ? '진행중' : '완료' }</p>
-                              <p>요청사항 : { item.request ? '요청완료' : '미요청' }</p>
-                              <p>리뷰작성 : { item.review ? '작성완료' : '미작성' }</p>
-                              <p>판매자 : { item.provider }</p>
-                            </div>
-                          </div>
-                        </div>
+                    : (copied_purchaseList && copied_purchaseList.slice(indexOfFirst,indexOfLast).map(item => (
+                      <OrderManagementSummary key={item.date} purchaseList={item} />
                     )))
               }            
-
+              <Pagination pages={Math.ceil(all_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
             <div id="orderRequest">
-              <SearchBox num={1} />
+              <SearchBox_Datepicker num={1} />
               {
                 !isLoaded(purchaseList)
                   ? <div className="collection"><Preloader /></div>
-                  : isEmpty(purchaseList)
+                  : isEmpty(copied_purchaseList.filter(item => item.request !== true))
                     ? (
                       <div className="collection">
                         <div className="collection-item-wrapper">
@@ -83,50 +121,78 @@ class OrderManage extends Component {
                         </div>
                       </div>
                     )
-                    : (copied_purchaseList && copied_purchaseList.filter(item => item.request !== true).map(item => (
-                      <div className="collection notEmpty" key={item.date}>
-                        <div className="collection-item row">
-                          <div className="image-area col s4">
-                            <img src={item.imgURL} alt="" width={300} height={250}/>
-                          </div>
-                          <div className="options-area col s8">
-                            <p>옵션 : { item.options } </p>
-                            <p>구매일자 : { moment(item.date.toDate()).format('YYYY년 / MM월 / DD일 h:mm분') }</p>
-                            <p>진행상황 : { item.proceed ? '진행중' : '완료' }</p>
-                            <p>요청사항 : { item.request ? '요청완료' : '미요청' }</p>
-                            <p>리뷰작성 : { item.review ? '작성완료' : '미작성' }</p>
-                            <p>판매자 : { item.provider }</p>
-                          </div>
+                    : (copied_purchaseList && copied_purchaseList.slice(indexOfFirst, indexOfLast).filter(item => item.request !== true).map(item => (
+                      <OrderManagementSummary key={item.date} purchaseList={item} />
+                    )))
+              }    
+              <Pagination pages={Math.ceil(request_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />        
+            </div>
+
+            <div id="orderProceed">
+              <SearchBox_Datepicker num={2} />
+              {
+                !isLoaded(purchaseList)
+                  ? <div className="collection"><Preloader /></div>
+                  : isEmpty(copied_purchaseList.filter(item => item.proceed === true))
+                    ? (
+                      <div className="collection">
+                        <div className="collection-item-wrapper">
+                          <i className="material-icons large">info_outline</i>
+                          <p>내역이 없습니다</p>
                         </div>
                       </div>
+                    )
+                    : (copied_purchaseList && copied_purchaseList.slice(indexOfFirst, indexOfLast).filter(item => item.proceed === true).map(item => (
+                      <OrderManagementSummary key={item.date} purchaseList={item} />
                     )))
-              }            
+              }
+              <Pagination pages={Math.ceil(proceed_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
             <div id="orderComplete">
-            <SearchBox num={3} />
-
-              <div className="collection">
-                <div className="collection-item-wrapper">
-                  <i className="material-icons large">info_outline</i>
-                  <p>내역이 없습니다</p>
-                </div>
-              </div>
+              <SearchBox_Datepicker num={3} />
+              {
+                !isLoaded(purchaseList)
+                  ? <div className="collection"><Preloader /></div>
+                  : isEmpty(copied_purchaseList.filter(item => item.proceed === false))
+                    ? (
+                      <div className="collection">
+                        <div className="collection-item-wrapper">
+                          <i className="material-icons large">info_outline</i>
+                          <p>내역이 없습니다</p>
+                        </div>
+                      </div>
+                    )
+                    : (copied_purchaseList && copied_purchaseList.slice(indexOfFirst, indexOfLast).filter(item => item.proceed === false).map(item => (
+                      <OrderManagementSummary key={item.date} purchaseList={item} />
+                    )))
+              }
+              <Pagination pages={Math.ceil(complete_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
             <div id="orderReview">
-            <SearchBox num={4} />
-
-              <div className="collection">
-                <div className="collection-item-wrapper">
-                  <i className="material-icons large">info_outline</i>
-                  <p>내역이 없습니다</p>
-                </div>
-              </div>
+              <SearchBox_Datepicker num={4} />
+              {
+                !isLoaded(purchaseList)
+                  ? <div className="collection"><Preloader /></div>
+                  : isEmpty(copied_purchaseList.filter(item => item.review !== true))
+                    ? (
+                      <div className="collection">
+                        <div className="collection-item-wrapper">
+                          <i className="material-icons large">info_outline</i>
+                          <p>내역이 없습니다</p>
+                        </div>
+                      </div>
+                    )
+                    : (copied_purchaseList && copied_purchaseList.slice(indexOfFirst, indexOfLast).filter(item => item.review !== true).map(item => (
+                      <OrderManagementSummary key={item.date} purchaseList={item} />
+                    )))
+              }
+              <Pagination pages={Math.ceil(review_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
             <div id="orderCanceled">
-            <SearchBox num={5} />
+              <SearchBox_Datepicker num={5} />
 
               <div className="collection">
                 <div className="collection-item-wrapper">
@@ -147,196 +213,122 @@ class OrderManage extends Component {
             <h4>판매 관리</h4>
             <div className="col s12">
               <ul className="tabs">
-                <li className="tab col s2"><a href="#orderAll">전체 (0)</a></li>
-                <li className="tab col s2"><a href="#orderRequest">요청사항 미작성 (0)</a></li>
-                <li className="tab col s2"><a href="#orderProceed">진행중 (0)</a></li>
-                <li className="tab col s2"><a href="#orderComplete">완료 (0)</a></li>
-                <li className="tab col s2"><a href="#orderReview">평가 미작성 (0)</a></li>
-                <li className="tab col s2"><a href="#orderCanceled">취소 (0)</a></li>
+                <li className="tab col s2"><a onClick={this._init_curPage} href="#orderAll">전체 ({all_count})</a></li>
+                <li className="tab col s2"><a onClick={this._init_curPage} href="#orderRequest">요청 미작성 ({request_count})</a></li>
+                <li className="tab col s2"><a onClick={this._init_curPage} href="#orderProceed">진행중 ({proceed_count})</a></li>
+                <li className="tab col s2"><a onClick={this._init_curPage} href="#orderComplete">완료 ({complete_count})</a></li>
+                <li className="tab col s2"><a onClick={this._init_curPage} href="#orderReview">평가 미작성 ({review_count})</a></li>
+                <li className="tab col s2"><a onClick={this._init_curPage} href="#orderCanceled">취소 ({cancel_count})</a></li>
               </ul>
             </div>
 
             <div id="orderAll">
-              <form action="" className="row">
-                <div className="input-field col s2">
-                  <select name="" id="payment_range">
-                    <option value="1">닉네임</option>
-                    <option value="2">주문번호</option>
-                    <option value="3">이름</option>
-                    <option value="4">전화번호</option>
-                    <option value="5">이메일</option>
-                  </select>
-                  <label htmlFor="payment_range">범위 선택</label>
-                </div>
-
-                <div className="input-field col s4">
-                  <input type="text" id="coupon_code"/>
-                  <label htmlFor="coupon_code"></label>
-                </div>
-
-                <div className="input-field col s2">
-                  <button className="btn gery darken-3 waves-effect"> 검색 </button>
-                </div>
-              </form>
-
-              <div className="collection">
-                <div className="collection-item-wrapper">
-                  <i className="material-icons large">info_outline</i>
-                  <p>내역이 없습니다</p>
-                </div>
-              </div>
+              <SearchBox_Range num={0} />
+              {
+                !isLoaded(purchaseList)
+                  ? <div className="collection"><Preloader /></div>
+                  : isEmpty(copied_workingList)
+                    ? (
+                      <div className="collection">
+                        <div className="collection-item-wrapper">
+                          <i className="material-icons large">info_outline</i>
+                          <p>내역이 없습니다</p>
+                        </div>
+                      </div>
+                    )
+                    : (copied_workingList && copied_workingList.slice(indexOfFirst, indexOfLast).map(item => 
+                      <OrderManagementSummary key={item.date} purchaseList={item} />
+                    ))
+              }
+              <Pagination pages={Math.ceil(all_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
             <div id="orderRequest">
-              <form action="" className="row">
-              <div className="input-field col s2">
-                  <select name="" id="payment_range">
-                    <option value="1">닉네임</option>
-                    <option value="2">주문번호</option>
-                    <option value="3">이름</option>
-                    <option value="4">전화번호</option>
-                    <option value="5">이메일</option>
-                  </select>
-                  <label htmlFor="payment_range">범위 선택</label>
-                </div>
-
-                <div className="input-field col s4">
-                  <input type="text" id="coupon_code"/>
-                  <label htmlFor="coupon_code"></label>
-                </div>
-
-                <div className="input-field col s2">
-                  <button className="btn gery darken-3 waves-effect"> 검색 </button>
-                </div>
-
-              </form>
-
-              <div className="collection">
-                <div className="collection-item-wrapper">
-                  <i className="material-icons large">info_outline</i>
-                  <p>내역이 없습니다</p>
-                </div>
-              </div>
+              <SearchBox_Range num={0} />
+              {
+                !isLoaded(purchaseList)
+                  ? <div className="collection"><Preloader /></div>
+                  : isEmpty(copied_workingList.filter(item => item.request !== true))
+                    ? (
+                      <div className="collection">
+                        <div className="collection-item-wrapper">
+                          <i className="material-icons large">info_outline</i>
+                          <p>내역이 없습니다</p>
+                        </div>
+                      </div>
+                    )
+                    : (copied_workingList && copied_workingList.slice(indexOfFirst, indexOfLast).filter(item => item.request !== true).map(item => 
+                      <OrderManagementSummary key={item.date} purchaseList={item} />
+                    ))
+              }
+              <Pagination pages={Math.ceil(request_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
             <div id="orderProceed">
-              <form action="" className="row">
-              <div className="input-field col s2">
-                  <select name="" id="payment_range">
-                    <option value="1">닉네임</option>
-                    <option value="2">주문번호</option>
-                    <option value="3">이름</option>
-                    <option value="4">전화번호</option>
-                    <option value="5">이메일</option>
-                  </select>
-                  <label htmlFor="payment_range">범위 선택</label>
-                </div>
-
-                <div className="input-field col s4">
-                  <input type="text" id="coupon_code"/>
-                  <label htmlFor="coupon_code"></label>
-                </div>
-
-                <div className="input-field col s2">
-                  <button className="btn gery darken-3 waves-effect"> 검색 </button>
-                </div>
-
-              </form>
-
-              <div className="collection">
-                <div className="collection-item-wrapper">
-                  <i className="material-icons large">info_outline</i>
-                  <p>내역이 없습니다</p>
-                </div>
-              </div>
+              <SearchBox_Range num={0} />
+              {
+                !isLoaded(purchaseList)
+                  ? <div className="collection"><Preloader /></div>
+                  : isEmpty(copied_workingList.filter(item => item.request !== true))
+                    ? (
+                      <div className="collection">
+                        <div className="collection-item-wrapper">
+                          <i className="material-icons large">info_outline</i>
+                          <p>내역이 없습니다</p>
+                        </div>
+                      </div>
+                    )
+                    : (copied_workingList && copied_workingList.slice(indexOfFirst, indexOfLast).filter(item => item.proceed === true).map(item => 
+                      <OrderManagementSummary key={item.date} purchaseList={item} />
+                    ))
+              }
+              <Pagination pages={Math.ceil(proceed_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
             <div id="orderComplete">
-              <form action="" className="row">
-              <div className="input-field col s2">
-                  <select name="" id="payment_range">
-                    <option value="1">닉네임</option>
-                    <option value="2">주문번호</option>
-                    <option value="3">이름</option>
-                    <option value="4">전화번호</option>
-                    <option value="5">이메일</option>
-                  </select>
-                  <label htmlFor="payment_range">범위 선택</label>
-                </div>
-
-                <div className="input-field col s4">
-                  <input type="text" id="coupon_code"/>
-                  <label htmlFor="coupon_code"></label>
-                </div>
-
-                <div className="input-field col s2">
-                  <button className="btn gery darken-3 waves-effect"> 검색 </button>
-                </div>
-
-              </form>
-
-              <div className="collection">
-                <div className="collection-item-wrapper">
-                  <i className="material-icons large">info_outline</i>
-                  <p>내역이 없습니다</p>
-                </div>
-              </div>
+              <SearchBox_Range num={0} />
+              {
+                !isLoaded(purchaseList)
+                  ? <div className="collection"><Preloader /></div>
+                  : isEmpty(copied_workingList.filter(item => item.request !== true))
+                    ? (
+                      <div className="collection">
+                        <div className="collection-item-wrapper">
+                          <i className="material-icons large">info_outline</i>
+                          <p>내역이 없습니다</p>
+                        </div>
+                      </div>
+                    )
+                    : (copied_workingList && copied_workingList.slice(indexOfFirst, indexOfLast).filter(item => item.proceed !== true).map(item => 
+                      <OrderManagementSummary key={item.date} purchaseList={item} />
+                    ))
+              }
+              <Pagination pages={Math.ceil(complete_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
             <div id="orderReview">
-              <form action="" className="row">
-              <div className="input-field col s2">
-                  <select name="" id="payment_range">
-                    <option value="1">닉네임</option>
-                    <option value="2">주문번호</option>
-                    <option value="3">이름</option>
-                    <option value="4">전화번호</option>
-                    <option value="5">이메일</option>
-                  </select>
-                  <label htmlFor="payment_range">범위 선택</label>
-                </div>
-
-                <div className="input-field col s4">
-                  <input type="text" id="coupon_code"/>
-                  <label htmlFor="coupon_code"></label>
-                </div>
-
-                <div className="input-field col s2">
-                  <button className="btn gery darken-3 waves-effect"> 검색 </button>
-                </div>
-
-              </form>
-
-              <div className="collection">
-                <div className="collection-item-wrapper">
-                  <i className="material-icons large">info_outline</i>
-                  <p>내역이 없습니다</p>
-                </div>
-              </div>
+              <SearchBox_Range num={0} />
+              {
+                !isLoaded(purchaseList)
+                  ? <div className="collection"><Preloader /></div>
+                  : isEmpty(copied_workingList.filter(item => item.request !== true))
+                    ? (
+                      <div className="collection">
+                        <div className="collection-item-wrapper">
+                          <i className="material-icons large">info_outline</i>
+                          <p>내역이 없습니다</p>
+                        </div>
+                      </div>
+                    )
+                    : (copied_workingList && copied_workingList.slice(indexOfFirst, indexOfLast).filter(item => item.review !== true).map(item => 
+                      <OrderManagementSummary key={item.date} purchaseList={item} />
+                    ))
+              }
+              <Pagination pages={Math.ceil(review_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
             <div id="orderCanceled">
-              <form action="" className="row">
-              <div className="input-field col s2">
-                  <select name="" id="payment_range">
-                    <option value="1">닉네임</option>
-                    <option value="2">주문번호</option>
-                    <option value="3">이름</option>
-                    <option value="4">전화번호</option>
-                    <option value="5">이메일</option>
-                  </select>
-                  <label htmlFor="payment_range">범위 선택</label>
-                </div>
-
-                <div className="input-field col s4">
-                  <input type="text" id="coupon_code"/>
-                  <label htmlFor="coupon_code"></label>
-                </div>
-
-                <div className="input-field col s2">
-                  <button className="btn gery darken-3 waves-effect"> 검색 </button>
-                </div>
-              </form>
+              <SearchBox_Range num={0} />
 
               <div className="collection">
                 <div className="collection-item-wrapper">

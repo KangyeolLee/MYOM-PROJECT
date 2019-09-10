@@ -5,14 +5,17 @@ export const _buy_service = (service_id, service, history) => {
     const firestore = getFirestore();
     const userInfo = getState().firebase.auth;
     const userRef = firestore.collection('users').doc(userInfo.uid);
+    const providerRef = firestore.collection('users').doc(service.serviceProvider);
 
     let userPurchase = {
       service_id: service_id,
       request: false,
       review: false,
+      proceed: true,
       date: new Date(),
       imgURL: service.imgURL,
       provider: service.serviceProvider,
+      buyer: userInfo.uid,
       options: '니가 고른 옵션',
     }
     
@@ -27,6 +30,21 @@ export const _buy_service = (service_id, service, history) => {
           purchaseHistory.push(userPurchase);
           transaction.update(userRef, { purchaseHistory: purchaseHistory })
         }
+      })
+    })
+    .then(() => {
+      firestore.runTransaction(transaction => {
+        return transaction.get(providerRef).then(doc => {
+          if(!doc.data().workingList) {
+            transaction.set(providerRef, {
+              workingList: [userPurchase],
+            }, {merge: true})
+          } else {
+            const workingList = doc.data().workingList;
+            workingList.push(userPurchase);
+            transaction.update(providerRef, { workingList: workingList })
+          }
+        })
       })
     })
     .then(() => {

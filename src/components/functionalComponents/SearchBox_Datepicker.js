@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SearchBox = ({num}) => {
+const SearchBox_Datepicker = ({num}) => {
   return (
     <form action="" className="row">
       <div className="input-field col s2">
@@ -26,4 +26,4 @@ const SearchBox = ({num}) => {
   )
 }
 
-export default SearchBox;
+export default SearchBox_Datepicker;
