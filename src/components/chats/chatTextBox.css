@@ -1,11 +1,33 @@
 .chat-send-btn{
 	background-color: #707BC4;
-	float: right;
 	clear: both;
 	position: absolute;
-	top: 9px;
+	bottom: 5px;
+	right: 0.1px;
 }
 
 #chat-text{
 	width: 90%;
+}
+
+#message {
+	resize: none;
+	background-color: rgb(245,245,245);
+	border-color: rgb(230,230,230);
+	height: 100px;
+}
+
+#message:focus {
+	outline: 0;
+}
+
+.text-box {
+	width: calc(100% - 20px);
+	margin-right: 0;
+}
+@media only screen and (min-width: 1600px){
+	.text-box{
+		width: 1197.5px;
+		margin: auto;
+	}
 }

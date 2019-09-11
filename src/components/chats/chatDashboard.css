@@ -8,3 +8,11 @@
 		margin-left: 0;
 	}
 }
+
+@media only screen and (min-width: 1600px){
+	.chatMessages{
+		width: 1247.5px;
+		margin: auto;
+	}
+}
+

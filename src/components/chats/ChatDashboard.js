@@ -59,8 +59,8 @@ class ChatDashboard extends Component {
 						}
 					</div>
 					{
-						this.state.selectedChat !== null && !this.state.newChatFormVisible 
-						? <ChatTextBox profile={profile} chatId={chatId}></ChatTextBox> :
+						this.state.selectedChat !== null && !this.state.newChatFormVisible && isLoaded(chatId)
+						? <ChatTextBox profile={profile} chatId={this.state.chatId}></ChatTextBox> :
 						null
 					}
 				</div>

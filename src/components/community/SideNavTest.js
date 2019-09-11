@@ -21,8 +21,8 @@ class SideNavTest extends Component {
 						<span className="white-text email">{profile.email}</span>
 					</div></li>
 					<li><Link to='/community/admin'><i className="material-icons">cloud</i>Myom Tip!</Link></li>
-					<li><Link to='/community/user'><i className="material-icons">cloud</i>User Tip!</Link></li>
-					<li><Link to='/community/editor'><i className="material-icons">cloud</i>Editor Tip!</Link></li>
+					<li><Link to='/community/user'><i className="material-icons">cloud</i>사용자 Tip!</Link></li>
+					<li><Link to='/community/editor'><i className="material-icons">cloud</i>편집자 Tip!</Link></li>
 				</ul>
 				<a href="#" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i></a>
 			</div>
