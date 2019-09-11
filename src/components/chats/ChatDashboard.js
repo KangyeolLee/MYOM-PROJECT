@@ -7,6 +7,7 @@ import { firestoreConnect, isLoaded } from 'react-redux-firebase'
 import { compose } from 'redux'
 import Preloader from '../functionalComponents/Preloader';
 import ChatViews from './ChatViews'
+import ChatTextBox from './ChatTextBox'
 import './chatDashboard.css'
 
 
@@ -14,10 +15,9 @@ class ChatDashboard extends Component {
 	state = {
 		selectedChat: null,
 		selectedType: null,
+		chatId: '',
 		newChatFormVisible: false,
 		email: null,
-		allChats: [],
-		dealChats: []
 	}
 	
 	newChatBtnClicked = () => {
@@ -27,10 +27,11 @@ class ChatDashboard extends Component {
 		})
 	}
 	
-	selectChat = (chatIndex, chatType) => {
+	selectChat = (chatIndex, chatType, chatId) => {
 		this.setState({
 			selectedChat: chatIndex,
 			selectedType: chatType,
+			chatId: chatId,
 		})
 	}
 	componentDidMount(){
@@ -38,12 +39,11 @@ class ChatDashboard extends Component {
 	}
 	render(){
 		const { chats, profile, match, chatInDeal } = this.props;
-		const { selectedChat, selectedType } = this.state;
-		const deal = !isLoaded(chats) ? null : chats.filter(chat => chat.deal === true);
-	
+		const { selectedChat, selectedType, chatId } = this.state;
+		const dealingChat = !isLoaded(chats) ? null : chats.filter(chat => chat.deal === true);
 		return(
 			<div className="chatDashboard">
-				<ChatSideNav profile={profile} chats={chats} chatInDeal = {deal} newChatBtnFn = {this.newChatBtnClicked} selectChatFn = {this.selectChat} selectedChatIndex = {this.state.selectedChat} />
+				<ChatSideNav profile={profile} chats={chats} chatInDeal = {dealingChat} newChatBtnFn = {this.newChatBtnClicked} selectChatFn = {this.selectChat} selectedChatIndex = {this.state.selectedChat} />
 				<div className="chatsTemplate">
 					<div className="chatMessages">
 						{	
@@ -53,11 +53,16 @@ class ChatDashboard extends Component {
 								this.state.newChatFormVisible ?
 								null :
 								(this.state.selectedType == 'dealChats') ? 
-									<ChatViews profile = { profile } chat = {deal[this.state.selectedChat]} />
+									<ChatViews profile = { profile } chat = {dealingChat[this.state.selectedChat]} />
 									:
 									<ChatViews profile = { profile } chat = {chats[this.state.selectedChat]} />
 						}
 					</div>
+					{
+						this.state.selectedChat !== null && !this.state.newChatFormVisible 
+						? <ChatTextBox profile={profile} chatId={chatId}></ChatTextBox> :
+						null
+					}
 				</div>
 			</div>
 

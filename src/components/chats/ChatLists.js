@@ -10,8 +10,8 @@ class ChatLists extends Component {
 	newChat = () => {
 		console.log('new chat click');
 	}
-	selectChat = (index, type) => {
-		this.props.selectChatFn(index, type);
+	selectChat = (index, type, chatId) => {
+		this.props.selectChatFn(index, type, chatId);
 	}
 	render(){
 		const { chats, profile } = this.props;
@@ -21,8 +21,8 @@ class ChatLists extends Component {
 					return(
 						<Fragment key={index}>
 							<li className="collection-item avatar" onClick = {(e) => {
-								const type = e.target.id
-								this.selectChat(index, type); 
+								const type = e.target.id;
+								this.selectChat(index, type, chat.id); 
 								}}
 								selected={this.props.selectedChatIndex === index}>
 								<div className="chat-profile">{chat.users.filter(_user => _user !== profile.email)[0].split('')[0]}</div>

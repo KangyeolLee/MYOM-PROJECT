@@ -1,0 +1,11 @@
+.chat-send-btn{
+	background-color: #707BC4;
+	float: right;
+	clear: both;
+	position: absolute;
+	top: 9px;
+}
+
+#chat-text{
+	width: 90%;
+}
