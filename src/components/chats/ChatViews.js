@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './chatview.css'
 
 class ChatViews extends Component {
@@ -21,9 +21,10 @@ class ChatViews extends Component {
 					{
 						chat.messages.map((_msg, _index) => {
 							return(
-								<div key={_index} className={_msg.sender === profile.email ? "user-sent" : "friend-sent" }>
-									{_msg.message}
-								</div>
+								<blockquote key={_index} className={_msg.sender === profile.email ? "user-sent-message " : "friend-sent-message" }>
+										<p>{_msg.message}</p>
+										<cite>{_msg.sender}</cite>
+								</blockquote>
 							)
 						})
 					}
@@ -34,3 +35,13 @@ class ChatViews extends Component {
 }
 
 export default ChatViews;
+
+	{/* <Fragment>
+									<blockquote key={_index} className={_msg.sender === profile.email ? "user-sent-message " : "friend-sent" }>
+										<p>{_msg.message}</p>
+										<cite>{profile.email}</cite>
+									</blockquote>
+								</Fragment> */}
+									{/* <div key={_index} className={_msg.sender === profile.email ? "user-sent" : "friend-sent" }>
+									{_msg.message}
+								</div> */}

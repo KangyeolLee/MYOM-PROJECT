@@ -27,6 +27,7 @@ class ChatLists extends Component {
 								selected={this.props.selectedChatIndex === index}>
 								<div className="chat-profile">{chat.users.filter(_user => _user !== profile.email)[0].split('')[0]}</div>
 								<div className="chatlist-message" id={this.props.chat_type}>{chat.messages[chat.messages.length -1].message.substring(0,30)}</div>
+								<div>새로운 메시지</div>
 							</li>
 						</Fragment>
 					)

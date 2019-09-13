@@ -34,6 +34,11 @@ class ChatDashboard extends Component {
 			chatId: chatId,
 		})
 	}
+
+	// clickedChatWhereNotSender = (chatIndex) => {
+	// 	this.state.chats[chatIndex].messages[this.state.chats[chatIndex].messages.length -1].sender !== this.state.email;
+	// }
+
 	componentDidMount(){
 		M.AutoInit();
 	}
