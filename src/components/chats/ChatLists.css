@@ -19,3 +19,9 @@
 	padding-top: 21px;
 	padding-bottom: 21px;
 }
+
+.unreadMark{
+	position: absolute;
+	right: 0;
+	bottom: 30px;
+}
