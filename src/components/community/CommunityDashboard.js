@@ -83,12 +83,12 @@ class CommunityDashboard extends Component {
 		}
 	}
 	render(){
-		const { posts, profile, match } = this.props;
+		const { posts, profile, match, auth } = this.props;
 		const { morePosts } = this.state;
-		console.log(morePosts);
+		console.log(this.props);
 		return(
 			<div className="communityDashboard">
-				<SideNavTest profile={profile}/>
+				<SideNavTest profile={profile} auth={auth} />
 				<div className="communityTemplate">
 					<div className="contents">
 						<div className="post-list">
@@ -122,7 +122,8 @@ class CommunityDashboard extends Component {
 const mapStateToProps = (state) => {
 	return{
 		posts: state.firestore.ordered.posts,
-		profile: state.firebase.profile
+		profile: state.firebase.profile,
+		auth: state.firebase.auth,
 	}
 }
 

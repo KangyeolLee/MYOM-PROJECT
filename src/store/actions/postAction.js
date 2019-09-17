@@ -23,7 +23,11 @@ export const createPost = (postData, category, history) => {
 					author: profile.initials,
 					author_profileImg: profile.profileImgURL,
 					authorId: authorId,
-					createAt: new Date()
+					createAt: new Date(),
+					comments: firebase.firestore.FieldValue.arrayUnion({
+						comment: '',
+						writer: '',
+					})
 				}).then(() => {
 					dispatch({type: 'CREATE_POST', postData});
 					history.push('/community/'+category);
@@ -73,12 +77,14 @@ export const commentRegister = (docID, commentData) => {
 		const firestore = getFirestore();
 		const userAuth = getState().firebase.auth;
 		const profile = getState().firebase.profile;
-		firestore.collection('posts').doc(docID).collection('comment').add({
-			comment: commentData.comment,
-			likes: 0,
-			userID: profile.initials,
-			uid: userAuth.uid,
-			timestamp: new Date(),
+		firestore.collection('posts').doc(docID).update({
+				comments: firebase.firestore.FieldValue.arrayUnion({
+				comment: commentData.comment,
+				likes: 0,
+				userID: profile.initials,
+				uid: userAuth.uid,
+				timestamp: new Date(),
+			})
 		}).then(() => {
 			dispatch({type: 'CREATE_COMMENTS_SUCCESS', commentData})
 		}).catch((err) => {

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import './registerProvider.css'
 
 class RegisterProvider extends Component {
   handleSubmit = (e) => {
@@ -9,31 +11,35 @@ class RegisterProvider extends Component {
     console.log(e);
   }
   render() {
+    const { profile } = this.props;
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
-          <h5 className="grey-text text-darken-3">적어라</h5>
-          <div className="input-field">
-            <label htmlFor="something">something</label>
-            <input type="text" id='something' onChange={this.handleChange} />
+     <div className="container registerProvider">
+      <form action="#!">
+        <div className='card'>
+          <div className="card-content">
+            <span className="card-title">
+              <img src={profile.profileImgURL} width='60px' height='60px' className='circle'/>
+            </span>
+              <div className="input-field">
+                <textarea id="introduction" cols="30" rows="10"></textarea>
+              </div>
+            
           </div>
-          <h5 className="grey-text text-darken-3">무엇을</h5>
-          <div className="input-field">
-            <label htmlFor="whatthing">whatthing</label>
-            <input type="text" id='whatthing' onChange={this.handleChange} />
+          <div className="card-action">
+            <div className="input-field nextBtn">
+              <button className="btn indigo">다음</button>
+            </div>
           </div>
-          <h5 className="grey-text text-darken-3">어디에</h5>
-          <div className="input-field">
-            <label htmlFor="whereever">whereever</label>
-            <input type="text" id='whereever' onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <button className="btn pink lighten-1">신청하기</button>
-          </div>
-        </form>
-      </div>
+        </div>
+       </form>
+     </div>
     )
   }
 }
 
-export default RegisterProvider;
+const mapStateToProps = (state) => {
+  return {
+    profile: state.firebase.profile,
+  }
+}
+export default connect(mapStateToProps)(RegisterProvider);

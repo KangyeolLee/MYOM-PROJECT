@@ -1,0 +1,19 @@
+.registerProvider .card{
+	width: 70%;
+	margin-left: 15%;
+}
+
+.registerProvider textarea{
+	resize:none;
+	width: 450px;
+	height: 570px;
+	padding: 10px;
+}
+
+#introduction:focus{
+	outline: 0;
+}
+
+.nextBtn {
+	margin-top: 0 !important;
+}
