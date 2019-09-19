@@ -104,7 +104,7 @@ class AllService extends Component {
                 <img className='' src='' alt=""/>
                 <span className="card-title black">최다 평점 1</span>
               </div>
-            </div>  
+            </div> 
           </div>
         </ul>
   

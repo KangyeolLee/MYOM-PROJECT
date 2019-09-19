@@ -1,20 +1,20 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import PostSummary from './PostSummary'
 import { Link } from 'react-router-dom'
 
-const PostList = ({posts}) => {
+const PostList = ({post, post_id}) => {
 	return(
-		<div className="post-list">
-			{ posts && posts.map(post => {
-				return (
-					<Link to = {'/post/' + post.id} key={post.id} >
+		<Fragment>
+			{/* { posts && posts.map(post => {
+				return ( */}
+					<Link to = {'/post/' + post_id} >
 						<PostSummary post = { post } />
 					</Link>
-				)
-			})}
+				{/* )
+			})} */}
 
 
-		</div>
+		</Fragment>
 	)
 }
 

@@ -23,7 +23,12 @@ export const createPost = (postData, category, history) => {
 					author: profile.initials,
 					author_profileImg: profile.profileImgURL,
 					authorId: authorId,
-					createAt: new Date()
+					createAt: new Date(),
+					comments: [],
+					// comments: firebase.firestore.FieldValue.arrayUnion({
+					// 	comment: '',
+					// 	writer: '',
+					// })
 				}).then(() => {
 					dispatch({type: 'CREATE_POST', postData});
 					history.push('/community/'+category);
@@ -73,12 +78,15 @@ export const commentRegister = (docID, commentData) => {
 		const firestore = getFirestore();
 		const userAuth = getState().firebase.auth;
 		const profile = getState().firebase.profile;
-		firestore.collection('posts').doc(docID).collection('comment').add({
-			comment: commentData.comment,
-			likes: 0,
-			userID: profile.initials,
-			uid: userAuth.uid,
-			timestamp: new Date(),
+		firestore.collection('posts').doc(docID).update({
+				comments: firebase.firestore.FieldValue.arrayUnion({
+				comment: commentData.comment,
+				likes: 0,
+				userID: profile.initials,
+				userProfile: profile.profileImgURL,
+				uid: userAuth.uid,
+				timestamp: new Date(),
+			})
 		}).then(() => {
 			dispatch({type: 'CREATE_COMMENTS_SUCCESS', commentData})
 		}).catch((err) => {
@@ -87,33 +95,15 @@ export const commentRegister = (docID, commentData) => {
 	}
 }
 
-export const postDelete = (docID) => {
+export const postDelete = (docID, history) => {
 	return (dispatch, getState, { getFirestore }) => {
 		const firestore = getFirestore();
 		const user = firebase.auth().currentUser;
 		let docRef = firestore.collection('posts').doc(docID);
-		docRef.collection('comment').get().then(sub => {
-			if(sub.docs.length > 0 ){
-				console.log(sub)
-				.then(()=>{
-					console.log('complete');
-				}).catch((err)=>{
-					console.log('error');
-				})
-			}
-		})
-		// .then(()=>{
-		// 	docRef.get().then((doc) => {
-		// 		const fromURL = doc.data().post_img;
-		// 		const storageRef = firebase.storage().refFromURL(fromURL);
-
-		// 		storageRef.delete().then(()=> {
-		// 			docRef.delete();
-		// 		})
-		// 	})
-		// })
+		docRef.delete()
 		.then(() => {
 			dispatch({type: 'DELETE_POST_SUCCESS'});
+			history.push('/community/admin')
 		}).catch((err) => {
 			dispatch({type: 'DELETE_POST_ERROR'});
 		})
@@ -121,19 +111,19 @@ export const postDelete = (docID) => {
 	}
 }
 
-export const _delete_comment = (post_id, comment_id) => {
+export const _delete_comment = (post_id, commentData) => {
 	return (dispatch, getState, { getFirestore }) => {
 		const firestore = getFirestore();
 		const userAuth = getState().firebase.auth;
 		const docRef = firestore.collection('posts').doc(post_id);
-		const subRef = docRef.collection('comment').doc(comment_id);
-
-		subRef.delete()
-		.then(() => {
-			dispatch({type: 'DELETE_COMMENT_SUCCESS'});
-		})
-		.catch((err) => {
-			dispatch({type: 'DELETE_COMMENT_ERROR'});
+			docRef.update({
+				comments: firebase.firestore.FieldValue.arrayRemove(commentData)
+			})
+			.then(() => {
+				dispatch({type: 'DELETE_COMMENT_SUCCESS'});
+			})
+			.catch((err) => {
+				dispatch({type: 'DELETE_COMMENT_ERROR'});
 		})
 	}
 }
@@ -143,17 +133,31 @@ export const _update_comment = (post_id, comment_id, updating_data) => {
 		const firestore = getFirestore();
 		const userAuth = getState().firebase.auth;
 		const docRef = firestore.collection('posts').doc(post_id);
-		const subRef = docRef.collection('comment').doc(comment_id);
-
-		subRef.update({
-			comment: updating_data
+		// docRef.update({
+		// 	comments: firebase.firestore.FieldValue.arrayUnion({
+		// 		comment: updating_data
+		// 	})
+		// })
+		// .then(() => {
+		// 	dispatch({type: 'UPDATE_COMMENT_SUCCESS'});
+		// })
+		// .catch((err) => {
+		// 	dispatch({type: 'UPDATE_COMMENT_ERROR', err});
+		// }) 
+		firestore.runTransaction(transaction => {
+			return transaction.get(docRef).then(doc => {
+				const commentHistory = doc.data().comments;
+				const one = commentHistory[comment_id];
+				one.comment = updating_data
+				transaction.update(docRef, { comments: commentHistory})
+			})
 		})
 		.then(() => {
 			dispatch({type: 'UPDATE_COMMENT_SUCCESS'});
 		})
 		.catch((err) => {
 			dispatch({type: 'UPDATE_COMMENT_ERROR', err});
-		}) 
+		})
 	}
 }
 

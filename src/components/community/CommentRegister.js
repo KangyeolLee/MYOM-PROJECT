@@ -5,7 +5,7 @@ import { commentRegister, _update_comment } from '../../store/actions/postAction
 class CommentRegister extends Component{
 	state = {
 		comment: '',
-		[this.props.update_key] : this.props.update_data
+		['comments'+this.props.update_key] : this.props.update_data
 	}
 
 	handleCancel = (e) => {
@@ -19,7 +19,7 @@ class CommentRegister extends Component{
 
 	handleUpdate = (e) => {
 		e.preventDefault();
-		this.props._update_comment(this.props.postID, this.props.update_key, this.state[this.props.update_key]);
+		this.props._update_comment(this.props.postID, this.props.update_key, this.state['comments' + this.props.update_key]);
 		this.props._check_update(e);
 	}
 	handleChange = (e) => {
@@ -40,20 +40,20 @@ class CommentRegister extends Component{
 		this.handleCancel(e);
 	}
 	render(){
-		const { update_key, _check_update } = this.props;
+		const { update_data, _check_update, update_key } = this.props;
 		return(
 			<Fragment>
 			{
-				(update_key)
+				(update_data)
 					? (	
 						<form onSubmit={this.handleUpdate} className="collection-item comment_form">
 							<div className="input-field">
 								<i className="material-icons prefix">mode_edit</i>
-								<textarea type="text" id= {update_key} className="materialize-textarea" onChange = {this.handleChange} value={this.state[update_key]} required/>
-								<label htmlFor={update_key} className="active" id="comment_forLabel">댓글수정</label>
+								<textarea type="text" id= {'comments' + update_key} className="materialize-textarea" onChange = {this.handleChange} value={this.state['comments'+this.props.update_key]} required/>
+								<label htmlFor={'comments' + update_key} className="active" id="comment_forLabel">댓글수정</label>
 								<button className="btn waves-effect indigo right">수정 </button>								
 								{
-									(this.state[update_key]) ? <button onClick = {_check_update} className="btn-flat waves-effect right">취소</button> : null
+									(this.state['comments'+this.props.update_key]) ? <button onClick = {_check_update} className="btn-flat waves-effect right">취소</button> : null
 								}
 							</div>
 						</form>

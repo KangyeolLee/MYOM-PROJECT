@@ -3,16 +3,17 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect, Link } from 'react-router-dom'
-import moment from 'moment'
+import moment, { min } from 'moment'
 import './community.css'
 import PostComment from './PostComment'
+import PostCommentTest from './PostCommentTest'
 import CommentRegister from './CommentRegister'
 import { postDelete } from '../../store/actions/postAction'
 
 class PostDetails extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
-		this.props.postDelete(this.props.match.params.id);
+		this.props.postDelete(this.props.match.params.id, this.props.history);
 	}
 	render(){
 		const { post, auth } = this.props;
@@ -36,7 +37,7 @@ class PostDetails extends Component {
 					</div>
 					<div className="postComment">
 						<ul className="collection">
-							<PostComment post_id = {post_id} />
+							<PostCommentTest post_id = {post_id} comment = {post.comments.length > 0 ? post.comments.map((item) => item) : post.comments }/>
 							<CommentRegister postID = {this.props.match.params.id} />
 						</ul>
 					</div>
@@ -75,7 +76,6 @@ const mapStateToProps = (state, ownProps) => {
 	const id = ownProps.match.params.id;
 	const posts = state.firestore.data.posts;
 	const post = posts? posts[id] : null
-	console.log(state);
 	return {
 		post: post,
 		auth: state.firebase.auth
@@ -84,7 +84,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return{
-		postDelete: (docID) => dispatch(postDelete(docID)),
+		postDelete: (docID, history) => dispatch(postDelete(docID, history)),
 	}
 }
 
