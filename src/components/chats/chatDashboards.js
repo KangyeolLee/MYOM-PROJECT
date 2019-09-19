@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ChatList from './ChatList';
 import ChatView from './chatview/ChatView';
-import ChatTextBox from './chattextbox/ChatTextBox'
+
 
 const firebase = require("firebase");
 

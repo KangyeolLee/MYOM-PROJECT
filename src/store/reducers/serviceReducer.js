@@ -10,9 +10,9 @@ const initState = {
     { title : 'sauerkraut', src : 'img/theme/india.jpg' }
   ],
   bests: [
-    { category : 'PARIS', id : 'Pu2',  src : 'img/bestReviews/review_sample01.jpg', title : '베스트 후기1', content : 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, velit. Praesentium nesciunt similique, illo rem ullam dolorem maiores sint eaque fugiat ea. Ut nesciunt molestiae, quae nobis tenetur magnam incidunt.'},
-    { category : 'KOREA', id : 'Ku3', src : 'img/bestReviews/review_sample02.jpg', title : '베스트 후기2', content : 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, velit. Praesentium nesciunt similique, illo rem ullam dolorem maiores sint eaque fugiat ea. Ut nesciunt molestiae, quae nobis tenetur magnam incidunt.'},
-    { category : 'GERMANY', id : 'Gu1', src : 'img/bestReviews/review_sample03.jpg', title : '베스트 후기3', content : 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, velit. Praesentium nesciunt similique, illo rem ullam dolorem maiores sint eaque fugiat ea. Ut nesciunt molestiae, quae nobis tenetur magnam incidunt.'}
+    { category : 'PARIS', id : 'Pu2',  src : 'img/bestReviews/review_sample01.jpg', title : '현지인들과의 유쾌한 만남', content : '세계 각국을 돌아다니면서 다양한 사람들을 만났습니다. 그 중에서는 .....'},
+    { category : 'KOREA', id : 'Ku3', src : 'img/bestReviews/review_sample02.jpg', title : '10년지기 친구들과의 여행', content : '오랜만에 모인 고등학교 동창 친구들과 떠난 국내여행!! 많은 여행 과정을 영상으로 담게 되었는데요 .....'},
+    { category : 'GERMANY', id : 'Gu1', src : 'img/bestReviews/review_sample03.jpg', title : '멋진 영상 만들어주셔서 감사합니다', content : '급하게 의뢰한 영상이라 크게 기대하지 않았는데도 불구하고, 빠른 일처리와 높은 퀄리티를 동반한 작업 .....'}
   ],
   specific_themas : [
     {
@@ -203,6 +203,30 @@ const serviceRuducer = (state=initState, action) => {
 
     case 'BUY_SERVICE_ERROR':
       console.log('buy service error', action.err.message);
+      return state;
+      
+    case 'PROCEED_ORDER_SUCCESS':
+      console.log('proceed order success');
+      return state;
+
+    case 'PROCEED_ORDER_ERROR':
+      console.log('proceed order error', action.err.message);
+      return state;
+
+    case 'COMPLETE_ORDER_SUCCESS':
+      console.log('COMPLETE_ORDER_SUCCESS');
+      return state;
+
+    case 'COMPLETE_ORDER_ERROR':
+      console.log('COMPLETE_ORDER_ERROR', action.err.message);
+      return state;
+
+    case 'CANCEL_ORDER_SUCCESS':
+      console.log('CANCEL_ORDER_SUCCESS');
+      return state;
+
+    case 'CANCEL_ORDER_ERROR':
+      console.log('CANCEL_ORDER_ERROR', action.err.message);
       return state;
       
     default:

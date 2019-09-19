@@ -17,4 +17,55 @@
   display: block;
   justify-content: unset;
   align-items: unset;
+  position: relative;
+  cursor: pointer;
+  /* transition: all 1.2s ease-out; */
+}
+.ordersManage .collection.notEmpty .collection-item {
+  border-bottom: none !important;
+}
+.ordersManage .collection-item.order-status {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background: transparent;
+  position: absolute;
+}
+.ordersManage .collection-item.order-status .box {
+  width: 50px;
+  text-align: center;
+  font-weight: bold;
+}
+.ordersManage .hidden-buttons {
+  position: absolute;
+  margin: unset !important;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transform: translateY(10%);
+  transition: transform 0.4s ease-in-out;
+}
+.ordersManage .hidden-buttons .btn {
+  margin: 0 2rem;
+}
+.ordersManage .collection.notEmpty:hover .collection-item {
+  filter: blur(1.8px);
+}
+.ordersManage .collection.notEmpty .collection-item::before {
+  content:'';
+  transform: translate(-20px, -10px);
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(38, 38, 38, 0.2);
+}
+.ordersManage .collection.notEmpty:hover .collection-item::before {
+  display: block;
+}
+.ordersManage .collection.notEmpty:hover .hidden-buttons {
+  transform: translateY(-50%);
+  z-index: 10;
 }

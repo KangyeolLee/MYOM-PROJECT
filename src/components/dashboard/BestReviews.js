@@ -7,7 +7,7 @@ class BestReviews extends Component {
     const { bests } = this.props;
     return (
       <div className="BestReviews container">
-        <p className='center flow-text'>This is the BestReviews area</p>
+        <p className='center flow-text scorehvy'>베스트 후기모음</p>
         <div className="row">
           { bests && bests.map(item => {
             return (
