@@ -1,5 +1,72 @@
 import firebase from 'firebase/app';
 
+export const createService = (serviceData) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    const userAuth = getState().firebase.auth;
+    const docRef = firestore.collection('testService').doc();
+    const storageRef = firebase.storage().ref('images/testService/' + docRef.id);
+    let batch = firestore.batch();
+    let basic_chips = serviceData.basic_chips ? serviceData.basic_chips : [];
+    let pro_chips = serviceData.pro_chips ? serviceData.basic_chips : [];
+
+    let fileArray = []
+    serviceData.files.forEach(item => Object.values(item).forEach(file => {
+      if(file instanceof File) {
+        fileArray = [...fileArray, file]
+      }
+    }));
+
+    const putStoageItem = (item, index) => {
+      let name;
+      if(index === 0) name = 'thumbnail';
+      else name = 'details' + index;
+
+      return storageRef.child(name).put(item)
+      // .on('state_changed', snapshot => {
+      //   let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      //   console.log(progress);
+      // })
+      .then((snapshot) => { return snapshot.ref.getDownloadURL() })
+      .then((url) => { 
+        console.log('one success!')
+        batch.set(docRef, { [name]: url}, {merge:true})
+      })
+      .catch((err) => console.log('one failed', err.message))
+    }
+
+    Promise.all(fileArray.map(async (item, index) => {
+      await putStoageItem(item, index);
+    }))
+    .then(() => {
+      batch.set(docRef, {
+        priority1: serviceData.priority1,
+        priority2: serviceData.priority2,
+        priority3: serviceData.priority3,
+        service_title: serviceData.service_title,
+        service_content: serviceData.service_content,
+        basic_price: serviceData.basic_price,
+        basic_intro: serviceData.basic_intro,
+        basic_working: serviceData.basic_working,
+        basic_modify: serviceData.basic_modify,
+        basic_chips: ['자막', '음악', '컷편집', ...basic_chips],
+        pro_price: serviceData.pro_price,
+        pro_intro: serviceData.pro_intro,
+        pro_working: serviceData.pro_working,
+        pro_modify: serviceData.pro_modify,
+        pro_chips: ['자막', '음악', '컷편집', '기본 색보정', ...pro_chips],
+        provider_id: userAuth.uid,
+        timestamp: new Date(),
+        reviewCount: 0,
+      }, {merge: true});
+      batch.commit();
+      console.log('All uploaded!');
+    }).catch((err) => {
+      console.log('failed', err.message);
+    })
+  }
+}
+
 export const serviceRegister = (serviceData, history) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
