@@ -26,7 +26,6 @@ import Changepwd from './components/profile/Changepwd'
 import Withdrawal from './components/profile/Withdrawal'
 import Certifications from './components/profile/Certifications'
 import MypageForProvider from './components/mypage/MypageForProvider';
-import BasicProductData from './components/product/BasicProductData'
 import ServiceRegister from './components/serviceForm/ServiceRegister';
 import ForgotIdPwd from './components/auth/ForgotIdPwd';
 import EmailVerification from './components/auth/EmailVerification'
@@ -67,7 +66,6 @@ class App extends Component {
                 <Route path='/changepwd' component= { Changepwd } />
                 <Route path='/withdrawal' component= { Withdrawal } />
                 <Route path='/certifications' component= { Certifications } />
-                <Route path='/product' component= {BasicProductData} />
                 <Route path='/serviceRegister' component={ServiceRegister} />
                 <Route path= '/forgotIdPwd' component={ForgotIdPwd} />
                 <Route path= '/emailVerification' component = {EmailVerification} />

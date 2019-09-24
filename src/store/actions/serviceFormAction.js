@@ -8,8 +8,8 @@ export const createService = (serviceData) => {
     const storageRef = firebase.storage().ref('images/testService/' + docRef.id);
     let batch = firestore.batch();
     let basic_chips = serviceData.basic_chips ? serviceData.basic_chips : [];
-    let pro_chips = serviceData.pro_chips ? serviceData.basic_chips : [];
-
+    let pro_chips = serviceData.pro_chips ? serviceData.pro_chips : [];
+    let filePath = [];
     let fileArray = []
     serviceData.files.forEach(item => Object.values(item).forEach(file => {
       if(file instanceof File) {
@@ -29,8 +29,12 @@ export const createService = (serviceData) => {
       // })
       .then((snapshot) => { return snapshot.ref.getDownloadURL() })
       .then((url) => { 
+        filePath.push({[name]: url});
         console.log('one success!')
-        batch.set(docRef, { [name]: url}, {merge:true})
+        // batch.set(docRef, { images: [ 
+        //   ...this,
+        //   { [name]: url, } 
+        // ]})
       })
       .catch((err) => console.log('one failed', err.message))
     }
@@ -40,21 +44,30 @@ export const createService = (serviceData) => {
     }))
     .then(() => {
       batch.set(docRef, {
-        priority1: serviceData.priority1,
-        priority2: serviceData.priority2,
-        priority3: serviceData.priority3,
-        service_title: serviceData.service_title,
-        service_content: serviceData.service_content,
-        basic_price: serviceData.basic_price,
-        basic_intro: serviceData.basic_intro,
-        basic_working: serviceData.basic_working,
-        basic_modify: serviceData.basic_modify,
-        basic_chips: ['자막', '음악', '컷편집', ...basic_chips],
-        pro_price: serviceData.pro_price,
-        pro_intro: serviceData.pro_intro,
-        pro_working: serviceData.pro_working,
-        pro_modify: serviceData.pro_modify,
-        pro_chips: ['자막', '음악', '컷편집', '기본 색보정', ...pro_chips],
+        priorities: [
+          {priority1:serviceData.priority1}, 
+          {priority2: serviceData.priority2}, 
+          {priority3: serviceData.priority3}
+        ],
+        description: [
+          {service_title: serviceData.service_title},
+          {service_content: serviceData.service_content},
+        ],
+        basic: [
+          {basic_price: serviceData.basic_price},
+          {basic_intro: serviceData.basic_intro},
+          {basic_working: serviceData.basic_working},
+          {basic_modify: serviceData.basic_modify},
+          {basic_chips: ['자막', '음악', '컷편집', ...basic_chips]},
+        ],
+        pro: [
+          {pro_price: serviceData.pro_price},
+          {pro_intro: serviceData.pro_intro},
+          {pro_working: serviceData.pro_working},
+          {pro_modify: serviceData.pro_modify},
+          {pro_chips: ['자막', '음악', '컷편집', '기본 색보정', ...pro_chips]},
+        ],
+        images: filePath,
         provider_id: userAuth.uid,
         timestamp: new Date(),
         reviewCount: 0,
