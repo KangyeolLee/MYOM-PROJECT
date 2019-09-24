@@ -8,7 +8,7 @@ const BestReviewsSummary = ({best}) => {
           <img src={best.src} alt=""/>
         </div>
         <div className="card-content black-text">
-          <span className="card-title">{best.title}</span>
+          <span className="card-title scorehvy">{best.title}</span>
           <p>{best.content}</p>
         </div>
       </div>

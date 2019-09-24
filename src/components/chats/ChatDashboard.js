@@ -34,6 +34,17 @@ class ChatDashboard extends Component {
 			chatId: chatId,
 		})
 	}
+
+	selectUnreadMessage = () => {
+		this.setState({
+			recevierHasRead : true
+		})
+	}
+
+	// clickedChatWhereNotSender = (chatIndex) => {
+	// 	this.state.chats[chatIndex].messages[this.state.chats[chatIndex].messages.length -1].sender !== this.state.email;
+	// }
+
 	componentDidMount(){
 		M.AutoInit();
 	}
@@ -43,7 +54,7 @@ class ChatDashboard extends Component {
 		const dealingChat = !isLoaded(chats) ? null : chats.filter(chat => chat.deal === true);
 		return(
 			<div className="chatDashboard">
-				<ChatSideNav profile={profile} chats={chats} chatInDeal = {dealingChat} newChatBtnFn = {this.newChatBtnClicked} selectChatFn = {this.selectChat} selectedChatIndex = {this.state.selectedChat} />
+				<ChatSideNav profile={profile} chats={chats} chatInDeal = {dealingChat} newChatBtnFn = {this.newChatBtnClicked} selectChatFn = {this.selectChat} selectedChatIndex = {this.state.selectedChat} selectUnreadMessage = {this.state.selectUnreadMessage} />
 				<div className="chatsTemplate">
 					<div className="chatMessages">
 						{	

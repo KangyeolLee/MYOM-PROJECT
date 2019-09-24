@@ -1,0 +1,84 @@
+.registerEditorIntro .card{
+	width: 70%;
+	margin-left: 15%;
+}
+
+.registerProvider textarea{
+	resize:none;
+	width: 450px;
+	height: 570px;
+	padding: 10px;
+}
+
+#career:focus{
+	outline: 0;
+}
+
+#introduction:focus{
+	outline: 0;
+}
+
+.nextBtn {
+	margin-top: 0 !important;
+}
+
+.registerProvider .material-icons {
+	vertical-align: middle;
+  font-size: 20px;
+  padding-bottom: 2px;
+}
+
+.registerProvider .material-icons.close-btn {
+  cursor: pointer;
+  position: relative;
+  bottom: 250px;
+  padding: .2rem;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, .3);
+}
+.registerProvider .material-icons.close-btn:hover {
+  opacity: .8;
+}
+.registerProvider .image-btn img.responsive-img {
+  position: relative;
+	height: 250px;
+	width: 250px;
+}
+
+.registerProvider .file-field.input-field .image-btn {
+  position: relative;
+  height: 250px;
+  margin-bottom: 2rem;
+}
+.registerProvider .file-field.input-field .btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+	height: 250px;
+
+	border-radius: 50%;
+  border: 1px dashed;
+  margin-bottom: 2rem;
+}
+
+/* .registerProvider .registerEditorIntro .input-field label {
+	/* padding: .2rem; */
+	/* top: 250px;
+	left: 53px; */
+	/* border-bottom: 1px solid black; */
+	/* border-right: 1px solid black; */
+	/* border-top: 1px solid black; */
+	/* padding: .2rem .6rem; */
+	/* padding: .6rem; */
+	/* background: aliceblue */
+/* } */ 
+
+.introduction-area{
+	position: unset !important;
+}
+
+.introduction-area textarea{
+	margin-top: 20px;
+}

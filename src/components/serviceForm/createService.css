@@ -1,0 +1,113 @@
+.createService .card.hidden {
+  padding: 0;
+  background-color: transparent;
+}
+.createService .input-field {
+  margin-top: 5rem;
+}
+.createService .input-field label {
+    /* padding: .2rem; */
+    top: -30px;
+    /* border-bottom: 1px solid black; */
+    /* border-right: 1px solid black; */
+    /* border-top: 1px solid black; */
+    padding: .2rem .6rem;
+    /* padding: .6rem; */
+    background: aliceblue
+}
+.createService .material-icons {
+  vertical-align: middle;
+  font-size: 20px;
+  padding-bottom: 2px;
+}
+.createService .material-icons.close-btn {
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  padding: .2rem;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, .3);
+}
+.createService .material-icons.close-btn:hover {
+  opacity: .8;
+}
+.createService .image-btn img.responsive-img {
+  position: absolute;
+  height: 250px;
+}
+.createService .input-field.none {
+  display: none;
+}
+.createService .input-field textarea {
+  height: 15rem !important;
+  overflow-y: scroll !important;
+}
+.createService .btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+.createService .file-field.input-field .image-btn {
+  position: relative;
+  height: 250px;
+  margin-bottom: 2rem;
+}
+.createService .file-field.input-field .btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 250px;
+  border: 1px dashed;
+  margin-bottom: 2rem;
+}
+.createService .file-field.input-field .btn > i {
+  font-size: 6rem;
+}
+.createService .file-field.input-field .file-uploader {
+
+}
+
+.createService .input-field.range-selector {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+.createService .input-field.price-tag {
+  padding: 0;
+}
+.createService .input-field.price-tag label, .createService .input-field.range-selector label {
+  left: 0;
+}
+.createService .input-field.price-tag input{
+  color: black;
+  border-bottom: 1px solid black;
+  text-align: right;
+}
+
+.createService .chips {
+  position: unset;
+  margin-top: 0 !important;
+  min-height: 3rem !important;
+  padding: 0;
+}
+.createService .chips.focus {
+  border-bottom: 1px solid #9e9e9e;
+  box-shadow: none;
+}
+.createService .input {
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: right;
+}
+.createService .input:focus {
+  border-bottom: 1px solid #26a69a !important;
+  box-shadow: 0 1px 0 0 #26a69a !important;
+}
+.createService .chips .chip.initial i.close {
+  display: none;
+}

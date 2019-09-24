@@ -19,7 +19,7 @@ class Theme extends Component {
     console.log(dashboard);
     return (
       <div className="container Theme">
-        <p className='center flow-text'>This is the Thema area</p>
+        <p className='center flow-text scorehvy'>원하는 영상의 느낌</p>
         <div className="row">
           { themas && themas.map(item => {
             return (

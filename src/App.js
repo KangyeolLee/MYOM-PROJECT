@@ -19,13 +19,13 @@ import MypageForBuyer from './components/mypage/MypageForBuyer';
 // import OrderManage from './components/mypage/OrderManage';
 import Purchase from './components/consumer/Purchase'
 import PurchaseDone from './components/consumer/PurchaseDone'
+import PurchaseDetails from './components/consumer/PurchaseDetails';
 import UserProfile from './components/profile/UserProfile'
 import AlarmSetting from './components/profile/AlarmSetting'
 import Changepwd from './components/profile/Changepwd'
 import Withdrawal from './components/profile/Withdrawal'
 import Certifications from './components/profile/Certifications'
 import MypageForProvider from './components/mypage/MypageForProvider';
-import BasicProductData from './components/product/BasicProductData'
 import ServiceRegister from './components/serviceForm/ServiceRegister';
 import ForgotIdPwd from './components/auth/ForgotIdPwd';
 import EmailVerification from './components/auth/EmailVerification'
@@ -33,7 +33,7 @@ import CommunityDashboard from './components/community/CommunityDashboard';
 import CreatePost from './components/community/CreatePost';
 import PostDetails from './components/community/PostDetails';
 import ChatDashboard from './components/chats/ChatDashboard';
-import chatDashboards from './components/chats/chatDashboards';
+import CreateService from './components/serviceForm/CreateService';
 
 class App extends Component {
   render(){
@@ -59,13 +59,13 @@ class App extends Component {
                 <Route path='/mypageBuyer/orderManage' component={OrderManage} /> */}
                 <Route path='/mypageProvider' component={MypageForProvider} />
                 <Route path='/purchase/:service_id' component={Purchase} />
-                <Route path='/purchasedone' component= { PurchaseDone } />
+                <Route path='/purchasedone/:service_id' component= { PurchaseDone } />
+                <Route path='/purchaseDetails/:service_id' component={PurchaseDetails} />
                 <Route path='/profile' component = { UserProfile } />
                 <Route path='/alarmsetting' component = { AlarmSetting } />
                 <Route path='/changepwd' component= { Changepwd } />
                 <Route path='/withdrawal' component= { Withdrawal } />
                 <Route path='/certifications' component= { Certifications } />
-                <Route path='/product' component= {BasicProductData} />
                 <Route path='/serviceRegister' component={ServiceRegister} />
                 <Route path= '/forgotIdPwd' component={ForgotIdPwd} />
                 <Route path= '/emailVerification' component = {EmailVerification} />
@@ -73,7 +73,7 @@ class App extends Component {
                 <Route exact path= '/community/:category/createPost' component = { CreatePost } />
                 <Route exact path= '/post/:id' component = { PostDetails }/>
                 <Route path= '/chatDashboard' component = { ChatDashboard} />
-                <Route path= '/chattest' component = { chatDashboards} />
+                <Route path='/createService' component={CreateService} />
               </Switch>
           </div>
         </ScrollTop>

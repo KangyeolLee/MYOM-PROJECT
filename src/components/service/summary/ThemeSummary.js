@@ -8,7 +8,7 @@ const ThemeSummary = ({thema}) => {
       <div className="card">
         <div className="card-image">
           <img className='' src={thema.src} alt=""/>
-          <span className="card-title">{thema.title}</span>
+          <span className="card-title scorehvy">{thema.title}</span>
         </div>
       </div>
     </div>
