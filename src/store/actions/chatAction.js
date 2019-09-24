@@ -6,7 +6,8 @@ export const sendMessage = (chatData, chatId) => {
 		firestore.collection('chats').doc(chatId).update({
 			messages: firebase.firestore.FieldValue.arrayUnion({
 				sender: chatData.sender,
-				message: chatData.message
+				message: chatData.message,
+				receiverHasRead: false,
 			})
 		})
 		.then(()=> {
