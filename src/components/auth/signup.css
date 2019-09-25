@@ -1,4 +1,18 @@
 .signup .card{
 	width: 50%;
 	margin-left: 25%;
+	border-radius: 10px;
+}
+
+.signup {
+	margin-top: 10rem;
+}
+
+.conditions{
+	white-space: pre-line;
+}
+
+.terms span{
+	font-size: 1rem !important;
+	color: black;
 }

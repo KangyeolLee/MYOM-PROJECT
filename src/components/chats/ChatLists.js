@@ -18,24 +18,31 @@ class ChatLists extends Component {
 	}
 	render(){
 		const { chats, profile } = this.props;
+	
 		return(
 			<Fragment>
 				{ chats && chats.map((chat, index) => {
 					return(
 						<Fragment key={index}>
-							<li className="collection-item avatar" onClick = {(e) => {
-								const type = e.target.id;
-								this.selectChat(index, type, chat.id); 
-								if(chat.messages[chat.messages.length-1].sender !== profile.email && !chat.receiverHasRead) this.selectUnread(chat.id);
-								}}
-								selected={this.props.selectedChatIndex === index}>
-								<div className="chat-profile">{chat.users.filter(_user => _user !== profile.email)[0].split('')[0]}</div>
-								<div className="chatlist-message" id={this.props.chat_type}>{chat.messages[chat.messages.length -1].message.substring(0,30)}</div>
-								{	(!chat.receiverHasRead && chat.messages[chat.messages.length-1].sender !== profile.email) ?
-									<i className="material-icons unreadMark">markunread</i>
-									: null
-								}
-							</li>
+							<div className="col l4">
+								<div className="card white" onClick = {(e) => {
+									const type = e.target.id;
+									this.selectChat(index, type, chat.id); 
+									if(chat.messages[chat.messages.length-1].sender !== profile.email && !chat.receiverHasRead) this.selectUnread(chat.id);
+									}}
+									selected={this.props.selectedChatIndex === index}>
+									<div className="card-content black-text">
+										<span className="card-title">
+											{chat.users.filter(_user => _user !== profile.email)[0].split('')[0]}
+										</span>
+										<div className="chatlist-message" id={this.props.chat_type}>{chat.messages[chat.messages.length -1].message.substring(0,20)}</div>
+										{	(!chat.receiverHasRead && chat.messages[chat.messages.length-1].sender !== profile.email) ?
+											<i className="material-icons unreadMark">markunread</i>
+											: null
+										}
+									</div>
+								</div>
+							</div>
 						</Fragment>
 					)
 				})}

@@ -1,4 +1,14 @@
 .forgotIdPwd .card{
 	width: 50%;
 	margin-left: 25%;
+	margin-top: 10rem;
+	box-shadow: none;
+}
+
+.forgotId{
+	margin-bottom: 0;
+}
+
+.forgotPwd{
+	margin-top: 0 !important;
 }

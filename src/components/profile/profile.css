@@ -86,3 +86,10 @@
 .profile_deatails .file-path-wrapper {
 	visibility: hidden;
 }
+
+.imgUpload_btn{
+	background-color: rgb(245,245,245);
+	border: none;
+	padding: 12px;
+	border-radius: 12px;
+}
