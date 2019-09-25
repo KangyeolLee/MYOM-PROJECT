@@ -25,39 +25,49 @@ class SignUp extends Component {
     if(auth.uid) return <Redirect to='/emailVerification' />
     return (
       <div className="container signup">
-        <div className="card">
-          <div className="card-content">
-            <form onSubmit={this.handleSubmit} className='white' id="signUp_submit">
-              <h5 className="grey-text text-darken-3">회원가입</h5>
-              <div className="input-field">
-                <label htmlFor="email">아이디</label>
-                <input type="email" id='email' onChange={this.handleChange} />
-              </div>
-              <div className="input-field">
-                <label htmlFor="password">비밀번호</label>
-                <input type="password" id="password" onChange={this.handleChange} />
-              </div>
-              <div className="input-field">
-                <label htmlFor="password_chk">비밀번호 재확인</label>
-                <input type="password" id='password_chk'/>
-              </div>
-              <div className="input-field">
-                <label htmlFor="lastName">성</label>
-                <input type="text" id="lastName" onChange={this.handleChange}/>
-              </div>
-              <div className="input-field">
-                <label htmlFor="firstName">이름</label>
-                <input type="text" id="firstName" onChange={this.handleChange}/>
-              </div>
-              <div className="input-field">
-                <label htmlFor="birth" className='active'>생년월일</label>
-                <input type="date" id='birth'/>
-              </div>
-              <div className="input-field">
-                <button className="btn pink lighten-1">등록</button>
-                <div className="red-text center">{ authError ? <p>{authError}</p> : null }</div>
-              </div>
-            </form>
+        <div className="row">
+          <div className="card col l6">
+            <div className="card-content">
+              <form onSubmit={this.handleSubmit} className='white' id="signUp_submit">
+                <h5 className="grey-text text-darken-3">회원가입</h5>
+                <div className="input-field">
+                  <label htmlFor="email">아이디</label>
+                  <input type="email" id='email' onChange={this.handleChange} />
+                </div>
+                <div className="input-field">
+                  <label htmlFor="password">비밀번호</label>
+                  <input type="password" id="password" onChange={this.handleChange} />
+                </div>
+                <div className="input-field">
+                  <label htmlFor="password_chk">비밀번호 재확인</label>
+                  <input type="password" id='password_chk'/>
+                </div>
+                <div className="input-field">
+                  <label htmlFor="lastName">성</label>
+                  <input type="text" id="lastName" onChange={this.handleChange}/>
+                </div>
+                <div className="input-field">
+                  <label htmlFor="firstName">이름</label>
+                  <input type="text" id="firstName" onChange={this.handleChange}/>
+                </div>
+                <div className="input-field">
+                  <label htmlFor="birth" className='active'>생년월일</label>
+                  <input type="date" id='birth'/>
+                </div>
+                <div className="input-field">
+                  <button className="btn pink lighten-1">등록</button>
+                  <div className="red-text center">{ authError ? <p>{authError}</p> : null }</div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div className="card col l6 terms">
+            <div className="card-content">
+              <h6>이용약관 동의(필수)</h6>
+              <blockquote className="input-field">
+                <p>야야야ㅋㅋㅋ</p>
+              </blockquote>
+            </div>
           </div>
         </div>
       </div>

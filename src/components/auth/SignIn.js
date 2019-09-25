@@ -42,8 +42,8 @@ class SignIn extends Component {
                 <input type="password" id='password' onChange={this.handleChange} />
               </div>
               <div className="input-field center">
+                <div className="red-text center login-error">{ authError ? <p>{authError}</p> : null }</div>
                 <button className="btn pink lighten-1">로그인</button>
-                <div className="red-text center">{ authError ? <p>{authError}</p> : null }</div>
               </div>
               <div className="forgotidpwd center">
                 <Link to='/forgotIdPwd'>아이디/비밀번호찾기</Link>
