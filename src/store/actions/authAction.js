@@ -11,7 +11,16 @@ export const signIn = (cred) => {
     ).then(() => { 
       dispatch({type:'LOGIN_SUCCESS'})
     }).catch((err) => {
-      dispatch({type:'LOGIN_ERROR', err})
+      switch(err.code) {
+        case 'auth/user-not-found' :
+          dispatch({type: 'NO_REGISTER_EMAIL_ERROR'});
+          break;
+        case 'auth/wrong-password' :
+          dispatch({type: 'WRONG_PASSWORD_ERROR'});
+          break;
+        default :
+          dispatch({type: 'LOGIN_ERROR', err});
+      }
     })
   }
 }

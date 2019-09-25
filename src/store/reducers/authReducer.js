@@ -5,9 +5,17 @@ const initState = {
 const authReducer = (state=initState, action) => {
   switch(action.type) {
     case 'LOGIN_ERROR':
-      console.log('log in failed');
+      console.log(action.err);
       return {...state, authError: 'Login Failed'}
 
+    case 'NO_REGISTER_EMAIL_ERROR':
+      console.log(action.err);
+      return {...state, authError: '입력하신 이메일과 일치한 로그인 정보가 없습니다.'}
+    
+    case 'WRONG_PASSWORD_ERROR' :
+      console.log(action.err);
+      return {...state, authError: '이메일/패스워드를 확인해주세요.'}
+    
     case 'LOGIN_SUCCESS':
       console.log('log in success');
       return {...state, authError: null}
