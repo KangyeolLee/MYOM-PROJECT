@@ -81,7 +81,7 @@ const authReducer = (state=initState, action) => {
       return state;
     
     case 'PROFILEIMGREGISTER_ERROR':
-      console.log('img register error');
+      alert('변경할 프로필 이미지를 등록해주세요.')
       return state;
 
     default:

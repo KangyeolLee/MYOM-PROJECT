@@ -1,11 +1,12 @@
 .chat-content {
-	height: calc(100vh - 200px);
+	height: 600px;
 	padding: 25px;
 	box-sizing: border-box;
 	overflow-y: scroll;
 	width: 100%;
 	position: relative;
 	overflow: auto;
+	background-color:white;
 }
 
 .user-sent{

@@ -35,6 +35,7 @@ import CreatePost from './components/community/CreatePost';
 import PostDetails from './components/community/PostDetails';
 import ChatDashboard from './components/chats/ChatDashboard';
 import CreateService from './components/serviceForm/CreateService';
+import PostEditor from './components/community/PostEditor';
 
 class App extends Component {
   render(){
@@ -76,6 +77,7 @@ class App extends Component {
                 <Route exact path= '/post/:id' component = { PostDetails }/>
                 <Route path= '/chatDashboard' component = { ChatDashboard} />
                 <Route path='/createService' component={CreateService} />
+                <Route path='/postEditor' component={PostEditor} />
               </Switch>
           </div>
         </ScrollTop>

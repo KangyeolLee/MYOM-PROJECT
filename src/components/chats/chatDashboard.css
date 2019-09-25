@@ -1,8 +1,7 @@
-.chatsTemplate {
-	padding-left: 1.75rem;
-	padding-right: 1.75rem;
-	margin-left : 300px;
+body{
+	background-color: rgb(245,245,245);
 }
+
 @media only screen and (max-width: 992px){
 	.chatsTemplate{
 		margin-left: 0;
@@ -15,4 +14,22 @@
 		margin: auto;
 	}
 }
+.chatDashboard .tabs{
+	margin-top: 20px;
+}
+.chatDashboard .tabs .indicator {
+	background-color: indigo;
+}
 
+.chatDashboard .tabs .tab a.active{
+	color: rgb(25, 14, 124);
+}
+
+.chatDashboard .tabs .tab a{
+	color: rgb(50, 41, 138);
+}
+
+.empty-chats{
+	background-color : white;
+	padding:20px;
+}

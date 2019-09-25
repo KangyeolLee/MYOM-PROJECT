@@ -20,6 +20,7 @@ class SignIn extends Component {
   }
   render() {
     const { authError, auth } = this.props;
+    console.log(authError);
     console.log(this.props);
     if(auth.uid) return <Redirect to='/' />
 
@@ -27,7 +28,7 @@ class SignIn extends Component {
       <div className="container signin">
         <div className="card">
           <div className="card-image">
-              <img src="img/theme/paris.jpg" alt=""/>
+              <img src="img/logo/myom_logo8.png" className="responsive-img" />
           </div>
           <div className="card-content">
             <span className="card-title">로그인</span>
