@@ -12,6 +12,7 @@ class CreateServiceStep2 extends Component {
         <div className="input-field service-title col s10 offset-s1">
           <input className='has-character-counter _required' id='service_title' type="text" data-length='40' maxLength='40'
             placeholder='ex) 여행영상 요구에 맞춰 빠르게 편집해드립니다!' 
+            onKeyPress={this.props.handleKeyPress}
             onChange={this.props.handleChange}
             value={this.props.service_title} />
           <label className='active' htmlFor="service_title">서비스 제목</label>

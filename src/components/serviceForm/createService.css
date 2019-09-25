@@ -69,3 +69,45 @@
 .createService .file-field.input-field .file-uploader {
 
 }
+
+.createService .input-field.range-selector {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+.createService .input-field.price-tag {
+  padding: 0;
+}
+.createService .input-field.price-tag label, .createService .input-field.range-selector label {
+  left: 0;
+}
+.createService .input-field.price-tag input{
+  color: black;
+  border-bottom: 1px solid black;
+  text-align: right;
+}
+
+.createService .chips {
+  position: unset;
+  margin-top: 0 !important;
+  min-height: 3rem !important;
+  padding: 0;
+}
+.createService .chips.focus {
+  border-bottom: 1px solid #9e9e9e;
+  box-shadow: none;
+}
+.createService .input {
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: right;
+}
+.createService .input:focus {
+  border-bottom: 1px solid #26a69a !important;
+  box-shadow: 0 1px 0 0 #26a69a !important;
+}
+.createService .chips .chip.initial i.close {
+  display: none;
+}

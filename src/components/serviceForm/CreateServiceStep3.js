@@ -10,7 +10,7 @@ const CreateServiceStep3 = (props) => {
       <div className="file-field input-field col s10 offset-s1">
         <div className="col s4">
         {
-          !(props.thumbnail_file_preview)
+          !(props.files[0].thumbnail_file_preview)
             ? (
               <div className="btn z-depth-0 grey lighten-4 black-text">
                 <i className="material-icons">file_upload</i>
@@ -20,7 +20,7 @@ const CreateServiceStep3 = (props) => {
             )
             : (
               <div className="image-btn">
-                <img src={props.thumbnail_file_preview} alt="" className='responsive-img'/>
+                <img src={props.files[0].thumbnail_file_preview} alt="" className='responsive-img'/>
                 <input type="file" id='thumbnail_file' className='file-uploader _required'
                   onChange={props.handleUpload} />
                 <i onClick={(e) => props.deleteImage(e)} id='thumbnail_file' className="material-icons close-btn white-text">close</i>
@@ -35,7 +35,7 @@ const CreateServiceStep3 = (props) => {
           <h6>서비스를 대표할 사진 하나를 고르세요!</h6>
           <p>해당 이미지는 등록할 서비스의 대표이미지로 등록됩니다.</p>
           { 
-            (props.need && !props.thumbnail_file)
+            (props.need && !props.files[0].thumbnail_file)
               ? <span className='red-text'><i className='material-icons'>error</i>필수로 선택해야 합니다!</span> 
               : null 
           }
@@ -46,7 +46,7 @@ const CreateServiceStep3 = (props) => {
       <div className="file-field input-field col s10 offset-s1">
         <div className="col s4">
         {
-          !(props.sub_file1_preview)
+          !(props.files[1].sub_file1_preview)
             ? (
               <div className="btn z-depth-0 grey lighten-4 black-text">
                 <i className="material-icons">file_upload</i>
@@ -56,7 +56,7 @@ const CreateServiceStep3 = (props) => {
             )
             : (
               <div className="image-btn">
-                <img src={props.sub_file1_preview} alt="" className='responsive-img'/> 
+                <img src={props.files[1].sub_file1_preview} alt="" className='responsive-img'/> 
                 <input type="file" id="sub_file1" className='file-uploader' 
                   onChange={props.handleUpload}/>
                 <i onClick={(e) => props.deleteImage(e)} id='sub_file1' className="material-icons close-btn white-text">close</i>
@@ -69,11 +69,11 @@ const CreateServiceStep3 = (props) => {
 
         <div className="col s4">
         {
-          (props.sub_file1_preview || props.sub_file2_preview || props.sub_file3_preview || props.sub_file4_preview || props.sub_file5_preview)
-            ? (props.sub_file2_preview)
+          (props.files[1].sub_file1_preview || props.files[2].sub_file2_preview || props.files[3].sub_file3_preview || props.files[4].sub_file4_preview || props.files[5].sub_file5_preview)
+            ? (props.files[2].sub_file2_preview)
               ? (
                 <div className="image-btn">
-                  <img src={props.sub_file2_preview} alt="" className="responsive-img"/>
+                  <img src={props.files[2].sub_file2_preview} alt="" className="responsive-img"/>
                   <input type="file" id='sub_file2' className='file-uploader' 
                     onChange={props.handleUpload} />
                   <i onClick={(e) => props.deleteImage(e)} id='sub_file2' className="material-icons close-btn white-text">close</i>
@@ -93,11 +93,11 @@ const CreateServiceStep3 = (props) => {
 
         <div className="col s4">
         {
-          (props.sub_file2_preview || props.sub_file3_preview || props.sub_file4_preview || props.sub_file5_preview)
-            ? (props.sub_file3_preview)
+          (props.files[2].sub_file2_preview || props.files[3].sub_file3_preview || props.files[4].sub_file4_preview || props.files[5].sub_file5_preview)
+            ? (props.files[3].sub_file3_preview)
               ? (
                 <div className="image-btn">
-                  <img src={props.sub_file3_preview} alt="" className="responsive-img"/>
+                  <img src={props.files[3].sub_file3_preview} alt="" className="responsive-img"/>
                   <input type="file" id='sub_file3' className='file-uploader' 
                     onChange={props.handleUpload} />
                   <i onClick={(e) => props.deleteImage(e)} id='sub_file3' className="material-icons close-btn white-text">close</i>
@@ -117,11 +117,11 @@ const CreateServiceStep3 = (props) => {
         <div className="col s4">
 
         {
-          (props.sub_file3_preview || props.sub_file4_preview || props.sub_file5_preview)
-            ? (props.sub_file4_preview)
+          (props.files[3].sub_file3_preview || props.files[4].sub_file4_preview || props.files[5].sub_file5_preview)
+            ? (props.files[4].sub_file4_preview)
               ? (
                 <div className="image-btn">
-                  <img src={props.sub_file4_preview} alt="" className="responsive-img"/>
+                  <img src={props.files[4].sub_file4_preview} alt="" className="responsive-img"/>
                   <input type="file" id='sub_file4' className='file-uploader' 
                     onChange={props.handleUpload} />
                   <i onClick={(e) => props.deleteImage(e)} id='sub_file4' className="material-icons close-btn white-text">close</i>               
@@ -140,11 +140,11 @@ const CreateServiceStep3 = (props) => {
 
         <div className="col s4">
         {
-          (props.sub_file4_preview || props.sub_file5_preview)
-            ? (props.sub_file5_preview)
+          (props.files[4].sub_file4_preview || props.files[5].sub_file5_preview)
+            ? (props.files[5].sub_file5_preview)
               ? (
                 <div className="image-btn">
-                  <img src={props.sub_file5_preview} alt="" className="responsive-img"/>
+                  <img src={props.files[5].sub_file5_preview} alt="" className="responsive-img"/>
                   <input type="file" id='sub_file5' className='file-uploader' 
                     onChange={props.handleUpload} />
                   <i onClick={(e) => props.deleteImage(e)} id='sub_file5' className="material-icons close-btn white-text">close</i>                
