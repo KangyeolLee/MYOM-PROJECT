@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { signUp } from '../../store/actions/authAction';
 import { Redirect } from 'react-router-dom';
+import { condition} from './terms';
 import './signup.css'
 
 class SignUp extends Component {
@@ -32,6 +33,14 @@ class SignUp extends Component {
   }
 
   render() {
+    const text = 
+`HIHIHIHI HOHOHOHO HONALDO
+HOHOHO HOHOHOHO RONALDO
+HIHIHI MESSI GOD
+
+HOHOHO ASK AND GO TO THE BLUE
+HIHI`
+    console.log(condition);
     const { auth, authError } = this.props;
     if(auth.uid) return <Redirect to='/emailVerification' />
     return (
@@ -74,18 +83,25 @@ class SignUp extends Component {
                   <span>MYOM 이용약관 동의 (필수)</span>
                 </label>
               </p>
+              <textarea name="" id="" cols="30" rows="10">asdfasdfasdfasdfasdfadsfadsf</textarea>
               <p>
                 <label htmlFor="privacy_checked">
                   <input type="checkbox" id='privacy_checked' onChange={this.handleCheck} />
                   <span>개인정보 수집 및 이용에 대한 안내 (필수)</span>
                 </label>
               </p>
+              <textarea name="" id="" cols="30" rows="10">asdfasdfasdfasdfasdfadsfadsf</textarea>
               <p>
                 <label htmlFor="emailRecieve_checked">
                   <input type="checkbox" id='emailRecieve_checked' onChange={this.handleCheck} />
                   <span>이벤트 등 프로모션 알림 메일 수신 (선택)</span>
                 </label>
               </p>
+
+              <pre style={{border: '1px solid black', overflowY: 'scroll', height: '6rem'}}>
+                { condition }
+              </pre>
+              
               <div className="input-field">
                 <button className="btn pink lighten-1">회원가입</button>
                 <div className="red-text center">{authError ? <p>{authError}</p> : null}</div>
