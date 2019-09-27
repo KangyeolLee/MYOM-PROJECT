@@ -128,3 +128,12 @@
 	letter-spacing: 0.5px;
 	color: black;
 }
+
+.default-content{
+	font-size: 5rem;
+	padding-top: 250px;
+}
+
+.default-content .material-icons{
+	font-size: 5rem;
+}

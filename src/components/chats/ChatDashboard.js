@@ -61,8 +61,6 @@ class ChatDashboard extends Component {
 							!isLoaded(chats)
 								? <Preloader /> 
 								:
-								this.state.newChatFormVisible ?
-								null :
 								(this.state.selectedType == 'dealChats') ? 
 									<ChatViews profile = { profile } chat = {dealingChat[this.state.selectedChat]} />
 									:
