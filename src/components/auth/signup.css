@@ -5,7 +5,7 @@
 }
 
 .signup {
-	margin-top: 10rem;
+	margin-top: 5rem;
 }
 
 .conditions{
@@ -15,4 +15,18 @@
 .terms span{
 	font-size: 1rem !important;
 	color: black;
+}
+
+.term{
+	border: 1px solid black;
+	overflow-y: scroll;
+	height: 6rem;
+	word-wrap: break-word;
+	white-space: pre-line;
+	font-size: 12px;
+}
+
+.signupBtn{
+	margin-top: 40px;
+	margin-bottom: 0;
 }

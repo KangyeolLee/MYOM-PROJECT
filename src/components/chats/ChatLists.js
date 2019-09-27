@@ -33,9 +33,10 @@ class ChatLists extends Component {
 									selected={this.props.selectedChatIndex === index}>
 									<div className="card-content black-text">
 										<span className="card-title">
-											{chat.users.filter(_user => _user !== profile.email)[0].split('')[0]}
+											<img src={profile.profileImgURL} width='40px' height='40px' className='circle' alt=""/>
+											{/* {chat.users.filter(_user => _user !== profile.email)[0].split('')[0]} */}
 										</span>
-										<div className="chatlist-message" id={this.props.chat_type}>{chat.messages[chat.messages.length -1].message.substring(0,20)}</div>
+										<div className="chatlist-message" id={this.props.chat_type}>{chat.messages[chat.messages.length -1].message.substring(0,19)}</div>
 										{	(!chat.receiverHasRead && chat.messages[chat.messages.length-1].sender !== profile.email) ?
 											<i className="material-icons unreadMark">markunread</i>
 											: null

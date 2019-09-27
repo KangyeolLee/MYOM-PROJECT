@@ -52,7 +52,7 @@
 	word-wrap: break-word;
 	white-space: pre-line;
 	width: 300px;
-	border-right: 5px solid #ee6e73;
+	border-right: none;
 	border-left: none;
 	border-radius: 5px;
 }
@@ -100,6 +100,7 @@
 	white-space: pre-line;
 	width: 300px;
 	border-radius: 5px;
+	border-left: none;
 }
 
 .friend-sent-message::before{

@@ -22,8 +22,21 @@ class ChatViews extends Component {
 						chat.messages.map((_msg, _index) => {
 							return(
 								<blockquote key={_index} className={_msg.sender === profile.email ? "user-sent-message " : "friend-sent-message" }>
-										<p>{_msg.message}</p>
-										<cite>{_msg.sender}</cite>
+										{
+										
+											(_index == chat.messages.length-1) && (_msg.sender === profile.email) ?
+											<Fragment>
+												<p>{_msg.message}</p>
+												<cite>{_msg.sender} {chat.receiverHasRead ? 
+													<Fragment>읽음</Fragment> : <Fragment>안읽음</Fragment>}</cite>
+											</Fragment>
+											:
+											<Fragment>
+												<p>{_msg.message}</p>
+												<cite>{_msg.sender}</cite>
+											</Fragment>
+										
+										}
 								</blockquote>
 							)
 						})

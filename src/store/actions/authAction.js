@@ -45,11 +45,15 @@ export const signUp = (newUser) => {
     ).then((res) => {
       return firestore.collection('users').doc(res.user.uid).set({
         firstName: newUser.firstName,
-        lastName: newUser.lastName,
-        initials: newUser.firstName[0] + newUser.lastName[0],
+        initials: newUser.nickname,
         email: newUser.email,
         authority: 'user',
         profileImgURL: 'https://firebasestorage.googleapis.com/v0/b/myom-89a5a.appspot.com/o/images%2Fusers%2FdefaultProfileImg%2FemptyProfileImg.png?alt=media&token=ad342b58-7306-4340-b8c1-6ad56351a7b6',
+        condition_checked: newUser.condition_checked,
+        privacy_checked: newUser.privacy_checked,
+        emailRecieve_checked: newUser.emailRecieve_checked,
+        timeStamp: new Date(),
+        birth: newUser.birth,
       })
     }).then(() => {
       dispatch({type: 'SIGNUP_SUCCESS'})
