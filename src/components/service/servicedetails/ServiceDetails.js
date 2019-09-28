@@ -282,8 +282,8 @@ class ServiceDetails extends Component {
         <div className="productMainIntro">
           { description && description.map(item => <ServiceDescSummary desc={item} key={item.title}/> )}
           {/* 고유 key 값으로 변경해야함.. */}
-        </div>
-
+        </div> 
+ 
         <div className="row productQnA">  
           <div className="col s12 l12 m12">
             <h3 className=''>문의하기</h3>           

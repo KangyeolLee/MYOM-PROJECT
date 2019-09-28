@@ -5,10 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.4.1",
     "draft-js": "^0.11.1",
-<<<<<<< HEAD
-=======
     "draft-js-plugins-editor": "^3.0.0",
->>>>>>> ed7381142ead493a2d78c7889b28e3fa72cd2cf1
     "firebase": "^6.4.1-0",
     "materialize-css": "^1.0.0-rc.2",
     "moment": "^2.24.0",
