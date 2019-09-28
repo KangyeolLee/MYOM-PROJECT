@@ -1,0 +1,17 @@
+.singleCategory .thema-title {
+  margin-top: 5rem;
+}
+.singleCategory .video-wrapper.carousel {
+  height: 35rem;
+}
+.singleCategory .video-wrapper.carousel .carousel-item {
+  height: auto;
+  top: -50px;
+  position: absolute;
+}
+.singleCategory .video-wrapper.carousel .indicators .indicator-item {
+  background-color: rgba(53, 51, 51, 0.288);
+}
+.singleCategory .video-wrapper.carousel .indicators .indicator-item.active {
+  background-color: black;
+}

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import './AllService.css';
-import CategoryFilter from '../../layout/CategoryFilter';
 import { Link } from 'react-router-dom';
-import RecommendService from '../servicedetails/RecommendService';
 import Preloader from '../../functionalComponents/Preloader';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
+import TipsForCategory from '../../layout/TipsForCategory';
+import ServicesSummary from '../summary/ServicesSummary';
 
 class AllService extends Component {
   state = {
-    limit_list : 6,
+    limit_list : 8,
     moreServices : [],
     nextRef : null,
     loading: true,
@@ -94,90 +94,32 @@ class AllService extends Component {
 
     return (
       <div className="container allServices">
-        <CategoryFilter />
-  
-        <ul className="collection row">
-          <h4>최다 평점 획득</h4>
-          <div className="col s4">
-            <div className="card">
-              <div className="card-image">
-                <img className='' src='' alt=""/>
-                <span className="card-title black">최다 평점 1</span>
-              </div>
-            </div> 
-          </div>
-        </ul>
-  
-        <ul className="collection row">
-          <h4>최다 작업 수행</h4>
-          <div className="col s4">
-            <div className="card">
-              <div className="card-image">
-                <img className='' src='' alt=""/>
-                <span className="card-title black">최다 작업 1</span>
-              </div>
-            </div>  
-          </div>
-        </ul>
-  
-        <ul className="collection row">
-          <h4>최고 빠른 작업</h4>
-          <div className="col s4">
-            <div className="card">
-              <div className="card-image">
-                <img className='' src='' alt=""/>
-                <span className="card-title black">최고 빠른 1</span>
-              </div>
-            </div>  
-          </div>
-        </ul>
-        
-        <ul className="collection row all_services_area">
-          <h4>전체</h4>
-          {
-            
-            !isLoaded(serviceList)
-              ? <Preloader />
-              : isEmpty(moreServices)
-                ? <div>아직 등록된 서비스가 없습니다.</div>
-                : moreServices.map(item => {
-                    return (
-                      <Link to={`${match.url}/${item.category}/${item.id}`} key={item.id}>
-                        <RecommendService recommendable={item} />
-                      </Link>
-                    )
-                  })                 
-          }
-          {/* {
-            (loading)
-              ? <button onClick={() => this.loadMoreServices()} className="waves-effect waves-teal right btn-flat">더 보기...</button>
-              : null
-          } */}
+        <div className="row">
+          <h4 className='all-title myomColor col s12 scorehvy'>둘러보기</h4>
 
-        </ul>
+          <video style={{width: '100%'}} className='' controls>
+            <source src='https://firebasestorage.googleapis.com/v0/b/myom-89a5a.appspot.com/o/videos%2Freferences%2Fcinema%2F190913%2BMYOM%2B%EC%97%AC%ED%96%89%2B%EC%98%81%EC%83%81%2B%ED%8E%B8%EC%A7%91%2B%ED%94%8C%EB%9E%AB%ED%8F%BC.mp4?alt=media&token=cb4e2cdb-df78-4682-9712-46715da9d899' type='video/mp4'/>
+          </video>
 
-        {/* { recommends && recommends.map(item => {
-          return (
-            <ul className="collection" key={item.key}>
-              <h4>{item.category}</h4>
-              <li className="collection-item">
-                <div className="row recommendable">
-                  { item.contents && item.contents.map(content => {
-                    return (
-                      <Link to={`${match.url}/${item.category}/${content.key}`} key={content.key}>
-                        <RecommendService recommendable={content} key={content.key}/>
-                      </Link>
-                    )
-                  })}
-                </div>
-                <Link to={'/thema/' + item.category} className=''>
-                  <span className="waves-effect waves-light btn">더보기</span>
-                </Link>
-              </li>
-            </ul>
-          )
-        })} */}
-        
+          <TipsForCategory category='영화같은 영상' url='/community/user'/>
+
+          <ul className="row all_services_area">
+            <h5 className='col s12 scorehvy'>전체</h5>
+            {
+              !isLoaded(serviceList)
+                ? <Preloader />
+                : isEmpty(moreServices)
+                  ? <div>아직 등록된 서비스가 없습니다.</div>
+                  : moreServices.map(item => {
+                      return (
+                        <Link to={`${match.url}/${item.category}/${item.id}`} key={item.id}>
+                          <ServicesSummary service={item} />
+                        </Link>
+                      )
+                    })                 
+            }
+          </ul>
+        </div>    
       </div>
     )
   }
@@ -195,7 +137,7 @@ export default compose(
   connect(mapStateToProps),
   firestoreConnect((props) => {
     // console.log('in connecting : ', props);
-    return [ { collection: 'services', orderBy: ['timestamp', 'desc'], limit: 6 } ]
+    return [ { collection: 'services', orderBy: ['timestamp', 'desc'], limit: 8 } ]
   }),
 )(AllService);
 

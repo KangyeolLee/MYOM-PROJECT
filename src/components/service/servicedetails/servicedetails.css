@@ -1,4 +1,152 @@
-.service-details img {
+.service-details .tabs .tab a:hover, .tabs .tab a.active {
+  background-color: transparent;
+  color: rgb(198, 178, 241);
+}
+.service-details .tabs .tab a {
+    color: #4F328F;
+}
+.service-details .tabs .tab a:focus, .tabs .tab a:focus.active {
+  background-color: rgba(80, 50, 143, 0.199);
+}
+.service-details .tabs .tab.disabled a, .tabs .tab.disabled a:hover {
+  color: rgba(129, 126, 126, 0.4);
+}
+.service-details .tabs .indicator {
+  background-color: #4F328F;
+}
+.service-details .fixed {
+  margin-top: 5rem;
+  position: fixed !important;
+  width: 70% !important;
+  max-width: 1280px !important;
+}
+.service-details .service-title {
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+}
+.service-details .container {
+  position: relative;
+}
+.service-details .service .video-wrapper {
+  margin-bottom: 2rem;
+}
+.service-details .service .service-intro {
+  display: inline-block;
+  border-bottom: 3px solid black;
+  padding-bottom: .35rem;
+}
+.service-details .service .images-area {
+  height: 200px;
+  margin: 0 2rem 0 0;
+}
+.service-details .service .images-area .indicators .indicator-item {
+  background-color: rgba(61, 59, 59, 0.548);
+} 
+.service-details .service .images-area .indicators .indicator-item.active {
+  background-color: black;
+}
+
+.service-details .price-wrapper {
+  width: 33.33333333%;
+  background-color: #fff;
+}
+.service-details .price-wrapper i.material-icons {
+  vertical-align: middle;
+}
+
+
+.service-details .price-wrapper {
+  position: relative;
+  border: 1px solid #4F328F;
+}
+
+.service-details .price-wrapper .options {
+  padding: .75rem;
+}
+.service-details .price-wrapper .price {
+  margin-top: 2rem;
+  margin-bottom: 6rem;
+}
+.service-details .price-wrapper .buyBtn {
+  background-color: #4F328F;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: unset;
+  height: 4rem;
+  left: 0 !important;
+  bottom: 0;
+  font-size: 1.5rem;
+}
+
+.service-details #basic, .servicepage-design #pro {
+  padding: 1rem 1rem;
+}
+
+.service-details .provider-profile {
+  position: relative;
+  width: 33.33333333%;
+}
+.service-details .provider-profile .card {
+  border: 1px solid #4F328F;
+}
+.service-details .provider-profile .card .card-image {
+  padding: 24px;
+  display: flex;
+}
+.service-details .provider-profile .card .card-image .profile-title {
+  margin-left: 1rem;
+}
+.service-details .provider-profile .card .card-image .profile-nickname {
+  font-size: 1.8rem;
+  margin: 0;
+}
+.service-details .provider-profile .card .card-image .more-info {
+  /*  */
+}
+.service-details .provider-profile .card .card-image img{
+  border-radius: 30%;
+  border: 1px solid rgba(70, 69, 69, 0.288);
+  width: 100px;
+  height: 100px;
+}
+.service-details .rate i.material-icons {
+  font-size: 18px;
+  color: #ffbf00;
+}
+.service-details .provider-profile .card .card-title {
+  margin-bottom: 1.5rem;
+}
+.service-details .provider-profile .card .provider-intro {
+  padding: 0 .75rem;
+}
+.service-details .provider-profile .card .chips input {
+  display: none;
+}
+.service-details .provider-profile .card .chips {
+  border: none;
+  margin-bottom: 4rem;
+}
+.service-details .provider-profile .card .chatBtn {
+  background-color: #4F328F;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: unset;
+  height: 4rem;
+  left: 0;
+  bottom: 0;
+  font-size: 1.5rem;
+}
+
+.service-details .review .date-time {
+  color: gray !important;
+  margin-left: 1.5rem;
+}
+
+/* .service-details img {
 	width: 100%;
 	height: 100%;
 	margin-top: 15px;
@@ -33,4 +181,4 @@
 
 .service-details .inquiry-collection, .service-details .review-collection {
   overflow: unset;
-}
+} */

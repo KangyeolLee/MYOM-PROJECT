@@ -1,0 +1,80 @@
+.categorypage-design .reference-title {
+  margin-top: 5rem;
+}
+.categorypage-design .reference-content i.material-icons {
+  font-size: 2.5rem;
+}
+.categorypage-design .video-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+.categorypage-design .video-wrapper video {
+  margin: 0 1.5rem;
+}
+.categorypage-design .btn-float {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+}
+.categorypage-design .btn-float.next {
+  right: 8rem;
+}
+.categorypage-design .btn-float.prev {
+  left: 8rem;
+}
+.categorypage-design .chips {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  border: none;
+}
+.categorypage-design .chips .chip {
+  margin-bottom: 0;
+}
+.categorypage-design .chips input {
+  display: none;
+}
+.categorypage-design .card .card-content p.service-content {
+  clear: both;
+  margin-top: 1rem;
+}
+.categorypage-design .card .card-content .rate {
+  float: right;
+}
+.categorypage-design .card .card-content .rate i.material-icons {
+  font-size: 18px;
+  color: #ffbf00;
+}
+
+.categorypage-design .tips-for-category .card {
+  padding: 0;
+  padding-left: 5rem;
+  background-color: #582455e8;
+  margin: 10rem 0;
+}
+.categorypage-design .tips-for-category .card .card-content h4 {
+  color: #e2cbe2;
+}
+.categorypage-design .tips-for-category .card .card-content h3 .go-btn {
+  margin-left: 5rem;
+  padding: 0 2rem;
+  font-size: 2rem;
+  border: 1px solid white;
+  color: #582455e8;
+  background-color: white;
+  vertical-align: middle;
+}
+
+.categorypage-design .moreBtn {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.categorypage-design .moreBtn .btn {
+  width: 10rem;
+  border-radius: 2rem;
+  background-color: #582455e8;
+}

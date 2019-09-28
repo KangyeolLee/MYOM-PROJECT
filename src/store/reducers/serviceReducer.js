@@ -2,12 +2,12 @@ const initState = {
   authError: null,
   delete_retry: 1,
   themas: [
-    { title : 'transition', src : 'img/theme/paris.jpg' },
-    { title : 'colorFix', src : 'img/theme/korea.jpg' },
-    { title : 'cut&cut', src : 'img/theme/china.jpg' },
-    { title : 'currywurst', src : 'img/theme/spain.jpg' },
-    { title : 'pommes', src : 'img/theme/germany.jpg' },
-    { title : 'sauerkraut', src : 'img/theme/india.jpg' }
+    { title : '시네마틱형', src : '/img/categories/시네마틱형.jpg' },
+    { title : '예능형', src : '/img/categories/예능형2.jpg' },
+    { title : '다큐멘터리형', src : '/img/categories/다큐형.jpg' },
+    { title : '다이나믹형', src : '/img/categories/다이나믹형.PNG' },
+    { title : '브이로그형', src : '/img/categories/브이로그형.png' },
+    { title : '기타형', src : '/img/categories/기타형.jpg' }
   ],
   bests: [
     { category : 'PARIS', id : 'Pu2',  src : 'img/bestReviews/review_sample01.jpg', title : '현지인들과의 유쾌한 만남', content : '세계 각국을 돌아다니면서 다양한 사람들을 만났습니다. 그 중에서는 .....'},

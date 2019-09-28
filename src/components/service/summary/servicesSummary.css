@@ -1,0 +1,26 @@
+.service-wrapper .chips {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  border: none;
+}
+.service-wrapper .chips .chip {
+  margin-bottom: 0;
+}
+.service-wrapper .chips input {
+  display: none;
+}
+.service-wrapper .card .card-image img {
+  height: 15rem;
+}
+.service-wrapper .card .card-content p.service-content {
+  clear: both;
+  margin-top: 1rem;
+}
+.service-wrapper .card .card-content .rate {
+  float: right;
+}
+.service-wrapper .card .card-content .rate i.material-icons {
+  font-size: 18px;
+  color: #ffbf00;
+}

@@ -198,6 +198,12 @@ class CreateService extends Component {
     console.log(this.state);
     return (
       <div className="container createService">
+        <div className="row">
+          <div style={{height: '.8rem'}} className="progress col s8 offset-s2">
+            <div style={{width: Math.floor(25 * this.state.currentStep) + '%'}} className="determinate"></div>
+          </div>
+        </div>
+
         <form className='row'>
           <div className="card col s8 offset-s2">
             <CreateServiceStep1 currentStep={this.state.currentStep} 

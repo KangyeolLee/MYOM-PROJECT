@@ -34,6 +34,9 @@ import CreatePost from './components/community/CreatePost';
 import PostDetails from './components/community/PostDetails';
 import ChatDashboard from './components/chats/ChatDashboard';
 import CreateService from './components/serviceForm/CreateService';
+import Mainpage from './design-concept/Mainpage';
+import Categorypage from './design-concept/Categorypage';
+import Servicepage from './design-concept/Servicepage';
 
 class App extends Component {
   render(){
@@ -74,6 +77,9 @@ class App extends Component {
                 <Route exact path= '/post/:id' component = { PostDetails }/>
                 <Route path= '/chatDashboard' component = { ChatDashboard} />
                 <Route path='/createService' component={CreateService} />
+                <Route path='/Mainpage-design' component={Mainpage} />
+                <Route path='/Categorypage-design' component={Categorypage} />
+                <Route path='/Servicepage-design' component={Servicepage} />
               </Switch>
           </div>
         </ScrollTop>

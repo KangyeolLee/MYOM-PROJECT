@@ -1,32 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Banner from '../banner/Banner';
 import Theme from '../dashboard/Theme';
-import BestReviews from '../dashboard/BestReviews';
-import { connect } from 'react-redux';
+import ClassLink from './ClassLink';
 
-class Dashboard extends Component {
-  render() {
-    const { themas, bests} = this.props;
-    const path = this.props.match.path;
-    console.log(this.props);
-    return (
-      <div className="dashboard">
-        <Banner type={path}/>
-        <Theme themas={themas} />
-        <BestReviews bests={bests} />
-      </div>
-    )
-  }
+const Dashboard = () => {
+  return (
+    <div className="dashboard">
+      <Banner path='main'/>
+      <ClassLink />
+      <Theme />
+    </div>
+  )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    themas: state.services.themas,
-    bests: state.services.bests,
-    firestore: state.firestore,
-    firebase: state.firebase,
-    auth: state.auth
-  }
-}
-
-export default connect(mapStateToProps)(Dashboard);
+export default (Dashboard);

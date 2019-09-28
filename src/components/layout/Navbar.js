@@ -13,7 +13,7 @@ const Navbar = (props) => {
 	return (
     <div className="navbar-fixed">
       <nav className='z-depth-0'>
-        <div className="nav-wrapper grey lighten-4">
+        <div className="nav-wrapper">
           <div className="container">
             <Link to='/' className='brand-logo'><img src="/img/logo/myom_logo13.png" width="120px" height="35px" className="myom_logo" /></Link>
             {links}

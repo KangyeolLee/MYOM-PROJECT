@@ -1,0 +1,18 @@
+.tips-for-category .card {
+  padding: 0 !important;
+  padding-left: 5rem !important;
+  background-color: #582455e8;
+  margin: 10rem 0;
+}
+.tips-for-category .card .card-content h4 {
+  color: #e2cbe2;
+}
+.tips-for-category .card .card-content h3 .go-btn {
+  margin-left: 5rem;
+  padding: 0 2rem;
+  font-size: 2rem;
+  border: 1px solid white;
+  color: #582455e8;
+  background-color: white;
+  vertical-align: middle;
+}

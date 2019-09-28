@@ -9,7 +9,7 @@ class ProviderIntro extends Component {
     const imgSrc = this.props.match.path;
     return (
       <div className="providerIntro">
-        <Banner type={imgSrc}/>
+        <Banner path='editor'/>
         <div className="container">
           <div className="row">
             <div className="col s6">
