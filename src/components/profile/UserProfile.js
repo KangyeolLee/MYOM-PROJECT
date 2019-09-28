@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import ProfileSideNav from './ProfileSideNav'
 import './profile.css'
 import { connect } from 'react-redux'
@@ -8,18 +8,35 @@ import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 
 class UserProfile extends Component {
 	state = {
-		profile_img: ''
+		profile_img: '',
+		profile_img_preview: '',
 	}
 
 	uploadFile = (e) => {
-		this.setState({
-			[e.target.id] : e.target.files[0]
-		})
+		let reader = new FileReader();
+		let file = e.target.files[0];
+		let target_id = e.target.id;
+
+		reader.onloadend = () => {
+			this.setState({
+				[target_id] : file,
+				[target_id + '_preview']: reader.result,
+			})
+		}
+
+		if(file) {
+			reader.readAsDataURL(file);
+			e.target.value='';
+		}
 	}
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		this.props.profileImgRegister(this.state)
+		if(this.state.profile_img){
+			this.props.profileImgRegister(this.state);
+		} else {
+			alert('변경하실 프로필사진을 등록해주세요.');
+		}
 	}
 
 	render(){
@@ -38,15 +55,29 @@ class UserProfile extends Component {
 								<div className="col l12">
 									<div className="col l4">
 										<div className="profile-img">
-											<img src= {profile.profileImgURL} width="127px" height="127px" className="circle"/>
 											<div className="file-field input-field">
-												<div className="btn imgUpload_btn btn-small indigo">
-													<span>이미지 변경하기</span>
-													<input type="file" id='profile_img' onChange={this.uploadFile} required/>
-												</div>
-												<div className="file-path-wrapper">
-													<input type="text" className="file-path validate"/>
-												</div>
+												{
+													!(this.state.profile_img_preview)
+														? (
+															<Fragment>
+																<img src= {profile.profileImgURL} width='127px' height='127px' className="circle" />
+																<button className="imgUpload_btn">
+																	<span>이미지 변경하기</span>
+																	<input type="file" id='profile_img' onChange={this.uploadFile}/>
+																</button>
+															</Fragment>
+														)
+														: (
+															<Fragment>
+																<img src= {this.state.profile_img_preview} width='127px' height='127px' className="circle" />
+																<button className="imgUpload_btn">
+																	<span>이미지 변경하기</span>
+																	<input type="file" id='profile_img' onChange={this.uploadFile}/>
+																</button>
+															</Fragment>
+														)
+												}
+												<input type="text" style={{display:'none'}} className='file-path'/>
 											</div>
 										</div>
 									</div>

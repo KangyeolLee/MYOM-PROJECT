@@ -12,9 +12,9 @@
 
 #message {
 	resize: none;
-	background-color: rgb(245,245,245);
+	background-color: white;
 	border-color: rgb(230,230,230);
-	height: 100px;
+	height: 150px;
 }
 
 #message:focus {
@@ -22,7 +22,7 @@
 }
 
 .text-box {
-	width: calc(100% - 20px);
+	width: 100%;
 	margin-right: 0;
 }
 @media only screen and (min-width: 1600px){

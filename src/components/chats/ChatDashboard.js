@@ -8,6 +8,7 @@ import { compose } from 'redux'
 import Preloader from '../functionalComponents/Preloader';
 import ChatViews from './ChatViews'
 import ChatTextBox from './ChatTextBox'
+import ChatRoomList from './ChatRoomList'
 import './chatDashboard.css'
 
 
@@ -54,15 +55,12 @@ class ChatDashboard extends Component {
 		const dealingChat = !isLoaded(chats) ? null : chats.filter(chat => chat.deal === true);
 		return(
 			<div className="chatDashboard">
-				<ChatSideNav profile={profile} chats={chats} chatInDeal = {dealingChat} newChatBtnFn = {this.newChatBtnClicked} selectChatFn = {this.selectChat} selectedChatIndex = {this.state.selectedChat} selectUnreadMessage = {this.state.selectUnreadMessage} />
-				<div className="chatsTemplate">
+				<div className="chatsTemplate container">
 					<div className="chatMessages">
 						{	
 							!isLoaded(chats)
 								? <Preloader /> 
 								:
-								this.state.newChatFormVisible ?
-								null :
 								(this.state.selectedType == 'dealChats') ? 
 									<ChatViews profile = { profile } chat = {dealingChat[this.state.selectedChat]} />
 									:
@@ -74,6 +72,11 @@ class ChatDashboard extends Component {
 						? <ChatTextBox profile={profile} chatId={this.state.chatId}></ChatTextBox> :
 						null
 					}
+					<ul className="tabs">
+						<li className="tab"><a href="#allChat">전체 메시지</a></li>
+						<li className="tab"><a href="#dealChat">거래 중 메시지</a></li>
+					</ul>
+					<ChatRoomList profile={profile} chats={chats} chatInDeal = {dealingChat} newChatBtnFn = {this.newChatBtnClicked} selectChatFn = {this.selectChat} selectedChatIndex = {this.state.selectedChat} selectUnreadMessage = {this.state.selectUnreadMessage}/>
 				</div>
 			</div>
 

@@ -34,9 +34,13 @@ import CreatePost from './components/community/CreatePost';
 import PostDetails from './components/community/PostDetails';
 import ChatDashboard from './components/chats/ChatDashboard';
 import CreateService from './components/serviceForm/CreateService';
+<<<<<<< HEAD
 import Mainpage from './design-concept/Mainpage';
 import Categorypage from './design-concept/Categorypage';
 import Servicepage from './design-concept/Servicepage';
+=======
+import PostEditor from './components/community/PostEditor';
+>>>>>>> ed7381142ead493a2d78c7889b28e3fa72cd2cf1
 
 class App extends Component {
   render(){
@@ -77,9 +81,13 @@ class App extends Component {
                 <Route exact path= '/post/:id' component = { PostDetails }/>
                 <Route path= '/chatDashboard' component = { ChatDashboard} />
                 <Route path='/createService' component={CreateService} />
+<<<<<<< HEAD
                 <Route path='/Mainpage-design' component={Mainpage} />
                 <Route path='/Categorypage-design' component={Categorypage} />
                 <Route path='/Servicepage-design' component={Servicepage} />
+=======
+                <Route path='/postEditor' component={PostEditor} />
+>>>>>>> ed7381142ead493a2d78c7889b28e3fa72cd2cf1
               </Switch>
           </div>
         </ScrollTop>

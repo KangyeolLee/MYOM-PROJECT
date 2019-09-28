@@ -8,13 +8,13 @@ const RegisterProviderStep1 = (props) => {
       <div className='card'>
         <div className="card-content">
           <div className="row">
-          <div className="col center">
+          <div className="col12 center">
           <h6>전문가님의 프로필 사진을 등록해주세요!</h6>
-          <div className="file-field input-field">
+          <div className="file-field input-field center">
             {
               !(props.editor_profileImg_file_preview)
                 ? (
-                  <div className="btn z-depth-0 grey lighten-4 black-text">
+                  <div className="btn z-depth-0 grey lighten-4 black-text beforeUpload">
                     <i className="material-icons">file_upload</i>
                     <input type="file" id='editor_profileImg_file' className='file-uploader _required'
                       onChange = {props.handleUpload} />
@@ -38,7 +38,6 @@ const RegisterProviderStep1 = (props) => {
           </div>
           <div className="input-field introduction-area">
            <textarea id="introduction" cols="30" rows="10" onChange ={props.handleChange} value={props.introduction} className='_required'></textarea>
-           <label htmlFor="introduction">전문가 소개</label>
            {
               (props.need && !props.introduction)
                 ? <span className="red-text"><i className="material-icons">error</i>필수로 선택해야 합니다!</span>

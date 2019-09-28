@@ -1,0 +1,8 @@
+.chatRoomList .card{
+	border-radius: 20px;
+	cursor: pointer;
+}
+
+.chatRoomList .row{
+	background-color: white;
+}

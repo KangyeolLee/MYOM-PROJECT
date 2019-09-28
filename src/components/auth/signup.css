@@ -1,4 +1,32 @@
 .signup .card{
 	width: 50%;
 	margin-left: 25%;
+	border-radius: 10px;
+}
+
+.signup {
+	margin-top: 5rem;
+}
+
+.conditions{
+	white-space: pre-line;
+}
+
+.terms span{
+	font-size: 1rem !important;
+	color: black;
+}
+
+.term{
+	border: 1px solid black;
+	overflow-y: scroll;
+	height: 6rem;
+	word-wrap: break-word;
+	white-space: pre-line;
+	font-size: 12px;
+}
+
+.signupBtn{
+	margin-top: 40px;
+	margin-bottom: 0;
 }

@@ -13,7 +13,7 @@ class ChatViews extends Component {
 
 		if(chat === undefined){
 			return(
-				<div id="chatview-container" className="chat-content"></div>
+				<div id="chatview-container" className="chat-content default-content"><i className="material-icons">message</i> 메시지를 선택해주세요</div>
 			)
 		} else{
 			return(
@@ -22,8 +22,21 @@ class ChatViews extends Component {
 						chat.messages.map((_msg, _index) => {
 							return(
 								<blockquote key={_index} className={_msg.sender === profile.email ? "user-sent-message " : "friend-sent-message" }>
-										<p>{_msg.message}</p>
-										<cite>{_msg.sender}</cite>
+										{
+										
+											(_index == chat.messages.length-1) && (_msg.sender === profile.email) ?
+											<Fragment>
+												<p>{_msg.message}</p>
+												<cite>{_msg.sender} {chat.receiverHasRead ? 
+													<Fragment>읽음</Fragment> : <Fragment>안읽음</Fragment>}</cite>
+											</Fragment>
+											:
+											<Fragment>
+												<p>{_msg.message}</p>
+												<cite>{_msg.sender}</cite>
+											</Fragment>
+										
+										}
 								</blockquote>
 							)
 						})

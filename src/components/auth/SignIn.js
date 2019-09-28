@@ -20,6 +20,7 @@ class SignIn extends Component {
   }
   render() {
     const { authError, auth } = this.props;
+    console.log(auth);
     console.log(this.props);
     if(auth.uid) return <Redirect to='/' />
 
@@ -27,10 +28,10 @@ class SignIn extends Component {
       <div className="container signin">
         <div className="card">
           <div className="card-image">
-              <img src="img/theme/paris.jpg" alt=""/>
+              <img src="img/logo/myom_logo8.png" className="responsive-img" />
           </div>
           <div className="card-content">
-            <span className="card-title">로그인</span>
+            <span className="card-title scorehvy center">로그인</span>
             <form onSubmit={this.handleSubmit} className='white'>
               <div className="input-field">
                 <label htmlFor="email">아이디</label>
@@ -41,8 +42,8 @@ class SignIn extends Component {
                 <input type="password" id='password' onChange={this.handleChange} />
               </div>
               <div className="input-field center">
-                <button className="btn pink lighten-1">로그인</button>
-                <div className="red-text center">{ authError ? <p>{authError}</p> : null }</div>
+                <div className="red-text center login-error">{ authError ? <p>{authError}</p> : null }</div>
+                <button className="btn indigo lighten-1">로그인</button>
               </div>
               <div className="forgotidpwd center">
                 <Link to='/forgotIdPwd'>아이디/비밀번호찾기</Link>

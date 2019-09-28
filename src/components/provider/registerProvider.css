@@ -5,7 +5,7 @@
 
 .registerProvider textarea{
 	resize:none;
-	width: 450px;
+	width: 80%;
 	height: 570px;
 	padding: 10px;
 }
@@ -41,27 +41,36 @@
 }
 .registerProvider .image-btn img.responsive-img {
   position: relative;
-	height: 250px;
-	width: 250px;
+	width: 50%;
+}
+.registerProvider .image-btn img.responsive-img:before {
+	content: '';
+	display: block;
+	padding-top: 100%;
 }
 
 .registerProvider .file-field.input-field .image-btn {
   position: relative;
-  height: 250px;
-  margin-bottom: 2rem;
 }
 .registerProvider .file-field.input-field .btn {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 250px;
-	height: 250px;
-
+  width: 50%;
+	height: 70%;
 	border-radius: 50%;
   border: 1px dashed;
   margin-bottom: 2rem;
 }
+
+.registerProvider .file-field.input-field .btn:before {
+	content: '';
+	display: block;
+	padding-top: 100%;
+}
+
+
 
 /* .registerProvider .registerEditorIntro .input-field label {
 	/* padding: .2rem; */
@@ -81,4 +90,8 @@
 
 .introduction-area textarea{
 	margin-top: 20px;
+}
+
+.beforeUpload{
+	left: 25%;
 }
