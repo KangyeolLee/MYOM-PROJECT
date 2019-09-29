@@ -7,33 +7,72 @@ class ServicePricesSummary extends Component {
     M.AutoInit();
   }
 
+  numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   render() {
-    const { index, price, service_id } = this.props;
+    const { price } = this.props;
+  
     return (
-      <div id={`${'priceTag' + index}`} >
-        <h5>{price.price}</h5>
-        <div className="divider"></div>
-        <p>{price.contents}</p>
-        <div className="row">
-          <div className="col s12">
-            {
-              (price.options)       //  need for auth generated unique id? 
-                ? price.options.map(item => <p key={item} className='col s6'><i className="material-icons">check</i>{ item }</p>)
-                : (
-                  <Fragment>
-                  <p className="col s6"><i className="material-icons">check</i>자막</p>
-                  <p className="col s6"><i className="material-icons">check</i>편집</p>
-                  <p className="col s6"><i className="material-icons">check</i>음악</p>
-                  <p className="col s6"><i className="material-icons">check</i>FHD</p>
-                  </Fragment>
-                )
-            }
-          </div>
-        </div>
-        <Link to={{ pathname: '/purchase/' + service_id, 
-          price: price.price, options: price.options}} className="btn waves-effect waves-light">구매하기</Link>
-      </div>  
+      <div className="price-wrapper row">
+        <ul className="tabs">
+          <li className="tab col s4"><a href="#BASIC" className="scorehvy">BASIC</a></li>
+          <li className="tab col s4"><a href="#PRO" className="scorehvy">PRO</a></li>
+          <li className="tab col s4 disabled"><a href="#PREMIUM" className="scorehvy">PREMIUM</a></li>
+        </ul>
+
+        {
+          price.length && price.map(item => (
+            <div id={item.type} key={item.type}>
+              <ul className="timeline">
+                <li className='col s12'>
+                  <h6 className='basic-title scorehvy col s12'>{item.type} 소개</h6>
+                  <p className="basic-intro col s12">{item.intro}</p>
+                </li>
+
+                <div className="col s12 divider"></div>
+
+                <li className='col s12'>
+                  <h6 className='scorehvy col s12'>옵션 소개</h6>
+                  <div className="options row">
+                    {
+                      item.chips.map(chip => (
+                        <span key={chip} className="col s6"><i className="material-icons left">check</i> {chip}</span>
+                      ))
+                    }
+                  </div>
+                </li>
+
+                <div className="col s12 divider"></div>
+
+                <li className='col s12'>
+                  <div className="col s6">
+                    <h6 className="scorehvy">작업기간</h6>
+                    <p><i className="material-icons left">schedule</i> {item.working}</p>
+                  </div>
+                  <div className="col s6">
+                    <h6 className="scorehvy">수정횟수</h6>
+                    <p><i className="material-icons left">build</i> {item.modify}</p>
+                  </div>
+                </li>
+              </ul>
+
+              <div className="col s12 divider"></div>          
+
+              <h5 className="scorehvy col s12 center price">\ {this.numberWithCommas(item.price * 10000)}</h5>
+
+              <div className="buyBtn waves-effect waves-light col s12 btn scorehvy z-depth-0">구매하기</div>
+            </div>
+          ))
+        }
+        
+      </div>
     )
+    
+    //     <Link to={{ pathname: '/purchase/' + service_id, 
+    //       price: price.price, options: price.options}} className="btn waves-effect waves-light">구매하기</Link>
+
   }
 }
 

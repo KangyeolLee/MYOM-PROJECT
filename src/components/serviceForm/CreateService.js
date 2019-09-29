@@ -16,7 +16,12 @@ class CreateService extends Component {
     priority3: '',
     service_title: '',
     service_content: '',
-    files: [
+    videos: [
+      {video1: '', video1_preview: '',},
+      {video2: '', video2_preview: '',},
+      {video3: '', video3_preview: '',},
+    ],
+    images: [
       {thumbnail_file: '', thumbnail_file_preview: ''},
       {sub_file1: '', sub_file1_preview: '',},
       {sub_file2: '', sub_file2_preview: '',},
@@ -89,7 +94,7 @@ class CreateService extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const required_all = [...document.querySelectorAll('._required')];
-    let current_required = required_all.filter(item => !(this.state[item.id]) && !(this.state.files[0][item.id]));
+    let current_required = required_all.filter(item => !(this.state[item.id]) && !(this.state.images[0][item.id]) && !(this.state.videos[0][item.id]));
     console.log(current_required)
     if(current_required.length) {
       this.setState({
@@ -141,15 +146,48 @@ class CreateService extends Component {
     let reader = new FileReader();
     let file = e.target.files[0];
     let target_id = e.target.id;
+    let file_exe = file.name.split('.').pop().toLowerCase();
 
-    reader.onloadend = () => {
-      this.setState(prevState => ({
-        files: prevState.files.map( item => 
-          item.hasOwnProperty(target_id) 
-            ? { [target_id]: file, [target_id + '_preview']: reader.result } 
-            : item
-        )
-      }))
+    if(file_exe === 'jpg' || file_exe === 'jpeg' || file_exe === 'png' || file_exe === 'gif') {
+      reader.onloadend = () => {
+        this.setState(prevState => ({
+          images: prevState.images.map(item => 
+            item.hasOwnProperty(target_id) 
+              ? { [target_id]: file, [target_id + '_preview']: reader.result } 
+              : item
+          )
+        }));
+      }
+    } else {
+      alert('이미지 파일(jpg, jpeg, png, gif)만 지원합니다.');
+      return;
+    }
+
+    if(file) {
+      reader.readAsDataURL(file);
+      e.target.value = '';
+    }
+  }
+  handleVideoUpload = (e) => {
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    let target_id = e.target.id;
+    let file_exe = file.name.split('.').pop().toLowerCase();
+
+    if(file_exe === 'm4v' || file_exe === 'avi' || file_exe === 'mpg' || file_exe === 'mp4') {
+      reader.onloadend = () => {
+        this.setState(prevState => ({
+          videos: prevState.videos.map(item =>
+            item.hasOwnProperty(target_id)
+              ? { [target_id]: file, [target_id + '_preview']: reader.result }
+              : item
+            )
+        }));
+      }
+    } else {
+      alert('비디오 파일(m4v, avi, mpg, mp4)만 지원합니다.');
+      return;
     }
 
     if(file) {
@@ -161,16 +199,27 @@ class CreateService extends Component {
     e.preventDefault();
     let target_id = e.target.id;
     this.setState(prevState => ({
-      files: prevState.files.map( item => 
+      images: prevState.images.map( item => 
         item.hasOwnProperty(target_id) 
           ? { [target_id]: '', [target_id + '_preview']: '' } 
           : item
       )
     }))
   }
+  deleteVideo = (e) => {
+    e.preventDefault();
+    let target_id = e.target.id;
+    this.setState(prevState => ({
+      videos: prevState.videos.map(item =>
+      item.hasOwnProperty(target_id)
+        ? { [target_id]: '', [target_id + '_preview']: '' }
+        : item
+      )
+    }))
+  }
   _next = () => {
     const required_all = [...document.querySelectorAll('._required')];
-    let current_required = required_all.filter(item => !(this.state[item.id]) && !(this.state.files[0][item.id]));
+    let current_required = required_all.filter(item => !(this.state[item.id]) && !(this.state.images[0][item.id]) && !(this.state.videos[0][item.id]));
     console.log(current_required)
     if(current_required.length) {
       this.setState({
@@ -221,8 +270,11 @@ class CreateService extends Component {
             <CreateServiceStep3 currentStep={this.state.currentStep}
               need={this.state.need}
               handleUpload={this.handleUpload}
+              handleVideoUpload={this.handleVideoUpload}
               deleteImage={this.deleteImage}
-              files={this.state.files} />
+              deleteVideo={this.deleteVideo}
+              images={this.state.images} 
+              videos={this.state.videos} />
             <CreateServiceStep4 currentStep={this.state.currentStep}
               need={this.state.need}
               handleChips={this.handleChips}

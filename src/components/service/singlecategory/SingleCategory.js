@@ -59,8 +59,8 @@ class SingleCategory extends Component {
 
     if(!nextRef) {
       console.log('state initialized');
-      const firstQuery = firestore.collection('services')
-        .where('category', '==', match.params.category).orderBy('timestamp', 'desc').limit(limit_list);
+      const firstQuery = firestore.collection('testService')
+        .where(match.params.category, '>=', 1).orderBy(match.params.category, 'desc').limit(limit_list);
       const firstSnaps = await firstQuery.get();
       const firstVisible = firstSnaps.docs[firstSnaps.size - 1];
       
@@ -70,8 +70,8 @@ class SingleCategory extends Component {
     }
     
     try {
-      const nextQuery = firestore.collection('services')
-        .where('category', '==', match.params.category).orderBy('timestamp', 'desc').startAfter(this.state.nextRef).limit(limit_list);
+      const nextQuery = firestore.collection('testService')
+        .where(match.params.category, '>=', 1).orderBy(match.params.category, 'desc').startAfter(this.state.nextRef).limit(limit_list);
       const nextSnaps = await nextQuery.get();
       const nextVisible = nextSnaps.docs[nextSnaps.size - 1]
       
@@ -200,12 +200,12 @@ class SingleCategory extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    serviceList: state.firestore.ordered.services
+    serviceList: state.firestore.ordered.testService
   }
 }
 export default compose(
   firestoreConnect((props) => [
-    { collection: 'services', where: ['category', '==', props.match.params.category], orderBy: ['timestamp', 'desc'], limit: 8 }
+    { collection: 'testService', where: [props.match.params.category, '>=', 1], orderBy: [props.match.params.category, 'desc'], limit: 8 }
   ]),
   connect(mapStateToProps)
 )(SingleCategory);
