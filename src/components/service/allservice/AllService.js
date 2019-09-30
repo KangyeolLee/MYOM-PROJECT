@@ -49,7 +49,7 @@ class AllService extends Component {
 
     if(!nextRef) {
       console.log('state initialized');
-      const firstQuery = firestore.collection('services')
+      const firstQuery = firestore.collection('testService')
         .orderBy('timestamp', 'desc').limit(limit_list);
       const firstSnaps = await firstQuery.get();
       const firstVisible = firstSnaps.docs[firstSnaps.size - 1];
@@ -60,7 +60,7 @@ class AllService extends Component {
     }
     
     try {
-      const nextQuery = firestore.collection('services')
+      const nextQuery = firestore.collection('testService')
         .orderBy('timestamp', 'desc').startAfter(this.state.nextRef).limit(limit_list);
       const nextSnaps = await nextQuery.get();
       const nextVisible = nextSnaps.docs[nextSnaps.size - 1]
@@ -126,10 +126,9 @@ class AllService extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     // recommends: state.services.recommends,
-    serviceList: state.firestore.ordered.services
+    serviceList: state.firestore.ordered.testService
   }
 }
 
@@ -137,7 +136,7 @@ export default compose(
   connect(mapStateToProps),
   firestoreConnect((props) => {
     // console.log('in connecting : ', props);
-    return [ { collection: 'services', orderBy: ['timestamp', 'desc'], limit: 8 } ]
+    return [ { collection: 'testService', orderBy: ['timestamp', 'desc'], limit: 8 } ]
   }),
 )(AllService);
 

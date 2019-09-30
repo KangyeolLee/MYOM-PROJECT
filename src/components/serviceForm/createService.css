@@ -34,6 +34,7 @@
 .createService .image-btn img.responsive-img {
   position: absolute;
   height: 250px;
+  width: 100%;
 }
 .createService .input-field.none {
   display: none;

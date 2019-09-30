@@ -9,18 +9,22 @@ export const createService = (serviceData) => {
     let batch = firestore.batch();
     let basic_chips = serviceData.basic_chips ? serviceData.basic_chips : [];
     let pro_chips = serviceData.pro_chips ? serviceData.pro_chips : [];
-    let filePath = [];
+    let videos = [];
     let fileArray = []
-    serviceData.files.forEach(item => Object.values(item).forEach(file => {
-      if(file instanceof File) {
-        fileArray = [...fileArray, file]
-      }
+    serviceData.images.forEach(item => Object.values(item).forEach(file => {
+      if(file instanceof File) fileArray = [...fileArray, file];
+    }));
+    serviceData.videos.forEach(item => Object.values(item).forEach(file => {
+      if(file instanceof File) fileArray = [...fileArray, file];
     }));
 
     const putStoageItem = (item, index) => {
+      let type = item.type;
       let name;
-      if(index === 0) name = 'thumbnail';
-      else name = 'details' + index;
+      if(type.split('/').shift() === 'image') {
+        if(index === 0) name = 'thumbnail';
+        else name = 'details' + index;
+      } else name = 'video' + index;
 
       return storageRef.child(name).put(item)
       // .on('state_changed', snapshot => {
@@ -29,12 +33,16 @@ export const createService = (serviceData) => {
       // })
       .then((snapshot) => { return snapshot.ref.getDownloadURL() })
       .then((url) => { 
-        filePath.push({[name]: url});
         console.log('one success!')
-        // batch.set(docRef, { images: [ 
-        //   ...this,
-        //   { [name]: url, } 
-        // ]})
+        if(type.split('/').shift() === 'image') {
+          batch.set(docRef, { images: 
+            {
+              [name]: url,
+            }
+          }, {merge: true});
+        } else {
+          videos.push(url);
+        }
       })
       .catch((err) => console.log('one failed', err.message))
     }
@@ -43,35 +51,45 @@ export const createService = (serviceData) => {
       await putStoageItem(item, index);
     }))
     .then(() => {
+      if(serviceData.priority2) {
+        batch.set(docRef, {
+          [serviceData.priority2]: 3,
+        }, {merge: true})
+      }
+      if(serviceData.priority3) {
+        batch.set(docRef, {
+          [serviceData.priority3]: 1,
+        }, {merge: true})
+      }
+      
       batch.set(docRef, {
-        priorities: [
-          {priority1:serviceData.priority1}, 
-          {priority2: serviceData.priority2}, 
-          {priority3: serviceData.priority3}
-        ],
-        description: [
-          {service_title: serviceData.service_title},
-          {service_content: serviceData.service_content},
-        ],
-        basic: [
-          {basic_price: serviceData.basic_price},
-          {basic_intro: serviceData.basic_intro},
-          {basic_working: serviceData.basic_working},
-          {basic_modify: serviceData.basic_modify},
-          {basic_chips: ['자막', '음악', '컷편집', ...basic_chips]},
-        ],
-        pro: [
-          {pro_price: serviceData.pro_price},
-          {pro_intro: serviceData.pro_intro},
-          {pro_working: serviceData.pro_working},
-          {pro_modify: serviceData.pro_modify},
-          {pro_chips: ['자막', '음악', '컷편집', '기본 색보정', ...pro_chips]},
-        ],
-        images: filePath,
+        [serviceData.priority1]: 5,
+        price: [
+          {
+            type: 'BASIC',
+            price: serviceData.basic_price,
+            intro: serviceData.basic_intro,
+            working: serviceData.basic_working,
+            modify: serviceData.basic_modify,
+            chips: ['자막', '음악', '컷편집', ...basic_chips],
+          },
+          {
+            type: 'PRO',
+            price: serviceData.pro_price,
+            intro: serviceData.pro_intro,
+            working: serviceData.pro_working,
+            modify: serviceData.pro_modify,
+            chips: ['자막', '음악', '컷편집', '기본 색보정', ...pro_chips],
+          }
+        ],     
+        service_title: serviceData.service_title,
+        service_content: serviceData.service_content,
+        videos: videos,
         provider_id: userAuth.uid,
         timestamp: new Date(),
         reviewCount: 0,
       }, {merge: true});
+
       batch.commit();
       console.log('All uploaded!');
     }).catch((err) => {

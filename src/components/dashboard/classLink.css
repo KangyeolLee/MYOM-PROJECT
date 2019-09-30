@@ -21,7 +21,8 @@
 .classLink .card .card-image span {
   z-index: 5;
   position: absolute;
-  top: 10rem;
+  top: 50%;
+  transform: translateY(-50%);
   color: white;
   font-size: 2.6rem;
   border-bottom: 2px solid white;

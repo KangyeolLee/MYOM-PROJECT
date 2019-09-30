@@ -1,6 +1,6 @@
-.servicepage-design .tabs .tab a:hover, .tabs .tab a.active {
+/* .servicepage-design .tabs .tab a:hover, .tabs .tab a.active {
   background-color: transparent;
-  color: rgb(198, 178, 241);
+  color: #4F328F;
 }
 .servicepage-design .tabs .tab a {
     color: #4F328F;
@@ -51,7 +51,7 @@
 }
 .servicepage-design .price-wrapper i.material-icons {
   vertical-align: middle;
-}
+} */
 
 
 /* .servicepage-design .price-tags {
