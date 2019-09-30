@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createPost, postUpdate } from '../../store/actions/postAction'
+import './createPost.css'
 
 class CreatePost extends Component {
 	state = {
@@ -48,7 +49,7 @@ class CreatePost extends Component {
 					</div>
 					<div className="input-field">
 						<label htmlFor="content">포스트 내용</label>
-						<textarea id="content" className="materialize-textarea" onChange = { this.handleChange } value={this.state.content}></textarea>
+						<textarea id="content" className='post-content' onChange = { this.handleChange } value={this.state.content}></textarea>
 					</div>
 					<div className="file-field input-field">
 						<div className="btn indigo">
