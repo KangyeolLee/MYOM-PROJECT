@@ -1,4 +1,4 @@
-.registerEditorIntro .card{
+.registerProvider .card{
 	width: 70%;
 	margin-left: 15%;
 }
@@ -94,4 +94,8 @@
 
 .beforeUpload{
 	left: 25%;
+}
+
+.register-buttons{
+	height: 40px;
 }
