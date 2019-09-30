@@ -2,7 +2,6 @@ import React from 'react'
 import './servicesSummary.css';
 
 const ServicesSummary = ({service}) => {
-  console.log(service.images.thumbnail);
   return (
     <div className="service-wrapper col s3">
       <div className="card black-text">

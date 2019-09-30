@@ -98,7 +98,8 @@ class AllService extends Component {
           <h4 className='all-title myomColor col s12 scorehvy'>둘러보기</h4>
 
           <video style={{width: '100%'}} className='' controls>
-            <source src='https://firebasestorage.googleapis.com/v0/b/myom-89a5a.appspot.com/o/videos%2Freferences%2Fcinema%2F190913%2BMYOM%2B%EC%97%AC%ED%96%89%2B%EC%98%81%EC%83%81%2B%ED%8E%B8%EC%A7%91%2B%ED%94%8C%EB%9E%AB%ED%8F%BC.mp4?alt=media&token=cb4e2cdb-df78-4682-9712-46715da9d899' type='video/mp4'/>
+            <source src='' type='video/mp4'/>
+            {/* https://console.firebase.google.com/project/marioplan-app-9bfcc/storage/marioplan-app-9bfcc.appspot.com/files~2Ftest~2F */}
           </video>
 
           <TipsForCategory category='영화같은 영상' url='/community/user'/>

@@ -4,13 +4,7 @@ import './servicedetails.css'
 import M from 'materialize-css';
 import { compose } from 'redux';
 import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
-import ServiceDescSummary from '../summary/ServiceDescSummary';
 import ServicePricesSummary from '../summary/ServicePricesSummary';
-import ServiceInquirySummary from '../summary/ServiceInquirySummary';
-import ServiceReviewsSummary from '../summary/ServiceReviewsSummary';
-import InquiryRegister from '../../serviceForm/InquiryRegister';
-import ReviewsRegister from '../../serviceForm/ReviewsRegister';
-import ServicesRecommendsSummary from '../summary/ServicesRecommendsSummary';
 import Preloader from '../../functionalComponents/Preloader';
 import ServiceProfileSummary from '../summary/ServiceProfileSummary';
 import ServiceThumbnailSummary from '../summary/ServiceThumbnailSummary';
@@ -25,7 +19,6 @@ class ServiceDetails extends Component {
   render() {
     if(!isLoaded(this.props.service)) return <div className='container'>로딩중...</div>      
     const { service } = this.props;
-    console.log(service);
 
     return (
       <div className="container service-details">
@@ -33,29 +26,31 @@ class ServiceDetails extends Component {
           {/* 고정스크롤 영역 */}
           <div className="col s4 fixed">  
             <ServiceProfileSummary />
-            <ServicePricesSummary price={service[0].price} />      
+            <ServicePricesSummary price={service.price} />      
           </div>
 
           {/* 서비스소개 영역 */}
           <div className="col s7 offset-s5 service-description">
             {/* 서비스타이틀 및 서비스이미지 */}
-            <h4 className="service-title scorehvy">{service[0].service_title}</h4>
-            <ServiceThumbnailSummary files={service[0].images} />
+            <h4 className="service-title scorehvy">{service.service_title}</h4>
+            <ServiceThumbnailSummary files={service.images} />
 
             {/* 서비스소개 */}
             <h5 className="service-intro scorehvy">서비스 소개</h5>
-            <p className="service-content">{service[0].service_content}</p>
+            <p className="service-content">{service.service_content}</p>
 
             {/* 서비스 참고 영상 */}
             <h5 className="service-intro scorehvy">다른 참고 영상</h5>
             <div className="video-wrapper">
-              {
-                service[0].videos.map(video => (
-                  <video style={{width: '100%'}} controls>
-                    <source src={video} type='video/mp4'/>
-                  </video>
-                ))
-              }
+              {/*
+                (service.videos.length)
+                  ? service.videos.map(video => (
+                    <video key={video} style={{width: '100%'}} controls>
+                      <source src={video} type='video/mp4'/>
+                    </video>
+                  ))
+                  : <p>다른 참고영상이 없습니다.</p>
+              */}
             </div>
 
             {/* 서비스리뷰 */}
@@ -159,7 +154,7 @@ const mapStateToProps = (state, ownProps) => {
   // const service = services ? services[id] : id;
   return {
     // suggestion : state.services.suggestion,
-    service: state.firestore.ordered.testServices,
+    service: state.firestore.data.testServices,
     // reviews: state.firestore.ordered.reviews,
     // inquiry: state.firestore.ordered.inquiry,
     // recommends: state.firestore.ordered.recommends,
