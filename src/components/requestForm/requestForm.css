@@ -1,0 +1,40 @@
+.requestForm .card{
+	width: 70%;
+	margin-left: 15%;
+}
+@media only screen and (max-width: 992px){
+	.requestForm .card{
+		width: 100%;
+		margin-left: 0;
+	}
+}
+
+.requestForm img{
+	width: 100%;
+	height: 100px;
+	margin-bottom: 40px;
+}
+.requestForm .card-action{
+	margin-top: 40px;
+}
+
+.requestForm p{
+	padding: 5px;
+}
+
+.requestForm h6{
+	font-weight: bold;
+	font-size: 1.6rem;
+	margin-bottom: 30px;
+}
+.requestForm span{
+	color: black;
+}
+.requestForm .divider{
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+.request-buttons{
+	height: 40px;
+}

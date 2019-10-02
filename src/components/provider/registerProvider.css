@@ -49,9 +49,17 @@
 	padding-top: 100%;
 }
 
-.registerProvider .file-field.input-field .image-btn {
-  position: relative;
+/* .registerProvider .file-field.input-field .image-btn {
+	position: relative;
+	width: 100%;
+	height: 70%;
 }
+
+.registerProvider .file-field.input-field .image-btn:before{
+	content: '';
+	display: block;
+	padding-top: 100%;
+} */
 .registerProvider .file-field.input-field .btn {
   position: relative;
   display: flex;
