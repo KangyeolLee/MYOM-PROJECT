@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 
+
 export const _buy_service = (service_id, service, price, history) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
@@ -120,5 +121,26 @@ export const _cancel_order = (purchaseList_id) => {
     .catch((err) => {
       dispatch({ type : 'CANCEL_ORDER_ERROR', err })
     })
+  }
+}
+
+export const chatCreate = (userData) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    const userInfo = getState().firebase.auth;
+    const docRef = firestore.collection('chats');
+    docRef.doc(userInfo.email+':'+userData).set({
+      users: [
+        userInfo.email,
+        userData
+      ]
+    })
+    .then(() => {
+      console.log('a');
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+
   }
 }

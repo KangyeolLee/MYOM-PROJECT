@@ -1,12 +1,18 @@
 import React, { Component, Fragment } from 'react'
+import { chatCreate } from '../../../store/actions/serviceAction'
+import { connect } from 'react-redux';
 import M from 'materialize-css';
 
 class ServiceProfileSummary extends Component {
   componentDidMount() {
     M.AutoInit();
   }
-
+  handleChatCreate = (e) => {
+    e.preventDefault();
+    this.props.chatCreate(this.props.provider_id);
+  }
   render() {
+    console.log(this.props);
     return (
       <div className="provider-profile row">
         <div className="card col s12 z-depth-0">
@@ -40,11 +46,17 @@ class ServiceProfileSummary extends Component {
             </div>
           </div>
 
-          <div className="chatBtn waves-effect waves-light col s12 btn scorehvy z-depth-0">1:1 문의하기</div>
+          <div className="chatBtn waves-effect waves-light col s12 btn scorehvy z-depth-0" onClick= {this.handleChatCreate}>1:1 문의하기</div>
         </div>
       </div>
     )
   }
 }
 
-export default ServiceProfileSummary;
+const mapDispatchToProps = (dispatch) => {
+  return{
+    chatCreate: (userData) => dispatch(chatCreate(userData)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(ServiceProfileSummary);

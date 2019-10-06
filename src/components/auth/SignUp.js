@@ -103,7 +103,7 @@ class SignUp extends Component {
     if(auth.uid) return <Redirect to='/emailVerification' />
     return (
       <div className="container signup">
-        <form onSubmit={this.handleSubmit} className='white' id="signUp_submit">
+        <form onSubmit={this.handleSubmit} id="signUp_submit">
           <div className="card">
             <div className="card-content">
               <h5 className="grey-text text-darken-3">회원가입</h5>
