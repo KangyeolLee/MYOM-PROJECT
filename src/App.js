@@ -38,6 +38,7 @@ import Mainpage from './design-concept/Mainpage';
 import Categorypage from './design-concept/Categorypage';
 import Servicepage from './design-concept/Servicepage';
 import PostEditor from './components/community/PostEditor';
+import RequestForm from './components/requestForm/RequestForm';
 
 class App extends Component {
   render(){
@@ -82,6 +83,7 @@ class App extends Component {
                 <Route path='/Categorypage-design' component={Categorypage} />
                 <Route path='/Servicepage-design' component={Servicepage} />
                 <Route path='/postEditor' component={PostEditor} />
+                <Route path='/requestForm' component={RequestForm} />
               </Switch>
           </div>
         </ScrollTop>

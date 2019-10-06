@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLink';
 import { connect } from 'react-redux';
+import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import './navbar.css';
+import Loader from '../functionalComponents/Loader';
 
 const Navbar = (props) => {
   console.log(props);
@@ -16,7 +18,13 @@ const Navbar = (props) => {
         <div className="nav-wrapper">
           <div className="container">
             <Link to='/' className='brand-logo'><img src="/img/logo/myom_logo13.png" width="120px" height="35px" className="myom_logo" /></Link>
-            {links}
+            {
+              !isLoaded(auth)
+                ? <Loader />
+                : isEmpty(auth)
+                  ? <SignedOutLinks />
+                  : <SignedInLinks profile={profile} auth = {auth} />
+            }
           </div>
         </div>
       </nav>
