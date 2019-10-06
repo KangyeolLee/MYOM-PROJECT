@@ -70,7 +70,7 @@ class App extends Component {
                 <Route path='/changepwd' component= { Changepwd } />
                 <Route path='/withdrawal' component= { Withdrawal } />
                 <Route path='/certifications' component= { Certifications } />
-                <Route path='/serviceRegister' component={ServiceRegister} />
+                {/* <Route path='/serviceRegister' component={ServiceRegister} /> */}
                 <Route path= '/forgotIdPwd' component={ForgotIdPwd} />
                 <Route path= '/emailVerification' component = {EmailVerification} />
                 <Route exact path= '/community/:category' component = { CommunityDashboard } />

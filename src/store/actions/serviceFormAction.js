@@ -1,4 +1,5 @@
 import firebase from 'firebase/app';
+import { instanceOf } from 'prop-types';
 
 export const createService = (serviceData) => {
   return (dispatch, getState, { getFirestore }) => {
@@ -17,6 +18,10 @@ export const createService = (serviceData) => {
     serviceData.videos.forEach(item => Object.values(item).forEach(file => {
       if(file instanceof File) fileArray = [...fileArray, file];
     }));
+
+    const numberWithCommas = (x) => {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
 
     const putStoageItem = (item, index) => {
       let type = item.type;
@@ -61,13 +66,13 @@ export const createService = (serviceData) => {
           [serviceData.priority3]: 1,
         }, {merge: true})
       }
-      
+
       batch.set(docRef, {
         [serviceData.priority1]: 5,
         price: [
           {
             type: 'BASIC',
-            price: serviceData.basic_price,
+            price: numberWithCommas(serviceData.basic_price * 10000),
             intro: serviceData.basic_intro,
             working: serviceData.basic_working,
             modify: serviceData.basic_modify,
@@ -75,7 +80,7 @@ export const createService = (serviceData) => {
           },
           {
             type: 'PRO',
-            price: serviceData.pro_price,
+            price: numberWithCommas(serviceData.pro_price * 10000),
             intro: serviceData.pro_intro,
             working: serviceData.pro_working,
             modify: serviceData.pro_modify,
@@ -92,70 +97,205 @@ export const createService = (serviceData) => {
 
       batch.commit();
       console.log('All uploaded!');
-    }).catch((err) => {
+    })
+    .then(() => {
+      dispatch({type: 'CREATE_SERVICE_SUCESS',});
+    })
+    .catch((err) => {
       console.log('failed', err.message);
+      dispatch({type: 'CREATE_SERVICE_ERROR', err});
     })
   }
 }
 
-export const serviceRegister = (serviceData, history) => {
+export const serviceContentUpdate = (service_id, serviceData, target_id) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
-    const userAuth = getState().firebase.auth;
-    let docRef = firestore.collection('services').doc();
-    let storageRef = firebase.storage().ref('images/services/' + docRef.id).child(serviceData.service_img.name);
-    storageRef.put(serviceData.service_img)
-      .then(() => {
-        storageRef.getDownloadURL()
-          .then((url) => {
-            // services collection's document
-            docRef.set({
-              serviceProvider: userAuth.uid,
-              category: serviceData.service_type,
-              description: [
-                { title: '서비스 설명', contents: serviceData.service_desc},
-                { title: '작업 과정', contents: serviceData.service_process},
-                { title: '작업 방식', contents: serviceData.service_doing},
-                { title: '작업 스타일', contents: serviceData.service_style},
-              ],
-              filter: null,
-              imgURL: url,
-              inquiryCount: 0,
-              reviewCount: 0,
-              prices: [
-                { price: serviceData.service_price_standard, contents: serviceData.standard_desc },
-                { price: serviceData.service_price_deluxe, contents: serviceData.deluxe_desc },
-                { price: serviceData.service_price_premium, contents: serviceData.premium_desc },
-              ],
-              timestamp: new Date(),
-            });
-            // services collections's sub-collection's document: reviews
-            // docRef.collection('reviews').add({
-            //   contents: '',
-            //   profile: '',
-            //   starts: '',
-            //   timestamp: '',
-            //   userID: '',
-            //   uid: '',
-            // });
-            // services collections's sub-collection's document: inquiry
-            // docRef.collection('inquiry').add({
-            //   comment: null,
-            //   contents: '',
-            //   timestamp: '',
-            //   userID: '',
-            //   uid: '',
-            // });
-          });
-      })
+    const docRef = firestore.collection('testService').doc(service_id);
+
+    docRef.update({
+      [target_id]: serviceData,
+    })
     .then(() => {
-      dispatch({ type: 'REGISTER_SERVICE_SUCCESS', serviceData });
-      history.push('/mypageProvider/myServices');
-    }).catch((err) => {
-      dispatch({ type: 'REGISTER_SERVICE_ERROR', err })
+      console.log('updated success!')
+      dispatch({type: 'TITLE_UPDATE_SUCCESS'});
+    })
+    .catch((err) => {
+      console.log('error!', err)
+      dispatch({type: 'TITLE_UPDATE_ERROR', err});
     })
   }
 }
+
+export const serviceImgUpdate = (service_id, serviceImgs) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    const docRef = firestore.collection('testService').doc(service_id);
+    const storageRef = firebase.storage().ref('images/testService/' + service_id);
+    const batch = firestore.batch();
+    const imgs = Object.entries(serviceImgs).filter(img => img[0].includes('file'))
+      .map(name => ({ [name[0].split('_').shift()] : name[1] }));    
+
+    const putStoageItem = (item) => {
+      let name = Object.keys(item)[0];
+      let file = Object.values(item)[0] ? Object.values(item)[0] : null;
+
+      if(file === null) {
+        return batch.set(docRef, { images: 
+          {
+            [name]: '',
+          }
+        }, {merge: true});
+      }
+
+      return storageRef.child(name).put(file)
+      .then((snapshot) => { return snapshot.ref.getDownloadURL() })
+      .then((url) => { 
+        console.log('one success!') 
+        batch.set(docRef, { images: 
+          {
+            [name]: url,
+          }
+        }, {merge: true});
+      })
+      .catch((err) => console.log('one failed', err.message))
+    }
+
+    Promise.all(imgs.map(async (item) => {
+      await putStoageItem(item);
+    }))
+    .then(() => {
+      batch.commit();
+      console.log('all uploaded');
+    })
+    .then(() => {
+      dispatch({ type: 'IMAGE_UPDATE_SUCCESS'});
+    })
+    .catch((err) => {
+      dispatch({ type: 'IMAGE_UPDATE_ERROR', err})
+      console.log('err', err);
+    })
+  }
+}
+
+export const serviceVideoUpdate = (service_id, serviceVideos) => {
+  return (dispatch, getState, { getFirestore }) => {
+    let videoFiles = [];
+    const firestore = getFirestore();
+    const docRef = firestore.collection('testService').doc(service_id);
+    const storageRef = firebase.storage().ref('images/testService/' + service_id);
+    const batch = firestore.batch();
+    const videos = Object.entries(serviceVideos).filter(video => video[0].includes('file'))
+      .map(name => ({ [name[0].split('_').shift()] : name[1] }));
+
+    const putStoageItem = (item) => {
+      let name = Object.keys(item)[0];
+      let file = Object.values(item)[0] ? Object.values(item)[0] : null;
+
+      if(file === null) {
+        videoFiles.push('');
+        return;
+        // return batch.set(docRef, { videos: 
+        //   {
+        //     [name]: '',
+        //   }
+        // }, {merge: true});
+      }
+
+      return storageRef.child(name).put(file)
+      .then((snapshot) => { return snapshot.ref.getDownloadURL() })
+      .then((url) => { 
+        videoFiles.push(url);
+        console.log('one success!') 
+        // batch.set(docRef, { videos: 
+        //   {
+        //     [name]: url,
+        //   }
+        // }, {merge: true});
+      })
+      .catch((err) => console.log('one failed', err.message))
+    }
+  
+    Promise.all(videos.map(async (item) => {
+      await putStoageItem(item);
+    }))
+    .then(() => {
+      batch.update(docRef, {
+        videos: videoFiles,
+      });
+
+      batch.commit();
+      console.log(videoFiles);
+      console.log('all uploaded');
+    })
+    .then(() => {
+      dispatch({ type: 'VIDEO_UPDATE_SUCCESS'});
+    })
+    .catch((err) => {
+      dispatch({ type: 'VIDEO_UPDATE_ERROR', err});
+      console.log('err', err);
+    })
+  }
+}
+
+// export const serviceRegister = (serviceData, history) => {
+//   return (dispatch, getState, { getFirestore }) => {
+//     const firestore = getFirestore();
+//     const userAuth = getState().firebase.auth;
+//     let docRef = firestore.collection('services').doc();
+//     let storageRef = firebase.storage().ref('images/services/' + docRef.id).child(serviceData.service_img.name);
+//     storageRef.put(serviceData.service_img)
+//       .then(() => {
+//         storageRef.getDownloadURL()
+//           .then((url) => {
+//             // services collection's document
+//             docRef.set({
+//               serviceProvider: userAuth.uid,
+//               category: serviceData.service_type,
+//               description: [
+//                 { title: '서비스 설명', contents: serviceData.service_desc},
+//                 { title: '작업 과정', contents: serviceData.service_process},
+//                 { title: '작업 방식', contents: serviceData.service_doing},
+//                 { title: '작업 스타일', contents: serviceData.service_style},
+//               ],
+//               filter: null,
+//               imgURL: url,
+//               inquiryCount: 0,
+//               reviewCount: 0,
+//               prices: [
+//                 { price: serviceData.service_price_standard, contents: serviceData.standard_desc },
+//                 { price: serviceData.service_price_deluxe, contents: serviceData.deluxe_desc },
+//                 { price: serviceData.service_price_premium, contents: serviceData.premium_desc },
+//               ],
+//               timestamp: new Date(),
+//             });
+//             services collections's sub-collection's document: reviews
+//             docRef.collection('reviews').add({
+//               contents: '',
+//               profile: '',
+//               starts: '',
+//               timestamp: '',
+//               userID: '',
+//               uid: '',
+//             });
+//             services collections's sub-collection's document: inquiry
+//             docRef.collection('inquiry').add({
+//               comment: null,
+//               contents: '',
+//               timestamp: '',
+//               userID: '',
+//               uid: '',
+//             });
+//           });
+//       })
+//     .then(() => {
+//       dispatch({ type: 'REGISTER_SERVICE_SUCCESS', serviceData });
+//       history.push('/mypageProvider/myServices');
+//     }).catch((err) => {
+//       dispatch({ type: 'REGISTER_SERVICE_ERROR', err })
+//     })
+//   }
+// }
 
 export const serviceDelete = (curInstance, id, password) => {
   return (dispatch, getState, { getFirestore }) => {
@@ -230,6 +370,8 @@ export const serviceDelete = (curInstance, id, password) => {
     })   
   }
 }
+
+
 
 export const serviceUpdate = (serviceData, history) => {
   return (dispatch, getState, { getFirestore }) => {

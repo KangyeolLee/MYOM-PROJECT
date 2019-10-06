@@ -7,12 +7,8 @@ class ServicePricesSummary extends Component {
     M.AutoInit();
   }
 
-  numberWithCommas = (x) => {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-
   render() {
-    const { price } = this.props;
+    const { service_id, price } = this.props;
   
     return (
       <div className="price-wrapper row">
@@ -60,9 +56,12 @@ class ServicePricesSummary extends Component {
 
               <div className="col s12 divider"></div>          
 
-              <h5 className="scorehvy col s12 center price">\ {this.numberWithCommas(item.price * 10000)}</h5>
-
-              <div className="buyBtn waves-effect waves-light col s12 btn scorehvy z-depth-0">구매하기</div>
+              <h5 className="scorehvy col s12 center price">₩ {item.price}</h5>
+              
+              <Link to={{ pathname: '/purchase/' + service_id, price: item}}>
+                <div className="buyBtn waves-effect waves-light col s12 btn scorehvy z-depth-0">구매하기</div>
+              </Link>
+              
             </div>
           ))
         }

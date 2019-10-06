@@ -98,9 +98,9 @@ class SingleCategory extends Component {
   }
 
   render() {
-    const thema = this.props.match.params.category;
     const { categoryIntro, serviceList, match } = this.props;
     const { moreServices } = this.state;
+    console.log(match);
 
     return (
       <div className="container singleCategory">

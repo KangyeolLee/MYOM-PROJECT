@@ -20,7 +20,7 @@ const CreateServiceStep3 = (props) => {
             )
             : (
               <div className="image-btn">
-                <img src={props.images[0].thumbnail_file_preview} alt="" className='responsive-img'/>
+                <img src={props.images[0].thumbnail_file_preview} alt="섬네일 이미지" className='responsive-img'/>
                 <input type="file" id='thumbnail_file' className='file-uploader _required'
                   onChange={props.handleUpload} accept="image/*" />
                 <i onClick={(e) => props.deleteImage(e)} id='thumbnail_file' className="material-icons close-btn white-text">close</i>

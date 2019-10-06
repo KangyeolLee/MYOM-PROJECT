@@ -14,14 +14,14 @@ class MypageForBuyer extends Component {
       case '/mypageBuyer/coupons':
         return <CouponPage />;
       
-      case '/mypageBuyer/estimate':
-        return <EstimatePage pathname={curURL} />;
+      // case '/mypageBuyer/estimate':
+      //   return <EstimatePage pathname={curURL} />;
 
       case '/mypageBuyer/orderManage':
         return <OrderManage pathname= {curURL} />;
 
       default:  // 기본값 지정
-        return this.props.history.push('/mypageBuyer/estimate');
+        return this.props.history.push('/mypageBuyer/orderManage');
     }
   }
   render() {

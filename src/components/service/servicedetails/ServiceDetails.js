@@ -19,6 +19,7 @@ class ServiceDetails extends Component {
   render() {
     if(!isLoaded(this.props.service)) return <div className='container'>로딩중...</div>      
     const { service } = this.props;
+    console.log(this.props);
 
     return (
       <div className="container service-details">
@@ -26,7 +27,7 @@ class ServiceDetails extends Component {
           {/* 고정스크롤 영역 */}
           <div className="col s4 fixed">  
             <ServiceProfileSummary />
-            <ServicePricesSummary price={service.price} />      
+            <ServicePricesSummary service_id={this.props.match.params.id} price={service.price} />      
           </div>
 
           {/* 서비스소개 영역 */}
@@ -37,20 +38,20 @@ class ServiceDetails extends Component {
 
             {/* 서비스소개 */}
             <h5 className="service-intro scorehvy">서비스 소개</h5>
-            <p className="service-content">{service.service_content}</p>
+            <pre className="service-content">{service.service_content}</pre>
 
             {/* 서비스 참고 영상 */}
             <h5 className="service-intro scorehvy">다른 참고 영상</h5>
             <div className="video-wrapper">
-              {/*
-                (service.videos.length)
-                  ? service.videos.map(video => (
-                    <video key={video} style={{width: '100%'}} controls>
-                      <source src={video} type='video/mp4'/>
-                    </video>
-                  ))
-                  : <p>다른 참고영상이 없습니다.</p>
-              */}
+            {
+              (service.videos.length)
+                ? service.videos.map(video => (
+                  <video key={video} style={{width: '100%'}} controls>
+                    <source src={video} type='video/mp4'/>
+                  </video>
+                ))
+                : <p>다른 참고영상이 없습니다.</p>
+            }
             </div>
 
             {/* 서비스리뷰 */}

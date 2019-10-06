@@ -2,21 +2,21 @@ import React, { Component } from 'react'
 import MyPageSidenav from './MyPageSidenav';
 import EstimatePage from './EstimatePage';
 import OrderManage from './OrderManage';
-import MyServices from './MyServices';
+import ServiceSetting from './ServiceSetting';
 import ProfitsManage from './ProfitsManage';
 import ProfileSetting from './ProfileSetting';
 
 class MypageForProvider extends Component {
   renderSwitch(curURL) {
     switch(curURL) {
-      case '/mypageProvider/myServices':
-        return <MyServices />;
+      case '/mypageProvider/serviceSetting':
+        return <ServiceSetting />;
 
       case '/mypageProvider/profitsManage':
         return <ProfitsManage />;
       
-      case '/mypageProvider/requestsPage':
-        return <EstimatePage pathname= {curURL} />;
+      // case '/mypageProvider/requestsPage':
+      //   return <EstimatePage pathname= {curURL} />;
 
       case '/mypageProvider/sellManage':
         return <OrderManage pathname= {curURL} />;
@@ -25,7 +25,7 @@ class MypageForProvider extends Component {
         return <ProfileSetting />
 
       default:  // 기본값 지정
-        return this.props.history.push('/mypageProvider/requestsPage'); 
+        return this.props.history.push('/mypageProvider/sellManage'); 
     }
   }
   render() {

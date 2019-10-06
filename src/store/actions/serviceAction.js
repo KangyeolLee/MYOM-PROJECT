@@ -1,25 +1,29 @@
 import firebase from 'firebase/app';
 
-export const _buy_service = (service_id, service, history) => {
+export const _buy_service = (service_id, service, price, history) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userInfo = getState().firebase.auth;
     // const userRef = firestore.collection('users').doc(userInfo.uid);
     // const providerRef = firestore.collection('users').doc(service.serviceProvider);
-    const listRef = firestore.collection('purchaseList');
+    const listRef = firestore.collection('purchaseList').doc();
 
     let userPurchase = {
       service_id: service_id,
-      category: service.category,
+      service_title: service.service_title,
+      // category: service.category,
+      price: price.price,
+      working: price.working,
       review: null,
-      date: new Date(),
-      imgURL: service.imgURL,
-      provider_id: service.serviceProvider,
+      purchasedAt: new Date(),
+      imgURL: service.images.thumbnail,
+      provider_id: service.provider_id,
       buyer_id: userInfo.uid,
-      options: '니가 고른 옵션',
+      options: price.chips,
+      type: price.type,
     }
     
-    listRef.add({
+    listRef.set({
       ...userPurchase,
     })
     // firestore.runTransaction(transaction => {
@@ -52,7 +56,7 @@ export const _buy_service = (service_id, service, history) => {
     // })
     .then(() => {
       dispatch({ type: 'BUY_SERVICE_SUCCESS'});
-      history.push('/purchasedone/' + service_id);
+      history.push('/purchasedone/' + listRef.id);
     }).catch((err) => {
       dispatch({ type: 'BUY_SERVICE_ERROR', err })
     })

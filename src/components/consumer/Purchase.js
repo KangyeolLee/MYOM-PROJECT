@@ -49,108 +49,123 @@ class Purchase extends Component {
       selected: '',
     })
   }
-  buy_by_click = (e) => {
+  buy_by_click = (e, price) => {
     e.preventDefault();
-    this.props._buy_service(this.props.match.params.service_id, this.props.service, this.props.history);
+    this.props._buy_service(this.props.match.params.service_id, this.props.will_purchase, price, this.props.history);
   }
 	render(){
-    const { price, options } = this.props.location;
+    if(!isLoaded(this.props.will_purchase)) return <div className='container'>로딩중...</div>
+
+    const { will_purchase } = this.props;
+    const price = this.props.location.price ? this.props.location.price : will_purchase.price[0];
+
 		return(
 			<form onSubmit={this.handleSubmit} className="container purchase-page">
-				<h4>주문하기</h4>
+				<h5 className='col s6 scorehvy category'>주문하기</h5>
 				<div className="purchase-form">
-					<table className="basic-purchase">
+					<table className="basic-purchase centered">
 						<thead>
-							<tr>
-								<th>기본항목</th>
-								<th>작업일</th>
-								<th>가격</th>
+							<tr className=''>
+                <th className='scorehvy'>선택</th>
+								<th className='scorehvy'>기본옵션</th>
+								<th className='scorehvy'>작업일</th>
+								<th className='scorehvy'>가격</th>
 							</tr>
 						</thead>
+
 						<tbody>
-							<tr>
-								<td>{ options ? options.map(item => <p key={item}>{item}</p>) : <p>기본</p> }</td>
-								<td>5일</td>
-								<td>{ price }</td>
+							<tr className=''>
+                <td className="myomColor-background white-text"><h4 className="scorehvy">{price.type}</h4></td>
+								<td className=''>
+                  {
+                    price.chips.length && price.chips.map(chip => (
+                      <div className='options' key={chip}><i className="material-icons left">check</i>{chip}</div>
+                    ))
+                  }
+                </td>
+								<td className=''>{ price.working }</td>
+								<td className='scorehvy'>{ '₩' + price.price }</td>
 							</tr>
 						</tbody>
 					</table>
 
+          <h5 className='col s12 scorehvy category'>요청서</h5>
 					<table className="option-purchase">
 						<thead>
 							<tr>
-								<th>옵션항목</th>
-								<th>작업일</th>
-								<th>가격</th>
+								<th className='scorehvy'>옵션항목</th>
+								<th className='scorehvy'>작업일</th>
+								<th className='scorehvy'>가격</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td>
-									<p>
+									<p className='request'>
 										<label>
 											<input type="checkbox"/>
 											<span>빠른 작업</span>
 										</label>
 									</p>
 								</td>
-								<td>1일</td>
-								<td>30,000원</td>
+								<td className=''>1일</td>
+								<td className=''>30,000원</td>
 							</tr>
 							<tr>
 								<td>
-									<p>
+									<p className='request'>
 										<label>
 											<input type="checkbox"/>
 											<span>러닝타임(초) 추가</span>
 										</label>
 									</p>
 								</td>
-								<td>+0일</td>
-								<td>40,000원</td>
+								<td className=''>+0일</td>
+								<td className=''>40,000원</td>
 							</tr>
 							<tr>
 								<td>
-									<p>
+									<p className='request'>
 										<label>
 											<input type="checkbox"/>
 											<span>색 보정</span>
 										</label>
 									</p>
 								</td>
-								<td>+3일</td>
-								<td>30,000원</td>
+								<td className=''>+3일</td>
+								<td className=''>30,000원</td>
 							</tr>
 							<tr>
 								<td>
-									<p>
+									<p className='request'>
 										<label>
 											<input type="checkbox"/>
 											<span>사진 및 영상 촬영(1CAM) 경우</span>
 										</label>
 									</p>
 								</td>
-								<td>+5일</td>
-								<td>230,000원</td>
+								<td className=''>+5일</td>
+								<td className=''>230,000원</td>
 							</tr>
 							<tr>
 								<td>
-									<p>
+									<p className='request'>
 										<label>
 											<input type="checkbox"/>
 											<span>성우 더빙 및 더빙 편집 경우</span>
 										</label>
 									</p>
 								</td>
-								<td>+5일</td>
-								<td>150,000원</td>
+								<td className=''>+5일</td>
+								<td className=''>150,000원</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 
+        <h5 className='col s12 scorehvy category'>결제하기</h5>
 				<div className="purchase-price">
-					<div className="panel-heading">결제금액</div>
+					<div className="panel-heading scorehvy">결제금액</div>
 					<div className="panel-body">
 						<div className="row">
 							<div className="col s7">
@@ -172,41 +187,41 @@ class Purchase extends Component {
                 <div className="row">
                   <div className="col s6">총 서비스 금액</div>
                   <div className="col s6">
-                    150,000원
+                    {price.price}
                   </div>
                 </div>
 							</div>
 
 							<div className="col s5">
 								<h5 className='col s6'>총 결제금액</h5>
-								<h5 className="col s6">150,000원</h5>
+								<h5 className="col s6 scorehvy">{'₩' + price.price}</h5>
 							</div>
 
 						</div>
 					</div>
 				</div>
 				<div className="purchase-method">
-					<div className="panel-heading">결제방법</div>
-					<div className="panel-body">
-						<p>
+					<div className="panel-heading scorehvy">결제방법</div>
+					<div className="panel-body row">
+						<p className='col s3'>
 							<label htmlFor='pay_creditcard'>
 								<input onChange={this.handleChange} id='pay_creditcard' name="method" className="with-gap" type="radio" required />
 								<span>신용카드</span>
 							</label>
 						</p>
-						<p>
+						<p className='col s3'>
 							<label htmlFor='pay_kontobezahlen'>
 								<input onChange={this.handleChange} id='pay_kontobezahlen' name="method" className="with-gap" type="radio" required/>
 								<span>실시간 계좌이체</span>
 							</label>
 						</p>
-						<p>
+						<p className='col s3'>
 							<label htmlFor='pay_bankaccount'>
 								<input onChange={this.handleChange} id='pay_bankaccount' name="method" className="with-gap" type="radio" required/>
 								<span>무통장입금</span>
 							</label>
 						</p>
-						<p>
+						<p className='col s3'>
 							<label htmlFor='pay_cellphone'>
 								<input onChange={this.handleChange} id='pay_cellphone' name="method" className="with-gap" type="radio" required/>
 								<span>휴대폰</span>
@@ -215,7 +230,7 @@ class Purchase extends Component {
 					</div>
 				</div>
 				<div className="tax">
-					<div className="panel-heading">세금계산서</div>
+					<div className="panel-heading scorehvy">세금계산서</div>
 					<div className="panel-body">
 						<li>개인 전문가이므로 세금계산서 발행이 불가능합니다.</li>
 						<li>현금영수증(사업자지출증빙) / 신용카드 매입전표는 매입세액공제 사용이 불가능합니다. [매입세액공제 안내]</li>
@@ -239,7 +254,7 @@ class Purchase extends Component {
                 </div>
                 <div className="modal-footer">
                   <button onClick={this.close_modal} className="modal-close btn-flat waves-effect left">취소</button>  
-                  <button onClick={this.buy_by_click} className="btn-flat waves-effect right">구매하기</button>  
+                  <button onClick={(e) => this.buy_by_click(e, price)} className="btn-flat waves-effect right">구매하기</button>  
                 </div>              
               </div>
               </Fragment>
@@ -252,18 +267,18 @@ class Purchase extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    service: state.firestore.data.service,
+    will_purchase: state.firestore.data.will_purchase,
   }
 }
 const mapDisptachToProps = (dispatch) => {
   return {
-    _buy_service: (service_id, service, history) => dispatch(_buy_service(service_id, service, history)),
+    _buy_service: (service_id, will_purchase, price, history) => dispatch(_buy_service(service_id, will_purchase, price, history)),
   }
 }
 export default compose(
   connect(mapStateToProps, mapDisptachToProps),
   firestoreConnect((props) => [
-    { collection: 'services', doc: props.match.params.service_id, storeAs: 'service' }
+    { collection: 'testService', doc: props.match.params.service_id, storeAs: 'will_purchase' }
   ])
 )(Purchase);
 

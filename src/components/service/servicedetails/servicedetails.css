@@ -1,20 +1,20 @@
-.service-details .tabs .tab a:hover, .tabs .tab a.active {
+.tabs .tab a:hover, .tabs .tab a.active {
   color: #4F328F !important;
 }
-.service-details .tabs .tab a {
-    color: rgba(80, 50, 143, 0.568);
+.tabs .tab a {
+    color: rgba(80, 50, 143, 0.568) !important;
 }
-.service-details .tabs .tab a:focus, .tabs .tab a:focus.active {
+.tabs .tab a:focus, .tabs .tab a:focus.active {
   background-color: rgba(80, 50, 143, 0.199) !important;
 }
-.service-details .tabs .tab.disabled a, .tabs .tab.disabled a:hover {
+.tabs .tab.disabled a, .tabs .tab.disabled a:hover {
   color: rgba(129, 126, 126, 0.4) !important;
 }
-.service-details .tabs .tab.disabled a:focus, .tabs .tab.disabled a:focus.active {
+.tabs .tab.disabled a:focus, .tabs .tab.disabled a:focus.active {
   background-color: transparent !important;
 }
-.service-details .tabs .indicator {
-  background-color: #4F328F;
+.tabs .indicator {
+  background-color: #4F328F !important;
 }
 .service-details .fixed {
   margin-top: 5rem;
@@ -32,18 +32,22 @@
 .service-details .service-description .video-wrapper video {
   margin-bottom: 2rem;
 }
+.serviceSetting .service-description .service-intro,
 .service-details .service-description .service-intro {
   display: inline-block;
   border-bottom: 3px solid black;
   padding-bottom: .35rem;
 }
+.serviceSetting .service-description .images-area,
 .service-details .service-description .images-area {
   height: 200px;
   margin: 0 2rem 0 0;
 }
+.serviceSetting .service-description .images-area .indicators .indicator-item,
 .service-details .service-description .images-area .indicators .indicator-item {
   background-color: rgba(61, 59, 59, 0.548);
 } 
+.serviceSetting .service-description .images-area .indicators .indicator-item.active,
 .service-details .service-description .images-area .indicators .indicator-item.active {
   background-color: black;
 }
@@ -147,21 +151,27 @@
   color: gray !important;
   margin-left: 1.5rem;
 }
-
+.serviceSetting .re_thumbnail .thumb,
+.serviceSetting .thumbnail .thumb,
 .service-details .thumbnail .thumb {
   width: 100%;
   height: 30rem;
 }
+.serviceSetting .re_thumbnail .side-img,
+.serviceSetting .thumbnail .side-img,
 .service-details .thumbnail .side-img {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
+.serviceSetting .re_thumbnail .side,
+.serviceSetting .thumbnail .side,
 .service-details .thumbnail .side {
   width: 100%;
   height: 10rem;
 }
+.serviceSetting .thumbnail .under-side,
 .service-details .thumbnail .under-side {
   height: 15rem;
   margin-top: 1.5rem;

@@ -13,5 +13,8 @@ code {
 }
 
 .myomColor {
-  color: #4F328F;
+  color: #4F328F !important;
+}
+.myomColor-background {
+  background-color: #4F328F !important;
 }

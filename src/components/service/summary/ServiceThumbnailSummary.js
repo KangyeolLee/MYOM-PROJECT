@@ -7,26 +7,27 @@ class ServiceThumbnailSummary extends Component {
   }
 
   render() {
-    const { files } = this.props;
+    const { files, no_init } = this.props;
+    const materialboxed = (no_init === true) ? '' : 'materialboxed';
     const details = [files.details1, files.details2, files.details3, files.details4, files.details5].filter(item => item !== undefined);
     return (
       <div className='thumbnail row'>
         <div className="thumb-img col s9">
-          <img src={files.thumbnail} alt="" className="thumb materialboxed"/>
+          <img src={files.thumbnail} alt="" className={"thumb " + materialboxed}/>
         </div>
         
         <div className="side-img col s3">
           {
             (details.length)
               ? details.map((imgURL, index) => {
-                if(index <= 2) return <img src={imgURL} alt="" className="side materialboxed" key={imgURL}/>
+                if(index <= 2) return <img src={imgURL} alt="" className={"side " + materialboxed} key={imgURL + index}/>
               })
               : null
           }
         </div>
 
-        { details[3] ? <img src={details[3]} alt="" className="under-side col s6 materialboxed"/> : null }
-        { details[4] ? <img src={details[4]} alt="" className="under-side col s6 materialboxed"/> : null }
+        { details[3] ? <img src={details[3]} alt="" className={"under-side col s6 " + materialboxed}/> : null }
+        { details[4] ? <img src={details[4]} alt="" className={"under-side col s6 " + materialboxed}/> : null }
       </div>
     )
   }

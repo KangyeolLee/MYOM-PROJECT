@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import './preloader.css';
 
 const Preloader = () => {
   return (
-    <li className="collection-item preloader">
+    <li style={{backgroundColor: 'transparent'}} className="collection-item preloader">
       <div className="preloader-wrapper small active center">
         <div className="spinner-layer spinner-red-only">
           <div className="circle-clipper left"><div className="circle"></div></div>

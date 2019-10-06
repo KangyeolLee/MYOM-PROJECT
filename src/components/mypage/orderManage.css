@@ -1,3 +1,6 @@
+.ordersManage .sub-title {
+  margin-bottom: 3rem;
+}
 .ordersManage .collection {
   display: flex;
   justify-content: center;
@@ -23,6 +26,10 @@
 }
 .ordersManage .collection.notEmpty .collection-item {
   border-bottom: none !important;
+}
+.ordersManage .collection.notEmpty .collection-item .image-area img {
+  width: 100%;
+  height: 15rem;
 }
 .ordersManage .collection-item.order-status {
   margin: 0;

@@ -27,17 +27,17 @@ class OrderManage extends Component {
     M.AutoInit();
   }
   componentDidUpdate(prevProps, prevState) {
-    if(this.props.purchaseList !== prevProps.purchaseList) {
-      const { purchaseList } = this.props;
+    if(this.props.orderList !== prevProps.orderList) {
+      const { orderList } = this.props;
       let { all_count, request_count, proceed_count, complete_count, review_count, cancel_count } = prevState;
 
-      if(purchaseList) {
-        all_count = purchaseList.length;
-        request_count = purchaseList.filter(item => item.hasOwnProperty('request') === false).length;
-        proceed_count = purchaseList.filter(item => item.proceed === true).length;
-        complete_count = purchaseList.filter(item => item.proceed === false).length;
-        review_count = purchaseList.filter(item => item.review === false).length;
-        cancel_count = purchaseList.filter(item => item.cancel).length;
+      if(orderList) {
+        all_count = orderList.length;
+        request_count = orderList.filter(item => item.hasOwnProperty('request') === false).length;
+        proceed_count = orderList.filter(item => item.proceed === true).length;
+        complete_count = orderList.filter(item => item.proceed === false).length;
+        review_count = orderList.filter(item => item.review === false && item.proceed === false).length;
+        cancel_count = orderList.filter(item => item.cancel).length;
       }
        
       this.setState({
@@ -58,7 +58,7 @@ class OrderManage extends Component {
   }
 
   render() {
-    const { pathname, purchaseList } = this.props;
+    const { pathname, orderList } = this.props;
     const { curPage, perPage, all_count, request_count, proceed_count, complete_count, review_count, cancel_count } = this.state;
     const selectorValueForOrders = pathname.includes('mypageBuyer');
     let indexOfLast = curPage * perPage; let indexOfFirst = indexOfLast - perPage;
@@ -66,9 +66,9 @@ class OrderManage extends Component {
       ? (
         <div className="ordersManage">
           <div className="row">
-            <h4>구매 관리</h4>
+            <h5 className='col s12 scorehvy sub-title'>구매 관리</h5>
             <div className="col s12">
-              <ul className="tabs">
+              <ul className="tabs scorehvy">
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderAll">전체 ({all_count})</a></li>
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderRequest">미접수 ({request_count})</a></li>
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderProceed">진행중 ({proceed_count})</a></li>
@@ -78,12 +78,12 @@ class OrderManage extends Component {
               </ul>
             </div>
 
-            <div id="orderAll">
-              <SearchBoxDatepicker num={0} />
+            <div className='col s12' id="orderAll">
+              {/* <SearchBoxDatepicker num={0} /> */}
               {
-                !isLoaded(purchaseList)
+                !isLoaded(orderList)
                   ? <div className="collection"><Preloader /></div>
-                  : isEmpty(purchaseList)
+                  : isEmpty(orderList)
                     ? (
                       <div className="collection">
                         <div className="collection-item-wrapper">
@@ -92,19 +92,19 @@ class OrderManage extends Component {
                         </div>
                       </div>
                     )
-                    : (purchaseList.slice(indexOfFirst,indexOfLast).map(item => (
+                    : (orderList.slice(indexOfFirst,indexOfLast).map(item => (
                       <OrderManagementSummary key={item.id} chk={selectorValueForOrders} purchaseList={item} />
                     )))
               }            
               <Pagination pages={Math.ceil(all_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
-            <div id="orderRequest">
-              <SearchBoxDatepicker num={1} />
+            <div className='col s12' id="orderRequest">
+              {/* <SearchBoxDatepicker num={1} /> */}
               {
-                !isLoaded(purchaseList)
+                !isLoaded(orderList)
                   ? <div className="collection"><Preloader /></div>
-                  : isEmpty(purchaseList.filter(item => item.hasOwnProperty('request') === false))
+                  : isEmpty(orderList.filter(item => item.hasOwnProperty('request') === false))
                     ? (
                       <div className="collection">
                         <div className="collection-item-wrapper">
@@ -113,19 +113,19 @@ class OrderManage extends Component {
                         </div>
                       </div>
                     )
-                    : (purchaseList.slice(indexOfFirst, indexOfLast).filter(item => item.hasOwnProperty('request') === false).map(item => (
+                    : (orderList.filter(item => item.hasOwnProperty('request') === false).slice(indexOfFirst, indexOfLast).map(item => (
                       <OrderManagementSummary key={item.id} chk={selectorValueForOrders} purchaseList={item} />
                     )))
               }    
               <Pagination pages={Math.ceil(request_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />        
             </div>
 
-            <div id="orderProceed">
-              <SearchBoxDatepicker num={2} />
+            <div className='col s12' id="orderProceed">
+              {/* <SearchBoxDatepicker num={2} /> */}
               {
-                !isLoaded(purchaseList)
+                !isLoaded(orderList)
                   ? <div className="collection"><Preloader /></div>
-                  : isEmpty(purchaseList.filter(item => item.proceed === true))
+                  : isEmpty(orderList.filter(item => item.proceed === true))
                     ? (
                       <div className="collection">
                         <div className="collection-item-wrapper">
@@ -134,19 +134,19 @@ class OrderManage extends Component {
                         </div>
                       </div>
                     )
-                    : (purchaseList.slice(indexOfFirst, indexOfLast).filter(item => item.proceed === true).map(item => (
+                    : (orderList.filter(item => item.proceed === true).slice(indexOfFirst, indexOfLast).map(item => (
                       <OrderManagementSummary key={item.id} chk={selectorValueForOrders} purchaseList={item} />
                     )))
               }
               <Pagination pages={Math.ceil(proceed_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
-            <div id="orderComplete">
-              <SearchBoxDatepicker num={3} />
+            <div className='col s12' id="orderComplete">
+              {/* <SearchBoxDatepicker num={3} /> */}
               {
-                !isLoaded(purchaseList)
+                !isLoaded(orderList)
                   ? <div className="collection"><Preloader /></div>
-                  : isEmpty(purchaseList.filter(item => item.proceed === false))
+                  : isEmpty(orderList.filter(item => item.proceed === false))
                     ? (
                       <div className="collection">
                         <div className="collection-item-wrapper">
@@ -155,19 +155,19 @@ class OrderManage extends Component {
                         </div>
                       </div>
                     )
-                    : (purchaseList.slice(indexOfFirst, indexOfLast).filter(item => item.proceed === false).map(item => (
+                    : (orderList.filter(item => item.proceed === false).slice(indexOfFirst, indexOfLast).map(item => (
                       <OrderManagementSummary key={item.id} chk={selectorValueForOrders} purchaseList={item} />
                     )))
               }
               <Pagination pages={Math.ceil(complete_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
-            <div id="orderReview">
-              <SearchBoxDatepicker num={4} />
+            <div className='col s12' id="orderReview">
+              {/* <SearchBoxDatepicker num={4} /> */}
               {
-                !isLoaded(purchaseList)
+                !isLoaded(orderList)
                   ? <div className="collection"><Preloader /></div>
-                  : isEmpty(purchaseList.filter(item => item.review === false))
+                  : isEmpty(orderList.filter(item => item.review === false))
                     ? (
                       <div className="collection">
                         <div className="collection-item-wrapper">
@@ -176,19 +176,19 @@ class OrderManage extends Component {
                         </div>
                       </div>
                     )
-                    : (purchaseList.slice(indexOfFirst, indexOfLast).filter(item => item.review === false).map(item => (
+                    : (orderList.filter(item => item.review === false && item.proceed === false).slice(indexOfFirst, indexOfLast).map(item => (
                       <OrderManagementSummary key={item.id} chk={selectorValueForOrders} purchaseList={item} />
                     )))
               }
               <Pagination pages={Math.ceil(review_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
-            <div id="orderCanceled">
-              <SearchBoxDatepicker num={5} />
+            <div className='col s12' id="orderCanceled">
+              {/* <SearchBoxDatepicker num={5} /> */}
               {
-                !isLoaded(purchaseList)
+                !isLoaded(orderList)
                   ? <div className="collection"><Preloader /></div>
-                  : isEmpty(purchaseList.filter(item => item.cancel))
+                  : isEmpty(orderList.filter(item => item.cancel))
                     ? (
                       <div className="collection">
                         <div className="collection-item-wrapper">
@@ -197,10 +197,11 @@ class OrderManage extends Component {
                         </div>
                       </div>
                     )
-                    : (purchaseList.slice(indexOfFirst, indexOfLast).filter(item => item.cancel).map(item =>
+                    : (orderList.filter(item => item.cancel).slice(indexOfFirst, indexOfLast).map(item =>
                       <OrderManagementSummary key={item.id} chk={selectorValueForOrders} purchaseList={item} />
                     ))
               }
+              <Pagination pages={Math.ceil(cancel_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
             
 
@@ -211,9 +212,9 @@ class OrderManage extends Component {
       : (
         <div className="ordersManage">
           <div className="row">
-            <h4>판매 관리</h4>
+            <h5 className='col s12 scorehvy sub-title'>판매 관리</h5>
             <div className="col s12">
-              <ul className="tabs">
+              <ul className="tabs scorehvy">
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderAll">전체 ({all_count})</a></li>
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderRequest">미접수 ({request_count})</a></li>
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderProceed">진행중 ({proceed_count})</a></li>
@@ -223,12 +224,12 @@ class OrderManage extends Component {
               </ul>
             </div>
 
-            <div id="orderAll">
-              <SearchBoxRange num={0} />
+            <div className='col s12' id="orderAll">
+              {/* <SearchBoxRange num={0} /> */}
               {
-                !isLoaded(purchaseList)
+                !isLoaded(orderList)
                   ? <div className="collection"><Preloader /></div>
-                  : isEmpty(purchaseList)
+                  : isEmpty(orderList)
                     ? (
                       <div className="collection">
                         <div className="collection-item-wrapper">
@@ -237,19 +238,19 @@ class OrderManage extends Component {
                         </div>
                       </div>
                     )
-                    : (purchaseList.slice(indexOfFirst, indexOfLast).map(item => 
+                    : (orderList.slice(indexOfFirst, indexOfLast).map(item => 
                       <OrderManagementSummary key={item.id} chk={selectorValueForOrders} purchaseList={item} />
                     ))
               }
               <Pagination pages={Math.ceil(all_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
-            <div id="orderRequest">
-              <SearchBoxRange num={1} />
+            <div className='col s12' id="orderRequest">
+              {/* <SearchBoxRange num={1} /> */}
               {
-                !isLoaded(purchaseList)
+                !isLoaded(orderList)
                   ? <div className="collection"><Preloader /></div>
-                  : isEmpty(purchaseList.filter(item => item.hasOwnProperty('request') === false))
+                  : isEmpty(orderList.filter(item => item.hasOwnProperty('request') === false))
                     ? (
                       <div className="collection">
                         <div className="collection-item-wrapper">
@@ -258,19 +259,19 @@ class OrderManage extends Component {
                         </div>
                       </div>
                     )
-                    : (purchaseList.slice(indexOfFirst, indexOfLast).filter(item => item.hasOwnProperty('request') === false).map(item => 
+                    : (orderList.filter(item => item.hasOwnProperty('request') === false).slice(indexOfFirst, indexOfLast).map(item => 
                       <OrderManagementSummary key={item.id} chk={selectorValueForOrders} purchaseList={item} />
                     ))
               }
               <Pagination pages={Math.ceil(request_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
-            <div id="orderProceed">
-              <SearchBoxRange num={2} />
+            <div className='col s12' id="orderProceed">
+              {/* <SearchBoxRange num={2} /> */}
               {
-                !isLoaded(purchaseList)
+                !isLoaded(orderList)
                   ? <div className="collection"><Preloader /></div>
-                  : isEmpty(purchaseList.filter(item => item.proceed === true))
+                  : isEmpty(orderList.filter(item => item.proceed === true))
                     ? (
                       <div className="collection">
                         <div className="collection-item-wrapper">
@@ -279,19 +280,19 @@ class OrderManage extends Component {
                         </div>
                       </div>
                     )
-                    : (purchaseList.slice(indexOfFirst, indexOfLast).filter(item => item.proceed === true).map(item => 
+                    : (orderList.filter(item => item.proceed === true).slice(indexOfFirst, indexOfLast).map(item => 
                       <OrderManagementSummary key={item.id} chk={selectorValueForOrders} purchaseList={item} />
                     ))
               }
               <Pagination pages={Math.ceil(proceed_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
-            <div id="orderComplete">
-              <SearchBoxRange num={3} />
+            <div className='col s12' id="orderComplete">
+              {/* <SearchBoxRange num={3} /> */}
               {
-                !isLoaded(purchaseList)
+                !isLoaded(orderList)
                   ? <div className="collection"><Preloader /></div>
-                  : isEmpty(purchaseList.filter(item => item.proceed === false))
+                  : isEmpty(orderList.filter(item => item.proceed === false))
                     ? (
                       <div className="collection">
                         <div className="collection-item-wrapper">
@@ -300,19 +301,19 @@ class OrderManage extends Component {
                         </div>
                       </div>
                     )
-                    : (purchaseList.slice(indexOfFirst, indexOfLast).filter(item => item.proceed === false).map(item => 
+                    : (orderList.filter(item => item.proceed === false).slice(indexOfFirst, indexOfLast).map(item => 
                       <OrderManagementSummary key={item.id} chk={selectorValueForOrders} purchaseList={item} />
                     ))
               }
               <Pagination pages={Math.ceil(complete_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
-            <div id="orderReview">
-              <SearchBoxRange num={4} />
+            <div className='col s12' id="orderReview">
+              {/* <SearchBoxRange num={4} /> */}
               {
-                !isLoaded(purchaseList)
+                !isLoaded(orderList)
                   ? <div className="collection"><Preloader /></div>
-                  : isEmpty(purchaseList.filter(item => item.review === false))
+                  : isEmpty(orderList.filter(item => item.review === false))
                     ? (
                       <div className="collection">
                         <div className="collection-item-wrapper">
@@ -321,19 +322,19 @@ class OrderManage extends Component {
                         </div>
                       </div>
                     )
-                    : (purchaseList.slice(indexOfFirst, indexOfLast).filter(item => item.review === false).map(item => 
+                    : (orderList.filter(item => item.review === false && item.proceed === false).slice(indexOfFirst, indexOfLast).map(item => 
                       <OrderManagementSummary key={item.id} chk={selectorValueForOrders} purchaseList={item} />
                     ))
               }
               <Pagination pages={Math.ceil(review_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
 
-            <div id="orderCanceled">
-              <SearchBoxRange num={5} />
+            <div className='col s12' id="orderCanceled">
+              {/* <SearchBoxRange num={5} /> */}
               {
-                !isLoaded(purchaseList)
+                !isLoaded(orderList)
                   ? <div className="collection"><Preloader /></div>
-                  : isEmpty(purchaseList.filter(item => item.cancel))
+                  : isEmpty(orderList.filter(item => item.cancel))
                     ? (
                       <div className="collection">
                         <div className="collection-item-wrapper">
@@ -342,11 +343,11 @@ class OrderManage extends Component {
                         </div>
                       </div>
                     )
-                    : (purchaseList.slice(indexOfFirst, indexOfLast).filter(item => item.cancel).map(item =>
+                    : (orderList.filter(item => item.cancel).slice(indexOfFirst, indexOfLast).map(item =>
                       <OrderManagementSummary key={item.id} chk={selectorValueForOrders} purchaseList={item} />
                     ))
               }
-              
+              <Pagination pages={Math.ceil(cancel_count / perPage)} paginate={this.paginate} curPage={this.state.curPage} />
             </div>
             
 
@@ -363,7 +364,7 @@ class OrderManage extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
-    purchaseList: state.firestore.ordered.purchaseList,
+    orderList: state.firestore.ordered.orderList,
   }
 }
 
@@ -374,11 +375,11 @@ export default compose(
     const selectorValueForOrders = props.pathname.includes('mypageBuyer');
     if(selectorValueForOrders) {
       return [
-        { collection: 'purchaseList', where: ['buyer_id', '==', uid], orderBy: ['date', 'desc'], storeAs: 'purchaseList' }
+        { collection: 'purchaseList', where: ['buyer_id', '==', uid], orderBy: ['purchasedAt', 'desc'], storeAs: 'orderList' }
       ]
     } else {
       return [
-        { collection: 'purchaseList', where: ['provider_id', '==', uid], orderBy: ['date', 'desc'], storeAs: 'purchaseList'}
+        { collection: 'purchaseList', where: ['provider_id', '==', uid], orderBy: ['purchasedAt', 'desc'], storeAs: 'orderList'}
       ]
     }
 

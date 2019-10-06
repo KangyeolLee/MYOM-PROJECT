@@ -1,13 +1,6 @@
 .mypageForBuyer {
   margin-top: 5rem;
 }
-.mypageForBuyer .profile-infos {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 3rem 0 3rem 0;
-}
 .mypageForBuyer .profile-infos .btn-floating {
   width: 10rem;
   height: 10rem;
@@ -32,4 +25,14 @@
   padding: 1rem;
   background-color: #fff;
   border-bottom: 1px solid #ddd;
+}
+
+.myPageSidenav .profile-infos {
+  border: 1px solid #ddd;
+  padding: 2rem 0;
+  margin: 1.0933333333rem 0 3rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

@@ -10,7 +10,7 @@ class CreateServiceStep2 extends Component {
         <h5 className="center">등록할 서비스의 제목과 내용을 추가해주세요!</h5>
 
         <div className="input-field service-title col s10 offset-s1">
-          <input className='has-character-counter _required' id='service_title' type="text" data-length='40' maxLength='40'
+          <input className='has-character-counter _required' id='service_title' type="text" data-length='40' maxLength='41'
             placeholder='ex) 여행영상 요구에 맞춰 빠르게 편집해드립니다!' 
             onKeyPress={this.props.handleKeyPress}
             onChange={this.props.handleChange}
@@ -20,7 +20,7 @@ class CreateServiceStep2 extends Component {
         </div>
 
         <div className={"input-field no-autoinit service-title col s10 offset-s1 none" + class_trigger}>
-          <textarea className='has-character-counter _required materialize-textarea' id='service_content' type="text" data-length='500' maxLength='500'
+          <textarea className='has-character-counter _required materialize-textarea' id='service_content' type="text" data-length='500' maxLength='501'
             placeholder='ex) 다양한 컨셉의 영상을 니즈에 맞게 제작합니다!' 
             onChange={this.props.handleChange}
             value={this.props.service_content} />
