@@ -15,7 +15,6 @@ const RegisterProviderStep2 = (props) => {
 					<h6>작업이력</h6>
 					<div className="input-field">
 						<textarea className='_required' id="career" cols="30" rows="10" onChange={props.handleChange} value={props.career}></textarea>
-						<label htmlFor="career" className='active'>작업이력</label>
 						{ props.need && !props.career ? <span className='red-text'><i className='material-icons'>error</i>필수로 작성해야 합니다!</span> : null }
 					</div>
 				</div>
