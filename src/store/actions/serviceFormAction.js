@@ -90,7 +90,8 @@ export const createService = (serviceData) => {
         service_title: serviceData.service_title,
         service_content: serviceData.service_content,
         videos: videos,
-        provider_id: userAuth.email,
+        provider_id: userAuth.uid,
+        provider_email: userAuth.email,
         timestamp: new Date(),
         reviewCount: 0,
       }, {merge: true});
