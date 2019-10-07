@@ -7,6 +7,7 @@ import RegisterProviderStep2 from './RegisterProviderStep2'
 import RegisterProviderStep3 from './RegisterProviderStep3'
 import './registerProvider.css'
 import { registerIntroduction } from '../../store/actions/editorAction'
+import M from 'materialize-css';
 import { Button } from '@material-ui/core';
 
 class RegisterProvider extends Component {
@@ -18,6 +19,14 @@ class RegisterProvider extends Component {
 		career_year: '',
 		career: '',
 		portfolio: '',
+	}
+	componentDidMount(){
+		M.AutoInit();
+	}
+	componentDidUpdate(prevProps, prevState){
+		if(prevState.currentStep !== this.state.currentStep){
+			M.CharacterCounter.init(document.querySelectorAll('.has-character-counter'));
+		}
 	}
 	handleChange = (e) => {
 		this.setState({
