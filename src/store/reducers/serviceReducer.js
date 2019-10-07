@@ -153,6 +153,14 @@ const serviceRuducer = (state=initState, action) => {
     case 'CANCEL_ORDER_ERROR':
       console.log('CANCEL_ORDER_ERROR', action.err.message);
       return state;
+    
+    case 'CHAT_CREATE_SUCCESS':
+      console.log('CHAT_CREATE_SUCCESS')
+      return state;
+    
+    case 'CHAT_CREATE_ERROR':
+      console.log('error');
+      return state;
       
     default:
       return state;

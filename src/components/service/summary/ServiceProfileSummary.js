@@ -9,10 +9,10 @@ class ServiceProfileSummary extends Component {
   }
   handleChatCreate = (e) => {
     e.preventDefault();
-    this.props.chatCreate(this.props.provider_id);
+    this.props.chatCreate(this.props.provider_email, this.props.history);
   }
   render() {
-    console.log(this.props);
+    console.log(this.props.history);
     return (
       <div className="provider-profile row">
         <div className="card col s12 z-depth-0">
@@ -55,7 +55,7 @@ class ServiceProfileSummary extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    chatCreate: (userData) => dispatch(chatCreate(userData)),
+    chatCreate: (userData, history) => dispatch(chatCreate(userData, history)),
   }
 }
 

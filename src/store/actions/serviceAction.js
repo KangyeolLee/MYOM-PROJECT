@@ -124,7 +124,7 @@ export const _cancel_order = (purchaseList_id) => {
   }
 }
 
-export const chatCreate = (userData) => {
+export const chatCreate = (userData, history) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userInfo = getState().firebase.auth;
@@ -133,14 +133,20 @@ export const chatCreate = (userData) => {
       users: [
         userInfo.email,
         userData
+      ],
+      messages: [
+        {
+          message: '반갑습니다, 자유롭게 문의주시기바랍니다.',
+          sender: userData
+        }
       ]
     })
     .then(() => {
-      console.log('a');
+      dispatch({type: 'CHAT_CREATE_SUCCESS'});
+      history.push('/chatDashboard');
     })
     .catch((err) => {
-      console.log(err);
+      dispatch({type:'CHAT_CREATE_ERROR'});
     })
-
   }
 }
