@@ -72,7 +72,7 @@ class CreateService extends Component {
           { tag: '컷편집' },
           { tag: '기본 색보정' },
         ],
-        limit: 8,
+        limit: 7,
         onChipDelete: () => {
           const chips = [...document.querySelectorAll('#pro-options .chip')];
           const filter = chips.filter(item => item.className === 'chip');
