@@ -96,7 +96,7 @@ export default compose(
 	firestoreConnect((props) => {
 		const _usr = !isLoaded(props.profile.email) ? 'null' : props.profile.email;
 		return [
-				{ collection: 'chats' , where: ['users', 'array-contains', _usr] ,storeAs:'chatAll'},
+				{ collection: 'chats' , where: ['users_email', 'array-contains', _usr] ,storeAs:'chatAll'},
 		]
 	}),
 )(ChatDashboard);

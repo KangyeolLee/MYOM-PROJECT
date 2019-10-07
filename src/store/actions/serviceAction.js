@@ -124,22 +124,35 @@ export const _cancel_order = (purchaseList_id) => {
   }
 }
 
-export const chatCreate = (userData, history) => {
+export const chatCreate = (userEmail, userNickName, history) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userInfo = getState().firebase.auth;
-    const docRef = firestore.collection('chats');
-    docRef.doc(userInfo.email+':'+userData).set({
-      users: [
-        userInfo.email,
-        userData
-      ],
-      messages: [
-        {
-          message: '반갑습니다, 자유롭게 문의주시기바랍니다.',
-          sender: userData
-        }
-      ]
+    const userProfile = getState().firebase.profile;
+    const docRef = firestore.collection('chats').doc(userInfo.email+':'+ userEmail);
+    
+    docRef.get().then(doc=> {
+      if(doc.exists){
+        return;
+      }else{
+        docRef.doc(userInfo.email+':'+ userEmail).set({
+          users_email: [
+            userInfo.email,
+            userEmail,
+          ],
+          users_nickName : [
+            userProfile.initials,
+            userNickName,
+          ],
+          messages: [
+            {
+              message: '반갑습니다, 자유롭게 문의주시기바랍니다.',
+              sender: userNickName,
+              sendAt: new Date(),
+            }
+          ]
+        })
+      }
     })
     .then(() => {
       dispatch({type: 'CHAT_CREATE_SUCCESS'});
