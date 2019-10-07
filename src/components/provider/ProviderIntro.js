@@ -6,7 +6,6 @@ import './providerIntro.css';
 class ProviderIntro extends Component {
   render() {
     console.log(this.props);
-    const imgSrc = this.props.match.path;
     return (
       <div className="providerIntro">
         <Banner path='editor'/>

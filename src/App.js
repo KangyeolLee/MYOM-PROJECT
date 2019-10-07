@@ -39,6 +39,7 @@ import Categorypage from './design-concept/Categorypage';
 import Servicepage from './design-concept/Servicepage';
 import PostEditor from './components/community/PostEditor';
 import RequestForm from './components/requestForm/RequestForm';
+import ProviderRegister from './components/provider/ProviderRegister';
 
 class App extends Component {
   render(){
@@ -53,7 +54,7 @@ class App extends Component {
                 <Route exact path='/thema/:category/:id' component={ServiceDetails} />
                 <Route path='/thema' component={AllService} />
                 <Route path='/productIntro' component={ProviderIntro} />
-                <Route path='/registerProvider' component={RegisterProvider} />
+                <Route path='/providerRegister' component={ProviderRegister} />
                 <Route path='/signin' component={SignIn} />
                 <Route path='/signup' component={SignUp} />
                 <Route path='/mypageBuyer' component={MypageForBuyer} />}

@@ -31,7 +31,7 @@ const CreateServiceStep4 = (props) => {
       </div>
 
       <div className="input-field col s10 offset-s1">
-        <input className='has-character-counter _required' id='basic_intro' type="text" data-length='40' maxLength='40'
+        <input className='has-character-counter _required' id='basic_intro' type="text" data-length='40' maxLength='41'
             placeholder='ex) 기본적인 영상 효과 및 자막 편집합니다.' 
             onChange={props.handleChange}
             onKeyPress={props.handleKeyPress}
@@ -110,7 +110,7 @@ const CreateServiceStep4 = (props) => {
       </div>
 
       <div className="input-field col s10 offset-s1">
-        <label htmlFor="pro-options" className='active'>PROFESSIONAL 기본옵션 (최대 8개)</label>
+        <label htmlFor="pro-options" className='active'>PROFESSIONAL 기본옵션 (최대 7개)</label>
         <div className="chips chips-initial col s9 no-autoinit" id='pro-options'>
           <input type="text" id='pro_additional' className="custom-class" placeholder='추가옵션' onKeyDown={props.handleChips} />
         </div>
