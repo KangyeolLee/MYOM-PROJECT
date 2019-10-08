@@ -26,6 +26,9 @@
   margin-top: 5rem;
   margin-bottom: 3rem;
 }
+.service-details .service-content {
+  white-space: pre-wrap;
+}
 .service-details .container {
   position: relative;
 }
@@ -57,6 +60,7 @@
   background-color: #fff;
   position: relative;
   border: 1px solid #4F328F;
+  margin-bottom: 0;
 }
 .service-details .price-wrapper i.material-icons {
   vertical-align: middle;
@@ -93,13 +97,20 @@
 .service-details .provider-profile {
   position: relative;
   width: 33.33333333%;
+  margin-bottom: 0;
 }
 .service-details .provider-profile .card {
   border: 1px solid #4F328F;
   margin-top: 0;
+  max-height: 403px;
+}
+.service-details .provider-profile .card .chips {
+  display: flex;
+  overflow: hidden;
+  height: 37px;
 }
 .service-details .provider-profile .card .card-image {
-  padding: 24px;
+  padding: .75rem 0;
   display: flex;
 }
 .service-details .provider-profile .card .card-image .profile-title {
@@ -126,8 +137,8 @@
 .service-details .provider-profile .card .card-title {
   margin-bottom: 1.5rem;
 }
-.service-details .provider-profile .card .provider-intro {
-  padding: 0 .75rem;
+.service-details .provider-profile .card .card-content {
+  padding: .75rem;
 }
 .service-details .provider-profile .card .chips input {
   display: none;
@@ -205,7 +216,7 @@
   padding-bottom: .35rem;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1024px), screen and (max-height: 900px) {
   .service-details {
     min-width: unset;
     width: 100% !important;
@@ -231,8 +242,36 @@
     width: 100%;
     margin-left: 0 !important;
   }
+  .service-details .provider-profile .card {
+    height: 403px;
+  }
   .service-details .price-wrapper {
     width: 100%;
     margin-left: 0 !important;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .service-details .thumbnail .thumb-img {
+    padding-bottom: 100%;
+    height: unset;
+    position: relative;
+  }
+  .service-details .thumbnail .thumb {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .service-details .thumbnail .side-img {
+    margin: 1.5rem 0;
+  }
+  .service-details .thumbnail .side {
+    height: 100%;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .service-details .thumbnail .under-side {
+    height: 7.5rem;
   }
 }

@@ -3,7 +3,7 @@ import './footer.css'
 
 const Footer = () => {
 	return(
-		<footer class='page-footer myomFooter'>
+		<footer className='page-footer myomFooter'>
 			<div className="container">
 				<div className="row">
 					<div className="col l6 s12">
@@ -17,9 +17,9 @@ const Footer = () => {
 					<div className="col l4 offset-l2 s12">
 						<h5 className="white-text">SNS</h5>
 						<ul>
-							<li><a href="https://www.youtube.com/channel/UC9BIXe8YjejWnqd2r4w11-w" className="grey-text text-lighten-3"><i class="fab fa-youtube"></i></a></li>
-							<li><a href="https://www.instagram.com/myom__travel/" className="grey-text text-lighten-3"><i class="fab fa-instagram"></i></a></li>
-							<li><a href="https://www.facebook.com/Myom_travel-115307319843663/" className="grey-text text-lighten-3"><i class="fab fa-facebook-square"></i></a></li>
+							<li><a href="https://www.youtube.com/channel/UC9BIXe8YjejWnqd2r4w11-w" className="grey-text text-lighten-3"><i className="fab fa-youtube"></i></a></li>
+							<li><a href="https://www.instagram.com/myom__travel/" className="grey-text text-lighten-3"><i className="fab fa-instagram"></i></a></li>
+							<li><a href="https://www.facebook.com/Myom_travel-115307319843663/" className="grey-text text-lighten-3"><i className="fab fa-facebook-square"></i></a></li>
 						</ul>
 					</div>
 				</div>

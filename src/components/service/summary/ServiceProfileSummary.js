@@ -26,33 +26,32 @@ class ServiceProfileSummary extends Component {
             <img src="/img/logo/myom_logo3.jpeg" alt="" className=''/>
             <div className='profile-title'>
               <p className='profile-nickname'>{provider_nickName + '님'}</p>
-              <p className='more-info'>상세보기<i className="material-icons right">chevron_right</i></p>
+              <p className='more-info'>상세보기<i style={{verticalAlign: 'middle'}} className="material-icons">chevron_right</i></p>
             </div>
           </div>
                 
           <div className="col s12 divider"></div>
 
           <div className="card-content row">
-            <div className="provider-intro row">
-              <p className='col s4 scorehvy'>평균별점</p>
-              <span className="rate col s8"><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star_half</i></span>
+            <p className='col s4 scorehvy'>평균별점</p>
+            <span className="rate col s8"><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star_half</i></span>
 
-              <p className='col s4 scorehvy'>작업횟수</p>
-              <span className="col s8">32건</span>
+            <p className='col s4 scorehvy'>작업횟수</p>
+            <span className="col s8">32건</span>
 
-              <p className='col s4 scorehvy'>사용툴</p>
-              <span className="col s8">
-              {
-                tools.length && tools.map(tool => '#' + tool.name + ' / ')
-              }
-              </span>
+            <p className='col s4 scorehvy'>사용툴</p>
+            <span className="col s8">
+            {
+              tools.length && tools.map(tool => '#' + tool.name + ' / ')
+            }
+            </span>
 
-            </div>
 
-            <p className="col s4 scorehvy">스타일</p>
-            <div className="col s12 chips">
+            <p style={{marginTop: '2rem'}} className="col s4 scorehvy">스타일</p>
+            <div style={{marginTop: '.5rem'}} className="col s12 chips">
               <div className="chip">#브이로그</div>
               <div className="chip">#색감좋은</div>
+              <div className="chip">#트렌디한</div>
               <div className="chip">#트렌디한</div>
             </div>
           </div>

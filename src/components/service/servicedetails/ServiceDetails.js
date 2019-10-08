@@ -37,12 +37,12 @@ class ServiceDetails extends Component {
 
             {/* 1024px 부터 */}
             <div className="hidden-over-desktop row">
-              <div className="col l6 s12">
+              <div className="col l6 m6 s12">
                 <h5 className="sub-title scorehvy service-price">가격</h5>
                 <ServiceProfileSummary provider_id={service.provider_id} provider_email = {this.props.service.provider_email} provider_nickName= {this.props.service.provider_nickName} history={this.props.history} />         
               </div>
 
-              <div className="col l6 s12">
+              <div className="col l6 m6 s12">
                 <h5 className="sub-title scorehvy service-provider">편집자 프로필</h5>              
                 <ServicePricesSummary prefix='under-desktop' service_id={this.props.match.params.id} price={service.price} />             
               </div>   
@@ -68,7 +68,10 @@ class ServiceDetails extends Component {
 
             {/* 서비스리뷰 */}
             <h5 className="service-intro scorehvy">리뷰</h5>
-            <ServiceUserReview />
+            {/* <ServiceUserReview /> */}
+            <div className="collection">
+              <div className="collection-item">아직 작성된 리뷰가 없습니다.</div>
+            </div>
 
             {/* 서비스 환불정책 */}
             <h5 className="service-intro scorehvy">환불 정책</h5>
