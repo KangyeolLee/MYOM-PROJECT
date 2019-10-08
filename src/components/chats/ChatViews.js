@@ -28,13 +28,15 @@ class ChatViews extends Component {
 											(_index === chat.messages.length-1) && (_msg.sender === profile.initials) ?
 											<Fragment>
 												<p>{_msg.message}</p>
-												<cite>{_msg.sender} {moment(_msg.sendAt.toDate()).fromNow()} {chat.receiverHasRead ? 
+												<cite className="sender black-text">{_msg.sender}</cite>
+												<cite>{moment(_msg.sendAt.toDate()).fromNow()} {chat.receiverHasRead ? 
 													<Fragment>읽음</Fragment> : <Fragment>안읽음</Fragment>}</cite>
 											</Fragment>
 											:
 											<Fragment>
 												<p>{_msg.message}</p>
-												<cite>{_msg.sender} {moment(_msg.sendAt.toDate()).fromNow()}</cite>
+												<cite className="sender black-text">{_msg.sender}</cite>
+												<cite>{moment(_msg.sendAt.toDate()).fromNow()}</cite>
 											</Fragment>
 										
 										}

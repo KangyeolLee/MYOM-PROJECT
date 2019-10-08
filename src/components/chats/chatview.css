@@ -57,6 +57,15 @@
 	border-radius: 5px;
 }
 
+@media only screen and (max-width: 992px){
+	.user-sent-message{
+		width:50%;
+	}
+	.friend-sent-message{
+		width:50% !important;
+	}
+}
+
 .user-sent-message::before{
 	border: 12.5px solid transparent;
 	border-top: 12.5px solid #8ca8d8;
@@ -136,4 +145,11 @@
 
 .default-content .material-icons{
 	font-size: 5rem;
+}
+
+.sender{
+	position: absolute;
+	top: -2rem;
+	color: black;
+	left: 0 !important;
 }

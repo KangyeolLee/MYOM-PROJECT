@@ -1,6 +1,8 @@
 @media only screen and (max-width: 992px){
 	.chatsTemplate{
+		width: 100%;
 		margin-left: 0;
+		margin-right: 0;
 	}
 }
 
