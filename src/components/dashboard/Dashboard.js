@@ -3,6 +3,7 @@ import Banner from '../banner/Banner';
 import Theme from '../dashboard/Theme';
 import ClassLink from './ClassLink';
 import ServicePreview from './ServicePreview';
+import Footer from '../layout/Footer';
 
 const Dashboard = () => {
   return (
@@ -10,6 +11,7 @@ const Dashboard = () => {
       <Banner path='main'/>
       <ClassLink />
       <ServicePreview />
+      <Footer/>
     </div>
   )
 }

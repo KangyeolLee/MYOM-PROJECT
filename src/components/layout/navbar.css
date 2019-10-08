@@ -5,3 +5,9 @@
 .nav-wrapper {
   background-color: white;
 }
+
+@media only screen and (max-width: 992px){
+	.brand-logo{
+		left:20% !important;
+	}
+}

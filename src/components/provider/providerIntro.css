@@ -18,3 +18,16 @@
   position: absolute;
   z-index: -1;
 }
+
+.numbers{
+  width:15% !important;
+  text-align: right;
+}
+
+.margin{
+  margin-bottom: 3rem;
+}
+
+.expectMoney{
+  text-align: center;
+}
