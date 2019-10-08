@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import ChatSideNav from './ChatSideNav'
 import M from 'materialize-css'
-import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
 import { firestoreConnect, isLoaded } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -50,8 +48,8 @@ class ChatDashboard extends Component {
 		M.AutoInit();
 	}
 	render(){
-		const { chats, profile, match, chatInDeal } = this.props;
-		const { selectedChat, selectedType, chatId } = this.state;
+		const { chats, profile } = this.props;
+		const { chatId } = this.state;
 		const dealingChat = !isLoaded(chats) ? null : chats.filter(chat => chat.deal === true);
 		return(
 			<div className="chatDashboard">
@@ -61,7 +59,7 @@ class ChatDashboard extends Component {
 							!isLoaded(chats)
 								? <Preloader /> 
 								:
-								(this.state.selectedType == 'dealChats') ? 
+								(this.state.selectedType === 'dealChats') ? 
 									<ChatViews profile = { profile } chat = {dealingChat[this.state.selectedChat]} />
 									:
 									<ChatViews profile = { profile } chat = {chats[this.state.selectedChat]} />
@@ -96,7 +94,7 @@ export default compose(
 	firestoreConnect((props) => {
 		const _usr = !isLoaded(props.profile.email) ? 'null' : props.profile.email;
 		return [
-				{ collection: 'chats' , where: ['users', 'array-contains', _usr] ,storeAs:'chatAll'},
+				{ collection: 'chats' , where: ['users_email', 'array-contains', _usr] ,storeAs:'chatAll'},
 		]
 	}),
 )(ChatDashboard);

@@ -5,6 +5,8 @@ import RequestStep2 from './RequestStep2'
 import RequestStep3 from './RequestStep3'
 import RequestStep4 from './RequestStep4'
 import RequestStep5 from './RequestStep5'
+import { sendRequest } from '../../store/actions/requestFormAction';
+import { connect } from 'react-redux'
 
 class RequestForm extends Component {
 	state = {
@@ -81,8 +83,8 @@ class RequestForm extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(this.state);
 	}
+	
 
 	handleCheck = (e) => {
 		let chkElementName = e.target.closest('div').id;
@@ -97,8 +99,7 @@ class RequestForm extends Component {
 	}
 
 	_submit = () => {
-		// this.props.registerIntroduction(this.state);
-		console.log(this.state);
+		this.props.sendRequest(this.state);
 	}
 	_next = () => {
 		const required_all = [...document.querySelectorAll('._required')];
@@ -126,7 +127,6 @@ class RequestForm extends Component {
 		})
 	}
 
-	
 	render(){ 
 		return(
 			<div className="requestForm container" >
@@ -135,7 +135,7 @@ class RequestForm extends Component {
 						<img src="/img/purple.jpg"/>
 						<span className="card-title white-text">제작 요청서 ({this.state.currentStep}/5)</span>
 					</div>
-					<form onSubmit = { this.handleSubmit}>
+					<form onSubmit={this.handleSubmit}>
 						<RequestStep1
 							currentStep = {this.state.currentStep}
 							need = {this.state.need}
@@ -195,4 +195,10 @@ class RequestForm extends Component {
 	}
 }
 
-export default RequestForm;
+const mapDispatchToProps = (dispatch) => {
+	return{
+		sendRequest: (requestData) => dispatch(sendRequest(requestData))
+	}
+}
+
+export default connect(null,mapDispatchToProps)(RequestForm);

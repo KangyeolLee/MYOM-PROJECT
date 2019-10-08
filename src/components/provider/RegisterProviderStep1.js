@@ -7,8 +7,8 @@ const RegisterProviderStep1 = (props) => {
     <div className="card-content">
       <div className="row">
         <div className="col12 center">
-          <h6>전문가님의 프로필 사진을 등록해주세요!</h6>
-          <div className="file-field input-field center">
+          <h6>전문가님의 소개를 해주세요</h6>
+          {/* <div className="file-field input-field center">
             {
               !(props.editor_profileImg_file_preview)
                 ? (
@@ -33,9 +33,9 @@ const RegisterProviderStep1 = (props) => {
                 ? <span className="red-text"><i className="material-icons">error</i>필수로 선택해야 합니다!</span>
                 : null
             }
-          </div>
+          </div> */}
           <div className="input-field introduction-area">
-            <textarea id="introduction" cols="30" rows="10" onChange ={props.handleChange} value={props.introduction} className='_required'></textarea>
+            <textarea id="introduction" cols="30" rows="10" onChange ={props.handleChange} value={props.introduction} className='_required has-character-counter' data-length='300' maxLength='301'></textarea>
             {
               (props.need && !props.introduction)
                 ? <span className="red-text"><i className="material-icons">error</i>필수로 선택해야 합니다!</span>

@@ -161,6 +161,14 @@ const serviceRuducer = (state=initState, action) => {
     case 'CHAT_CREATE_ERROR':
       console.log('error');
       return state;
+
+    case 'SEND_REQUEST_SUCCESS':
+      console.log('send request success');
+      return state;
+    
+    case 'SEND_REQUEST_ERROR':
+      console.log('send request error');
+      return state;
       
     default:
       return state;

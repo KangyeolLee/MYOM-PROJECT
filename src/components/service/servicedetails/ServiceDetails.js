@@ -19,14 +19,13 @@ class ServiceDetails extends Component {
   render() {
     if(!isLoaded(this.props.service)) return <div className='container'>로딩중...</div>      
     const { service } = this.props;
-    console.log(this.props.history);
 
     return (
       <div className="container service-details">
         <div className="row">
           {/* 고정스크롤 영역 */}
           <div className="col s4 fixed">  
-            <ServiceProfileSummary provider_email = {this.props.service.provider_email} history={this.props.history} />
+            <ServiceProfileSummary provider_email = {this.props.service.provider_email} provider_nickName= {this.props.service.provider_nickName} history={this.props.history} />
             <ServicePricesSummary service_id={this.props.match.params.id} price={service.price} />      
           </div>
 

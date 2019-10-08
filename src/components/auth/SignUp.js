@@ -82,11 +82,9 @@ class SignUp extends Component {
     else if(!(this.state.condition_checked && this.state.privacy_checked))
       alert('필수 동의사항을 확인해주시기 바랍니다.')
     else
-      console.log(this.state);
-      // this.props.signUp(this.state);
+      this.props.signUp(this.state);
   }
   handleChange = (e) => {
-    console.log(e.target.value);
     this.setState({
       [e.target.id] : e.target.value
     })

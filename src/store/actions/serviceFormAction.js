@@ -1,10 +1,10 @@
 import firebase from 'firebase/app';
-import { instanceOf } from 'prop-types';
 
 export const createService = (serviceData) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userAuth = getState().firebase.auth;
+    const userProfile = getState().firebase.profile;
     const docRef = firestore.collection('testService').doc();
     const storageRef = firebase.storage().ref('images/testService/' + docRef.id);
     let batch = firestore.batch();
@@ -92,6 +92,7 @@ export const createService = (serviceData) => {
         videos: videos,
         provider_id: userAuth.uid,
         provider_email: userAuth.email,
+        provider_nickName : userProfile.initials,
         timestamp: new Date(),
         reviewCount: 0,
       }, {merge: true});

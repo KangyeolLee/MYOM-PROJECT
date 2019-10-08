@@ -17,7 +17,6 @@ class ChatSideNav extends Component {
 	}
 
 	// selectChat = (chatIndex) => {
-	// 	console.log(chatIndex);
 	// 	this.setState({
 	// 		selectedChat: chatIndex
 	// 	})

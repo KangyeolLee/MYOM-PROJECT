@@ -10,9 +10,8 @@ class SignedInLinks extends Component {
     M.Dropdown.init(elems, {
       coverTrigger: false,
       hover: true,
-      constrainWidth: false,
+      constrainWidth: false
     });
-
   }
   render() {
     return (

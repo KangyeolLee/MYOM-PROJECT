@@ -333,7 +333,6 @@ class ServiceSetting extends Component {
     const { myService } = this.props;
     const { service_title, re_service_title, service_content, re_service_content,
       images, re_images, videos, re_videos, basic, re_basic, pro, re_pro } = this.state;
-    console.log(this.state);
 
     return (
       <div className="serviceSetting row">

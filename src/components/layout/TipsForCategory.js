@@ -3,7 +3,6 @@ import './tipsForCategory.css';
 import { Link } from 'react-router-dom';
 
 const TipsForCategory = ({category, url}) => {
-  console.log(category);
   return (
     <Link to={url}>
       <div className="tips-for-category">

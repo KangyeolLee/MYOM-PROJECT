@@ -20,15 +20,13 @@ class SignIn extends Component {
   }
   render() {
     const { authError, auth } = this.props;
-    console.log(auth);
-    console.log(this.props);
     if(auth.uid) return <Redirect to='/' />
 
     return (
       <div className="container signin">
         <div className="card">
           <div className="card-image">
-              <img src="img/logo/myom_logo8.png" className="responsive-img" />
+              <img src="img/logo/myom_logo8.png" alt='' className="responsive-img" />
           </div>
           <div className="card-content">
             <span className="card-title scorehvy center">로그인</span>

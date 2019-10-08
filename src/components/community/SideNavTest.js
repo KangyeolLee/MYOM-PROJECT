@@ -18,14 +18,14 @@ class SideNavTest extends Component {
 								{/* <div className="background">
 									<img src="../img/theme/paris.jpg" />
 								</div> */}
-								<Link to='/profile'><img src={profile.profileImgURL} className="circle notLogin_profile"/><p className='login_profile black-text'>프로필 관리</p></Link>
+								<Link to='/profile'><img src={profile.profileImgURL} className="circle notLogin_profile" alt='profile_img'/><p className='login_profile black-text'>프로필 관리</p></Link>
 							</div></li>
 							:
 							<li><div className="user-view">
 								<div className="background">
-									<img src="../img/theme/paris.jpg" />
+									<img src="../img/theme/paris.jpg" alt='background' />
 								</div>
-								<Link to='/signin' className='white-text'><img src='https://firebasestorage.googleapis.com/v0/b/myom-89a5a.appspot.com/o/images%2Fusers%2FdefaultProfileImg%2FemptyProfileImg.png?alt=media&token=ad342b58-7306-4340-b8c1-6ad56351a7b6'className="circle notLogin_profile"/><p className='notLogin_login'>로그인</p></Link>
+								<Link to='/signin' className='white-text'><img src='https://firebasestorage.googleapis.com/v0/b/myom-89a5a.appspot.com/o/images%2Fusers%2FdefaultProfileImg%2FemptyProfileImg.png?alt=media&token=ad342b58-7306-4340-b8c1-6ad56351a7b6' alt='login-img' className="circle notLogin_profile"/><p className='notLogin_login'>로그인</p></Link>
 							</div></li>
 					}
 					<li><Link to='/community/admin'><i className="material-icons">cloud</i>Myom Tip!</Link></li>

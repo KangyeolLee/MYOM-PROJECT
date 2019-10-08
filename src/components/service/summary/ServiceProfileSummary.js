@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { chatCreate } from '../../../store/actions/serviceAction'
 import { connect } from 'react-redux';
 import M from 'materialize-css';
@@ -9,10 +9,9 @@ class ServiceProfileSummary extends Component {
   }
   handleChatCreate = (e) => {
     e.preventDefault();
-    this.props.chatCreate(this.props.provider_email, this.props.history);
+    this.props.chatCreate(this.props.provider_email, this.props.provider_nickName , this.props.history);
   }
   render() {
-    console.log(this.props.history);
     return (
       <div className="provider-profile row">
         <div className="card col s12 z-depth-0">
@@ -55,7 +54,7 @@ class ServiceProfileSummary extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    chatCreate: (userData, history) => dispatch(chatCreate(userData, history)),
+    chatCreate: (userEmail, userNickName, history) => dispatch(chatCreate(userEmail, userNickName, history)),
   }
 }
 

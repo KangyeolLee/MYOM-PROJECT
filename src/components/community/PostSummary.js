@@ -6,7 +6,7 @@ const PostSummary = ({post}) => {
 	return(
 		<div className="card post_summary">
 				<div className="card-image">
-					<img className='post_thumbnail' src= {post.post_img}/>
+					<img className='post_thumbnail' src= {post.post_img} alt=''/>
 					<div className="btn-floating halfway-fab btn-large white"><img src= {post.author_profileImg} className="circle profile_img" alt=""/></div>
 				</div>
 				<div className="card-content">

@@ -4,10 +4,11 @@ export const _buy_service = (service_id, service, price, history) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userInfo = getState().firebase.auth;
+    const userProfile = getState().firebase.profile;
     // const userRef = firestore.collection('users').doc(userInfo.uid);
     // const providerRef = firestore.collection('users').doc(service.serviceProvider);
     const listRef = firestore.collection('purchaseList').doc();
-
+    const chatRef = firestore.collection('chats').doc(userInfo.email+':'+ service.provider_email);
     let userPurchase = {
       service_id: service_id,
       service_title: service.service_title,
@@ -55,6 +56,41 @@ export const _buy_service = (service_id, service, price, history) => {
     //   })
     // })
     .then(() => {
+     chatRef.get().then(doc => {
+       if(doc.exists){
+         chatRef.update({
+           deal: true,
+           messages: firebase.firestore.FieldValue.arrayUnion(
+             {
+              message: '구매해주셔서 감사합니다, 추가 문의사항은 언제든지 남겨주시기 바랍니다.',
+              sender: service.provider_nickName,
+              sendAt: new Date(),
+             }
+           )
+         })
+       }else{
+         chatRef.set({
+           deal: true,
+           users_email: [
+             userInfo.email,
+             service.provider_email,
+           ],
+           users_nickName : [
+             userProfile.initials,
+             service.provider_nickName,
+           ],
+           messages: [
+             {
+               message: '구매해주셔서 감사합니다, 추가 문의사항은 언제든지 남겨주시기 바랍니다.',
+               sender: service.provider_nickName,
+               sendAt: new Date(),
+             }
+           ]
+         })
+       }
+     })
+    })
+    .then(() => {
       dispatch({ type: 'BUY_SERVICE_SUCCESS'});
       history.push('/purchasedone/' + listRef.id);
     }).catch((err) => {
@@ -66,11 +102,9 @@ export const _buy_service = (service_id, service, price, history) => {
 export const _proceed_order = (purchaseList_id) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
-    const userInfo = getState();
     const listRef = firestore.collection('purchaseList').doc(purchaseList_id);
 
     listRef.update({
-      request: true,
       proceed: true,
       review: false,
       request: false,
@@ -87,7 +121,6 @@ export const _proceed_order = (purchaseList_id) => {
 export const _complete_order = (purchaseList_id) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
-    const userInfo = getState();
     const listRef = firestore.collection('purchaseList').doc(purchaseList_id);
 
     listRef.update({
@@ -105,7 +138,6 @@ export const _complete_order = (purchaseList_id) => {
 export const _cancel_order = (purchaseList_id) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
-    const userInfo = getState();
     const listRef = firestore.collection('purchaseList').doc(purchaseList_id);
 
     listRef.update({
@@ -123,10 +155,11 @@ export const _cancel_order = (purchaseList_id) => {
   }
 }
 
-export const chatCreate = (userData, history) => {
+export const chatCreate = (userEmail, userNickName, history) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userInfo = getState().firebase.auth;
+<<<<<<< HEAD
     const docRef = firestore.collection('chats').doc(userInfo.email+':'+userData);
 
     docRef.get().then(doc => {
@@ -137,11 +170,34 @@ export const chatCreate = (userData, history) => {
           users: [
             userInfo.email,
             userData
+=======
+    const userProfile = getState().firebase.profile;
+    const docRef = firestore.collection('chats').doc(userInfo.email+':'+ userEmail);
+    
+    docRef.get().then(doc=> {
+      if(doc.exists){
+        return ;
+      }else{
+        docRef.set({
+          deal: false, 
+          users_email: [
+            userInfo.email,
+            userEmail,
+          ],
+          users_nickName : [
+            userProfile.initials,
+            userNickName,
+>>>>>>> bb5115e08fd52eb607450d25f4eaee9992606d48
           ],
           messages: [
             {
               message: '반갑습니다, 자유롭게 문의주시기바랍니다.',
+<<<<<<< HEAD
               sender: userData
+=======
+              sender: userNickName,
+              sendAt: new Date(),
+>>>>>>> bb5115e08fd52eb607450d25f4eaee9992606d48
             }
           ]
         })
