@@ -179,7 +179,7 @@ export const profileImgRegister = (profileImg) => {
     const firestore = getFirestore();
     const userAuth = getState().firebase.auth;
     let docRef = firestore.collection('users').doc(userAuth.uid);
-    let storageRef = firebase.storage().ref('images/users/' + docRef.id).child(profileImg.profile_img.name);
+    let storageRef = firebase.storage().ref('images/users/' + docRef.id).child('profileImg');
     storageRef.put(profileImg.profile_img)
       .then(() => {
         storageRef.getDownloadURL()

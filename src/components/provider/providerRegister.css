@@ -1,3 +1,20 @@
+.providerRegister .progress-bar {
+  margin-top: 5rem;
+}
+.providerRegister .progress-bar .progress {
+  background-color: #eadff5;
+}
+.providerRegister .progress-bar .progress .determinate {
+  background-color: rgb(79, 50, 143);
+}
+.providerRegister .hidden {
+  padding: 0;
+  background-color: transparent;
+}
+.providerRegister .input-field {
+  margin-bottom: 3rem;
+}
+
 .ProviderRegisterStep1 .input-field.file-field .btn-floating {
   width: 10rem;
   height: 10rem;
@@ -5,7 +22,6 @@
   justify-content: center;
   align-items: center;
 }
-
 .ProviderRegisterStep1 .input-field.file-field .btn-floating i {
   font-size: 8rem;
 }
@@ -15,16 +31,66 @@
 }
 .ProviderRegisterStep1 .input-field.file-field .profileImg-desc {
   position: relative;
-  background-color: rgb(240, 221, 255)
+  background-color: rgb(248, 240, 255);
 }
 .ProviderRegisterStep1 .input-field.file-field .profileImg-desc::after {
   content: '';
   position: absolute;
   border-top: 10px solid transparent;
-  border-right: 15px solid rgb(240, 221, 255);
+  border-right: 15px solid rgb(248, 240, 255);
   border-left: 15px solid transparent;
   border-bottom: 10px solid transparent;
   left: -30px;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.ProviderRegisterStep2 tbody .input-field {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.ProviderRegisterStep2 tbody .input-field.dateSetting {
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+.ProviderRegisterStep2 tbody .input-field.dateSetting input {
+  text-align: center;
+}
+.ProviderRegisterStep2 tbody .input-field.dateSetting span {
+  margin: 0 1rem;
+}
+.ProviderRegisterStep2 .editHistory .moreBtn {
+  margin-top: 2rem;
+}
+
+.ProviderRegisterStep3 .tool-list {
+  margin-bottom: .5rem;
+}
+.ProviderRegisterStep3 .tool-list .input-field {
+  margin-bottom: unset;
+}
+.ProviderRegisterStep3 .range-field .MuiSlider-root .MuiSlider-rail {
+  height: 12px;
+}
+.ProviderRegisterStep3 .range-field .MuiSlider-root .MuiSlider-track {
+  height: 12px;
+}
+.ProviderRegisterStep3 .range-field .MuiSlider-root .MuiSlider-thumb {
+  margin-top: 0;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #fff;
+  background-color: rgb(114, 117, 163);
+}
+.ProviderRegisterStep3 .tool-list {
+  display: flex;
+  align-items: center;
+}
+.ProviderRegisterStep3 .required-warning {
+  margin-bottom: 3rem;
+}
+
+.providerRegisterDone .card {
+  margin-top: 5rem;
 }

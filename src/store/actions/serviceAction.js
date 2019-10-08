@@ -1,6 +1,5 @@
 import firebase from 'firebase/app';
 
-
 export const _buy_service = (service_id, service, price, history) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
@@ -128,18 +127,25 @@ export const chatCreate = (userData, history) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userInfo = getState().firebase.auth;
-    const docRef = firestore.collection('chats');
-    docRef.doc(userInfo.email+':'+userData).set({
-      users: [
-        userInfo.email,
-        userData
-      ],
-      messages: [
-        {
-          message: '반갑습니다, 자유롭게 문의주시기바랍니다.',
-          sender: userData
-        }
-      ]
+    const docRef = firestore.collection('chats').doc(userInfo.email+':'+userData);
+
+    docRef.get().then(doc => {
+      if(doc.exists) {
+        return;
+      } else {
+        docRef.doc(userInfo.email+':'+userData).set({
+          users: [
+            userInfo.email,
+            userData
+          ],
+          messages: [
+            {
+              message: '반갑습니다, 자유롭게 문의주시기바랍니다.',
+              sender: userData
+            }
+          ]
+        })
+      }
     })
     .then(() => {
       dispatch({type: 'CHAT_CREATE_SUCCESS'});

@@ -45,8 +45,8 @@ class ServiceDetails extends Component {
             <div className="video-wrapper">
             {
               (service.videos.length)
-                ? service.videos.map(video => (
-                  <video key={video} style={{width: '100%'}} controls>
+                ? service.videos.map((video, idx) => (
+                  <video key={video + idx} style={{width: '100%'}} controls>
                     <source src={video} type='video/mp4'/>
                   </video>
                 ))

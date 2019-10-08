@@ -281,6 +281,48 @@ export const servicePriceUpdate = (service_id, price) => {
   }
 }
 
+export const providerRegister = (providerData, history) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    const userAuth = getState().firebase.auth;
+    const userRef = firestore.collection('users').doc(userAuth.uid);
+    const docRef = firestore.collection('providersTest').doc();
+    const storageRef = firebase.storage().ref('images/users/' + userAuth.uid).child('profileImg');
+
+    storageRef.put(providerData.profileFile)
+    .then(snapshot => { return snapshot.ref.getDownloadURL() })
+    .then(url => {
+      userRef.update({
+        profileImgURL: url,
+      });
+      docRef.set({
+        profileImgURL: url,
+      })
+    })
+    .then(() => {
+      docRef.update({
+        email: userAuth.email,
+        uid: userAuth.uid,
+        account_bank: providerData.account_bank,
+        account_person: providerData.account_person,
+        account_number: providerData.account_number,
+        editorTool: providerData.editorTool,
+        histories: providerData.histories,
+        intro: providerData.intro,
+      })
+    })
+    .then(() => {
+      dispatch({type: "REGISTER_PROVIDER_SUCCESS"});
+      history.push('/providerRegisterDone');
+      console.log('success!');
+    })
+    .catch((err) => {
+      dispatch({type: "REGISTER_PROVIDER_ERROR", err});
+      console.log('failed!', err);
+    })
+
+  }
+}
 // export const serviceRegister = (serviceData, history) => {
 //   return (dispatch, getState, { getFirestore }) => {
 //     const firestore = getFirestore();

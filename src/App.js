@@ -40,6 +40,7 @@ import Servicepage from './design-concept/Servicepage';
 import PostEditor from './components/community/PostEditor';
 import RequestForm from './components/requestForm/RequestForm';
 import ProviderRegister from './components/provider/ProviderRegister';
+import ProviderRegisterDone from './components/provider/ProviderRegisterDone';
 
 class App extends Component {
   render(){
@@ -57,6 +58,7 @@ class App extends Component {
                 <Route path='/providerRegister' component={ProviderRegister} />
                 <Route path='/signin' component={SignIn} />
                 <Route path='/signup' component={SignUp} />
+                <Route path='/providerRegisterDone' component={ProviderRegisterDone} />
                 <Route path='/mypageBuyer' component={MypageForBuyer} />}
                 {/* <Route path='/profileSetting' component={ProfileSetting} />
                 <Route path='/mypageBuyer/paymentDetails' component={PaymentDetails} />
