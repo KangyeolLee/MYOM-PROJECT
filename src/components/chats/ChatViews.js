@@ -10,8 +10,8 @@ class ChatViews extends Component {
 	}
 	
 	render(){
-		const { chat, profile } = this.props;
-
+    const { chat, profile } = this.props;
+    
 		if(chat === undefined){
 			return(
 				<div id="chatview-container" className="chat-content default-content"><i className="material-icons">message</i> 메시지를 선택해주세요</div>

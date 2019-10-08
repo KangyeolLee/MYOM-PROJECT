@@ -1,17 +1,33 @@
 .signin .card{
-	width: 50%;
-  margin-left: 25%;
   margin-top: 5rem;
   border-radius: 10px;
+  width: 360px;
 }
 
 .signin {
-  position: absolute;
-  left: 50%;
-  margin-top: 10rem;
-  transform: translate(-50%, -25%);
+  display: flex;
+  justify-content: center;
 }
 
-.login-error{
-  margin-bottom: 5px;
+.signin .card-image {
+  background-color: #5b4294;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+.signin .card-image img {
+  height: 15rem;
+  width: 15rem;
+}
+.signin .login-error{
+  margin-bottom: 1.5rem;
+}
+
+@media only screen and (max-width: 360px){
+  .signin .card{
+    width: 100%;
+    margin-top: 2rem;
+  }
+}
+
+

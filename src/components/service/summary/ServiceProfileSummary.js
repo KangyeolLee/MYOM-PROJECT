@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { chatCreate } from '../../../store/actions/serviceAction'
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import M from 'materialize-css';
 
 class ServiceProfileSummary extends Component {
@@ -12,14 +14,19 @@ class ServiceProfileSummary extends Component {
     this.props.chatCreate(this.props.provider_email, this.props.provider_nickName , this.props.history);
   }
   render() {
+    if(!isLoaded(this.props.providerInfo)) return <div className='container'>로딩중...</div>
+    const { provider_nickName } = this.props;
+    const { providerInfo } = this.props;
+    const tools = providerInfo[0].editorTool.flatMap(tool => Object.values(tool));
+
     return (
       <div className="provider-profile row">
         <div className="card col s12 z-depth-0">
           <div className="card-image">
             <img src="/img/logo/myom_logo3.jpeg" alt="" className=''/>
             <div className='profile-title'>
-              <p className='profile-nickname'>전문편집가 님</p>
-              <p className='more-info'>프로필 더 보러가기<i className="material-icons right">chevron_right</i></p>
+              <p className='profile-nickname'>{provider_nickName + '님'}</p>
+              <p className='more-info'>상세보기<i className="material-icons right">chevron_right</i></p>
             </div>
           </div>
                 
@@ -33,11 +40,16 @@ class ServiceProfileSummary extends Component {
               <p className='col s4 scorehvy'>작업횟수</p>
               <span className="col s8">32건</span>
 
-              <p className='col s4 scorehvy'>사용가능툴</p>
-              <span className="col s8">#프리미어 / #포토샵 / #일러스트</span>
+              <p className='col s4 scorehvy'>사용툴</p>
+              <span className="col s8">
+              {
+                tools.length && tools.map(tool => '#' + tool.name + ' / ')
+              }
+              </span>
+
             </div>
 
-            <p className="col s4 scorehvy">편집스타일</p>
+            <p className="col s4 scorehvy">스타일</p>
             <div className="col s12 chips">
               <div className="chip">#브이로그</div>
               <div className="chip">#색감좋은</div>
@@ -51,11 +63,22 @@ class ServiceProfileSummary extends Component {
     )
   }
 }
-
+const mapStateToProps = (state) => {
+  return {
+    providerInfo: state.firestore.ordered.providerInfo,
+  }
+}
 const mapDispatchToProps = (dispatch) => {
   return{
     chatCreate: (userEmail, userNickName, history) => dispatch(chatCreate(userEmail, userNickName, history)),
   }
 }
 
-export default connect(null, mapDispatchToProps)(ServiceProfileSummary);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect(props => {
+    return [
+      { collection: 'providersTest', where: ['uid', '==', props.provider_id], storeAs: 'providerInfo' }
+    ]
+  })
+)(ServiceProfileSummary);

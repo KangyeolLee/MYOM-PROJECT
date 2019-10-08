@@ -3,6 +3,7 @@
   align-items: center;
   margin: 0;
   border: none;
+  overflow: hidden;
 }
 .service-wrapper .chips .chip {
   margin-bottom: 0;

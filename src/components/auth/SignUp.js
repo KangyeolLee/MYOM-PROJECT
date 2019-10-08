@@ -107,15 +107,15 @@ class SignUp extends Component {
               <h5 className="grey-text text-darken-3">회원가입</h5>
               <div className="input-field">
                 <label htmlFor="email">아이디</label>
-                <input type="email" id='email' onChange={this.handleChange} />
+                <input type="email" id='email' onChange={this.handleChange} required/>
               </div>
               <div className="input-field">
                 <label htmlFor="password">비밀번호</label>
-                <input type="password" id="password" onChange={this.handleChange} />
+                <input type="password" id="password" onChange={this.handleChange} required/>
               </div>
               <div className="input-field">
                 <label htmlFor="password_chk">비밀번호 재확인</label>
-                <input type="password" id='password_chk' onChange={this.handleChange}/>
+                <input type="password" id='password_chk' onChange={this.handleChange} required/>
               </div>
               <div className="input-field">
                 <label htmlFor="firstName">이름</label>
@@ -127,7 +127,11 @@ class SignUp extends Component {
               </div>
               <div className="input-field">
                 <label htmlFor="birth">생년월일</label>
-                <input type="text" id='birth' className='datepicker' onChange={this.handleChange}/>
+                <input type="text" id='birth' className='datepicker' onChange={this.handleChange} required/>
+              </div>
+              <div className="input-field">
+                <label htmlFor="phoneNumber">휴대폰 번호</label>
+                <input type="text" id="phoneNumber" onChange={this.handleChange} required/>
               </div>
             </div>
           </div>

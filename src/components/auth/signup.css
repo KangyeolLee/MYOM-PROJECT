@@ -1,11 +1,16 @@
-.signup .card{
-	width: 50%;
-	margin-left: 25%;
-	border-radius: 10px;
-}
-
 .signup {
 	margin-top: 5rem;
+}
+
+.signup #signUp_submit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup .card{
+  border-radius: 10px;
+  width: 600px;
 }
 
 .conditions{
@@ -32,4 +37,17 @@
 }
 #signUp_submit{
 	background-color: rgb(248,249,250) !important;
+}
+
+@media only screen and (max-width: 1024px){
+  .signup .card{
+    min-width: unset;
+    width: 100%;
+    margin-top: 2rem;
+  }
+}
+@media only screen and (max-width: 360px) {
+  .signup {
+    margin-top: 2rem;
+  }
 }

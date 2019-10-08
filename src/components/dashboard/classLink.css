@@ -31,3 +31,18 @@
   margin-top: 5rem;
   margin-bottom: 3rem;
 }
+
+@media only screen and (max-width: 1200px) {
+  .classLink .card .card-image span {
+    font-size: 1.7rem;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .classLink .card .card-image img {
+    height: 15rem;
+  }
+  .classLink .card .card-image span {
+    font-size: 2.4rem;
+  }
+}

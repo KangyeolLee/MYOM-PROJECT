@@ -1,14 +1,33 @@
-.forgotIdPwd .card{
-	width: 50%;
-	margin-left: 25%;
-	margin-top: 10rem;
-	box-shadow: none;
+.forgotIdPwd {
+  display: flex;
+  justify-content: center;
 }
-
+.forgotIdPwd .card{
+  margin-top: 5rem;
+  width: 360px;
+}
+.forgotIdPwd h5 {
+  margin-bottom: 1.5rem;
+}
 .forgotId{
 	margin-bottom: 0;
 }
 
 .forgotPwd{
 	margin-top: 0 !important;
+}
+
+#forgot_email {
+  margin-bottom: 8rem;
+}
+
+#forgot_password {
+  margin-bottom: 5rem;
+}
+
+@media only screen and (max-width: 360px){
+  .forgotIdPwd .card {
+    width: 100%;
+    margin-top: 2rem;
+  }
 }

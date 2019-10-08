@@ -8,19 +8,19 @@ class ServicePricesSummary extends Component {
   }
 
   render() {
-    const { service_id, price } = this.props;
+    const { service_id, price, prefix } = this.props;
   
     return (
       <div className="price-wrapper row">
-        <ul className="tabs">
-          <li className="tab col s4"><a href="#BASIC" className="scorehvy">BASIC</a></li>
-          <li className="tab col s4"><a href="#PRO" className="scorehvy">PRO</a></li>
+        <ul className="tabs col s12">
+          <li className="tab col s4"><a href={"#BASIC" + prefix} className="scorehvy">BASIC</a></li>
+          <li className="tab col s4"><a href={"#PRO" + prefix} className="scorehvy">PRO</a></li>
           <li className="tab col s4 disabled"><a href="#PREMIUM" className="scorehvy">PREMIUM</a></li>
         </ul>
 
         {
           price.length && price.map(item => (
-            <div id={item.type} key={item.type}>
+            <div id={item.type + prefix} key={item.type}>
               <ul className="timeline">
                 <li className='col s12'>
                   <h6 className='basic-title scorehvy col s12'>{item.type} 소개</h6>

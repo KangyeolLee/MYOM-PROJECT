@@ -26,7 +26,7 @@ class SignIn extends Component {
       <div className="container signin">
         <div className="card">
           <div className="card-image">
-              <img src="img/logo/myom_logo8.png" alt='' className="responsive-img" />
+            <img src="img/logo/myom_logo.png" alt=''/>
           </div>
           <div className="card-content">
             <span className="card-title scorehvy center">로그인</span>
