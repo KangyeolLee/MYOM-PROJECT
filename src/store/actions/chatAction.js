@@ -7,6 +7,7 @@ export const sendMessage = (chatData, chatId) => {
 			messages: firebase.firestore.FieldValue.arrayUnion({
 				sender: chatData.sender,
 				message: chatData.message,
+				sendAt: new Date(),
 			}),
 			receiverHasRead: false
 		})

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import './chatview.css'
+import moment from 'moment';
 
 class ChatViews extends Component {
 	componentDidUpdate = () => {
@@ -21,19 +22,19 @@ class ChatViews extends Component {
 					{
 						chat.messages.map((_msg, _index) => {
 							return(
-								<blockquote key={_index} className={_msg.sender === profile.email ? "user-sent-message " : "friend-sent-message" }>
+								<blockquote key={_index} className={_msg.sender === profile.initials ? "user-sent-message " : "friend-sent-message" }>
 										{
 										
-											(_index == chat.messages.length-1) && (_msg.sender === profile.email) ?
+											(_index == chat.messages.length-1) && (_msg.sender === profile.initials) ?
 											<Fragment>
 												<p>{_msg.message}</p>
-												<cite>{_msg.sender} {chat.receiverHasRead ? 
+												<cite>{_msg.sender} {moment(_msg.sendAt.toDate()).fromNow()} {chat.receiverHasRead ? 
 													<Fragment>읽음</Fragment> : <Fragment>안읽음</Fragment>}</cite>
 											</Fragment>
 											:
 											<Fragment>
 												<p>{_msg.message}</p>
-												<cite>{_msg.sender}</cite>
+												<cite>{_msg.sender} {moment(_msg.sendAt.toDate()).fromNow()}</cite>
 											</Fragment>
 										
 										}

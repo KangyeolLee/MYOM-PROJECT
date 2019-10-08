@@ -5,15 +5,6 @@ import { signOut } from '../../store/actions/authAction';
 import M from 'materialize-css';
 
 class SignedInLinks extends Component {
-  componentDidMount() {
-    var elems = document.querySelectorAll('.dropdown-trigger');
-    M.Dropdown.init(elems, {
-      coverTrigger: false,
-      hover: true,
-      constrainWidth: false,
-    });
-
-  }
   render() {
     return (
       <ul className="right">

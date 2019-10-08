@@ -5,6 +5,7 @@ export const createService = (serviceData) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userAuth = getState().firebase.auth;
+    const userProfile = getState().firebase.profile;
     const docRef = firestore.collection('testService').doc();
     const storageRef = firebase.storage().ref('images/testService/' + docRef.id);
     let batch = firestore.batch();
@@ -92,6 +93,7 @@ export const createService = (serviceData) => {
         videos: videos,
         provider_id: userAuth.uid,
         provider_email: userAuth.email,
+        provider_nickName : userProfile.initials,
         timestamp: new Date(),
         reviewCount: 0,
       }, {merge: true});
@@ -236,6 +238,48 @@ export const serviceVideoUpdate = (service_id, serviceVideos) => {
       dispatch({ type: 'VIDEO_UPDATE_ERROR', err});
       console.log('err', err);
     })
+  }
+}
+
+export const servicePriceUpdate = (service_id, price) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    const docRef = firestore.collection('testService').doc(service_id);
+    const batch = firestore.batch();
+    const numberWithCommas = (x) => {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    docRef.get().then(doc => {
+      let originPrice = doc.data().price;
+
+      if(price.type === 'BASIC') {
+        if(price.price < 100000) price.price = numberWithCommas(price.price * 10000);
+        originPrice[0] = price;  
+      }
+      else if(price.type === 'PRO') {
+        if(price.price < 100000) price.price = numberWithCommas(price.price * 10000);
+        originPrice[1] = price;
+      }
+
+      batch.update(docRef, {
+        price: originPrice,
+      })
+    })
+    .then(() => {
+      batch.commit();
+      console.log('updated price!')
+    })
+    .then(() => {
+      dispatch({ type: 'UPDATE_PRICE_SUCCESS'});
+      console.log('success!');
+    })
+    .catch((err) => {
+      dispatch({ type: 'UPDATE_PRICE_ERROR', err});
+      console.log('failed!', err);
+    })
+
+
   }
 }
 

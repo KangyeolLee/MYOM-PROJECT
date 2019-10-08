@@ -1,0 +1,32 @@
+#kakao-btn {
+	width: 4rem;
+	height: 4rem;
+	background-color: rgb(246,224,75);
+	border-radius: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	bottom: 15px;
+	right: 15px;
+	overflow: hidden;
+}
+#kakao-btn img {
+	font-size: 3rem;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#kakao-talk-channel-chat-button {
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#kakao-talk-channel-chat-button a img {
+	width: 100%;
+	height: 100%;
+}
+

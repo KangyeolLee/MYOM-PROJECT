@@ -149,6 +149,15 @@
 .serviceSetting .input-field .character-counter {
   float: left !important;
 }
+.serviceSetting #price-rewrite.collection {
+  overflow: unset;
+}
+.serviceSetting #price-rewrite .input-field {
+  margin-bottom: 1rem;
+}
+.serviceSetting #price-rewrite .character-counter {
+  float: right !important;
+}
 
 .serviceSetting .file-field.input-field {
   margin-top: 0;
@@ -206,10 +215,6 @@
   width: 100%;
 }
 
-.serviceSetting .video-file .rewrite-btn-area .btn {
-  height: unset;
-  line-height: unset;
-}
 .serviceSetting .video-file .video-wrapper {
   position: relative;
   margin-bottom: 2rem;
@@ -249,4 +254,34 @@
   position: absolute;
   color: #fff;
   padding-bottom: 1.5rem;
+}
+
+.serviceSetting .options .input-field.col.s12 {
+  position: relative;
+}
+.serviceSetting .options .chips.chips-initial {
+  position: unset;
+  padding: 0;
+}
+.serviceSetting .options .chips .input.custom-class {
+  position: absolute;
+  right: 0.75rem;
+  margin-bottom: 1rem;
+  bottom: 0;
+  text-align: right;
+}
+.serviceSetting .options .chips .input.custom-class:focus {
+  border-bottom: 1px solid #26a69a !important;
+  box-shadow: 0 1px 0 0 #26a69a !important;
+}
+.serviceSetting .options .input-field.col.s12 span {
+  position: absolute;
+  bottom: -5px;
+  right: .75rem;
+  font-size: 12px;
+}
+
+.serviceSetting .delete-service,
+.serviceSetting .pause-service {
+  margin-bottom: 2rem;
 }

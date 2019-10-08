@@ -28,16 +28,18 @@ class ChatLists extends Component {
 								<div className="card white" onClick = {(e) => {
 									const type = e.target.id;
 									this.selectChat(index, type, chat.id); 
-									if(chat.messages[chat.messages.length-1].sender !== profile.email && !chat.receiverHasRead) this.selectUnread(chat.id);
+									if(chat.messages[chat.messages.length-1].sender !== profile.initials && !chat.receiverHasRead) this.selectUnread(chat.id);
 									}}
 									selected={this.props.selectedChatIndex === index}>
 									<div className="card-content black-text">
 										<span className="card-title">
-											<img src={profile.profileImgURL} width='40px' height='40px' className='circle' alt=""/>
+											<img src={profile.profileImgURL} width='60px' height='60px' className='circle' alt=""/>
+											<div>{chat.users_nickName.filter(_user => _user !== profile.initials)}</div>
 											{/* {chat.users.filter(_user => _user !== profile.email)[0].split('')[0]} */}
+
 										</span>
 										<div className="chatlist-message" id={this.props.chat_type}>{chat.messages[chat.messages.length -1].message.substring(0,10)}</div>
-										{	(!chat.receiverHasRead && chat.messages[chat.messages.length-1].sender !== profile.email) ?
+										{	(!chat.receiverHasRead && chat.messages[chat.messages.length-1].sender !== profile.initials) ?
 											<i className="material-icons unreadMark">markunread</i>
 											: null
 										}

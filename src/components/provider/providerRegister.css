@@ -1,0 +1,30 @@
+.ProviderRegisterStep1 .input-field.file-field .btn-floating {
+  width: 10rem;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ProviderRegisterStep1 .input-field.file-field .btn-floating i {
+  font-size: 8rem;
+}
+.ProviderRegisterStep1 .input-field.file-field .btn-floating .profile-img {
+  width: 10rem;
+  height: 10rem;
+}
+.ProviderRegisterStep1 .input-field.file-field .profileImg-desc {
+  position: relative;
+  background-color: rgb(240, 221, 255)
+}
+.ProviderRegisterStep1 .input-field.file-field .profileImg-desc::after {
+  content: '';
+  position: absolute;
+  border-top: 10px solid transparent;
+  border-right: 15px solid rgb(240, 221, 255);
+  border-left: 15px solid transparent;
+  border-bottom: 10px solid transparent;
+  left: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
