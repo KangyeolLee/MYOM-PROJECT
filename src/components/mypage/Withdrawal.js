@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ProfileSideNav from './ProfileSideNav'
 import { connect } from 'react-redux'
 import { withdrawal } from '../../store/actions/authAction'
 import { Redirect } from 'react-router-dom'
@@ -24,9 +23,9 @@ class Withdrawal extends Component {
 	return(
 		<div className="container profile_deatails">
 			<div className="row">
-				<ProfileSideNav />
-				<div className="col l8">
-					<div className="withdrawal">
+				<h5 className="col s12 scorehvy sub-title">회원탈퇴</h5>
+				<div className="col s12">
+					<div className="withdrawal white">
 						<h6>탈퇴사유</h6>
 						<div className="divider"></div>
 						<div className="row">
@@ -70,16 +69,16 @@ class Withdrawal extends Component {
 									</p>
 								</form>
 							</div>
-							<h6>이메일 확인</h6>
-							<div className="divider"></div>
-							<div className="input-field col l12">
+							<div className="input-field col s12">
+								<h6>이메일 확인</h6>
+								<div className="divider"></div>
 								<form onSubmit = {this.handleSubmit}>
 									<input type="text" className="validate" id="email" onChange= { this.handleChange } />
 									<label htmlFor="email">이메일 주소</label>
 									<div>* 무상으로 지급된 묨캐시는 탈퇴와 함께 자동 소멸됩니다.</div>
 									<p>환불 가능한 묨캐시가 있을 경우, 고객센터를 통해 환불 받으실 수 있습니다.</p>
 									<div className="input-field">
-										<button className="btn indigo right">회원탈퇴</button>
+										<button className="btn myomColor-background right">회원탈퇴</button>
 									</div>
 								</form>
 							</div>

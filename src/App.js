@@ -20,11 +20,6 @@ import MypageForBuyer from './components/mypage/MypageForBuyer';
 import Purchase from './components/consumer/Purchase'
 import PurchaseDone from './components/consumer/PurchaseDone'
 import PurchaseDetails from './components/consumer/PurchaseDetails';
-import UserProfile from './components/profile/UserProfile'
-import AlarmSetting from './components/profile/AlarmSetting'
-import Changepwd from './components/profile/Changepwd'
-import Withdrawal from './components/profile/Withdrawal'
-import Certifications from './components/profile/Certifications'
 import MypageForProvider from './components/mypage/MypageForProvider';
 import ServiceRegister from './components/serviceForm/ServiceRegister';
 import ForgotIdPwd from './components/auth/ForgotIdPwd';
@@ -69,11 +64,6 @@ class App extends Component {
                 <Route path='/purchase/:service_id' component={Purchase} />
                 <Route path='/purchasedone/:service_id' component= { PurchaseDone } />
                 <Route path='/purchaseDetails/:service_id' component={PurchaseDetails} />
-                <Route path='/profile' component = { UserProfile } />
-                <Route path='/alarmsetting' component = { AlarmSetting } />
-                <Route path='/changepwd' component= { Changepwd } />
-                <Route path='/withdrawal' component= { Withdrawal } />
-                <Route path='/certifications' component= { Certifications } />
                 {/* <Route path='/serviceRegister' component={ServiceRegister} /> */}
                 <Route path= '/forgotIdPwd' component={ForgotIdPwd} />
                 <Route path= '/emailVerification' component = {EmailVerification} />

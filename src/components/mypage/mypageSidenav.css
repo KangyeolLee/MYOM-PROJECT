@@ -36,3 +36,17 @@
   justify-content: center;
   align-items: center;
 }
+
+.myPageSidenav .collapsible-body{
+  padding: 0;
+}
+
+.myPageSidenav .collection-item{
+  padding: 0px 20px;
+  background-color: rgb(240,240,240);
+}
+
+.myPageSidenav .collection{
+  background-color: rgb(240,240,240);
+}
+

@@ -6,7 +6,7 @@ const Banner = ({path}) => {
 
   switch(path) {
     case 'main':
-      imgURL = '/img/banner/banner3.png';
+      imgURL = '/img/banner/main_banner.png';
       break;
 
     case 'editor':
@@ -20,9 +20,9 @@ const Banner = ({path}) => {
   return (
     <div className="banner">
       <img src={imgURL} alt="배너 이미지"/>    
-      <h1 className='banner-text1 scorehvy'>짧은 여행을,</h1>
+      {/* <h1 className='banner-text1 scorehvy'>짧은 여행을,</h1>
       <h1 className='banner-text2 scorehvy'>긴 추억으로.</h1>
-      <h1 className='banner-text3 scorehvy'><font color='#8624DE'>M</font>ake <font color='#9D2DE6'>Y</font>our <font color='#AE34EB'>O</font>wn <font color='#BF3AF1'>M</font>ovie</h1>
+      <h1 className='banner-text3 scorehvy'><font color='#8624DE'>M</font>ake <font color='#9D2DE6'>Y</font>our <font color='#AE34EB'>O</font>wn <font color='#BF3AF1'>M</font>ovie</h1> */}
     </div>
   )
 
