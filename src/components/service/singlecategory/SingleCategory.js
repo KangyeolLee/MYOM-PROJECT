@@ -58,7 +58,6 @@ class SingleCategory extends Component {
     const { limit_list, nextRef } = this.state;
 
     if(!nextRef) {
-      console.log('state initialized');
       const firstQuery = firestore.collection('testService')
         .where(match.params.category, '>=', 1).orderBy(match.params.category, 'desc').limit(limit_list);
       const firstSnaps = await firstQuery.get();
@@ -100,7 +99,6 @@ class SingleCategory extends Component {
   render() {
     const { categoryIntro, serviceList, match } = this.props;
     const { moreServices } = this.state;
-    console.log(match);
 
     return (
       <div className="container singleCategory">

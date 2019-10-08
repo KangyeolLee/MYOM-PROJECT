@@ -1,4 +1,4 @@
-import React, {Component } from 'react'
+import React from 'react'
 
 const RegisterProviderStep3 = (props) => {
 	if(props.currentStep !== 3) return null;

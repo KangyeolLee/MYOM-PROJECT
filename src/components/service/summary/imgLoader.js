@@ -5,6 +5,5 @@ export const imgLoader = (props) => {
   storage.ref('images/theme').child(`${props.title}.jpg`).getDownloadURL().then((url) => {
     imageArrays.push(url);
   });
-  console.log(props, imageArrays)
   return imageArrays;
 }

@@ -1,5 +1,4 @@
 import firebase from 'firebase/app';
-import { instanceOf } from 'prop-types';
 
 export const createService = (serviceData) => {
   return (dispatch, getState, { getFirestore }) => {

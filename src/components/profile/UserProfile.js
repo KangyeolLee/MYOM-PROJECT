@@ -3,8 +3,6 @@ import ProfileSideNav from './ProfileSideNav'
 import './profile.css'
 import { connect } from 'react-redux'
 import { profileImgRegister } from '../../store/actions/authAction'
-import { compose } from 'redux'
-import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 
 class UserProfile extends Component {
 	state = {
@@ -40,8 +38,7 @@ class UserProfile extends Component {
 	}
 
 	render(){
-		const { profile, auth, user } = this.props;
-		console.log(this.props);
+		const { profile, auth } = this.props;
 		return(
 			<div className="container profile_deatails">
 				<div className="row">
@@ -60,7 +57,7 @@ class UserProfile extends Component {
 													!(this.state.profile_img_preview)
 														? (
 															<Fragment>
-																<img src= {profile.profileImgURL} width='127px' height='127px' className="circle" />
+																<img src= {profile.profileImgURL} width='127px' height='127px' className="circle" alt=''/>
 																<button className="imgUpload_btn">
 																	<span>이미지 변경하기</span>
 																	<input type="file" id='profile_img' onChange={this.uploadFile}/>
@@ -69,7 +66,7 @@ class UserProfile extends Component {
 														)
 														: (
 															<Fragment>
-																<img src= {this.state.profile_img_preview} width='127px' height='127px' className="circle" />
+																<img src= {this.state.profile_img_preview} width='127px' height='127px' className="circle" alt=''/>
 																<button className="imgUpload_btn">
 																	<span>이미지 변경하기</span>
 																	<input type="file" id='profile_img' onChange={this.uploadFile}/>

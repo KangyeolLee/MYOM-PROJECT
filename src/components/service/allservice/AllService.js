@@ -48,7 +48,6 @@ class AllService extends Component {
     const { limit_list, nextRef } = this.state;
 
     if(!nextRef) {
-      console.log('state initialized');
       const firstQuery = firestore.collection('testService')
         .orderBy('timestamp', 'desc').limit(limit_list);
       const firstSnaps = await firstQuery.get();
@@ -90,7 +89,6 @@ class AllService extends Component {
   render() {
     const { match, serviceList } = this.props;
     const { moreServices } = this.state;
-    console.log(moreServices);
 
     return (
       <div className="container allServices">

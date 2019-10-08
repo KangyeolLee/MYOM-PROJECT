@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import MyPageSidenav from './MyPageSidenav';
-import EstimatePage from './EstimatePage';
 import OrderManage from './OrderManage';
 import ServiceSetting from './ServiceSetting';
 import ProfitsManage from './ProfitsManage';

@@ -43,7 +43,6 @@ class PostEditor extends Component {
 	};
 	
 	render(){
-		console.log(this.state);
 		return (
 			<div className="container">
 				<button onClick = {this.onUnderlineClick}>U</button>

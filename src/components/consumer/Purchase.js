@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import './purchase.css';
 import M from 'materialize-css';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
+import { firestoreConnect, isLoaded } from 'react-redux-firebase';
 import { _buy_service } from '../../store/actions/serviceAction';
 
 class Purchase extends Component {

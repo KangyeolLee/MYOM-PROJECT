@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { chatCreate } from '../../../store/actions/serviceAction'
 import { connect } from 'react-redux';
 import M from 'materialize-css';
@@ -12,7 +12,6 @@ class ServiceProfileSummary extends Component {
     this.props.chatCreate(this.props.provider_email, this.props.provider_nickName , this.props.history);
   }
   render() {
-    console.log(this.props);
     return (
       <div className="provider-profile row">
         <div className="card col s12 z-depth-0">

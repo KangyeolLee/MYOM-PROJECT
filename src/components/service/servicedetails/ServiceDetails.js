@@ -19,7 +19,6 @@ class ServiceDetails extends Component {
   render() {
     if(!isLoaded(this.props.service)) return <div className='container'>로딩중...</div>      
     const { service } = this.props;
-    console.log(this.props);
 
     return (
       <div className="container service-details">

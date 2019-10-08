@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import './forgotIdPwd.css';
 import './fonts.css'
 import { resetPwdEmail } from '../../store/actions/authAction';

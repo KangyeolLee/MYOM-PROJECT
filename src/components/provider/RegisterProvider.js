@@ -96,7 +96,6 @@ class RegisterProvider extends Component {
 	
 	render(){
 		const { profile } = this.props;
-		console.log(profile);
 		return(
 			<div className="registerProvider container" >
 				<div className="card">

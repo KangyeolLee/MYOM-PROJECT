@@ -1,5 +1,4 @@
 import React from 'react'
-import Preloader from '../functionalComponents/Preloader';
 import PostCommentSummaryTest from './PostCommentSummaryTest';
 
 const PostCommentTest = (props) => {

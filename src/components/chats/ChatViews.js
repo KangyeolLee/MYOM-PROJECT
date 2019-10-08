@@ -25,7 +25,7 @@ class ChatViews extends Component {
 								<blockquote key={_index} className={_msg.sender === profile.initials ? "user-sent-message " : "friend-sent-message" }>
 										{
 										
-											(_index == chat.messages.length-1) && (_msg.sender === profile.initials) ?
+											(_index === chat.messages.length-1) && (_msg.sender === profile.initials) ?
 											<Fragment>
 												<p>{_msg.message}</p>
 												<cite>{_msg.sender} {moment(_msg.sendAt.toDate()).fromNow()} {chat.receiverHasRead ? 
@@ -49,13 +49,3 @@ class ChatViews extends Component {
 }
 
 export default ChatViews;
-
-	{/* <Fragment>
-									<blockquote key={_index} className={_msg.sender === profile.email ? "user-sent-message " : "friend-sent" }>
-										<p>{_msg.message}</p>
-										<cite>{profile.email}</cite>
-									</blockquote>
-								</Fragment> */}
-									{/* <div key={_index} className={_msg.sender === profile.email ? "user-sent" : "friend-sent" }>
-									{_msg.message}
-								</div> */}

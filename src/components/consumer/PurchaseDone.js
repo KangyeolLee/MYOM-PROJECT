@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './purchase.css';
 
 const PurchaseDone = (props) => {
-  const { service_id } = props.match.params;
 	return(
 		<div className="container purchasedone">
       <div className="card">

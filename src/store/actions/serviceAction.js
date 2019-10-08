@@ -67,11 +67,9 @@ export const _buy_service = (service_id, service, price, history) => {
 export const _proceed_order = (purchaseList_id) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
-    const userInfo = getState();
     const listRef = firestore.collection('purchaseList').doc(purchaseList_id);
 
     listRef.update({
-      request: true,
       proceed: true,
       review: false,
       request: false,
@@ -88,7 +86,6 @@ export const _proceed_order = (purchaseList_id) => {
 export const _complete_order = (purchaseList_id) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
-    const userInfo = getState();
     const listRef = firestore.collection('purchaseList').doc(purchaseList_id);
 
     listRef.update({
@@ -106,7 +103,6 @@ export const _complete_order = (purchaseList_id) => {
 export const _cancel_order = (purchaseList_id) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
-    const userInfo = getState();
     const listRef = firestore.collection('purchaseList').doc(purchaseList_id);
 
     listRef.update({

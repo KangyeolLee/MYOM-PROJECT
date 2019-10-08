@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import CommunitySideNav from './CommunitySideNav'
 import SideNavTest from './SideNavTest'
 import PostList from './PostList'
 import M from 'materialize-css'
@@ -9,7 +8,6 @@ import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 import { compose } from 'redux'
 import './community.css'
 import Preloader from '../functionalComponents/Preloader';
-import { async } from 'q';
 
 class CommunityDashboard extends Component {
 	state = {
@@ -45,7 +43,6 @@ class CommunityDashboard extends Component {
 		const { limit_list, nextRef } = this.state;
 
 		if(!nextRef){
-			console.log('state initialized');
 			const firstQuery = firestore.collection('posts').where('category', '==', this.props.match.params.category )
 				.orderBy('createAt', 'desc').limit(limit_list);
 		const firstSnaps = await firstQuery.get();
@@ -85,7 +82,6 @@ class CommunityDashboard extends Component {
 	render(){
 		const { posts, profile, match, auth } = this.props;
 		const { morePosts } = this.state;
-		console.log(this.props);
 		return(
 			<div className="communityDashboard">
 				<SideNavTest profile={profile} auth={auth} />

@@ -7,8 +7,6 @@ class Theme extends Component {
 
   }
   render() {
-    const {themas, dashboard} = this.props;
-    console.log(dashboard);
     return (
       <div className="container theme">
         <div className="row categories">

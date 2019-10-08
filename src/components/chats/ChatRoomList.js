@@ -1,12 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import ChatLists from './ChatLists';
 import './chatRoomList.css';
-import { isEmpty } from 'react-redux-firebase'
 
 class ChatRoomList extends Component {
 	render(){
 		const {profile, chats, chatInDeal} = this.props;
-		console.log(this.props);
 		return(
 			<Fragment>
 				<div className="chatRoomList" id='allChat'>

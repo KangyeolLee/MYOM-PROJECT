@@ -22,8 +22,6 @@ class Changepwd extends Component{
 	}
 
 		render(){
-		const { auth } = this.props;
-		console.log(auth);
 		return(
 			<div className="container profile_deatails">
 				<div className="row">

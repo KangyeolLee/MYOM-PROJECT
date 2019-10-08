@@ -95,7 +95,6 @@ class CreateService extends Component {
     e.preventDefault();
     const required_all = [...document.querySelectorAll('._required')];
     let current_required = required_all.filter(item => !(this.state[item.id]) && !(this.state.images[0][item.id]) && !(this.state.videos[0][item.id]));
-    console.log(current_required)
     if(current_required.length) {
       this.setState({
         need: true,
@@ -220,7 +219,6 @@ class CreateService extends Component {
   _next = () => {
     const required_all = [...document.querySelectorAll('._required')];
     let current_required = required_all.filter(item => !(this.state[item.id]) && !(this.state.images[0][item.id]) && !(this.state.videos[0][item.id]));
-    console.log(current_required)
     if(current_required.length) {
       this.setState({
         need: true,
@@ -244,7 +242,6 @@ class CreateService extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="container createService">
         <div className="row">

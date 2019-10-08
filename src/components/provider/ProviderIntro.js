@@ -5,7 +5,6 @@ import './providerIntro.css';
 
 class ProviderIntro extends Component {
   render() {
-    console.log(this.props);
     return (
       <div className="providerIntro">
         <Banner path='editor'/>

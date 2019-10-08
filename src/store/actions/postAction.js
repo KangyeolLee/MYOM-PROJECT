@@ -1,5 +1,4 @@
 import firebase from 'firebase/app';
-import { log } from 'util';
 
 
 export const createPost = (postData, category, history) => {
@@ -98,7 +97,6 @@ export const commentRegister = (docID, commentData) => {
 export const postDelete = (docID, history) => {
 	return (dispatch, getState, { getFirestore }) => {
 		const firestore = getFirestore();
-		const user = firebase.auth().currentUser;
 		let docRef = firestore.collection('posts').doc(docID);
 		docRef.delete()
 		.then(() => {
@@ -114,7 +112,6 @@ export const postDelete = (docID, history) => {
 export const _delete_comment = (post_id, commentData) => {
 	return (dispatch, getState, { getFirestore }) => {
 		const firestore = getFirestore();
-		const userAuth = getState().firebase.auth;
 		const docRef = firestore.collection('posts').doc(post_id);
 			docRef.update({
 				comments: firebase.firestore.FieldValue.arrayRemove(commentData)
@@ -131,7 +128,6 @@ export const _delete_comment = (post_id, commentData) => {
 export const _update_comment = (post_id, comment_id, updating_data) => {
 	return (dispatch, getState, {getFirestore}) => {
 		const firestore = getFirestore();
-		const userAuth = getState().firebase.auth;
 		const docRef = firestore.collection('posts').doc(post_id);
 		// docRef.update({
 		// 	comments: firebase.firestore.FieldValue.arrayUnion({

@@ -9,7 +9,6 @@ import './navbar.css';
 import Loader from '../functionalComponents/Loader';
 
 const Navbar = (props) => {
-  console.log(props);
   const { auth, profile} = props;
   const links = auth.uid ? <SignedInLinks profile={profile} auth={ auth }/> : <SignedOutLinks />;
   

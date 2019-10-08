@@ -22,7 +22,7 @@ class ChatTextBox extends Component {
 	}
 
 	enterSubmit = (e) => {
-		if(e.which == 13 && !e.shiftKey){
+		if(e.which === 13 && !e.shiftKey){
 			e.preventDefault();
 			this.handleSubmit(e);
 		}

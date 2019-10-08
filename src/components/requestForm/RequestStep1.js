@@ -1,4 +1,4 @@
-import React, {Component } from 'react'
+import React from 'react'
 
 const RequestStep1 = (props) => {
 	if(props.currentStep !== 1) return null;
