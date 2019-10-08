@@ -49,7 +49,7 @@ class AllService extends Component {
 
     if(!nextRef) {
       console.log('state initialized');
-      const firstQuery = firestore.collection('services')
+      const firstQuery = firestore.collection('testService')
         .orderBy('timestamp', 'desc').limit(limit_list);
       const firstSnaps = await firstQuery.get();
       const firstVisible = firstSnaps.docs[firstSnaps.size - 1];
@@ -60,7 +60,7 @@ class AllService extends Component {
     }
     
     try {
-      const nextQuery = firestore.collection('services')
+      const nextQuery = firestore.collection('testService')
         .orderBy('timestamp', 'desc').startAfter(this.state.nextRef).limit(limit_list);
       const nextSnaps = await nextQuery.get();
       const nextVisible = nextSnaps.docs[nextSnaps.size - 1]
@@ -98,7 +98,8 @@ class AllService extends Component {
           <h4 className='all-title myomColor col s12 scorehvy'>둘러보기</h4>
 
           <video style={{width: '100%'}} className='' controls>
-            <source src='https://firebasestorage.googleapis.com/v0/b/myom-89a5a.appspot.com/o/videos%2Freferences%2Fcinema%2F190913%2BMYOM%2B%EC%97%AC%ED%96%89%2B%EC%98%81%EC%83%81%2B%ED%8E%B8%EC%A7%91%2B%ED%94%8C%EB%9E%AB%ED%8F%BC.mp4?alt=media&token=cb4e2cdb-df78-4682-9712-46715da9d899' type='video/mp4'/>
+            <source src='' type='video/mp4'/>
+            {/* https://console.firebase.google.com/project/marioplan-app-9bfcc/storage/marioplan-app-9bfcc.appspot.com/files~2Ftest~2F */}
           </video>
 
           <TipsForCategory category='영화같은 영상' url='/community/user'/>
@@ -126,10 +127,9 @@ class AllService extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     // recommends: state.services.recommends,
-    serviceList: state.firestore.ordered.services
+    serviceList: state.firestore.ordered.testService
   }
 }
 
@@ -137,7 +137,7 @@ export default compose(
   connect(mapStateToProps),
   firestoreConnect((props) => {
     // console.log('in connecting : ', props);
-    return [ { collection: 'services', orderBy: ['timestamp', 'desc'], limit: 8 } ]
+    return [ { collection: 'testService', orderBy: ['timestamp', 'desc'], limit: 8 } ]
   }),
 )(AllService);
 

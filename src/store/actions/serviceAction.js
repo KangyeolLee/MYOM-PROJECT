@@ -1,25 +1,30 @@
 import firebase from 'firebase/app';
 
-export const _buy_service = (service_id, service, history) => {
+
+export const _buy_service = (service_id, service, price, history) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userInfo = getState().firebase.auth;
     // const userRef = firestore.collection('users').doc(userInfo.uid);
     // const providerRef = firestore.collection('users').doc(service.serviceProvider);
-    const listRef = firestore.collection('purchaseList');
+    const listRef = firestore.collection('purchaseList').doc();
 
     let userPurchase = {
       service_id: service_id,
-      category: service.category,
+      service_title: service.service_title,
+      // category: service.category,
+      price: price.price,
+      working: price.working,
       review: null,
-      date: new Date(),
-      imgURL: service.imgURL,
-      provider_id: service.serviceProvider,
+      purchasedAt: new Date(),
+      imgURL: service.images.thumbnail,
+      provider_id: service.provider_id,
       buyer_id: userInfo.uid,
-      options: '니가 고른 옵션',
+      options: price.chips,
+      type: price.type,
     }
     
-    listRef.add({
+    listRef.set({
       ...userPurchase,
     })
     // firestore.runTransaction(transaction => {
@@ -52,7 +57,7 @@ export const _buy_service = (service_id, service, history) => {
     // })
     .then(() => {
       dispatch({ type: 'BUY_SERVICE_SUCCESS'});
-      history.push('/purchasedone/' + service_id);
+      history.push('/purchasedone/' + listRef.id);
     }).catch((err) => {
       dispatch({ type: 'BUY_SERVICE_ERROR', err })
     })
@@ -115,6 +120,33 @@ export const _cancel_order = (purchaseList_id) => {
     })
     .catch((err) => {
       dispatch({ type : 'CANCEL_ORDER_ERROR', err })
+    })
+  }
+}
+
+export const chatCreate = (userData, history) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    const userInfo = getState().firebase.auth;
+    const docRef = firestore.collection('chats');
+    docRef.doc(userInfo.email+':'+userData).set({
+      users: [
+        userInfo.email,
+        userData
+      ],
+      messages: [
+        {
+          message: '반갑습니다, 자유롭게 문의주시기바랍니다.',
+          sender: userData
+        }
+      ]
+    })
+    .then(() => {
+      dispatch({type: 'CHAT_CREATE_SUCCESS'});
+      history.push('/chatDashboard');
+    })
+    .catch((err) => {
+      dispatch({type:'CHAT_CREATE_ERROR'});
     })
   }
 }

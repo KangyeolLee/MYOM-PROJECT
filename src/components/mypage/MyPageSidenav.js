@@ -14,14 +14,14 @@ class MyPageSidenav extends Component {
     const selectorValueForSidenav = pathname.includes('mypageBuyer');
     const finalResult = selectorValueForSidenav
       ? (
-        <div>
+        <div className='myPageSidenav'>
           <div className='profile-infos'>
             <div className='btn-floating grey lighten-1'><i className="large material-icons">person</i></div>
             <h5>의욕적인벚나무7292</h5>
-            <Link to="/mypageProvider/requestsPage" className="btn-large red darken-3 waves-effect"><i className="material-icons left">repeat</i>전문가로 전환하기</Link>
+            <Link to="/mypageProvider/requestsPage" className="btn-large myomColor-background waves-effect"><i className="material-icons left">repeat</i>프로필 설정</Link>
           </div>
           <ul className="collapsible z-depth-0">
-            <li>
+            {/* <li>
               <div className="collapsible-header">나의 견적요청<i className="material-icons right">arrow_drop_down</i></div>
               <div className="collapsible-body">
                 <ul className="estimates-list">
@@ -31,9 +31,9 @@ class MyPageSidenav extends Component {
                   <li><NavLink to="/mypageBuyer/estimate">비승인(0)</NavLink></li>
                 </ul>
               </div>
-            </li>
+            </li> */}
 
-            <li>
+            {/* <li>
               <div className="collapsible-header">구매 관리<i className="material-icons right">arrow_drop_down</i></div>
               <div className="collapsible-body">
                 <ul className="paymentDetails-list">
@@ -45,23 +45,24 @@ class MyPageSidenav extends Component {
                   <li><NavLink to="/mypageBuyer/orderManage">취소(0)</NavLink></li>
                 </ul>
               </div>
-            </li>
-
-            <NavLink to='/mypageBuyer/coupons' className='collapsible-direct black-text'>쿠폰</NavLink>
+            </li> */}
+            <li style={{cursor: 'unset'}} className="yellow darken-3 scorehvy collapsible-direct white-text">메뉴</li>
+            <NavLink to='/mypageBuyer/orderManage' className='collapsible-direct black-text'>구매 관리</NavLink>
             <NavLink to='/mypageBuyer/paymentDetails' className='collapsible-direct black-text'>결제 내역</NavLink>
+            <NavLink to='/mypageBuyer/coupons' className='collapsible-direct black-text'>쿠폰</NavLink>
           
           </ul>
         </div>
       )
       : (
-        <div>
+        <div className='myPageSidenav'>
           <div className='profile-infos'>
             <div className='btn-floating grey lighten-1'><i className="large material-icons">person</i></div>
             <h5>의욕적인벚나무7292</h5>
-            <Link to="/mypageBuyer/estimate" className="btn-large yellow darken-3 waves-effect"><i className="material-icons left">repeat</i>의뢰인으로 전환하기</Link>
+            <Link to="/mypageBuyer/estimate" className="btn-large myomColor-background waves-effect"><i className="material-icons left">repeat</i>프로필 설정</Link>
           </div>
           <ul className="collapsible z-depth-0">
-            <li>
+            {/* <li>
               <div className="collapsible-header">보낸 견적<i className="material-icons right">arrow_drop_down</i></div>
               <div className="collapsible-body">
                 <ul className="estimates-list">
@@ -85,11 +86,14 @@ class MyPageSidenav extends Component {
                   <li><NavLink to="/mypageProvider/sellManage">취소(0)</NavLink></li>
                 </ul>
               </div>
-            </li>
+            </li> */}
 
-            <NavLink to='/mypageProvider/myServices' className='collapsible-direct black-text'>나의 서비스</NavLink>
-            <NavLink to='/mypageProvider/profitsManage' className='collapsible-direct black-text'>수익 관리</NavLink>
+            <li style={{cursor: 'unset'}} className="red darken-3 scorehvy collapsible-direct white-text">메뉴</li>
             <NavLink to='/mypageProvider/profileSetting' className='collapsible-direct black-text'>프로필 관리</NavLink>
+            <NavLink to='/mypageProvider/serviceSetting' className='collapsible-direct black-text'>나의 서비스</NavLink>
+            <NavLink to='/mypageProvider/sellManage' className='collapsible-direct black-text'>판매 관리</NavLink>
+            <NavLink to='/mypageProvider/profitsManage' className='collapsible-direct black-text'>수익 관리</NavLink>
+
           </ul>
         </div>
       );

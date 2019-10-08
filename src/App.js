@@ -38,6 +38,7 @@ import Mainpage from './design-concept/Mainpage';
 import Categorypage from './design-concept/Categorypage';
 import Servicepage from './design-concept/Servicepage';
 import PostEditor from './components/community/PostEditor';
+import RequestForm from './components/requestForm/RequestForm';
 
 class App extends Component {
   render(){
@@ -70,7 +71,7 @@ class App extends Component {
                 <Route path='/changepwd' component= { Changepwd } />
                 <Route path='/withdrawal' component= { Withdrawal } />
                 <Route path='/certifications' component= { Certifications } />
-                <Route path='/serviceRegister' component={ServiceRegister} />
+                {/* <Route path='/serviceRegister' component={ServiceRegister} /> */}
                 <Route path= '/forgotIdPwd' component={ForgotIdPwd} />
                 <Route path= '/emailVerification' component = {EmailVerification} />
                 <Route exact path= '/community/:category' component = { CommunityDashboard } />
@@ -82,6 +83,7 @@ class App extends Component {
                 <Route path='/Categorypage-design' component={Categorypage} />
                 <Route path='/Servicepage-design' component={Servicepage} />
                 <Route path='/postEditor' component={PostEditor} />
+                <Route path='/requestForm' component={RequestForm} />
               </Switch>
           </div>
         </ScrollTop>

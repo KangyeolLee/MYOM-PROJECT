@@ -1,3 +1,6 @@
+.paymentDetails .sub-title {
+  margin-bottom: 3rem;
+}
 .paymentDetails .collection {
   display: flex;
   justify-content: center;
@@ -9,4 +12,9 @@
 .paymentDetails .collection-item-wrapper i {
   display: flex;
   justify-content: center;
+}
+.paymentDetails .preloader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

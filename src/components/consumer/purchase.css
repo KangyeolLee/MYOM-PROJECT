@@ -1,28 +1,38 @@
-.purchase-page h4{
-	margin-top: 4rem;
+.purchase-page .category{
+	margin-top: 5rem;
 	margin-bottom: 3rem;
+}
+.purchase-page tbody {
+  background-color: #fff;
 }
 
 .basic-purchase thead {
-	background-color:  rgb(241, 241, 241);
+	background-color: rgb(246, 224, 247);
 }
-
 .basic-purchase{
 	margin-bottom: 20px;
 	line-height: 2rem;
+}
+.basic-purchase .options {
+  width: 50%;
+  margin-left: 40%;
 }
 
 .option-purchase thead {
 	background-color: rgb(245, 208, 208);
 }
 
-.purchase-form {
+/* .purchase-form {
 	border: 1px solid rgb(241,241,241);
 	padding: 16px;
-}
+} */
 
 .option-purchase label{
 	color: black;
+}
+.option-purchase .request {
+  width: 50%;
+  margin-left: 40%;
 }
 
 .purchase-price {
@@ -34,8 +44,9 @@
 	padding: 10px;
 }
 .panel-body {
-	margin-top: 20px;
-	font-weight: bold;
+  padding-top: 20px;
+  font-weight: bold;
+  background-color: #fff;
 }
 
 .purchase-method {
@@ -49,7 +60,6 @@
 
 .purchase-method .panel-body p{
 	display: inline !important ;
-	margin-right: 8rem;
 }
 
 .purchase-method span{
@@ -76,7 +86,6 @@
   transform: translate(-50%, -25%);
 }
 .purchasedone-btn {
-  margin: 0 5rem;
   display: flex;
   justify-content: center;
 }
@@ -86,4 +95,19 @@
 
 .purchasedone-btns {
 	margin-top: 5rem;
+}
+
+.purchaseDetails .category {
+  margin-top: 5rem;
+	margin-bottom: 3rem;
+}
+.purchaseDetails tbody {
+  background-color: #fff;
+}
+.purchaseDetails .collection {
+  background-color: #fff;
+}
+.thumbnail-img {
+  width: 100%;
+  height: 15rem;
 }

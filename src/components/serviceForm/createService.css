@@ -34,6 +34,7 @@
 .createService .image-btn img.responsive-img {
   position: absolute;
   height: 250px;
+  width: 100%;
 }
 .createService .input-field.none {
   display: none;
@@ -65,9 +66,6 @@
 }
 .createService .file-field.input-field .btn > i {
   font-size: 6rem;
-}
-.createService .file-field.input-field .file-uploader {
-
 }
 
 .createService .input-field.range-selector {

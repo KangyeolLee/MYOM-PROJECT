@@ -90,6 +90,7 @@ class RegisterProvider extends Component {
 		console.log(profile);
 		return(
 			<div className="registerProvider container" >
+				<div className="card">
 				<form onSubmit = { this.handleSubmit}>
 					<RegisterProviderStep1 
 						currentStep = {this.state.currentStep}
@@ -111,14 +112,16 @@ class RegisterProvider extends Component {
 						need={this.state.need}
 						handleChange = {this.handleChange}
 						portfolio = {this.state.portfolio} />				
-					<div className="card">
-						{this.state.currentStep < 3 ? <button onClick={this._next} className="btn indigo right">다음</button> : null }
-						{ this.state.currentStep !== 1 ? <button onClick={this._prev} className="btn indigo left">이전</button> : null }
-						{ this.state.currentStep == 3 &&
-							<button onClick = {this._submit} className="btn indigo right">제출하기</button>}
-						
+					<div className="card-action">
+						<div className="register-buttons">
+							{this.state.currentStep < 3 ? <button onClick={this._next} className="btn indigo right">다음</button> : null }
+							{ this.state.currentStep !== 1 ? <button onClick={this._prev} className="btn indigo left">이전</button> : null }
+							{ this.state.currentStep == 3 &&
+								<button onClick = {this._submit} className="btn indigo right">제출하기</button>}
+						</div>
 					</div>
 				</form>
+				</div>
 			</div>
 		)
 	}

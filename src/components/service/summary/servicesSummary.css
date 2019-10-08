@@ -16,6 +16,9 @@
 .service-wrapper .card .card-content p.service-content {
   clear: both;
   margin-top: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .service-wrapper .card .card-content .rate {
   float: right;

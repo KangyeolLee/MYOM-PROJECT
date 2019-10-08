@@ -2,7 +2,7 @@ import React from 'react'
 
 const WarningComponent = () => {
   return (
-    <div className="collection row grey lighten-4">
+    <div className="collection grey lighten-4">
       <div className="col s12 warning">
         <span><i style={{fontSize: '18px'}} className="material-icons left">error_outline</i> 꼭 확인해주세요!</span><br/>
         <span><i style={{fontSize: '18px'}} className="material-icons left">check</i> 세금계산서는 거래 주체인 전문가가 의뢰인에게 발행합니다.</span><br/>
