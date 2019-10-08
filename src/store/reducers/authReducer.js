@@ -91,6 +91,14 @@ const authReducer = (state=initState, action) => {
     case 'PROFILEIMGREGISTER_ERROR':
       alert('변경할 프로필 이미지를 등록해주세요.')
       return state;
+    
+    case 'EMAIL_FIND_SUCCESS':
+      console.log('email find success');
+      return state;
+    
+    case 'EMAIL_FIND_ERROR':
+      console.log('email find error');
+      return state;
 
     default:
       return state;

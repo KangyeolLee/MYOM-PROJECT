@@ -13,7 +13,7 @@ class SignUp extends Component {
     password_chk: '',
     firstName: '',
     nickname: '',
-    birth: new Date(),
+    birth: '',
     condition_checked: false,
     privacy_checked: false,
     emailRecieve_checked: false,
@@ -127,7 +127,7 @@ class SignUp extends Component {
               </div>
               <div className="input-field">
                 <label htmlFor="birth">생년월일</label>
-                <input type="text" id='birth' className='datepicker' onChange={this.handleChange} required/>
+                <input type="text" id='birth' onChange={this.handleChange} placeholder='950319' required/>
               </div>
               <div className="input-field">
                 <label htmlFor="phoneNumber">휴대폰 번호</label>

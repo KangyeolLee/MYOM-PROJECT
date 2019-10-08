@@ -54,6 +54,7 @@ export const signUp = (newUser) => {
         emailRecieve_checked: newUser.emailRecieve_checked,
         timeStamp: new Date(),
         birth: newUser.birth,
+        phoneNumber: newUser.phoneNumber,
       })
     }).then(() => {
       dispatch({type: 'SIGNUP_SUCCESS'})
@@ -159,6 +160,32 @@ export const resetPwdEmail = (user) => {
     }).catch((err) => {
       dispatch({type: 'SENDRESETEMAIL_ERROR'}, err);
     });
+  }
+}
+
+export const forgotEmail = (userData) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    let docRef = firestore.collection("users").where("firstName", "==", userData.name).where("phoneNumber", "==", userData.tel);
+    docRef.get().then((querySnapshot) => {
+      if(querySnapshot.docs[0]){
+        alert('가입하신 이메일 주소는 ' + querySnapshot.docs[0].data().email + ' 입니다.');
+      } else{
+        alert('입력하신 정보로 가입된 이메일이 없습니다.');
+      }
+      // querySnapshot.forEach((doc) => {
+      //   if (doc.exists) {
+      //     alert('가입하신 이메일 주소는 ' + doc.data().email + ' 입니다.');
+      //   } else {
+          
+      //   }
+      // })
+    })
+    .then(() => {
+      dispatch({type: 'EMAIL_FIND_SUCCESS'});
+    }).catch((err) => {
+      dispatch({type: 'EMAIL_FIND_ERROR'});
+    })
   }
 }
 
