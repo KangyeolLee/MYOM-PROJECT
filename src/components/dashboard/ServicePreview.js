@@ -13,7 +13,7 @@ const ServicePreview = (props) => {
       <div className="row">
         <h5 className="col s12 scorehvy myomColor">
           등록된 서비스
-          <Link to='/thema'><span style={{fontSize: '18px'}} className="right">더 보기</span></Link>
+          <Link to='/thema'><span style={{fontSize: '18px'}} className="right myomColor">더 보기</span></Link>
         </h5>
 
         <ul className="row all_services_area">

@@ -86,7 +86,7 @@ class UserProfile extends Component {
 										<label className='active' htmlFor="my_nickname">닉네임</label>
 									</div>
 									<div className="input-field col right">
-										<button className="btn indigo">수정하기</button>
+										<button className="btn myomColor-background">수정하기</button>
 									</div>
 								</div>
 							</div>

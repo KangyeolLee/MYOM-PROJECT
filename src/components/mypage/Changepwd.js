@@ -41,7 +41,7 @@ class Changepwd extends Component{
 									<label htmlFor="chknewpwd">변경할 비밀번호 재입력</label>
 								</div>
 								<div className="input-field">
-									<button className="btn right indigo">비밀번호 변경하기</button>
+									<button className="btn right myomColor-background">비밀번호 변경하기</button>
 								</div>
 							</div>
 						</form>
