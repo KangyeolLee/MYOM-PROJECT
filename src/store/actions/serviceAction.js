@@ -159,18 +159,6 @@ export const chatCreate = (userEmail, userNickName, history) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userInfo = getState().firebase.auth;
-<<<<<<< HEAD
-    const docRef = firestore.collection('chats').doc(userInfo.email+':'+userData);
-
-    docRef.get().then(doc => {
-      if(doc.exists) {
-        return;
-      } else {
-        docRef.doc(userInfo.email+':'+userData).set({
-          users: [
-            userInfo.email,
-            userData
-=======
     const userProfile = getState().firebase.profile;
     const docRef = firestore.collection('chats').doc(userInfo.email+':'+ userEmail);
     
@@ -187,17 +175,12 @@ export const chatCreate = (userEmail, userNickName, history) => {
           users_nickName : [
             userProfile.initials,
             userNickName,
->>>>>>> bb5115e08fd52eb607450d25f4eaee9992606d48
           ],
           messages: [
             {
               message: '반갑습니다, 자유롭게 문의주시기바랍니다.',
-<<<<<<< HEAD
-              sender: userData
-=======
               sender: userNickName,
               sendAt: new Date(),
->>>>>>> bb5115e08fd52eb607450d25f4eaee9992606d48
             }
           ]
         })

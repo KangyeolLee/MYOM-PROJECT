@@ -2,7 +2,6 @@ import React, {Fragment} from 'react'
 import { Link } from 'react-router-dom'
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLink';
-import Kakao from './Kakao';
 import { connect } from 'react-redux';
 import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import './navbar.css';
@@ -30,7 +29,6 @@ const Navbar = (props) => {
           </div>
         </nav>
       </div>
-      <Kakao />
     </Fragment>
 
 	)
