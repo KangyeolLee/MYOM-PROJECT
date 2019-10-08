@@ -27,7 +27,7 @@ const Footer = () => {
 			<div className="footer-copyright">
 				<div className="container">
 					@ 2019 Copyright 언틸번아웃
-					<a href="#!" className="grey-text text-lighten-4 right">More Link</a>
+					<p className="grey-text text-lighten-4 right">본 사이트는 크롬에 최적화되어있습니다. </p>
 				</div>
 			</div>
 		</footer>

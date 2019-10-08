@@ -4,37 +4,59 @@ import Banner from '../banner/Banner';
 import './providerIntro.css';
 
 class ProviderIntro extends Component {
+  state = {
+    number : 5,
+    expectMoney: 590750,
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      expectMoney : e.target.value * 118150,
+      number : e.target.value,
+    })
+  }
   render() {
     return (
       <div className="providerIntro">
         <Banner path='editor'/>
         <div className="container">
           <div className="row">
+            <h4 className='center margin'>MYOM 편집자가 되어 수익을 늘려보세요!</h4>
             <div className="col s6">
-              <h4>Why host on Airbnb?</h4>
-              <p>No matter what kind of home or room you have to share, Airbnb makes it simple and secure to host travelers. You’re in full control of your availability, prices, house rules, and how you interact with guests.</p>
-            </div>
-            <div className="col s6">
-              <h4>We have your back</h4>
+              <h4>한달에 5일만 투자하세요!</h4>
               <p>To keep you, your home, and your belongings safe, we cover every booking with $1M USD in property damage protection and another $1M USD in insurance against accidents.</p>
+            </div>
+            <div className="col s4 push-s2">
+              <div className="card">
+                <div className="card-content">
+                  <h5>한달 예상수익을 확인해보세요</h5>
+                  <div className="input-field center">
+                    <input type="number" className='numbers' onChange={this.handleChange} value= {this.state.number} /> 건
+                  </div>
+                  <div className="input-field center">
+                    <input type="number" className='expectMoney' value = {this.state.expectMoney} disabled/>
+                  </div>
+                  <p>본 수치는 베이직과 프로의 하한가 평균가격인 118150원을 한건의 가격으로 했을 때의 가격입니다. (수수료 제외 편집자 순수익)</p>
+                </div>
+              </div>
             </div>
 
             <div className="col s12">
               <div className="divider"></div>
-              <h2 className='center'>Hosting in 3 Steps</h2>
+              <h2 className='center margin'>편집자 등록 3단계</h2>
             </div>
 
             <div className="col s4">
-              <h5>List your space for free</h5>
-              <p>Share any space without sign-up charges, from a shared living room to a second home and everything in-between.</p>
+              <h5>편집자 등록</h5>
+              <p>MYOM에서 서비스를 판매하기 위해서는 편집자 등록을 먼저 하셔야합니다. 여행영상을 편집할 능력이 있으신 모든 분들 편집자 등록을 통해 심사를 받아보세요!</p>
             </div>
             <div className="col s4">
-              <h5>Decide how you want to host</h5>
-              <p>Choose your own schedule, prices, and requirements for guests. We’re there to help along the way.</p>
+              <h5>서비스 등록</h5>
+              <p>자신만의 강점으로 서비스를 등록해보세요! 서비스는 공들여 작성한 만큼 소비자들이 더 매력을 느낄 수 있겠죠?</p>
             </div>
             <div className="col s4">
-              <h5>Welcome your first guest</h5>
-              <p>Once your listing is live, qualified guests can reach out. You can message them with any questions before their stay.</p>
+              <h5>편집</h5>
+              <p>소비자가 편집자님의 서비스를 구매하면 편집하여 돌려드리기만하면 끝!</p>
             </div>
 
             <div className="col s12">
