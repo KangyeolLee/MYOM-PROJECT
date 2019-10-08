@@ -5,10 +5,11 @@ export const _buy_service = (service_id, service, price, history) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userInfo = getState().firebase.auth;
+    const userProfile = getState().firebase.profile;
     // const userRef = firestore.collection('users').doc(userInfo.uid);
     // const providerRef = firestore.collection('users').doc(service.serviceProvider);
     const listRef = firestore.collection('purchaseList').doc();
-
+    const chatRef = firestore.collection('chats').doc(userInfo.email+':'+ service.provider_email);
     let userPurchase = {
       service_id: service_id,
       service_title: service.service_title,
@@ -55,6 +56,41 @@ export const _buy_service = (service_id, service, price, history) => {
     //     })
     //   })
     // })
+    .then(() => {
+     chatRef.get().then(doc => {
+       if(doc.exists){
+         chatRef.update({
+           deal: true,
+           messages: firebase.firestore.FieldValue.arrayUnion(
+             {
+              message: '구매해주셔서 감사합니다, 추가 문의사항은 언제든지 남겨주시기 바랍니다.',
+              sender: service.provider_nickName,
+              sendAt: new Date(),
+             }
+           )
+         })
+       }else{
+         chatRef.set({
+           deal: true,
+           users_email: [
+             userInfo.email,
+             service.provider_email,
+           ],
+           users_nickName : [
+             userProfile.initials,
+             service.provider_nickName,
+           ],
+           messages: [
+             {
+               message: '구매해주셔서 감사합니다, 추가 문의사항은 언제든지 남겨주시기 바랍니다.',
+               sender: service.provider_nickName,
+               sendAt: new Date(),
+             }
+           ]
+         })
+       }
+     })
+    })
     .then(() => {
       dispatch({ type: 'BUY_SERVICE_SUCCESS'});
       history.push('/purchasedone/' + listRef.id);
@@ -129,9 +165,10 @@ export const chatCreate = (userEmail, userNickName, history) => {
     
     docRef.get().then(doc=> {
       if(doc.exists){
-        return;
+        return ;
       }else{
-        docRef.doc(userInfo.email+':'+ userEmail).set({
+        docRef.set({
+          deal: false, 
           users_email: [
             userInfo.email,
             userEmail,
