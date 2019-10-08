@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import M from 'materialize-css';
 import './mypageSidenav.css';
 
@@ -50,7 +50,16 @@ class MyPageSidenav extends Component {
             <NavLink to='/mypageBuyer/orderManage' className='collapsible-direct black-text'>구매 관리</NavLink>
             <NavLink to='/mypageBuyer/paymentDetails' className='collapsible-direct black-text'>결제 내역</NavLink>
             <NavLink to='/mypageBuyer/coupons' className='collapsible-direct black-text'>쿠폰</NavLink>
-          
+            <li>
+              <div className="collapsible-header">계정설정<i className="material-icons">arrow_drop_down</i></div>
+              <div className="collapsible-body">
+                <ul className="collection">
+                  <li className="collection-item"><NavLink to='/mypageBuyer/profile'>나의정보 </NavLink></li>
+                  <li className="collection-item"><NavLink to='/mypageBuyer/changepwd'>비밀번호 변경 </NavLink></li>
+                  <li className="collection-item"><NavLink to='/mypageBuyer/withdrawal'>회원탈퇴</NavLink></li>
+                </ul>
+              </div>
+            </li>
           </ul>
         </div>
       )
@@ -93,6 +102,16 @@ class MyPageSidenav extends Component {
             <NavLink to='/mypageProvider/serviceSetting' className='collapsible-direct black-text'>나의 서비스</NavLink>
             <NavLink to='/mypageProvider/sellManage' className='collapsible-direct black-text'>판매 관리</NavLink>
             <NavLink to='/mypageProvider/profitsManage' className='collapsible-direct black-text'>수익 관리</NavLink>
+            <li>
+              <div className="collapsible-header">계정설정<i className="material-icons">arrow_drop_down</i></div>
+              <div className="collapsible-body">
+                <ul className="collection">
+                  <li className="collection-item"><NavLink to='/mypageProvider/profile'>나의정보 </NavLink></li>
+                  <li className="collection-item"><NavLink to='/mypageProvider/changepwd'>비밀번호 변경 </NavLink></li>
+                  <li className="collection-item"><NavLink to='/mypageProvider/withdrawal'>회원탈퇴</NavLink></li>
+                </ul>
+              </div>
+            </li>
 
           </ul>
         </div>

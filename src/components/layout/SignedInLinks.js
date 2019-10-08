@@ -24,7 +24,6 @@ class SignedInLinks extends Component {
 
           {/* about dropdown option for UserMyPage */}
           <ul id="dropdown_mypage" className="dropdown-content">
-            <li><NavLink to='/profile' className="black-text">계정 설정</NavLink></li>
             <li><NavLink to='/mypageBuyer/estimate' className="black-text">마이 페이지</NavLink></li>
             <li className="divider" tabIndex='-1'></li>
             <li><a onClick={this.props.signOut} className="black-text">로그아웃</a></li>
@@ -40,7 +39,6 @@ class SignedInLinks extends Component {
           <ul id="dropdown_mypage2" className="dropdown-content">
             <li><NavLink to='/providerRegister' className="black-text">판매자 등록</NavLink></li>
             <li><NavLink to='/chatDashboard' className='black-text'>메시지</NavLink></li>
-            <li><NavLink to='/profile' className="black-text">계정 설정</NavLink></li>
             <li><NavLink to='/mypageBuyer/estimate' className="black-text">마이 페이지</NavLink></li>
             <li className="divider" tabIndex='-1'></li>
             <li><a onClick={this.props.signOut} className="black-text">로그아웃</a></li>

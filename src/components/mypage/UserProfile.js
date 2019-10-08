@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import ProfileSideNav from './ProfileSideNav'
 import './profile.css'
 import { connect } from 'react-redux'
 import { profileImgRegister } from '../../store/actions/authAction'
@@ -42,15 +41,15 @@ class UserProfile extends Component {
 		return(
 			<div className="container profile_deatails">
 				<div className="row">
-					<ProfileSideNav />
-					<div className="col l8">
-						<div className="my_profile">
+					<h5 className="col s12 scorehvy sub-title">나의 정보</h5>
+					<div className="col s12">
+						<div className="my_profile white">
 							<h6>기본정보</h6>
 							<div className="divider"></div>
 							<form onSubmit={this.handleSubmit}>
 							<div className="row">
-								<div className="col l12">
-									<div className="col l4">
+								<div className="col s12">
+									<div className="col s4">
 										<div className="profile-img">
 											<div className="file-field input-field">
 												{
@@ -78,11 +77,11 @@ class UserProfile extends Component {
 											</div>
 										</div>
 									</div>
-									<div className="input-field col l8">
+									<div className="input-field col s8">
 										<input disabled value= {auth.email} id="my_email" type="text" />
 										<label className='active' htmlFor="my_email">이메일</label>
 									</div>
-									<div className="input-field col l8">
+									<div className="input-field col s8">
 										<input disabled value= {profile.initials} id="my_nickname" type="text" />
 										<label className='active' htmlFor="my_nickname">닉네임</label>
 									</div>

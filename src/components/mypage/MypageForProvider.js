@@ -4,6 +4,9 @@ import OrderManage from './OrderManage';
 import ServiceSetting from './ServiceSetting';
 import ProfitsManage from './ProfitsManage';
 import ProfileSetting from './ProfileSetting';
+import UserProfile from './UserProfile';
+import Changepwd from './Changepwd';
+import Withdrawal from './Withdrawal';
 
 class MypageForProvider extends Component {
   renderSwitch(curURL) {
@@ -22,6 +25,15 @@ class MypageForProvider extends Component {
 
       case '/mypageProvider/profileSetting':
         return <ProfileSetting />
+
+      case '/mypageProvider/profile':
+        return <UserProfile />;
+        
+      case '/mypageProvider/changepwd':
+        return <Changepwd />
+        
+      case '/mypageProvider/withdrawal':
+        return <Withdrawal />
 
       default:  // 기본값 지정
         return this.props.history.push('/mypageProvider/sellManage'); 

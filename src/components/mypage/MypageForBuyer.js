@@ -3,6 +3,9 @@ import MyPageSidenav from './MyPageSidenav';
 import CouponPage from './CouponPage';
 import OrderManage from './OrderManage';
 import PaymentDetails from './PaymentDetails';
+import UserProfile from './UserProfile';
+import Changepwd from './Changepwd';
+import Withdrawal from './Withdrawal';
 
 class MypageForBuyer extends Component {
   renderSwitch(curURL) {
@@ -18,6 +21,15 @@ class MypageForBuyer extends Component {
 
       case '/mypageBuyer/orderManage':
         return <OrderManage pathname= {curURL} />;
+
+      case '/mypageBuyer/profile':
+        return <UserProfile />;
+      
+      case '/mypageBuyer/changepwd':
+        return <Changepwd />
+      
+      case '/mypageBuyer/withdrawal':
+        return <Withdrawal />
 
       default:  // 기본값 지정
         return this.props.history.push('/mypageBuyer/orderManage');

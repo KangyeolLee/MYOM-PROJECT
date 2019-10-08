@@ -1,5 +1,4 @@
 import React, { Component }from 'react'
-import ProfileSideNav from './ProfileSideNav'
 import './profile.css'
 import { connect } from 'react-redux';
 import { changePwd } from '../../store/actions/authAction'
@@ -25,21 +24,19 @@ class Changepwd extends Component{
 		return(
 			<div className="container profile_deatails">
 				<div className="row">
-					<ProfileSideNav />
-					<div className="col l8">
-						<form onSubmit = {this.handleSubmit} className="changepwd">
-							<h6>비밀번호 변경하기</h6>
-							<div className="divider"></div>
+					<h5 className="col s12 scorehvy sub-title">비밀번호 변경</h5>
+					<div className="col s12 ">
+						<form onSubmit = {this.handleSubmit} className="changepwd white">
 							<div className="row">
-								<div className="input-field col l12">
+								<div className="input-field col s12">
 									<input type="password" id="oldpwd" className="validate" onChange = {this.handleChange}/>
 									<label htmlFor="oldpwd">현재 비밀번호</label>
 								</div>
-								<div className="input-field col l6">
+								<div className="input-field col s6">
 									<input type="password" id="newpwd" className="validate" onChange = {this.handleChange}/>
 									<label htmlFor="newpwd">변경할 비밀번호</label>
 								</div>
-								<div className="input-field col l6">
+								<div className="input-field col s6">
 									<input type="password" id="chknewpwd" className="validate" onChange = {this.handleChange}/>
 									<label htmlFor="chknewpwd">변경할 비밀번호 재입력</label>
 								</div>
