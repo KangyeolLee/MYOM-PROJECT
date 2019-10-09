@@ -33,7 +33,7 @@ const RequestStep4 = (props) => {
 				}
 			</div>
 			<div className="divider white"></div>
-			<h6>원하시는 자막의 폰트가 있으면 적어주세요.</h6>
+			<h6>원하시는 자막의 폰트가 있으면 적어주세요. (폰트가 유료일 경우에는 직접 구매하셔야합니다.)</h6>
 			<div className="input-field">
 				<input type="text" id='subtitle_font' onChange={props.handleChange} value={props.subtitle_font}/>
 			</div>
