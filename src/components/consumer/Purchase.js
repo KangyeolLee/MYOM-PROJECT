@@ -200,29 +200,29 @@ class Purchase extends Component {
 					</div>
 				</div>
 				<div className="purchase-method">
-					<div className="panel-heading scorehvy">결제방법</div>
+					<div className="panel-heading scorehvy">결제방법(결제 모듈 서비스는 준비중에 있으며 현재는 계좌이체만 가능합니다!)</div>
 					<div className="panel-body row">
 						<p className='col s3'>
 							<label htmlFor='pay_creditcard'>
-								<input onChange={this.handleChange} id='pay_creditcard' name="method" className="with-gap" type="radio" required />
+								<input onChange={this.handleChange} id='pay_creditcard' name="method" className="with-gap" type="radio" disabled required />
 								<span>신용카드</span>
 							</label>
 						</p>
 						<p className='col s3'>
 							<label htmlFor='pay_kontobezahlen'>
 								<input onChange={this.handleChange} id='pay_kontobezahlen' name="method" className="with-gap" type="radio" required/>
-								<span>실시간 계좌이체</span>
+								<span>계좌이체</span>
 							</label>
 						</p>
 						<p className='col s3'>
 							<label htmlFor='pay_bankaccount'>
-								<input onChange={this.handleChange} id='pay_bankaccount' name="method" className="with-gap" type="radio" required/>
+								<input onChange={this.handleChange} id='pay_bankaccount' name="method" className="with-gap" type="radio" disabled required/>
 								<span>무통장입금</span>
 							</label>
 						</p>
 						<p className='col s3'>
 							<label htmlFor='pay_cellphone'>
-								<input onChange={this.handleChange} id='pay_cellphone' name="method" className="with-gap" type="radio" required/>
+								<input onChange={this.handleChange} id='pay_cellphone' name="method" className="with-gap" type="radio" disabled required/>
 								<span>휴대폰</span>
 							</label>
 						</p>
@@ -246,10 +246,10 @@ class Purchase extends Component {
               <div id="modal-verify-payment" className="modal no-autoinit modal-fixed-footer">
                 <div className="modal-content">
                   <h5>{this.state.selected === 'pay_creditcard' ? '신용카드 결제'
-                        : this.state.selected === 'pay_kontobezahlen' ? '실시간 계좌이체 결제'
+                        : this.state.selected === 'pay_kontobezahlen' ? '계좌이체 결제'
                         : this.state.selected === 'pay_bankaccount' ? '무통장입금 결제'
                         : this.state.selected === 'pay_cellphone' ? '휴대폰 결제' : '결제하기'}</h5>
-                  <p>이 약관은 전자지급결제대행서비스 및 결제대금예치서비스를 제공하는 주식회사 LG유플러스(이하 '회사'라 합니다)과 이용자 사이의 전자금융거래에 관한 기본적인 사항을 정함으로써 전자금융거래의 안정성과 신뢰성을 확보함에 그 목적이 있습니다.</p>
+                  <p>본 서비스는 현재 결제 시스템 도입 중이며 계좌이체로만 결제가 가능한점 양해바랍니다.</p>
                 </div>
                 <div className="modal-footer">
                   <button onClick={this.close_modal} className="modal-close btn-flat waves-effect left">취소</button>  

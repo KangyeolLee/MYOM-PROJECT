@@ -77,7 +77,7 @@ class App extends Component {
                 <Route path='/Categorypage-design' component={Categorypage} />
                 <Route path='/Servicepage-design' component={Servicepage} />
                 <Route path='/postEditor' component={PostEditor} />
-                <Route path='/requestForm' component={RequestForm} />
+                <Route path='/requestForm/:id' component={RequestForm} />
               </Switch>
           </div>
         </ScrollTop>
