@@ -4,7 +4,6 @@ import RequestStep1 from './RequestStep1'
 import RequestStep2 from './RequestStep2'
 import RequestStep3 from './RequestStep3'
 import RequestStep4 from './RequestStep4'
-import RequestStep5 from './RequestStep5'
 import { sendRequest } from '../../store/actions/requestFormAction';
 import { connect } from 'react-redux'
 
@@ -15,20 +14,21 @@ class RequestForm extends Component {
 		editStyle: [
 			{id: 1, value: '시네마틱형', isChecked: false},
 			{id: 2, value: '다이나믹형', isChecked: false},
-			{id: 3, value: '예능형', isChecked: false},
-			{id: 4, value: '다큐멘터리형', isChecked: false},
-			{id: 5, value: '브이로그형', isChecked: false},
+			{id: 3, value: '다큐멘터리형', isChecked: false},
+			{id: 4, value: '브이로그형', isChecked: false},
+			{id: 5, value: '예능형', isChecked: false},
 			{id: 6, value: '기타 :', isChecked: false},
 		],
 		editFeeling: [
 			{id: 1, value: '감각적인', isChecked: false},
 			{id: 2, value: '사실적인', isChecked: false},
-			{id: 3, value: '서술적인', isChecked: false},
+			{id: 3, value: '잔잔한', isChecked: false},
 			{id: 4, value: '색감좋은', isChecked: false},
-			{id: 5, value: '실험적인', isChecked: false},
+			{id: 5, value: '감성적인', isChecked: false},
 			{id: 6, value: '이목끄는', isChecked: false},
 			{id: 7, value: '트렌디한', isChecked: false},
 			{id: 8, value: 'B급병맛', isChecked: false},
+			{id: 9, value: '신나는', isChecked: false},
 		],
 		hasReference: [
 			{id: 1, value: '레퍼런스 영상 있음', isChecked: false},
@@ -45,20 +45,20 @@ class RequestForm extends Component {
 			{id: 1, value: '무료음원', isChecked: false},
 			{id: 2, value: '유료음원', isChecked: false},
 		],
-		whatKindOfMusic: [
-			{id: 1, value: '신나는', isChecked: false},
-			{id: 2, value: '감성적인', isChecked: false},
-			{id: 3, value: '몽환적인', isChecked: false},
-			{id: 4, value: '트렌디한', isChecked: false},
-		],
+		// whatKindOfMusic: [
+		// 	{id: 1, value: '신나는', isChecked: false},
+		// 	{id: 2, value: '감성적인', isChecked: false},
+		// 	{id: 3, value: '잔잔한', isChecked: false},
+		// 	{id: 4, value: '트렌디한', isChecked: false},
+		// ],
 		wantMusic: '',
-		editTechnique: [
-			{id: 1, value: '모션그래픽', isChecked: false},
-			{id: 2, value: '색 보정', isChecked: false},
-			{id: 3, value: '밝기 조정', isChecked: false},
-			{id: 4, value: '더빙', isChecked: false},
-			{id: 5, value: '3D', isChecked: false},
-		],
+		// editTechnique: [
+		// 	{id: 1, value: '모션그래픽', isChecked: false},
+		// 	{id: 2, value: '색 보정', isChecked: false},
+		// 	{id: 3, value: '밝기 조정', isChecked: false},
+		// 	{id: 4, value: '더빙', isChecked: false},
+		// 	{id: 5, value: '3D', isChecked: false},
+		// ],
 		subtitle: [
 			{id: 1, value: '자막없이 해주세요.', isChecked: false},
 			{id: 2, value: '오프닝과 엔딩, 장소별 이름정도', isChecked: false},
@@ -67,7 +67,10 @@ class RequestForm extends Component {
 			{id: 5, value: '기타', isChecked: false},
 		],
 		subtitle_font: '',
-		essential_cut: '',
+		essential_cut: [
+			{id: 1, value: '예', isChecked: false},
+			{id: 2, value: '아니요', isChecked: false},
+		],
 		edit_order: [
 			{id: 1, value: '시간의 흐름', isChecked: false},
 			{id: 2, value: '색감 맞춰서', isChecked: false},
@@ -99,7 +102,7 @@ class RequestForm extends Component {
 	}
 
 	_submit = () => {
-		this.props.sendRequest(this.state);
+		this.props.sendRequest(this.state, this.props.history, this.props.match.params.id);
 	}
 	_next = () => {
 		const required_all = [...document.querySelectorAll('._required')];
@@ -112,7 +115,7 @@ class RequestForm extends Component {
 		}
 
 		let currentStep = this.state.currentStep;
-		currentStep = currentStep >= 4? 5 : currentStep +1 ;
+		currentStep = currentStep >= 3? 4 : currentStep +1 ;
 		this.setState({
 			currentStep,
 			need: false,
@@ -133,7 +136,7 @@ class RequestForm extends Component {
 				<div className="card">
 					<div className="card card-image">
 						<img src="/img/purple.jpg"/>
-						<span className="card-title white-text">제작 요청서 ({this.state.currentStep}/5)</span>
+						<span className="card-title white-text">제작 요청서 ({this.state.currentStep}/4)</span>
 					</div>
 					<form onSubmit={this.handleSubmit}>
 						<RequestStep1
@@ -159,20 +162,19 @@ class RequestForm extends Component {
 							referenceLink = {this.state.referenceLink} 
 							purpose = {this.state.purpose} />		
 
+						{/* <RequestStep4
+							currentStep = {this.state.currentStep}
+							need={this.state.need}
+							handleChange = {this.handleChange}
+							handleCheck = {this.handleCheck}
+							editTechnique = {this.state.editTechnique} />		 */}
+
 						<RequestStep4
 							currentStep = {this.state.currentStep}
 							need={this.state.need}
 							handleChange = {this.handleChange}
 							handleCheck = {this.handleCheck}
-							editTechnique = {this.state.editTechnique} />		
-
-						<RequestStep5
-							currentStep = {this.state.currentStep}
-							need={this.state.need}
-							handleChange = {this.handleChange}
-							handleCheck = {this.handleCheck}
 							musicFree = {this.state.musicFree}
-							whatKindOfMusic = { this.state.whatKindOfMusic }
 							wantMusic = {this.state.wantMusic}
 							subtitle = {this.state.subtitle}
 							subtitle_font = {this.state.subtitle_font} 
@@ -182,10 +184,10 @@ class RequestForm extends Component {
 						
 						<div className="card-action">
 							<div className="request-buttons">
-								{this.state.currentStep < 5 ? <button onClick={this._next} className="btn indigo right">다음</button> : null }
-								{ this.state.currentStep !== 1 ? <button onClick={this._prev} className="btn indigo left">이전</button> : null }
-								{ this.state.currentStep == 5 &&
-									<button onClick = {this._submit} className="btn indigo right">제출하기</button>}
+								{this.state.currentStep < 4 ? <button onClick={this._next} className="btn myomColor-background right">다음</button> : null }
+								{ this.state.currentStep !== 1 ? <button onClick={this._prev} className="btn myomColor-background left">이전</button> : null }
+								{ this.state.currentStep == 4 &&
+									<button onClick = {this._submit} className="btn myomColor-background right">제출하기</button>}
 							</div>
 						</div>
 					</form>
@@ -197,7 +199,7 @@ class RequestForm extends Component {
 
 const mapDispatchToProps = (dispatch) => {
 	return{
-		sendRequest: (requestData) => dispatch(sendRequest(requestData))
+		sendRequest: (requestData, history, purchased_id) => dispatch(sendRequest(requestData , history, purchased_id))
 	}
 }
 
