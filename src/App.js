@@ -71,7 +71,7 @@ class App extends Component {
                 <Route exact path= '/community/:category/createPost' component = { CreatePost } />
                 <Route exact path= '/post/:id' component = { PostDetails }/>
                 <Route exact path='/chatDashboard' component={ChatDashboard} />
-                <Route path='/chatDashboard/:nickname' component = {ChatDashboard} />
+                {/* <Route path='/chatDashboard/:nickname' component = {ChatDashboard} /> */}
                 <Route path='/createService' component={CreateService} />
                 <Route path='/Mainpage-design' component={Mainpage} />
                 <Route path='/Categorypage-design' component={Categorypage} />

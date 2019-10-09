@@ -48,17 +48,17 @@ class ChatDashboard extends Component {
 		M.AutoInit();
 	}
 	render(){
-    const { nickname } = this.props.match.params;
+    // const { nickname } = this.props.match.params;
 		const { chats, profile } = this.props;
 		const { chatId } = this.state;
     const dealingChat = !isLoaded(chats) ? null : chats.filter(chat => chat.deal === true);
-    const currentChat = !isLoaded(chats) ? null : chats.filter(chat => chat.users_nickName[1] === nickname);
+    // const currentChat = !isLoaded(chats) ? null : chats.filter(chat => chat.users_nickName[1] === nickname);
 
     console.log(chatId, this.state.selectedChat, this.state.newChatFormVisible);
 		return(
 			<div className="chatDashboard">
 				<div className="chatsTemplate container">
-          <div className="chatMessages">
+          {/* <div className="chatMessages">
             {
               (nickname)
                 ? (
@@ -76,8 +76,8 @@ class ChatDashboard extends Component {
                       <ChatViews profile = { profile } chat = {chats[this.state.selectedChat]} />             
                 )
             }
-          </div>
-					{/* <div className="chatMessages">
+          </div> */}
+					<div className="chatMessages">
 						{	
 							!isLoaded(chats)
 								? <Preloader /> 
@@ -87,7 +87,7 @@ class ChatDashboard extends Component {
 									:
 									<ChatViews profile = { profile } chat = {chats[this.state.selectedChat]} />
 						}
-					</div> */}
+					</div>
 					{
 						this.state.selectedChat !== null && !this.state.newChatFormVisible && isLoaded(chatId)
 						? <ChatTextBox profile={profile} chatId={this.state.chatId}></ChatTextBox> :
