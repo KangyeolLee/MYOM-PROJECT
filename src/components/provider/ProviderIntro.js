@@ -6,27 +6,32 @@ import './providerIntro.css';
 class ProviderIntro extends Component {
   state = {
     number : 5,
-    expectMoney: 590750,
+    expectMoney: '590,750원',
   }
 
   handleChange = (e) => {
     this.setState({
-      expectMoney : e.target.value * 118150,
+      expectMoney : this.numberWithCommas(e.target.value * 118150) + '원',
       number : e.target.value,
     })
   }
+  numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   render() {
     return (
       <div className="providerIntro">
         <Banner path='editor'/>
         <div className="container">
           <div className="row">
-            <h4 className='center margin'>MYOM 편집자가 되어 수익을 늘려보세요!</h4>
+            <h4 className='center scorehvy margin'>MYOM 편집자가 되어 수익을 늘려보세요!</h4>
             <div className="col s6">
               <h4>한달에 5일만 투자하세요!</h4>
-              <p>To keep you, your home, and your belongings safe, we cover every booking with $1M USD in property damage protection and another $1M USD in insurance against accidents.</p>
+              <p>한달 예상 수익 </p>
             </div>
-            <div className="col s4 push-s2">
+
+            <div className="col s5 push-s1">
               <div className="card">
                 <div className="card-content">
                   <h5>한달 예상수익을 확인해보세요</h5>
@@ -34,13 +39,13 @@ class ProviderIntro extends Component {
                     <input type="number" className='numbers' onChange={this.handleChange} value= {this.state.number} /> 건
                   </div>
                   <div className="input-field center">
-                    <input type="number" className='expectMoney' value = {this.state.expectMoney} disabled/>
+                    <input type="text" className='expectMoney' value={this.state.expectMoney} disabled/>
                   </div>
-                  <p>본 수치는 베이직과 프로의 하한가 평균가격인 118150원을 한건의 가격으로 했을 때의 가격입니다. (수수료 제외 편집자 순수익)</p>
+                  <p className='grey-text'>본 수치는 베이직과 프로의 하한가 평균가격인 118,150원을 한건의 가격으로 했을 때의 가격입니다. (수수료 제외 편집자 순수익)</p>
                 </div>
               </div>
             </div>
-
+ 
             <div className="col s12">
               <div className="divider"></div>
               <h2 className='center margin'>편집자 등록 3단계</h2>
