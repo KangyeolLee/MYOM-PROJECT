@@ -77,7 +77,12 @@ class SignUp extends Component {
   
   handleSubmit = (e) => {
     e.preventDefault();
-    if(this.state.password !== this.state.password_chk)
+    let passRule = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z]).*$/;
+    if(!passRule.test(this.state.password)){
+      alert('비밀번호는 문자/숫자를 포함한 8~15자리 이내로 해주시기 바랍니다.')
+      return;
+    }
+    else if(this.state.password !== this.state.password_chk)
       alert('비밀번호를 다시한번 확인해주세요.')
     else if(!(this.state.condition_checked && this.state.privacy_checked))
       alert('필수 동의사항을 확인해주시기 바랍니다.')
@@ -96,6 +101,12 @@ class SignUp extends Component {
     })
   }
 
+  // passwordCheck = (e) => {
+  //   let passRule = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+  //   if(!passRule.test(e.target.value))
+  //     return alert('비밀번호는 특수문자/문자/숫자를 포함한 8~15자리 이내로 해주시기 바랍니다.');
+  // }
+
   render() {
     const { auth, authError } = this.props;
     if(auth.uid) return <Redirect to='/emailVerification' />
@@ -110,7 +121,7 @@ class SignUp extends Component {
                 <input type="email" id='email' onChange={this.handleChange} required/>
               </div>
               <div className="input-field">
-                <label htmlFor="password">비밀번호</label>
+                <label htmlFor="password">비밀번호(숫자/문자를 포함한 8~15자리)</label>
                 <input type="password" id="password" onChange={this.handleChange} required/>
               </div>
               <div className="input-field">
@@ -130,7 +141,7 @@ class SignUp extends Component {
                 <input type="text" id='birth' onChange={this.handleChange} placeholder='950319' required/>
               </div>
               <div className="input-field">
-                <label htmlFor="phoneNumber">휴대폰 번호</label>
+                <label htmlFor="phoneNumber">휴대폰 번호(-을 빼고 입력해주세요.)</label>
                 <input type="text" id="phoneNumber" onChange={this.handleChange} required/>
               </div>
             </div>
