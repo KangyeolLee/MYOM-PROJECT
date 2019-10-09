@@ -11,7 +11,7 @@ const ServicesSummary = ({service}) => {
         <div className="card-content">
           <span className="card-title">{service.service_title}</span>
           <span className='grey-text'>{service.provider_nickName}</span>
-          <span className='rate'><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star_half</i></span>
+          {/* <span className='rate'><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star_half</i></span> */}
           <p className='service-content'>{service.service_content}</p>
         </div>
         <div className="card-action">

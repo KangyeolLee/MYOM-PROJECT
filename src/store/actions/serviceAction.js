@@ -188,7 +188,7 @@ export const chatCreate = (userEmail, userNickName, history) => {
     })
     .then(() => {
       dispatch({type: 'CHAT_CREATE_SUCCESS'});
-      history.push('/chatDashboard/');
+      history.push('/chatDashboard');
     })
     .catch((err) => {
       dispatch({type:'CHAT_CREATE_ERROR'});

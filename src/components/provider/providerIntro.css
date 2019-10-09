@@ -21,7 +21,7 @@
 
 .numbers{
   width:15% !important;
-  text-align: right;
+  text-align: center;
 }
 
 .margin{
@@ -30,4 +30,5 @@
 
 .expectMoney{
   text-align: center;
+  font-size: 30px !important;
 }

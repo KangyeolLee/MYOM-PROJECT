@@ -4,12 +4,13 @@ import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import moment from 'moment';
+import RequestResult from '../requestForm/RequestResult';
 
 const PurchaseDetails = (props) => {
   if(!isLoaded(props.purchased_service)) return <div className='container'>로딩중...</div>
 
   const { type, purchasedAt, provider_id, service_title, imgURL, price, options, working } = props.purchased_service;
-
+  // const { service_id } = props.match.params;
   return (
     <div className="container purchaseDetails">
       <h5 className='col s12 scorehvy category'>주문내역</h5>
@@ -70,13 +71,7 @@ const PurchaseDetails = (props) => {
       <h5 className='col s12 scorehvy category'>요청서</h5>
       <div className="row collection">
         <div className="collection-item center">
-          <p>내가 작성한 요청 내용 ...</p>
-          <p>...</p>
-          <p>...</p>
-          <p>...</p>
-          <p>...</p>
-          <p>...</p>
-          <p>...</p>
+          {/* <RequestResult purchased_id={service_id} /> */}
           <button className='btn waves-effect waves-light myomColor-background'>추가 문의</button>
         </div>
       </div>
