@@ -27,7 +27,7 @@ class ServicePricesSummary extends Component {
                   <p className="basic-intro col s12">{item.intro}</p>
                 </li>
 
-                <div className="col s12 divider"></div>
+                <div className="col s10 offset-s1 divider"></div>
 
                 <li className='col s12'>
                   <h6 className='scorehvy col s12'>옵션 소개</h6>
@@ -40,7 +40,7 @@ class ServicePricesSummary extends Component {
                   </div>
                 </li>
 
-                <div className="col s12 divider"></div>
+                <div className="col s10 offset-s1 divider"></div>
 
                 <li className='col s12'>
                   <div className="col s6">
@@ -54,7 +54,7 @@ class ServicePricesSummary extends Component {
                 </li>
               </ul>
 
-              <div className="col s12 divider"></div>          
+              <div className="col s10 offset-s1 divider"></div>          
 
               <h5 className="scorehvy col s12 center price">₩ {item.price}</h5>
               

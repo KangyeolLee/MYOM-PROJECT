@@ -17,7 +17,6 @@
   background-color: #4F328F !important;
 }
 .service-details .fixed {
-  margin-top: 5rem;
   position: fixed !important;
   width: 70% !important;
   max-width: 1280px !important;
@@ -233,23 +232,56 @@
     width: 100%;
     min-width: unset;
     margin-left: 0;
-    padding: 0 2rem;
+    padding: 0 5rem;
   }
   .service-details #service-details .hidden-over-desktop {
     display: block;
   }
   .service-details .provider-profile {
     width: 100%;
+    height: 500px;
     margin-left: 0 !important;
   }
   .service-details .provider-profile .card {
-    height: 403px;
+    margin-bottom: 0;
+    height: 500px;
+    max-height: unset;
+  }
+  .service-details .provider-profile .card .card-content .col {
+    margin: 1rem 0;
   }
   .service-details .price-wrapper {
     width: 100%;
+    height: 500px;
     margin-left: 0 !important;
   }
+  .service-details .price-wrapper .price {
+    margin: 0;
+    position: absolute;
+    bottom: 5rem;
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+  @media only screen and (min-width: 1150px) and (max-width: 1550px) {
+    .service-details #service-details .service-description {
+      padding: 0 15rem;
+    }
+  }
+  @media only screen and (min-width: 1025px) and (max-width: 1150px) {
+    .service-details #service-details .service-description {
+      padding: 0 10rem;
+    }
+  }
 }
+@media only screen and (max-width: 780px) {
+  .service-details #service-details .service-description {
+    width: 100%;
+    min-width: unset;
+    margin-left: 0;
+    padding: 0 2rem;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .service-details .thumbnail .thumb-img {
     padding-bottom: 100%;

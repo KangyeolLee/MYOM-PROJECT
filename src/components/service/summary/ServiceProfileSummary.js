@@ -14,10 +14,12 @@ class ServiceProfileSummary extends Component {
     this.props.chatCreate(this.props.provider_email, this.props.provider_nickName , this.props.history);
   }
   render() {
-    if(!isLoaded(this.props.providerInfo)) return <div className='container'>로딩중...</div>
+    // if(!isLoaded(this.props.providerInfo)) return <div className='container'>로딩중...</div>
     const { provider_nickName } = this.props;
     const { providerInfo } = this.props;
-    const tools = providerInfo[0].editorTool.flatMap(tool => Object.values(tool));
+    const tools = (providerInfo !== null && providerInfo !== undefined) ? providerInfo.editorTool : [];
+    if(tools.length) console.log(tools);
+
 
     return (
       <div className="provider-profile row">
@@ -42,7 +44,7 @@ class ServiceProfileSummary extends Component {
             <p className='col s4 scorehvy'>사용툴</p>
             <span className="col s8">
             {
-              tools.length && tools.map(tool => '#' + tool.name + ' / ')
+              tools.length && tools.map((tool, idx) => '#' + tool['tool' + idx].name + ' / ')
             }
             </span>
 
@@ -62,9 +64,12 @@ class ServiceProfileSummary extends Component {
     )
   }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.provider_id;
+  const providerInfos = state.firestore.data.providerInfo;
+  const providerInfo = providerInfos ? providerInfos[id] : null;
   return {
-    providerInfo: state.firestore.ordered.providerInfo,
+    providerInfo,
   }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -77,7 +82,7 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect(props => {
     return [
-      { collection: 'providersTest', where: ['uid', '==', props.provider_id], storeAs: 'providerInfo' }
+      { collection: 'providersTest', storeAs: 'providerInfo' }
     ]
   })
 )(ServiceProfileSummary);

@@ -287,7 +287,7 @@ export const providerRegister = (providerData, history) => {
     const firestore = getFirestore();
     const userAuth = getState().firebase.auth;
     const userRef = firestore.collection('users').doc(userAuth.uid);
-    const docRef = firestore.collection('providersTest').doc();
+    const docRef = firestore.collection('providersTest').doc(userAuth.uid);
     const storageRef = firebase.storage().ref('images/users/' + userAuth.uid).child('profileImg');
 
     storageRef.put(providerData.profileFile)
