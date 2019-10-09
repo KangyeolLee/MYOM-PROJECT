@@ -41,10 +41,10 @@ class SignIn extends Component {
               </div>
               <div className="input-field center">
                 <div className="red-text center login-error">{ authError ? <p>{authError}</p> : null }</div>
-                <button className="btn indigo lighten-1">로그인</button>
+                <button className="btn myomColor-background lighten-1">로그인</button>
               </div>
               <div className="forgotidpwd center">
-                <Link to='/forgotIdPwd'>아이디/비밀번호찾기</Link>
+                <Link to='/forgotIdPwd' className='myomColor'>아이디/비밀번호찾기</Link>
               </div>
             </form>
           </div>
