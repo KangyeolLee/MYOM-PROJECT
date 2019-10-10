@@ -5,8 +5,13 @@ import { compose } from 'redux'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import './community.css'
+import { EditorState, convertFromRaw} from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg'
+import draftToHtml from 'draftjs-to-html';
+import draftToMarkdown from 'draftjs-to-markdown';
 import PostCommentTest from './PostCommentTest'
 import CommentRegister from './CommentRegister'
+import Preloader from '../functionalComponents/Preloader';
 import { postDelete } from '../../store/actions/postAction'
 
 class PostDetails extends Component {
@@ -19,6 +24,8 @@ class PostDetails extends Component {
 		//auth.email
 		const post_id = this.props.match.params.id;
 		if(post) {
+			const contentState = convertFromRaw(this.props.post.content);
+			const editorState = EditorState.createWithContent(contentState);
 			return(
 				<div className="container section post-details">
 					<div className="card z-depth-0">
@@ -26,10 +33,10 @@ class PostDetails extends Component {
 							<img src={post.post_img} alt=""/>
 						</div>
 						<div className="card-content">
-							<span className="card-title">{post.title}</span>
-							<p>{post.content}</p>
+							<span className="card-title"><h3>{post.title}</h3></span>
+							<Editor editorState= {editorState} toolbarHidden readOnly={true}/>
 						</div>
-						<div className="card-action grey lighten-4 grey-text">
+						<div className="card-action grey-text">
 							<div>Posted by {post.author}</div>
 							<div>{moment(post.createAt.toDate()).calendar()}</div>
 						</div>
@@ -42,19 +49,19 @@ class PostDetails extends Component {
 					</div>
 					{ (auth.uid === post.authorId) && /* 작성자에게만 수정/삭제 버튼이 생성됨. */
 						<div className="revise-delete right">
-							<Link to= {{
+							{/* <Link to= {{
 								pathname: '/community/'+`${post.category}`+'/createPost',
 								post_id: `${this.props.match.params.id}`,
 								title: `${post.title}`,
 								content: `${post.content}`,
 								post_img:`${post.post_img}`,
-								check_update: true
+								check_update: true,
 							}}>
 							<button className="btn">수정</button>
-							</Link>
+							</Link> */}
 							<form onSubmit = {this.handleSubmit}>
 								<div className="inputfield">
-									<button className="btn">삭제</button>
+									<button className="btn myomColor-background">삭제</button>
 								</div>
 							</form>
 						</div>

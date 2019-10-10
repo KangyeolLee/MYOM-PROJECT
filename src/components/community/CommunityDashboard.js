@@ -105,7 +105,7 @@ class CommunityDashboard extends Component {
 				<div className="fixed-action-btn">
 					{ (profile.authority === match.params.category) && 
 					<Link to={`${match.url}`+'/createPost'} className="btn-floating btn-large indigo">
-						<i className="large material-icons">mode_edit</i>
+						<i className="large material-icons myomColor-background">mode_edit</i>
 					</Link>
 					}
 				</div>
