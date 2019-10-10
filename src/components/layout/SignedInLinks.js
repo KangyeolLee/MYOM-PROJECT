@@ -14,6 +14,7 @@ class SignedInLinks extends Component {
     });
   }
   render() {
+    const { profile } = this.props
     return (
       <Fragment>
         <ul className="right hide-on-small-only">
@@ -24,7 +25,12 @@ class SignedInLinks extends Component {
 
           {/* about dropdown option for UserMyPage */}
           <ul id="dropdown_mypage" className="dropdown-content">
-            <li><NavLink to='/mypageBuyer/estimate' className="black-text">마이 페이지</NavLink></li>
+            { 
+              (profile.authority === 'editor') 
+              ? <li><NavLink to='/mypageProvider/sellManage' className="black-text">마이 페이지</NavLink></li>
+              :
+              <li><NavLink to='/mypageBuyer/orderManage' className="black-text">마이 페이지</NavLink></li>
+            }
             <li className="divider" tabIndex='-1'></li>
             <li><a onClick={this.props.signOut} className="black-text">로그아웃</a></li>
             <li><NavLink to='/withdrawal' className="black-text">회원탈퇴</NavLink></li>

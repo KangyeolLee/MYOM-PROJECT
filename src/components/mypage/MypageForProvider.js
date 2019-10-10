@@ -3,7 +3,7 @@ import MyPageSidenav from './MyPageSidenav';
 import OrderManage from './OrderManage';
 import ServiceSetting from './ServiceSetting';
 import ProfitsManage from './ProfitsManage';
-import ProfileSetting from './ProfileSetting';
+import ProviderProfile from './ProviderProfile';
 import UserProfile from './UserProfile';
 import Changepwd from './Changepwd';
 import Withdrawal from './Withdrawal';
@@ -24,7 +24,7 @@ class MypageForProvider extends Component {
         return <OrderManage pathname= {curURL} />;
 
       case '/mypageProvider/profileSetting':
-        return <ProfileSetting />
+        return <ProviderProfile />
 
       case '/mypageProvider/profile':
         return <UserProfile />;
