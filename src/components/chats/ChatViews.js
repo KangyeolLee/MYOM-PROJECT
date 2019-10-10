@@ -21,10 +21,28 @@ class ChatViews extends Component {
 				<div id="chatview-container" className="chat-content">
 					{
 						chat.messages.map((_msg, _index) => {
+
 							return(
 								<blockquote key={_index} className={_msg.sender === profile.initials ? "user-sent-message " : "friend-sent-message" }>
 										{
-										
+											(_msg.file) ? 
+												(_index === chat.messages.length-1) && (_msg.sender === profile.initials) ?
+												<Fragment>
+													<a href={_msg.file } download={_msg.fileName} className="btn myomColor-background">다운로드</a><br/>
+													<span>파일명 : {_msg.fileName} </span>
+													<p>{_msg.message}</p>
+													<cite className="sender black-text">{_msg.sender}</cite>
+													<cite>{moment(_msg.sendAt.toDate()).fromNow()} {chat.receiverHasRead ? 
+														<Fragment>읽음</Fragment> : <Fragment>안읽음</Fragment>}</cite>
+												</Fragment>
+												:
+												<Fragment>
+													<a href={_msg.file } download={_msg.fileName} className="btn myomColor-background">다운로드</a><br/>
+													<span>파일명 : {_msg.fileName} </span>
+													<cite className="sender black-text">{_msg.sender}</cite>
+													<cite>{moment(_msg.sendAt.toDate()).fromNow()}</cite>
+												</Fragment>
+											:
 											(_index === chat.messages.length-1) && (_msg.sender === profile.initials) ?
 											<Fragment>
 												<p>{_msg.message}</p>

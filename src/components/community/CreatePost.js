@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createPost, postUpdate } from '../../store/actions/postAction'
+import { Editor } from 'react-draft-wysiwyg'
+import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
+import { stateToHTML } from 'draft-js-export-html'
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './createPost.css'
 
 class CreatePost extends Component {
@@ -11,14 +17,39 @@ class CreatePost extends Component {
 		content: this.props.location.content ||'',
 		post_img: this.props.location.post_img ||'',
 		check_update: this.props.location.check_update || false,
+		editorState: EditorState.createEmpty(),
 	}
 	
+	handleRevise = (content) => {
+		const contentState = convertFromRaw(content);
+		const editorState = EditorState.createWithContent(contentState);
+		this.setState({
+			editorState,
+		});
+	}
+
+	onEditorStateChange = (editorState) => {
+		this.setState({
+			editorState,
+		});
+	};
+
 	handleChange = (e) => {
 		this.setState({
 			[e.target.id] : e.target.value
 		})
 	}
-	
+
+	handleConvert = (editorState) => {
+		const contentState = editorState.getCurrentContent();
+		// let test2= stateToHTML(contentState);
+		let test= convertToRaw(contentState);
+		console.log(test, contentState);
+		this.setState({
+			editorState,
+			content: test,
+		}); 
+	}
 	uploadFile = (e) => {
     this.setState({
       [e.target.id] : e.target.files[0]
@@ -47,17 +78,25 @@ class CreatePost extends Component {
 						<label htmlFor="title">제목</label>
 						<input type="text" id="title" onChange={this.handleChange} value= {this.state.title} />
 					</div>
-					<div className="input-field">
-						<label htmlFor="content">포스트 내용</label>
-						<textarea id="content" className='post-content' onChange = { this.handleChange } value={this.state.content}></textarea>
+					<div className="myEditor">
+						<Editor 
+							editorState={this.state.editorState}
+							toolbarClassName="toolbarClassName"
+							wrapperClassName="wrapperClassName"
+							editorClassName="editorClassName"
+							localization={{
+								locale: 'ko',
+							}}
+							onEditorStateChange={this.handleConvert}
+						/>
 					</div>
 					<div className="file-field input-field">
-						<div className="btn indigo">
-							<i className="material-icons">file_upload</i>
+						<div className="btn myomColor-background">
+							<i className="material-icons myomColor-background">file_upload</i>
 							<input type="file" id='post_img' onChange={this.uploadFile} required/>
 						</div>
 						<div className="file-path-wrapper">
-							<input type="text" className="file-path validate" placeholder='이미지 파일을 업로드 하세요.'/>
+							<input type="text" className="file-path validate" placeholder='썸네일 이미지를 업로드 하세요.'/>
 						</div>
 					</div>
 					{
@@ -69,7 +108,7 @@ class CreatePost extends Component {
 						)
 						: (
 							<div className="input-field">
-								<button name='create_btn' className="btn indigo right">작성하기</button>
+								<button name='create_btn' className="btn right myomColor-background">작성하기</button>
 							</div>
 						)
 					}

@@ -7,6 +7,7 @@ class ChatTextBox extends Component {
 	state = {
 		sender: this.props.profile.initials,
 		message: '',
+		file: '',
 	}
 
 	handleChange = (e) => {
@@ -27,6 +28,12 @@ class ChatTextBox extends Component {
 			this.handleSubmit(e);
 		}
 	}
+
+	handleUpload = (e) => {
+		this.setState({
+			[e.target.id] : e.target.files[0]
+		})
+	}
 	render() {
 		return(
 			<div className="chat-text-box">
@@ -34,7 +41,18 @@ class ChatTextBox extends Component {
 					<div className="input-field text-box">
 						<label htmlFor="message"></label>
 						<textarea id="message" col="1" row="50" onChange={this.handleChange} onKeyDown = {this.enterSubmit} placeholder="메시지를 입력해주세요."></textarea>
-						<button className="btn chat-send-btn">전송하기</button>
+					</div>
+					<div className="file-field input-field">
+						<div className="btn myomColor-background fileBtn">
+							<i className="material-icons">file_upload</i>
+							<input type="file" id='file' onChange={this.handleUpload} />
+						</div>
+						{/* <div className="file-path-wrapper">
+							<input type="text" className="file-path validate" />
+						</div> */}
+					</div>
+					<div className="input-field">
+						<button className="btn myomColor-background chat-send-btn">전송하기</button>
 					</div>
 				</form>
 			</div>

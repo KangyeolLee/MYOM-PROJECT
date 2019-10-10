@@ -2,8 +2,14 @@
 	background-color: #707BC4;
 	clear: both;
 	position: absolute;
-	bottom: 5px;
+	bottom: 20px;
 	right: 0.1px;
+}
+
+.fileBtn{
+	position: absolute;
+	right: 0.1px;
+	bottom: 125px;
 }
 
 #chat-text{

@@ -77,7 +77,7 @@ const authReducer = (state=initState, action) => {
       return state;
 
     case 'SENDEMAILVERIFICATION_SUCCESS':
-      console.log('send verification email')
+      alert('가입하신 이메일로 인증메일 발송되었습니다.');
       return state;
     
     case 'SENDEMAILVERIFICATION_ERROR':

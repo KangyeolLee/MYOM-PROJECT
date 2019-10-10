@@ -8,3 +8,15 @@
 .post-content:focus{
 	outline: 0;
 }
+
+.myEditor .public-DraftEditor-content{
+	height: 500px;
+	border: 1px solid rgb(220,220,220);
+	background-color: white;
+	overflow-y: scroll;
+}
+
+.myEditor .public-DraftStyleDefault-block{
+	margin: 0;
+	margin-left: 10px;
+}

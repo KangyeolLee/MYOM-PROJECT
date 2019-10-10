@@ -9,7 +9,7 @@ const Footer = () => {
 					<div className="col l6 s12">
 						<h5 className="white-text">언틸번아웃 사업자 정보</h5>
 						<p className="grey-text text-lighten-4">언틸번아웃 | 서울시 강남구 언주로 98길 25, 5층</p>
-						<p className="grey-text text-lighten-4">대표: 이승복 </p>
+						<p className="grey-text text-lighten-4">대표: 황제홍,이승복,이한결,이강열 </p>
 						<p className="grey-text text-lighten-4">사업자등록번호 : 101-35-92673</p>
 						<p className="grey-text text-lighten-4">01092609694 | untilburnout@myom.co.kr</p>
 						<p className="grey-text text-lighten-4">호스팅 사업자: Firebase</p>
