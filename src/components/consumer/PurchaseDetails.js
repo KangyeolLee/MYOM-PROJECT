@@ -8,9 +8,12 @@ import RequestResult from '../requestForm/RequestResult';
 
 const PurchaseDetails = (props) => {
   if(!isLoaded(props.purchased_service)) return <div className='container'>로딩중...</div>
+  
+  const numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  const { runningTime, additionalCost, plusMinute, requestData, type, purchasedAt, provider_nickName, service_title, imgURL, price, options, working } = props.purchased_service;
 
-  const { type, purchasedAt, provider_id, service_title, imgURL, price, options, working } = props.purchased_service;
-  // const { service_id } = props.match.params;
   return (
     <div className="container purchaseDetails">
       <h5 className='col s12 scorehvy category'>주문내역</h5>
@@ -25,7 +28,7 @@ const PurchaseDetails = (props) => {
           <br/>
 
           <h6 className="col s4 scorehvy service-editor">편집자</h6>
-          <h6 className="col s8">{provider_id}</h6>
+          <h6 className="col s8">{provider_nickName}</h6>
           <br/> 
 
           <h6 className="col s4 scorehvy service-editor">타입</h6>
@@ -33,15 +36,44 @@ const PurchaseDetails = (props) => {
           <br/>
 
           <h6 className="col s4 scorehvy service-editor">구매일자</h6>
-          <h6 className="col s8">{moment(purchasedAt.toDate()).fromNow()}</h6>
+          <h6 className="col s8">{moment(purchasedAt.toDate()).format('YYYY.MM.DD')}</h6>
         </div>
       </div>
 
       <div className="row collection">
-        <div className="row collection-item center">
+        <div className="collection-item center">
           <p>쿠폰 및 기타 할인 적용 관련 내역이 없습니다.</p>
         </div>
       </div>
+
+      {
+        (plusMinute)
+          ? (
+            <table className="additionalPrice">
+              <thead>
+                <tr>
+                  <th className='scorehvy center'>러닝타임</th>
+                  <th className='scorehvy center'>시간추가</th>
+                  <th className='scorehvy center'>추가금액</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className='center'>{ runningTime }</td>
+                  <td className='center'>{ plusMinute ? plusMinute + '분' : '없음' }</td>
+						      <td className='center'>{ plusMinute ? numberWithCommas(additionalCost * plusMinute) + '원' : '없음' }</td>
+                </tr>
+              </tbody>
+            </table>
+          )
+          : (
+            <div className="row collection">
+              <div className="collection-item center">
+                추가금액이 없습니다.
+              </div>
+            </div>
+          )
+      }
 
       <table className="basic-purchase">
         <thead>
@@ -64,14 +96,14 @@ const PurchaseDetails = (props) => {
 						<td className='center scorehvy'>{ '₩' + price }</td>
           </tr>
         </tbody>
-      </table>
+      </table>     
 
       <h5 className="col s12 scorehvy category">편집자 프로필</h5>
 
       <h5 className='col s12 scorehvy category'>요청서</h5>
       <div className="row collection">
         <div className="collection-item center">
-          {/* <RequestResult purchased_id={service_id} /> */}
+          <RequestResult requestData={requestData} />
           <button className='btn waves-effect waves-light myomColor-background'>추가 문의</button>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 
-export const _buy_service = (service_id, service, price, history) => {
+export const _buy_service = (service_id, service, price, plus, history) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userInfo = getState().firebase.auth;
@@ -9,16 +9,23 @@ export const _buy_service = (service_id, service, price, history) => {
     // const providerRef = firestore.collection('users').doc(service.serviceProvider);
     const listRef = firestore.collection('purchaseList').doc();
     const chatRef = firestore.collection('chats').doc(userInfo.email+':'+ service.provider_email);
+    const totalPrice = plus.total_price ? plus.total_price : price.price;
+    const plusMinute = plus.plus_time ? plus.plus_time : '';
     let userPurchase = {
       service_id: service_id,
       service_title: service.service_title,
       // category: service.category,
-      price: price.price,
+      price: totalPrice,
+      plusMinute,
+      runningTime: price.runningTime,
+      additionalCost: price.additional_price,
       working: price.working,
       review: null,
       purchasedAt: new Date(),
       imgURL: service.images.thumbnail,
       provider_id: service.provider_id,
+      provider_nickName: service.provider_nickName,
+      provider_email: service.provider_email,
       buyer_id: userInfo.uid,
       options: price.chips,
       type: price.type,

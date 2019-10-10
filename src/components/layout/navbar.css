@@ -1,4 +1,5 @@
 .myom_logo {
+  margin-left: 2rem;
 	position: relative;
 	top: 6px;
 }
@@ -8,6 +9,12 @@
 
 @media only screen and (max-width: 992px){
 	.brand-logo{
-		left:20% !important;
+		left: initial !important;
+    transform: initial !important;
 	}
+}
+@media only screen and (max-width: 450px) {
+  .nav-wrapper .hide-on-mobile-only {
+    display: none;
+  }
 }

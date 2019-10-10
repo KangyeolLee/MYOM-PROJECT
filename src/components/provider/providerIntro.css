@@ -1,15 +1,22 @@
+.providerIntro .container {
+  min-width: 1210px;
+}
+.providerIntro .provider-introPage {
+  margin-bottom: 5rem;
+}
 .providerIntro .divider {
   height: 2px;
-  width: 15rem;
-  margin: auto;
   margin-top: 10rem;
 }
-
+.providerIntro .divider.no-margin {
+  height: 1px;
+  margin-top: 0;
+}
 .lastIntro {
   position: relative;
 }
 .lastIntro h2 {
-  padding: 5rem 0 0 5rem;
+  padding: 3rem 0 0 5rem;
 }
 .lastIntro span {
   left: 5rem;
@@ -31,4 +38,106 @@
 .expectMoney{
   text-align: center;
   font-size: 30px !important;
+}
+
+.providerIntro .registerBtn {
+  width: 15rem;
+  font-size: 28px;;
+}
+.providerIntro .responsive {
+  height: 20rem;
+  width: 100%;
+  margin-bottom: 10rem;
+  opacity: .7;
+}
+.providerIntro .tripple {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.providerIntro .title-in-tripple {
+  width: 320px;
+}
+.providerIntro .content-in-tripple {
+  width: 300px;
+}
+.providerIntro .under-banner {
+  width: 100%;
+}
+.providerIntro footer {
+  width: 100vw;
+  height: 5rem;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid grey;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+
+@media only screen and (max-width: 1260px) {
+  .providerIntro .container {
+    min-width: unset;
+    width: 80%;
+  }
+  .providerIntro .container .custom-m12 .title-in-tripple {
+    font-size: 1.54rem;
+  }
+  .providerIntro .under-banner {
+    width: 100%;
+    position: absolute;
+    left: 0;
+  }
+}
+@media only screen and (max-width: 1170px) {
+  .providerIntro .container .custom-m12 {
+    width: 100% !important;
+    margin-bottom: 2.5rem;
+  }
+  .providerIntro .container .custom-m12 .title-in-tripple,
+  .providerIntro .container .custom-m12 .content-in-tripple {
+    text-align: left;
+  }
+  .providerIntro .container .custom-m12 .i-number {
+    width: 620px;
+    margin-left: 0;
+    padding: 0;
+  }
+  .providerIntro .container .custom-m12 .i-number i.material-icons {
+    float: left;
+  }
+}
+@media only screen and (max-width: 818px) {
+  .providerIntro .container .custom-m12 .title-in-tripple,
+  .providerIntro .container .custom-m12 .content-in-tripple {
+    text-align: center;
+  }
+  .providerIntro .under-banner .lastIntro h2 {
+    font-size: 2.8rem;
+  }
+  .providerIntro .under-banner .lastIntro h2.top-wording {
+    padding-top: 1.5rem;
+  }
+  .providerIntro .container .custom-m12 .i-number i.material-icons {
+    float: unset;
+  }
+}
+@media only screen and (max-width: 535px) {
+  .providerIntro .container .main-title {
+    font-size: 2.09rem;
+  }
+  .providerIntro .under-banner .lastIntro h2 {
+    padding-left: 1.5rem;
+  }
+  .providerIntro .under-banner .registerBtn {
+    left: 1.5rem;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .providerIntro .container .custom-m12 .title-in-tripple {
+    font-size: 1.34rem;
+  }
 }

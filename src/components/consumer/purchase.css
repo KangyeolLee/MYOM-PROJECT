@@ -2,6 +2,25 @@
 	margin-top: 5rem;
 	margin-bottom: 3rem;
 }
+.purchase-page .service-preview .image-area {
+  padding: 0;
+}
+.purchase-page .service-preview .image-area .preview-img {
+  width: 100%;
+}
+.purchase-page .service-preview .provider-nickname {
+  position: absolute;
+  bottom: 0;
+  color: gray;
+}
+
+.additionalPrice {
+  margin-bottom: 3rem;
+}
+.additionalPrice thead {
+  background-color: rgba(200, 200, 255, 0.658);
+}
+
 .purchase-page tbody {
   background-color: #fff;
 }
@@ -9,14 +28,21 @@
 .basic-purchase thead {
 	background-color: rgb(246, 224, 247);
 }
-.basic-purchase{
+.basic-purchase {
 	margin-bottom: 20px;
 	line-height: 2rem;
 }
 .basic-purchase .options {
-  width: 50%;
-  margin-left: 40%;
+  display: flex;
+  justify-content: center;
+  clear: both;
 }
+@media only screen and (max-width: 400px) {
+  .basic-purchase .options i.material-icons.left {
+    display: none;
+  }
+}
+
 
 .option-purchase thead {
 	background-color: rgb(245, 208, 208);
@@ -30,9 +56,9 @@
 .option-purchase label{
 	color: black;
 }
-.option-purchase .request {
-  width: 50%;
-  margin-left: 40%;
+.option-purchase #plus_time {
+  width: 100px;
+  text-align: center;
 }
 
 .purchase-price {
@@ -41,7 +67,7 @@
 }
 .panel-heading {
 	background-color: rgb(241,241,241);
-	padding: 10px;
+  padding: 10px;
 }
 .panel-body {
   padding-top: 20px;
@@ -76,25 +102,33 @@
 
 .purchase-btn {
 	margin-top: 30px;
-	width: 24rem;
+  margin-bottom: 5rem;
+  width: 450px;
+}
+@media only screen and (max-width: 1200px) {
+  .purchase-btn {
+    width: 100%;
+  }
 }
 
 .purchasedone {
   position: absolute;
-  top: 25%;
   left: 50%;
-  transform: translate(-50%, -25%);
+  transform: translateX(-50%);
+  margin-top: 5rem;
 }
 .purchasedone-btn {
   display: flex;
   justify-content: center;
 }
 .purchasedone-btn .homeIcon {
-  margin-right: 1.3rem;
+  margin-right: 0;
 }
 
 .purchasedone-btns {
-	margin-top: 5rem;
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
 }
 
 .purchaseDetails .category {

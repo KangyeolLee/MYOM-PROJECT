@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import M from 'materialize-css';
 import moment from 'moment';
 import { connect } from 'react-redux';
+import { isLoaded } from 'react-redux-firebase';
+import { Redirect } from 'react-router-dom';
+import Loader from '../functionalComponents/Loader';
 import ProviderRegisterStep1 from './ProviderRegisterStep1';
 import './providerRegister.css';
 import ProviderRegisterStep2 from './ProviderRegisterStep2';
@@ -27,7 +30,7 @@ class ProviderRegister extends Component {
   }
   componentDidUpdate(prevState, prevProps) {
     if(prevState.currentStep !== this.state.currentStep) {
-      // M.AutoInit();
+      M.Modal.init(document.querySelector('#pay-control.modal'));
     }
     
   }
@@ -254,9 +257,12 @@ class ProviderRegister extends Component {
   _next = (e) => {
     e.preventDefault();
     let _required = [...document.querySelectorAll('.required')];
-    let current_required = _required.filter(item => item.value === '').length;
+    let current_required = _required.filter(item => { 
+      if(item.id === 'profile-img') return this.state.profileFile === '';
+      else return item.value === '';
+    }).length;
     
-    if(current_required) {
+    if(current_required) { 
       this.setState({
         need: true,
       })
@@ -268,6 +274,7 @@ class ProviderRegister extends Component {
     this.setState({
       currentStep,
     })
+    window.scrollTo(0,0);
   }
   _prev = (e) => {
     e.preventDefault();
@@ -279,40 +286,57 @@ class ProviderRegister extends Component {
   }
 
   render() {
-    console.log(this.state);
+    if(!isLoaded(this.props.profile)) return <div className='container'>로딩중...</div>
+
+    const profile = this.props.profile;
+    if(profile.hasOwnProperty('editor')) return <Redirect to='/providerRegisterDone' />
+        
     return (
       <div className="container providerRegister">
+        <div id="hidden-for-loading">
+          <Loader />
+          <div className="progress for-loading">
+            <div style={{width: '0%'}} className="determinate"></div>
+          </div>
+        </div>
+        
         <div className="row progress-bar">
-          <div style={{height: '.8rem'}} className="progress col s8 offset-s2">
+          <div style={{height: '.8rem'}} className="progress col s12">
             <div style={{width: Math.floor(25 * this.state.currentStep) + '%'}} className="determinate"></div>
           </div>
         </div>
 
         <form className="row" onSubmit={this.handleSubmit}>
-          <div className="card col s8 offset-s2">
+          <div className="card col s12">
             <h4 className='scorehvy center'>편집자님의 등록을 환영합니다!</h4>
             <h6 style={{marginBottom: '3rem'}} className="center">주어진 항목을 작성해주세요!</h6>
 
-            <ProviderRegisterStep1 need={this.state.need ? this.state.need : ''} handleChange={this.handleChange} intro={this.state.intro ? this.state.intro : '' }profileImg={this.state.profileImg ? this.state.profileImg : ''} handleImgUpload={this.handleImgUpload} currentStep={this.state.currentStep} />
+            <ProviderRegisterStep1 need={this.state.need ? this.state.need : ''} handleChange={this.handleChange} intro={this.state.intro ? this.state.intro : '' } profileImg={this.state.profileImg ? this.state.profileImg : ''} handleImgUpload={this.handleImgUpload} currentStep={this.state.currentStep} />
             <ProviderRegisterStep2 need={this.state.need ? this.state.need : ''} handleEditorHistory={this.handleEditorHistory} handleDatepicker={this.handleDatepicker} handleMoreBtn={this.handleMoreBtn} histories={this.state.histories} currentStep={this.state.currentStep} />
             <ProviderRegisterStep3 need={this.state.need ? this.state.need : ''} handleRange={this.handleRange} handleEditorTools={this.handleEditorTools} handleMoreBtn={this.handleMoreBtn} editorTool={this.state.editorTool} currentStep={this.state.currentStep} />
             <ProviderRegisterStep4 need={this.state.need ? this.state.need : ''} account_person={this.state.account_person} account_bank={this.state.account_bank} account_number={this.state.account_number} handleChange={this.handleChange} currentStep={this.state.currentStep} />
+
+            <p style={{fontSize: '12px', margin: '2.5rem 0'}} className="col s12 guide-msg center grey-text">해당 페이지는 모바일 최적화가 고려되지 않았습니다. 가급적이면 PC로 이용 부탁드립니다.</p>
           </div>
 
-          <div className="card col s8 offset-s2 z-depth-0 hidden">
+          <div className="card col s12 z-depth-0 hidden">
             { this.state.currentStep < 4 ? <div onClick={this._next} className="btn blue darken-4 right">다음</div> : null }
             { this.state.currentStep !== 1 ? <div onClick={this._prev} className="btn grey darken-2 left">이전</div> : null }
             { this.state.currentStep === 4 ? <button className='btn red lighten-3 right'>등록</button> : null }
-          </div>
+          </div>  
         </form>
       </div>
     )
   }
 }
-
+const mapStateToProps = (state) => {
+  return {
+    profile: state.firebase.profile,
+  }
+}
 const mapDispatchToProps = (dispatch) => {
   return {
     providerRegister: (uid, providerData, history) => dispatch(providerRegister(uid, providerData, history)),
   }
 }
-export default connect(null, mapDispatchToProps)(ProviderRegister);
+export default connect(mapStateToProps, mapDispatchToProps)(ProviderRegister);

@@ -18,8 +18,6 @@ class ServiceProfileSummary extends Component {
     const { provider_nickName } = this.props;
     const { providerInfo } = this.props;
     const tools = (providerInfo !== null && providerInfo !== undefined) ? providerInfo.editorTool : [];
-    if(tools.length) console.log(tools);
-
 
     return (
       <div className="provider-profile row">
@@ -42,14 +40,14 @@ class ServiceProfileSummary extends Component {
             <span className="col s8">32건</span>
 
             <p className='col s4 scorehvy'>사용툴</p>
-            <span className="col s8">
+            <span className="col s8 editorTools">
             {
               tools.length && tools.map((tool, idx) => '#' + tool['tool' + idx].name + ' / ')
             }
             </span>
 
 
-            <p style={{marginTop: '2rem'}} className="col s4 scorehvy">스타일</p>
+            <p className="col s4 scorehvy">스타일</p>
             <div style={{marginTop: '.5rem'}} className="col s12 chips">
               <div className="chip">#브이로그</div>
               <div className="chip">#색감좋은</div>

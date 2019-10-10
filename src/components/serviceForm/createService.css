@@ -1,3 +1,18 @@
+.createService {
+  max-width: 1100px;
+}
+.createService .progress-bar {
+  margin-top: 5rem;
+}
+.createService .progress-bar .progress {
+  background-color: #eadff5;
+  border-radius: 10px;
+}
+.createService .progress-bar .progress .determinate {
+  background-color: rgb(79, 50, 143);
+  border-radius: 10px;
+}
+
 .createService .card.hidden {
   padding: 0;
   background-color: transparent;
@@ -24,6 +39,7 @@
   cursor: pointer;
   position: absolute;
   left: 0;
+  top: 0;
   padding: .2rem;
   opacity: 1;
   background-color: rgba(0, 0, 0, .3);
@@ -49,10 +65,73 @@
   margin: 3rem 0;
 }
 
+.createService .file-field.input-field .size-limit {
+  position: absolute;
+  bottom: 10px;
+  width: 80%;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.createService .file-field.input-field .thumbnail-desc {
+  position: relative;
+  background-color: rgb(248, 240, 255);
+}
+.createService .file-field.input-field .thumbnail-desc::after {
+  content: '';
+  position: absolute;
+  border-top: 10px solid rgb(248, 240, 255);
+  border-right: 10px solid transparent;
+  border-left: 10px solid rgb(248, 240, 255);
+  border-bottom: 10px solid transparent;
+  right: 0;
+  bottom: -20px;
+}
+.createService .file-field.input-field .sub-img-desc {
+  position: relative;
+  padding-left: .75rem;
+  background-color: rgb(248, 240, 255);
+}
+.createService .file-field.input-field .sub-img-desc::after {
+  content: '';
+  position: absolute;
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-left: 10px solid rgb(248, 240, 255);
+  border-bottom: 10px solid rgb(248, 240, 255);
+  left: 0;
+  top: -20px;
+}
+.createService .file-field.input-field .video-desc {
+  position: relative;
+  padding-left: .75rem;
+  background-color: rgb(248, 240, 255);
+}
+.createService .file-field.input-field .video-desc::after {
+  content: '';
+  position: absolute;
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-left: 10px solid rgb(248, 240, 255);
+  border-bottom: 10px solid rgb(248, 240, 255);
+  left: 0;
+  top: -20px;
+}
+
+.createService .sub-imgs .col {
+  padding-left: 0;
+}
+.createService .sub-videos .col {
+  padding-left: 0;
+}
 .createService .file-field.input-field .image-btn {
   position: relative;
   height: 250px;
   margin-bottom: 2rem;
+  border: 1px dashed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .createService .file-field.input-field .btn {
   position: relative;
@@ -64,6 +143,7 @@
   border: 1px dashed;
   margin-bottom: 2rem;
 }
+.createService .file-field.input-field .image-btn > i.large,
 .createService .file-field.input-field .btn > i {
   font-size: 6rem;
 }
@@ -101,6 +181,12 @@
   right: 0;
   top: 0;
   text-align: right;
+  width: 20% !important;
+  min-width: 120px;
+  margin-bottom: 1rem !important;
+}
+.createService #personal-feeling-additional {
+  top: unset;
 }
 .createService .input:focus {
   border-bottom: 1px solid #26a69a !important;
@@ -109,4 +195,24 @@
 .serviceSetting .chips .chip.initial i.close,
 .createService .chips .chip.initial i.close {
   display: none;
+}
+
+.createService .input-field .guide-text {
+  color: rgba(253, 46, 46, 0.788);
+  font-size: 15px;
+}
+.createService .divider {
+  border: 1px solid black;
+  margin-top: 5rem;
+}
+.createService #basic-desc,
+.createService #pro-desc,
+.createService #common-desc {
+  margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 1024px) {
+  .createService {
+    width: 85%;
+  }
 }

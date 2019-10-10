@@ -1,24 +1,99 @@
 import React from 'react'
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
+
 
 const RequestResult = (props) => {
-  const { myRequest } = props;
-  let requestData;
-  if(myRequest !== undefined) requestData = Object.values(myRequest)[0].requestData;
+  const { requestData } = props;
+  console.log(requestData)
 
   return (
     <div className="container">
     {
-      (requestData !== undefined)
+      (requestData)
         ? (
           <div className="row">
             <h5 className="col s12 scorehvy">다녀온 여행지</h5>
             <span className="col s12">{requestData.tripLocation}</span>
 
             <h5 className="col s12 scorehvy">편집스타일</h5>
-            <span className="col s12"></span>
+            <span className="col s12">
+              {
+                requestData.editStyle.length && requestData.editStyle.map(style => (
+                  (style.isChecked) ? style.value + ' / ' : '' 
+                ))
+              }
+            </span>
+
+            <h5 className="col s12 scorehvy">영상의 느낌</h5>
+            <span className="col s12">
+              {
+                requestData.editFeeling.length && requestData.editFeeling.map(feeling => (
+                  feeling.isChecked ? feeling.value + ' / ' : ''
+                ))
+              }
+            </span>
+
+            <h5 className="col s12 scorehvy">레퍼런스 여부</h5>
+            <span className="col s12">
+              {
+                requestData.hasReference.length && requestData.hasReference.map(ref => (
+                  ref.isChecked ? ref.value : ''
+                ))
+              }
+            </span>
+
+            <h5 className="col s12 scorehvy">레퍼런스 영상</h5>
+            <span className="col s12">{requestData.referenceLink}</span>
+
+            <h5 className="col s12 scorehvy">영상 사용용도</h5>
+            <span className="col s12">
+              {
+                requestData.purpose.length && requestData.purpose.map(purpose => (
+                  purpose.isChecked ? purpose.value : ''
+                ))
+              }
+            </span>
+
+            <h5 className="col s12 scorehvy">필수 영상 소스</h5>
+            <span className="col s12">
+              {
+                requestData.essential_cut.length && requestData.essential_cut.map(cut => (
+                  cut.isChecked ? cut.value : ''
+                ))
+              }
+            </span>
+
+            <h5 className="col s12 scorehvy">영상 순서</h5>
+            <span className="col s12">
+              {
+                requestData.edit_order.length && requestData.edit_order.map(order => (
+                  order.isChecked ? order.value : ''
+                ))
+              }
+            </span>
+
+            <h5 className="col s12 scorehvy">영상 자막</h5>
+            <span className="col s12">
+              {
+                requestData.subtitle.length && requestData.subtitle.map(subtitle => (
+                  subtitle.isChecked ? subtitle.value : ''
+                ))
+              }
+            </span>
+
+            <h5 className="col s12 scorehvy">자막 폰트</h5>
+            <span className="col s12">{requestData.subtitle_font}</span>
+
+            <h5 className="col s12 scorehvy">음악</h5>
+            <span className="col s12">
+              {
+                requestData.musicFree.length && requestData.musicFree.map(music => (
+                  music.isChecked ? music.value : ''
+                ))
+              }
+            </span>
+
+            <h5 className="col s12 scorehvy">영상의 느낌</h5>
+            <span className="col s12">{requestData.wantMusic}</span>
           </div>
         )
         : (
@@ -30,16 +105,5 @@ const RequestResult = (props) => {
     </div>
   )
 }
-const mapStateToProps = (state) => {
-  return {
-    myRequest: state.firestore.data.myRequest,
-  }
-}
-export default compose(
-  connect(mapStateToProps),
-  firestoreConnect(props => {
-    return [
-      { collection: 'request', where: ['purchased_id', '==', props.purchased_id], storeAs: 'myRequest'}
-    ]
-  })
-)(RequestResult);
+
+export default (RequestResult);

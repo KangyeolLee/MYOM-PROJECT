@@ -1,11 +1,16 @@
+.providerRegister {
+  max-width: 1100px;
+}
 .providerRegister .progress-bar {
   margin-top: 5rem;
 }
 .providerRegister .progress-bar .progress {
   background-color: #eadff5;
+  border-radius: 10px;
 }
 .providerRegister .progress-bar .progress .determinate {
   background-color: rgb(79, 50, 143);
+  border-radius: 10px;
 }
 .providerRegister .hidden {
   padding: 0;
@@ -21,6 +26,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 1.5rem;
 }
 .ProviderRegisterStep1 .input-field.file-field .btn-floating i {
   font-size: 8rem;
@@ -91,6 +97,45 @@
   margin-bottom: 3rem;
 }
 
+.ProviderRegisterStep4 .moreSpecify span {
+  cursor: pointer;
+  /* float: left; */
+}
+.ProviderRegisterStep4 .moreSpecify span:hover {
+  color: grey;
+}
 .providerRegisterDone .card {
   margin-top: 5rem;
 }
+.createService #hidden-for-loading,
+.providerRegister #hidden-for-loading {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000a6;
+  z-index: 9999;
+}
+.createService #hidden-for-loading .progress.for-loading,
+.providerRegister #hidden-for-loading .progress.for-loading {
+  width: 200px;
+  height: 0.8rem;
+  top: 60%;
+  left: 50%;
+  border-radius: 20px;
+  transform: translate(-50%, -60%);
+  background-color: #9ba5a4;
+}
+.createService #hidden-for-loading .progress.for-loading .determinate,
+.providerRegister #hidden-for-loading .progress.for-loading .determinate {
+  border-radius: 20px;
+  background-color: #ffffff;
+}
+@media only screen and (max-width: 1024px) {
+  .providerRegister {
+    width: 85%;
+  }
+}
+

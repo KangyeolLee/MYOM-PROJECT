@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { createService } from '../../store/actions/serviceFormAction';
 import M from 'materialize-css';
+import Loader from '../functionalComponents/Loader';
 import CreateServiceStep1 from './CreateServiceStep1';
 import CreateServiceStep2 from './CreateServiceStep2';
 import CreateServiceStep3 from './CreateServiceStep3';
@@ -16,6 +17,7 @@ class CreateService extends Component {
     priority3: '',
     service_title: '',
     service_content: '',
+    service_refund: '',
     videos: [
       {video1: '', video1_preview: '',},
       {video2: '', video2_preview: '',},
@@ -33,10 +35,14 @@ class CreateService extends Component {
     basic_intro: '',
     basic_working: '',
     basic_modify: '',
+    basic_runningTime: '',
+    basic_additional_runningTime: '',
     pro_price: 17,
     pro_intro: '',
     pro_working: '',
     pro_modify: '',
+    pro_runningTime: '',
+    pro_additional_runningTime: '',
   }
   componentDidMount() {
     M.AutoInit();
@@ -89,7 +95,26 @@ class CreateService extends Component {
         item.classList.add('initial');
         item.removeAttribute('tabindex');
       });
+
+      M.Chips.init(document.querySelector('#personal-feeling'), {
+        data: [
+          { tag: '예시) 따뜻한'},
+          { tag: '예시) 몽환적인'},
+        ],
+        limit: 4,
+        onChipDelete: () => {
+          const chips = [...document.querySelectorAll('#personal-feeling .chip')];
+          const filter = chips.filter(chip => chip.className === 'chip');
+          const chip_value = filter.map(chip => chip.innerText.split('\n')[0]);
+  
+          this.setState({
+            personal_feeling: chip_value,
+          })
+        }
+      });
     }
+
+
   }
   handleSubmit = (e) => {
     e.preventDefault();
@@ -102,7 +127,7 @@ class CreateService extends Component {
       return;
     }
 
-    this.props.createService(this.state);
+    this.props.createService(this.state, this.props.history);
   }
   handleChips = (e) => {
     if(e.keyCode === 13 && e.target.id === 'basic_additional') {
@@ -121,6 +146,15 @@ class CreateService extends Component {
 
       this.setState({
         pro_chips: chip_value,
+      })
+    }
+    else if(e.keyCode === 13 && e.target.id === 'personal-feeling-additional') {
+      const chips = [...document.querySelectorAll('#personal-feeling .chip')];
+      const filter = chips.filter(item => item.className === 'chip');
+      const chip_value = filter.map(item => item.innerText.split('\n')[0]);
+
+      this.setState({
+        personal_feeling: chip_value,
       })
     }
   }
@@ -142,10 +176,21 @@ class CreateService extends Component {
   }
   handleUpload = (e) => {
     e.preventDefault();
+    const no_validate = [...document.querySelectorAll('.file-field .file-uploader')];
+    if(!e.target.value) return;
+
     let reader = new FileReader();
     let file = e.target.files[0];
     let target_id = e.target.id;
     let file_exe = file.name.split('.').pop().toLowerCase();
+    let file_size = (file.size / 1024 / 1024).toFixed(2);
+    reader.readAsDataURL(file);
+
+    if(file_size > 5) {
+      e.target.value = '';
+      alert('5MB 이하의 사진파일로 업로드 해주세요!');
+      return;
+    }
 
     if(file_exe === 'jpg' || file_exe === 'jpeg' || file_exe === 'png' || file_exe === 'gif') {
       reader.onloadend = () => {
@@ -158,21 +203,28 @@ class CreateService extends Component {
         }));
       }
     } else {
+      no_validate.forEach(file => file.value = '');
       alert('이미지 파일(jpg, jpeg, png, gif)만 지원합니다.');
       return;
-    }
-
-    if(file) {
-      reader.readAsDataURL(file);
-      e.target.value = '';
     }
   }
   handleVideoUpload = (e) => {
     e.preventDefault();
+    const no_validate = [...document.querySelectorAll('.file-field .file-uploader')];
+    if(!e.target.value) return;
+
     let reader = new FileReader();
     let file = e.target.files[0];
     let target_id = e.target.id;
     let file_exe = file.name.split('.').pop().toLowerCase();
+    let file_size = (file.size / 1024 / 1024).toFixed(2);
+    reader.readAsDataURL(file);
+
+    if(file_size > 100) {
+      e.target.value = '';
+      alert('100MB 이하의 영상파일로 업로드 해주세요!');
+      return;
+    }
 
     if(file_exe === 'm4v' || file_exe === 'avi' || file_exe === 'mpg' || file_exe === 'mp4') {
       reader.onloadend = () => {
@@ -185,13 +237,9 @@ class CreateService extends Component {
         }));
       }
     } else {
+      no_validate.forEach(file => file.value = '');
       alert('비디오 파일(m4v, avi, mpg, mp4)만 지원합니다.');
       return;
-    }
-
-    if(file) {
-      reader.readAsDataURL(file);
-      e.target.value = '';
     }
   }
   deleteImage = (e) => {
@@ -232,6 +280,7 @@ class CreateService extends Component {
       currentStep,
       need: false,
     })
+    window.scrollTo(0,0);
   }
   _prev = () => {
     let currentStep = this.state.currentStep;
@@ -241,17 +290,25 @@ class CreateService extends Component {
     })
   }
 
-  render() {
+  render() { 
     return (
       <div className="container createService">
-        <div className="row">
-          <div style={{height: '.8rem'}} className="progress col s8 offset-s2">
+        <div id="hidden-for-loading">
+          <Loader />
+          <div className="progress for-loading">
+            <div style={{width: '0%'}} className="determinate"></div>
+          </div>
+        </div>
+
+        <div className="row progress-bar">
+          <div style={{height: '.8rem'}} className="progress col s12">
             <div style={{width: Math.floor(25 * this.state.currentStep) + '%'}} className="determinate"></div>
           </div>
         </div>
 
         <form className='row'>
-          <div className="card col s8 offset-s2">
+          <div className="card col s12">
+            <h4 className='scorehvy center'>서비스 등록해 보세요!</h4>
             <CreateServiceStep1 currentStep={this.state.currentStep} 
               need={this.state.need}
               priority1={this.state.priority1} 
@@ -282,28 +339,34 @@ class CreateService extends Component {
               basic_intro={this.state.basic_intro} 
               basic_working={this.state.basic_working}
               basic_modify={this.state.basic_modify} 
+              basic_runningTime={this.state.basic_runningTime}
+              basic_additional_runningTime={this.state.basic_additional_runningTime}
               pro_price={this.state.pro_price}
               pro_intro={this.state.pro_intro}
               pro_working={this.state.pro_working}
-              pro_modify={this.state.pro_modify} />
+              pro_modify={this.state.pro_modify}
+              pro_runningTime={this.state.pro_runningTime}
+              pro_additional_runningTime={this.state.pro_additional_runningTime} />
             
+            <p style={{fontSize: '12px', margin: '2.5rem 0'}} className="col s12 guide-msg center grey-text">해당 페이지는 모바일 최적화가 고려되지 않았습니다. 가급적이면 PC로 이용 부탁드립니다.</p>
+
           </div>
 
-          <div className="card col s8 offset-s2 z-depth-0 hidden">
+          <div className="card col s12 z-depth-0 hidden">
             { this.state.currentStep < 4 ? <div onClick={this._next} className="btn blue darken-4 right">다음</div> : null }
             { this.state.currentStep !== 1 ? <div onClick={this._prev} className="btn grey darken-2 left">이전</div> : null }
             { this.state.currentStep === 4 ? <div onClick={this.handleSubmit} className='btn red lighten-3 right'>등록</div> : null }
           </div>
-          
           
         </form>
       </div>
     )
   }
 }
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    createService: (serviceData) => dispatch(createService(serviceData)),
+    createService: (serviceData, history) => dispatch(createService(serviceData, history)),
   }
 }
 export default connect(null, mapDispatchToProps)(CreateService);

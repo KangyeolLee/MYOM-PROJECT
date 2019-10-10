@@ -36,8 +36,8 @@ class ServiceThumbnailSummary extends Component {
         }
         
 
-        { details[3] ? <div className='under-side-img'><img src={details[3]} alt="" className={'col xl6 l6 m6 s6 under-side ' + materialboxed}/></div> : null }
-        { details[4] ? <div className='under-side-img'><img src={details[4]} alt="" className={'col xl6 l6 m6 s6 under-side ' + materialboxed}/></div> : null }
+        { details[3] ? <div className='under-side-img col xl6 l6 m6 s6 '><img src={details[3]} alt="" className={'under-side ' + materialboxed}/></div> : null }
+        { details[4] ? <div className='under-side-img col xl6 l6 m6 s6 '><img src={details[4]} alt="" className={'under-side ' + materialboxed}/></div> : null }
       </div>
     )
   }

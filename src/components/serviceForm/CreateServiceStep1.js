@@ -11,15 +11,14 @@ class CreateServiceStep1 extends Component {
 
     return (
       <Fragment>
-        <h4 className='center'>전문가님의 등록을 환영합니다!</h4>
         <h5 className="center">자신있는 편집스타일을 골라주세요!</h5>
+        <p style={{margin: '1.5rem initial'}} className="col s10 offset-s1 edit-style-desc center">총 3개의 스타일을 선택할 수 있습니다. 1 - 2 - 3 순위를 고를 수 있으며, 하나만 선택할 수도 있습니다. 각각의 스타일은 영상의 전체적인 분위기를 결정합니다. 편집자 본인이 가장 자신있어 하는 스타일을 골라주세요!</p>
 
         <div className="input-field select-priority col s10 offset-s1">
           <select name="" id="priority1" className='_required' value={this.props.priority1} onChange={this.props.handleChange} >
             <option value="" disabled>1순위 편집스타일 (필수)</option>
             <option value="cinema">시네마틱형</option>
             <option value="variety">예능형</option>
-            <option value="document">다큐멘터리형</option>
             <option value="dynamic">다이나믹형</option>
             <option value="vlog">브이로그형</option>
             <option value="etc">기타형</option>
@@ -36,7 +35,6 @@ class CreateServiceStep1 extends Component {
                   <option value="" disabled>2순위 편집스타일 (선택)</option>
                   <option value="cinema">시네마틱형</option>
                   <option value="variety">예능형</option>
-                  <option value="document">다큐멘터리형</option>
                   <option value="dynamic">다이나믹형</option>
                   <option value="vlog">브이로그형</option>
                   <option value="etc">기타형</option>
@@ -55,7 +53,6 @@ class CreateServiceStep1 extends Component {
                   <option value="" disabled>3순위 편집스타일 (선택)</option>
                   <option value="cinema">시네마틱형</option>
                   <option value="variety">예능형</option>
-                  <option value="document">다큐멘터리형</option>
                   <option value="dynamic">다이나믹형</option>
                   <option value="vlog">브이로그형</option>
                   <option value="etc">기타형</option>

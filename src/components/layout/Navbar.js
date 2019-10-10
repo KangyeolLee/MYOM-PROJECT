@@ -10,13 +10,13 @@ import Loader from '../functionalComponents/Loader';
 const Navbar = (props) => {
   const { auth, profile} = props;
   const links = auth.uid ? <SignedInLinks profile={profile} auth={ auth }/> : <SignedOutLinks />;
-  
+
 	return (
     <Fragment>
       <div className="navbar-fixed">
         <nav className='z-depth-0'>
           <div className="nav-wrapper">
-            <div className="container">
+            
               <Link to='/' className='brand-logo'><img src="/img/logo/myom_logo13.png" width="120px" height="35px" className="myom_logo" /></Link>
               {
                 !isLoaded(auth)
@@ -25,7 +25,7 @@ const Navbar = (props) => {
                     ? <SignedOutLinks />
                     : <SignedInLinks profile={profile} auth = {auth} />
               }
-            </div>
+            
           </div>
         </nav>
       </div>

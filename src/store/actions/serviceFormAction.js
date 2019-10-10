@@ -1,10 +1,11 @@
 import firebase from 'firebase/app';
 
-export const createService = (serviceData) => {
+export const createService = (serviceData, history) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userAuth = getState().firebase.auth;
     const userProfile = getState().firebase.profile;
+    const userRef = firestore.collection('users').doc(userAuth.uid);
     const docRef = firestore.collection('testService').doc();
     const storageRef = firebase.storage().ref('images/testService/' + docRef.id);
     let batch = firestore.batch();
@@ -12,6 +13,7 @@ export const createService = (serviceData) => {
     let pro_chips = serviceData.pro_chips ? serviceData.pro_chips : [];
     let videos = [];
     let fileArray = []
+
     serviceData.images.forEach(item => Object.values(item).forEach(file => {
       if(file instanceof File) fileArray = [...fileArray, file];
     }));
@@ -19,38 +21,86 @@ export const createService = (serviceData) => {
       if(file instanceof File) fileArray = [...fileArray, file];
     }));
 
+
+    
+
     const numberWithCommas = (x) => {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    const putStoageItem = (item, index) => {
+    async function uploadTaskPromise(name, item) {
+      return new Promise(function(resolve, reject) {
+        const uploadTask = storageRef.child(name).put(item);
+        uploadTask.on('state_changed', function(snapshot) {
+          let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          let loader = document.querySelector('#hidden-for-loading');
+          let determinate = document.querySelector('#hidden-for-loading .progress .determinate');
+
+          loader.style.display = 'block';
+          determinate.style.width = progress + '%';
+          
+        }, function(err) {
+          switch(err.code) {
+            case 'storage/unauthorized':
+              console.log('no authorization')
+              break;
+            
+            case 'storage/canceled':
+              console.log('canceled')
+              break;
+            
+            case 'storage/unknown':
+              console.log('unknown error');
+              break;
+          }
+        }, function complete() {
+          console.log('done')
+          uploadTask.snapshot.ref.getDownloadURL().then(url => resolve(url))
+        })
+      })
+    }
+
+
+
+
+    const putStoageItem = async (item, index) => {
       let type = item.type;
       let name;
+      
       if(type.split('/').shift() === 'image') {
         if(index === 0) name = 'thumbnail';
         else name = 'details' + index;
       } else name = 'video' + index;
 
-      return storageRef.child(name).put(item)
-      // .on('state_changed', snapshot => {
-      //   let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      //   console.log(progress);
-      // })
-      .then((snapshot) => { return snapshot.ref.getDownloadURL() })
-      .then((url) => { 
-        console.log('one success!')
-        if(type.split('/').shift() === 'image') {
-          batch.set(docRef, { images: 
-            {
-              [name]: url,
-            }
-          }, {merge: true});
-        } else {
-          videos.push(url);
-        }
-      })
-      .catch((err) => console.log('one failed', err.message))
+      let url = await uploadTaskPromise(name, item);
+
+      if(type.split('/').shift() === 'image') {
+        batch.set(docRef, { images: 
+          {
+            [name]: url,
+          }
+        }, {merge: true});
+      } else {
+        videos.push(url);
+      }
+      
     }
+    //   return storageRef.child(name).put(item)
+    //   .then((snapshot) => { return snapshot.ref.getDownloadURL() })
+    //   .then((url) => { 
+    //     console.log('one success!')
+    //     if(type.split('/').shift() === 'image') {
+    //       batch.set(docRef, { images: 
+    //         {
+    //           [name]: url,
+    //         }
+    //       }, {merge: true});
+    //     } else {
+    //       videos.push(url);
+    //     }
+    //   })
+    //   .catch((err) => console.log('one failed', err.message))
+    // }
 
     Promise.all(fileArray.map(async (item, index) => {
       await putStoageItem(item, index);
@@ -66,6 +116,9 @@ export const createService = (serviceData) => {
           [serviceData.priority3]: 1,
         }, {merge: true})
       }
+      batch.update(userRef, {
+        hasOwnService: true,
+      });
 
       batch.set(docRef, {
         [serviceData.priority1]: 5,
@@ -77,6 +130,8 @@ export const createService = (serviceData) => {
             working: serviceData.basic_working,
             modify: serviceData.basic_modify,
             chips: ['자막', '음악', '컷편집', ...basic_chips],
+            runningTime: serviceData.basic_runningTime,
+            additional_price: serviceData.basic_additional_runningTime
           },
           {
             type: 'PRO',
@@ -85,22 +140,26 @@ export const createService = (serviceData) => {
             working: serviceData.pro_working,
             modify: serviceData.pro_modify,
             chips: ['자막', '음악', '컷편집', '기본 색보정', ...pro_chips],
+            runningTime: serviceData.pro_runningTime,
+            additional_price: serviceData.pro_additional_runningTime
           }
         ],     
-        service_title: serviceData.service_title,
+        service_title: serviceData.service_title, 
         service_content: serviceData.service_content,
+        service_refund: serviceData.service_refund,
         videos: videos,
         provider_id: userAuth.uid,
         provider_email: userAuth.email,
         provider_nickName : userProfile.initials,
         timestamp: new Date(),
+        personal_feeling: serviceData.personal_feeling ? serviceData.personal_feeling : '',
         reviewCount: 0,
       }, {merge: true});
 
       batch.commit();
-      console.log('All uploaded!');
     })
     .then(() => {
+      history.push('/mypageProvider/serviceSetting');
       dispatch({type: 'CREATE_SERVICE_SUCESS',});
     })
     .catch((err) => {
@@ -190,7 +249,7 @@ export const serviceVideoUpdate = (service_id, serviceVideos) => {
     const videos = Object.entries(serviceVideos).filter(video => video[0].includes('file'))
       .map(name => ({ [name[0].split('_').shift()] : name[1] }));
 
-    const putStoageItem = (item) => {
+    const putStoageItem = async (item) => {
       let name = Object.keys(item)[0];
       let file = Object.values(item)[0] ? Object.values(item)[0] : null;
 
@@ -204,18 +263,15 @@ export const serviceVideoUpdate = (service_id, serviceVideos) => {
         // }, {merge: true});
       }
 
-      return storageRef.child(name).put(file)
-      .then((snapshot) => { return snapshot.ref.getDownloadURL() })
-      .then((url) => { 
+      try {
+        const snapshot = await storageRef.child(name).put(file);
+        const url = await snapshot.ref.getDownloadURL();
         videoFiles.push(url);
-        console.log('one success!') 
-        // batch.set(docRef, { videos: 
-        //   {
-        //     [name]: url,
-        //   }
-        // }, {merge: true});
-      })
-      .catch((err) => console.log('one failed', err.message))
+        console.log('one success!');
+      }
+      catch (err) {
+        return console.log('one failed', err.message);
+      }
     }
   
     Promise.all(videos.map(async (item) => {
@@ -289,38 +345,95 @@ export const providerRegister = (providerData, history) => {
     const userRef = firestore.collection('users').doc(userAuth.uid);
     const docRef = firestore.collection('providersTest').doc(userAuth.uid);
     const storageRef = firebase.storage().ref('images/users/' + userAuth.uid).child('profileImg');
+    const uploadTask = storageRef.put(providerData.profileFile);
 
-    storageRef.put(providerData.profileFile)
-    .then(snapshot => { return snapshot.ref.getDownloadURL() })
-    .then(url => {
-      userRef.update({
-        profileImgURL: url,
-      });
-      docRef.set({
-        profileImgURL: url,
+    
+    uploadTask.on('state_changed', function(snapshot) {
+      let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      let loader = document.querySelector('#hidden-for-loading');
+      let determinate = document.querySelector('#hidden-for-loading .progress .determinate');
+
+      loader.style.display = 'block';
+      determinate.style.width = progress + '%';
+    }, function(err) {
+      switch(err.code) {
+        case 'storage/unauthorized':
+          console.log('no authorization')
+          break;
+        
+        case 'storage/canceled':
+          console.log('canceled')
+          break;
+        
+        case 'storage/unknown':
+          console.log('unknown error');
+          break;
+      }
+    }, function() {
+      uploadTask.snapshot.ref.getDownloadURL().then(url => {
+        userRef.update({
+          profileImgURL: url,
+          editor: false,
+        });
+        docRef.set({
+          profileImgURL: url,
+        })
       })
-    })
-    .then(() => {
-      docRef.update({
-        email: userAuth.email,
-        uid: userAuth.uid,
-        account_bank: providerData.account_bank,
-        account_person: providerData.account_person,
-        account_number: providerData.account_number,
-        editorTool: providerData.editorTool,
-        histories: providerData.histories,
-        intro: providerData.intro,
+      .then(() => {
+        docRef.update({
+          email: userAuth.email,
+          uid: userAuth.uid,
+          account_bank: providerData.account_bank,
+          account_person: providerData.account_person,
+          account_number: providerData.account_number,
+          editorTool: providerData.editorTool,
+          histories: providerData.histories,
+          intro: providerData.intro,
+        })
       })
+      .then(() => {
+        dispatch({type: "REGISTER_PROVIDER_SUCCESS"});
+        history.push('/providerRegisterDone');
+        console.log('success!');
+      })
+      .catch((err) => {
+        dispatch({type: "REGISTER_PROVIDER_ERROR", err});
+        console.log('failed!', err);
+      })  
     })
-    .then(() => {
-      dispatch({type: "REGISTER_PROVIDER_SUCCESS"});
-      history.push('/providerRegisterDone');
-      console.log('success!');
-    })
-    .catch((err) => {
-      dispatch({type: "REGISTER_PROVIDER_ERROR", err});
-      console.log('failed!', err);
-    })
+
+    // storageRef.put(providerData.profileFile)
+    // .then(snapshot => { return snapshot.ref.getDownloadURL() })
+    // .then(url => {
+    //   userRef.update({
+    //     profileImgURL: url,
+    //     editor: false,
+    //   });
+    //   docRef.set({
+    //     profileImgURL: url,
+    //   })
+    // })
+    // .then(() => {
+    //   docRef.update({
+    //     email: userAuth.email,
+    //     uid: userAuth.uid,
+    //     account_bank: providerData.account_bank,
+    //     account_person: providerData.account_person,
+    //     account_number: providerData.account_number,
+    //     editorTool: providerData.editorTool,
+    //     histories: providerData.histories,
+    //     intro: providerData.intro,
+    //   })
+    // })
+    // .then(() => {
+    //   dispatch({type: "REGISTER_PROVIDER_SUCCESS"});
+    //   history.push('/providerRegisterDone');
+    //   console.log('success!');
+    // })
+    // .catch((err) => {
+    //   dispatch({type: "REGISTER_PROVIDER_ERROR", err});
+    //   console.log('failed!', err);
+    // })
 
   }
 }

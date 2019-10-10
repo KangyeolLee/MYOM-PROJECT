@@ -9,6 +9,7 @@ class ServicePricesSummary extends Component {
 
   render() {
     const { service_id, price, prefix } = this.props;
+    console.log('price : ', this.props);
   
     return (
       <div className="price-wrapper row">
@@ -42,21 +43,25 @@ class ServicePricesSummary extends Component {
 
                 <div className="col s10 offset-s1 divider"></div>
 
-                <li className='col s12'>
-                  <div className="col s6">
+                <li className='subOptions col s12'>
+                  <div className="col s4">
                     <h6 className="scorehvy">작업기간</h6>
-                    <p><i className="material-icons left">schedule</i> {item.working}</p>
+                    <p><i className="material-icons left">event</i> {item.working}</p>
                   </div>
-                  <div className="col s6">
+                  <div className="col s4">
                     <h6 className="scorehvy">수정횟수</h6>
                     <p><i className="material-icons left">build</i> {item.modify}</p>
+                  </div>
+                  <div className="col s4">
+                    <h6 className="scorehvy">러닝타임</h6>
+                    <p><i className="material-icons left">access_time</i> {item.runningTime}</p>
                   </div>
                 </li>
               </ul>
 
               <div className="col s10 offset-s1 divider"></div>          
 
-              <h5 className="scorehvy col s12 center price">₩ {item.price}</h5>
+              <h5 className="scorehvy col s12 center price">￦ {item.price}</h5>
               
               <Link to={{ pathname: '/purchase/' + service_id, price: item}}>
                 <div className="buyBtn waves-effect waves-light col s12 btn scorehvy z-depth-0">구매하기</div>

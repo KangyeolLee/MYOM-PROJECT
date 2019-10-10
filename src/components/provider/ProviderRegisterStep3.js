@@ -7,8 +7,15 @@ const ProviderRegisterStep3 = (props) => {
   return (
     <div className="row ProviderRegisterStep3">
       <h5 className="left col s10 offset-s1 scorehvy">사용 프로그램</h5>
-      <p className="col s10 offset-s1">편집 시 사용하는 툴과 프로그램을 작성해주세요!</p>
-      <p className="col s10 offset-s1">더불어 본인이 생각하는 숙련도를 체크해주세요!</p>
+      <p className="col s10 offset-s1">
+        편집 시 사용하는 툴과 프로그램을 작성해주세요!<br/>
+        더불어 본인이 생각하는 숙련도를 우측 바를 통해 체크해주세요!
+      </p>
+
+      <div style={{marginTop: '2.5rem'}} className="col s10 offset-s1">
+        <h6 className="scorelt col s7 center">사용툴 이름</h6>
+        <h6 className="scorelt col s5 center">숙련도</h6>
+      </div>
 
       {
         (props.editorTool.length && props.editorTool.map((tool, idx) => {

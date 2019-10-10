@@ -51,7 +51,7 @@ const RequestStep4 = (props) => {
 			<div className="input-field">
 				<input type="text" id='wantMusic' onChange={props.handleChange} value={props.wantMusic}/>
 			</div>
-			<a href="http://localhost:3001/post/z6HWFnBVBA8EJJQKIXdZ" target='_blank' className='myomColor'>원하시는 음악을 찾기 어려우실 경우 눌러주세요!</a>
+			<a href="/post/z6HWFnBVBA8EJJQKIXdZ" target='_blank' className='myomColor'>원하시는 음악을 찾기 어려우실 경우 눌러주세요!</a>
 		</div>
 	)
 }
