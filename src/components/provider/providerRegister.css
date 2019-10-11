@@ -66,6 +66,9 @@
 .ProviderRegisterStep2 tbody .input-field.dateSetting span {
   margin: 0 1rem;
 }
+.ProviderRegisterStep2 tbody .datepicker {
+  font-size: 12px;
+}
 .ProviderRegisterStep2 .editHistory .moreBtn {
   margin-top: 2rem;
 }
@@ -97,6 +100,9 @@
   margin-bottom: 3rem;
 }
 
+.ProviderRegisterStep4 .moreSpecify {
+  margin-bottom: 3rem;
+}
 .ProviderRegisterStep4 .moreSpecify span {
   cursor: pointer;
   /* float: left; */
@@ -138,4 +144,10 @@
     width: 85%;
   }
 }
+@media only screen and (max-width: 992px) {
+  table.responsive-table th {
+    height: 72px;
+  }
+}
+
 

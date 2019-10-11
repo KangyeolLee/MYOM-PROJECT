@@ -117,6 +117,12 @@
   transform: translateX(-50%);
   margin-top: 5rem;
 }
+.purchasedone .Link-purchaseDetails {
+  cursor: pointer;
+}
+.purchasedone .Link-purchaseDetails:hover {
+  color: grey !important;
+}
 .purchasedone-btn {
   display: flex;
   justify-content: center;

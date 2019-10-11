@@ -1,8 +1,11 @@
 .tips-for-category .card {
   padding: 0 !important;
-  padding-left: 5rem !important;
-  background-color: #582455e8;
+  /* padding-left: 5rem !important; */
+  /* background-color: #582455e8; */
   margin: 10rem 0;
+}
+.tips-for-category .card img {
+  min-height: 100px;
 }
 .tips-for-category .card .card-content h4 {
   color: #e2cbe2;
@@ -12,7 +15,13 @@
   padding: 0 2rem;
   font-size: 2rem;
   border: 1px solid white;
-  color: #582455e8;
+  /* color: #582455e8; */
   background-color: white;
   vertical-align: middle;
+}
+
+@media only screen and (max-width: 400px) {
+  .tips-for-category .card {
+    margin: 4rem 0;
+  }
 }

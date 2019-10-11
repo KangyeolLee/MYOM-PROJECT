@@ -7,7 +7,7 @@ const ProviderRegisterDone = () => {
       <div className="row">
         <div className="card col s10 offset-s1">
           <div className="card-content">
-            <div className="center card-title scorehvy">편집자 등록이 완료되셨습니다.</div>
+            <h5 className="center scorehvy">편집자 등록이 완료되셨습니다.</h5>
             <p className="card-content center">
               등록은 myom 관리팀의 심사를 거쳐 승인됩니다. <br/>
               심사승인까지 수일이 소요될 수 있습니다. <br/>
@@ -17,7 +17,7 @@ const ProviderRegisterDone = () => {
           </div>
         </div>
 
-        <Link to='/' className="btn myomColor-background col s4 offset-s4">홈으로 돌아가기</Link>
+        <Link to='/' className="btn myomColor-background col xl4 offset-xl4 l4 offset-l4 m4 offset-m4 s10 offset-s1">홈으로 돌아가기</Link>
       </div>
     </div>
   )

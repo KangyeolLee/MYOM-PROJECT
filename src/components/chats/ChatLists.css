@@ -20,8 +20,39 @@
 	padding-bottom: 21px;
 }
 
-.unreadMark{
-	position: absolute;
-	right: 12px;
-	bottom: 64px;
+.chatting-box .unreadMark{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 24px;
+  bottom: 10px;
+}
+.chatting-box .guide-text {
+  font-size: 15px;
+  margin-left: .5rem;
+}
+
+.chatRoomList .chatlist-message {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 65px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.chatRoomList .each-chat .card{
+  height: 220px;
+}
+
+.chatRoomList .each-chat .card .one-chat {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.chatRoomList .each-chat .card .one-chat .userNickname {
+  position: absolute;
+  right: 0;
 }

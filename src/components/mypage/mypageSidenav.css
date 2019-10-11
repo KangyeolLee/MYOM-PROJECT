@@ -1,4 +1,7 @@
 .mypageForBuyer {
+  min-width: 900px;
+}
+.mypageForBuyer {
   margin-top: 5rem;
 }
 .mypageForBuyer .profile-infos .btn-floating {
@@ -43,7 +46,7 @@
 
 .myPageSidenav .collection-item{
   padding: 0px 20px;
-  background-color: rgb(240,240,240);
+  background-color: rgb(240, 240, 240);
 }
 
 .myPageSidenav .collection{

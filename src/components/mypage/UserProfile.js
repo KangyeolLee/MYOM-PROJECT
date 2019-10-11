@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import './profile.css'
+import M from 'materialize-css'
 import { connect } from 'react-redux'
 import { profileImgRegister } from '../../store/actions/authAction'
 
@@ -8,22 +9,21 @@ class UserProfile extends Component {
 		profile_img: '',
 		profile_img_preview: '',
 	}
-
+  componentDidMount() {
+    M.AutoInit();
+  }
 	uploadFile = (e) => {
+    if(!e.target.value) return;
 		let reader = new FileReader();
 		let file = e.target.files[0];
-		let target_id = e.target.id;
+    let target_id = e.target.id;
+    reader.readAsDataURL(file);
 
 		reader.onloadend = () => {
 			this.setState({
 				[target_id] : file,
 				[target_id + '_preview']: reader.result,
 			})
-		}
-
-		if(file) {
-			reader.readAsDataURL(file);
-			e.target.value='';
 		}
 	}
 
@@ -37,9 +37,10 @@ class UserProfile extends Component {
 	}
 
 	render(){
-		const { profile, auth } = this.props;
+    const { profile, auth } = this.props;
+    console.log(profile);
 		return(
-			<div className="container profile_deatails">
+			<div className="profile_deatails">
 				<div className="row">
 					<h5 className="col s12 scorehvy sub-title">나의 정보</h5>
 					<div className="col s12">
@@ -51,7 +52,7 @@ class UserProfile extends Component {
 								<div className="col s12">
 									<div className="col s4">
 										<div className="profile-img">
-											<div className="file-field input-field">
+											<div className="image-area file-field input-field">
 												{
 													!(this.state.profile_img_preview)
 														? (
@@ -77,16 +78,25 @@ class UserProfile extends Component {
 											</div>
 										</div>
 									</div>
-									<div className="input-field col s8">
+									<div className="right input-field col s8">
 										<input disabled value= {auth.email} id="my_email" type="text" />
-										<label className='active' htmlFor="my_email">이메일</label>
+										<label className='immer active' htmlFor="my_email">이메일(아이디)</label>
 									</div>
-									<div className="input-field col s8">
+									<div className="right input-field col s8">
 										<input disabled value= {profile.initials} id="my_nickname" type="text" />
-										<label className='active' htmlFor="my_nickname">닉네임</label>
+										<label className='immer active' htmlFor="my_nickname">닉네임</label>
 									</div>
-									<div className="input-field col right">
-										<button className="btn myomColor-background">수정하기</button>
+                  <div className="right input-field col s8">
+										<input disabled value= {profile.phoneNumber} id="my_nickname" type="text" />
+										<label className='immer active' htmlFor="my_nickname">휴대전화</label>
+									</div>
+                  <div className="right input-field col s8">
+										<input disabled value= {profile.emailRecieve_checked} id="my_nickname" type="text" />
+										<label className='immer active' htmlFor="my_nickname">이메일 인증여부</label>
+									</div>
+
+									<div className="input-field col s6 right">
+										<button className="right btn myomColor-background">수정하기</button>
 									</div>
 								</div>
 							</div>

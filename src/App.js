@@ -36,6 +36,7 @@ import PostEditor from './components/community/PostEditor';
 import RequestForm from './components/requestForm/RequestForm';
 import ProviderRegister from './components/provider/ProviderRegister';
 import ProviderRegisterDone from './components/provider/ProviderRegisterDone';
+import Footer from './components/layout/Footer';
 
 class App extends Component {
   render(){
@@ -79,6 +80,7 @@ class App extends Component {
                 <Route path='/postEditor' component={PostEditor} />
                 <Route path='/requestForm/:id' component={RequestForm} />
               </Switch>
+
           </div>
         </ScrollTop>
       </BrowserRouter>

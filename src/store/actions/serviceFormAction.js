@@ -151,6 +151,7 @@ export const createService = (serviceData, history) => {
         provider_id: userAuth.uid,
         provider_email: userAuth.email,
         provider_nickName : userProfile.initials,
+        providerImg: userProfile.profileImgURL,
         timestamp: new Date(),
         personal_feeling: serviceData.personal_feeling ? serviceData.personal_feeling : '',
         reviewCount: 0,
@@ -248,13 +249,13 @@ export const serviceVideoUpdate = (service_id, serviceVideos) => {
     const batch = firestore.batch();
     const videos = Object.entries(serviceVideos).filter(video => video[0].includes('file'))
       .map(name => ({ [name[0].split('_').shift()] : name[1] }));
-
+    console.log(videos);
     const putStoageItem = async (item) => {
       let name = Object.keys(item)[0];
       let file = Object.values(item)[0] ? Object.values(item)[0] : null;
 
       if(file === null) {
-        videoFiles.push('');
+        // videoFiles.push('');
         return;
         // return batch.set(docRef, { videos: 
         //   {
@@ -267,10 +268,12 @@ export const serviceVideoUpdate = (service_id, serviceVideos) => {
         const snapshot = await storageRef.child(name).put(file);
         const url = await snapshot.ref.getDownloadURL();
         videoFiles.push(url);
+        console.log(url);
         console.log('one success!');
+        console.log(videoFiles)
       }
       catch (err) {
-        return console.log('one failed', err.message);
+        return console.log('one failed', err);
       }
     }
   
@@ -383,6 +386,7 @@ export const providerRegister = (providerData, history) => {
         docRef.update({
           email: userAuth.email,
           uid: userAuth.uid,
+          personal_feelings: providerData.personal_feelings,
           account_bank: providerData.account_bank,
           account_person: providerData.account_person,
           account_number: providerData.account_number,

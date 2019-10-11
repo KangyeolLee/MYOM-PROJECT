@@ -6,8 +6,9 @@ const TipsForCategory = ({category, url}) => {
   return (
     <Link to={url}>
       <div className="tips-for-category">
-        <div className="card col s12">
-          <div className="card-image">
+        <div className="card col s12 z-depth-0">
+          <img src="/img/banner/TipBanner.PNG" alt="팁게시판 배너" className='responsive-img'/>
+          {/* <div className="card-image">
             <img style={{width: '20rem'}} src="/img/banner/촬영팁2.png" alt="" className='right'/>
           </div>
           <div className="card-content">
@@ -16,7 +17,7 @@ const TipsForCategory = ({category, url}) => {
               지금 바로 보러가기
               <span className="go-btn">GO</span>
             </h3>
-          </div>
+          </div> */}
         </div>
       </div>
     </Link>

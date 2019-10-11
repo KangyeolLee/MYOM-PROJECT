@@ -2,9 +2,6 @@
 	margin: 0;
 }
 
-.profile_deatails .imgUpload_btn {
-	margin-left: 16.36px;
-}
 
 .profile_deatails .my_profile {
 	border: 1px solid rgb(224,224,224);
@@ -82,14 +79,25 @@
 	height: 3rem;
 	line-height:3rem
 }
-
+.profile_deatails .profile-img .image-area {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
 .profile_deatails .file-path-wrapper {
 	visibility: hidden;
 }
 
-.imgUpload_btn{
+.profile_deatails .imgUpload_btn{
 	background-color: rgb(245,245,245);
 	border: none;
 	padding: 12px;
-	border-radius: 12px;
+  border-radius: 12px;
+  margin-top: 2.8rem;
+}
+.profile_deatails .input-field label.immer {
+  transform: translateY(-14px) scale(0.8);
+  transform-origin: 0 0;
 }

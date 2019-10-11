@@ -100,6 +100,7 @@ class PaymentDetails extends Component {
                         <th>할인 적용</th>
                         <th>구입 일자</th>
                         <th>결제 금액</th>
+                        <th>확인 여부</th>
                       </tr>
                     </thead>
                     <tbody className='white'>
@@ -110,6 +111,7 @@ class PaymentDetails extends Component {
                             <td className='red-text'>₩ 0원</td>
                             <td>{moment(list.purchasedAt.toDate()).format('YYYY.MM.DD HH:mm분')}</td>
                             <td>₩ {list.price}원</td>
+                            <td className='red-text'>아니오</td>
                           </tr>
                         ))
                       }                      
@@ -140,7 +142,7 @@ class PaymentDetails extends Component {
 
         </div>
         
-        <WarningComponent />
+        {/* <WarningComponent /> */}
 
       </div>
     )

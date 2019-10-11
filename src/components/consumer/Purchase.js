@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect, isLoaded } from 'react-redux-firebase';
 import { _buy_service } from '../../store/actions/serviceAction';
+import { Redirect } from 'react-router-dom';
 
 class Purchase extends Component {
   state = {
@@ -73,6 +74,15 @@ class Purchase extends Component {
     this.props._buy_service(this.props.match.params.service_id, this.props.will_purchase, price, this.state, this.props.history);
   }
 	render(){
+    const { auth } = this.props;
+    if(auth.isLoaded && !auth.uid) {
+      alert('로그인을 해주세요!');
+      return <Redirect to='/signin' />
+    } else if(auth.isLoaded && !auth.emailVerified) {
+      alert('이메일 인증을 해주세요!')
+      return <Redirect to='/emailVerification' />
+    }
+
     if(!isLoaded(this.props.will_purchase)) return <div className='container'>로딩중...</div>
 
     const { will_purchase } = this.props;
@@ -290,6 +300,7 @@ class Purchase extends Component {
 const mapStateToProps = (state) => {
   return {
     will_purchase: state.firestore.data.will_purchase,
+    auth: state.firebase.auth,
   }
 }
 const mapDisptachToProps = (dispatch) => {

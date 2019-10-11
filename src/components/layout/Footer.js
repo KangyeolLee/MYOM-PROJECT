@@ -17,9 +17,9 @@ const Footer = () => {
 					<div className="col l4 offset-l2 s12">
 						<h5 className="white-text">SNS</h5>
 						<ul>
-							<li><a href="https://www.youtube.com/channel/UC9BIXe8YjejWnqd2r4w11-w" className="grey-text text-lighten-3"><i className="fab fa-youtube"></i></a></li>
-							<li><a href="https://www.instagram.com/myom__travel/" className="grey-text text-lighten-3"><i className="fab fa-instagram"></i></a></li>
-							<li><a href="https://www.facebook.com/Myom_travel-115307319843663/" className="grey-text text-lighten-3"><i className="fab fa-facebook-square"></i></a></li>
+							<li><a style={{fontSize: '20px'}} target='_blank' href="https://www.youtube.com/channel/UC9BIXe8YjejWnqd2r4w11-w" className="grey-text text-lighten-3"><i className="fab fa-youtube"></i> 유튜브 바로가기</a></li>
+							<li><a style={{fontSize: '20px'}} target='_blank' href="https://www.instagram.com/myom__travel/" className="grey-text text-lighten-3"><i className="fab fa-instagram"></i> 인스타 바로가기</a></li>
+							<li><a style={{fontSize: '20px'}} target='_blank' href="https://www.facebook.com/Myom_travel-115307319843663/" className="grey-text text-lighten-3"><i className="fab fa-facebook-square"></i> 페이스북 바로가기</a></li>
 						</ul>
 					</div>
 				</div>

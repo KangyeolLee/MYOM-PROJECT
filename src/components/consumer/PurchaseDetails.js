@@ -5,8 +5,18 @@ import { Link } from 'react-router-dom';
 import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import moment from 'moment';
 import RequestResult from '../requestForm/RequestResult';
+import { Redirect } from 'react-router-dom';
 
 const PurchaseDetails = (props) => {
+  const { auth } = props;
+  if(auth.isLoaded && !auth.uid) {
+    alert('로그인을 해주세요!');
+    return <Redirect to='/signin' />
+  } else if(auth.isLoaded && !auth.emailVerified) {
+    alert('이메일 인증을 해주세요!')
+    return <Redirect to='/emailVerification' />
+  }
+
   if(!isLoaded(props.purchased_service)) return <div className='container'>로딩중...</div>
   
   const numberWithCommas = (x) => {
@@ -121,6 +131,7 @@ const PurchaseDetails = (props) => {
 const mapStateToProps = (state) => {
   return {
     purchased_service: state.firestore.data.purchased_service,
+    auth: state.firebase.auth,
   }
 }
 

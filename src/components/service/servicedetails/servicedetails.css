@@ -149,6 +149,7 @@
 }
 .service-details .provider-profile .card .card-content {
   padding: .75rem;
+  margin-bottom: 60px;
 }
 .service-details .provider-profile .card .chips input {
   display: none;
@@ -206,7 +207,7 @@
   min-width: 950px;
 }
 .service-details #service-details .fixed {
-  margin-left: .75rem;
+  margin-left: -0.75rem;
 }
 .service-details #service-details .fixed .provider-profile {
   min-width: 330px;

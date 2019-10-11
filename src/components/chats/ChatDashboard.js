@@ -45,7 +45,7 @@ class ChatDashboard extends Component {
 	// }
 
 	componentDidMount(){
-		M.AutoInit();
+    M.AutoInit();
 	}
 	render(){
     // const { nickname } = this.props.match.params;
@@ -93,9 +93,11 @@ class ChatDashboard extends Component {
 						? <ChatTextBox profile={profile} chatId={this.state.chatId}></ChatTextBox> :
 						null
 					}
-					<ul className="tabs">
-						<li className="tab"><a href="#allChat">전체 메시지</a></li>
-						<li className="tab"><a href="#dealChat">거래 중 메시지</a></li>
+					<ul className="tabs row">
+						<li className="tab col s3"><a href="#allChat">전체</a></li>
+						<li className="tab col s3"><a href="#dealChat">거래중</a></li>
+						<li className="tab col s3"><a href="#dealing">문의중</a></li>
+						<li className="tab col s3"><a href="#completed">거래완료</a></li>
 					</ul>
 					<ChatRoomList profile={profile} chats={chats} chatInDeal = {dealingChat} newChatBtnFn = {this.newChatBtnClicked} selectChatFn = {this.selectChat} selectedChatIndex = {this.state.selectedChat} selectUnreadMessage = {this.state.selectUnreadMessage}/>
 				</div>
@@ -117,7 +119,7 @@ export default compose(
 	firestoreConnect((props) => {
 		const _usr = !isLoaded(props.profile.email) ? 'null' : props.profile.email;
 		return [
-				{ collection: 'chats' , where: ['users_email', 'array-contains', _usr] ,storeAs:'chatAll'},
+				{ collection: 'chats' , where: ['users_email', 'array-contains', _usr], orderBy: ['updatedAt', 'desc'], storeAs:'chatAll'},
 		]
 	}),
 )(ChatDashboard);

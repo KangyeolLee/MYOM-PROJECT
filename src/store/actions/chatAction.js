@@ -26,7 +26,8 @@ export const sendMessage = (chatData, chatId) => {
 							fileName: chatData.file.name,
 							sendAt: new Date(),
 						}),
-						receiverHasRead: false,
+            receiverHasRead: false,
+            updatedAt: new Date(),
 					})
 				})
 			})
@@ -37,7 +38,8 @@ export const sendMessage = (chatData, chatId) => {
 						message: chatData.message,
 						sendAt: new Date(),
 					}),
-					receiverHasRead: false
+          receiverHasRead: false,
+          updatedAt: new Date(),
 				})
 				.then(()=> {
 					dispatch({type: 'SEND_MESSAGE_SUCCESS'})

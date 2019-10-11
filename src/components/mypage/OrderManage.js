@@ -206,7 +206,7 @@ class OrderManage extends Component {
             
 
           </div>
-          <WarningComponent />
+          {/* <WarningComponent /> */}
         </div>
       )
       : (
@@ -352,7 +352,7 @@ class OrderManage extends Component {
             
 
           </div>
-          <WarningComponent />
+          {/* <WarningComponent /> */}
         </div>
       );
 
