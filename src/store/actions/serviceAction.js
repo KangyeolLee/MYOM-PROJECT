@@ -30,6 +30,7 @@ export const _buy_service = (service_id, service, price, plus, history) => {
       buyer_nickName: userProfile.initials,
       options: price.chips,
       type: price.type,
+      isPaid: false,
     }
     
     listRef.set({
@@ -159,6 +160,23 @@ export const _cancel_order = (purchaseList_id) => {
     })
     .catch((err) => {
       dispatch({ type : 'CANCEL_ORDER_ERROR', err })
+    })
+  }
+}
+
+export const _confirm_order = (purchaseList_id) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    const listRef = firestore.collection('purchaseList').doc(purchaseList_id);
+
+    listRef.update({
+      review: true,
+    })
+    .then(() => {
+      dispatch({ type : 'CONFIRM_ORDER_SUCCESS' })
+    })
+    .catch((err) => {
+      dispatch({ type : 'CONFIRM_ORDER_ERROR', err })
     })
   }
 }

@@ -81,7 +81,7 @@ class ProfitsManage extends Component {
                               <td className='red-text'>₩ 0원</td>
                               <td>{moment(list.purchasedAt.toDate()).format('YYYY.MM.DD HH:mm분')}</td>
                               <td>₩ {list.price}원</td>
-                              <td className='red-text'>아니오</td>
+                              <td>{list.review ? <font color='green'>지급예정</font> : list.payback ? <font color='blue'>지급완료</font> : <font color='red'>아니오</font>}</td>
                             </tr>
                           ))
                         }                      

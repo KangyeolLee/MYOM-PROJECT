@@ -39,3 +39,7 @@
 .request-buttons{
 	height: 40px;
 }
+
+.requestResult .divider-column {
+  text-align: left;
+}

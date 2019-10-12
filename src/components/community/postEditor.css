@@ -5,3 +5,6 @@
 	font-family: 'sans-serif';
 	font-size: 90%
 }
+.DraftEditor-editorContainer {
+  line-height: 2.3rem;
+}

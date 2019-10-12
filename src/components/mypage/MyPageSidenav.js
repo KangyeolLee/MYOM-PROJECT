@@ -48,7 +48,7 @@ class MyPageSidenav extends Component {
             <li style={{cursor: 'unset'}} className="yellow darken-3 scorehvy collapsible-direct white-text">메뉴</li>
             <NavLink to='/mypageBuyer/orderManage' className='collapsible-direct black-text'>구매 관리</NavLink>
             <NavLink to='/mypageBuyer/paymentDetails' className='collapsible-direct black-text'>결제 내역</NavLink>
-            <NavLink to='/mypageBuyer/coupons' className='collapsible-direct black-text'>쿠폰</NavLink>
+            {/* <NavLink to='/mypageBuyer/coupons' className='collapsible-direct black-text'>쿠폰</NavLink> */}
             <li>
               <div className="collapsible-header">계정설정<i className="material-icons">arrow_drop_down</i></div>
               <div className="collapsible-body">
