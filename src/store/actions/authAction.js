@@ -30,6 +30,7 @@ export const signOut = () => {
     //const firebase = getFirebase();
     firebase.auth().signOut()
       .then(() => {
+        window.location.href = '/';
         dispatch({type: 'SIGNOUT_SUCCESS'})
       })
   }
@@ -48,7 +49,7 @@ export const signUp = (newUser) => {
         initials: newUser.nickname,
         email: newUser.email,
         authority: 'user',
-        profileImgURL: 'https://firebasestorage.googleapis.com/v0/b/myom-89a5a.appspot.com/o/images%2Fusers%2FdefaultProfileImg%2FemptyProfileImg.png?alt=media&token=ad342b58-7306-4340-b8c1-6ad56351a7b6',
+        profileImgURL: '/img/defaults/userProfile.jpeg',
         condition_checked: newUser.condition_checked,
         privacy_checked: newUser.privacy_checked,
         emailRecieve_checked: newUser.emailRecieve_checked,

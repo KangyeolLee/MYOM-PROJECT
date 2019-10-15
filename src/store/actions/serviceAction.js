@@ -27,8 +27,10 @@ export const _buy_service = (service_id, service, price, plus, history) => {
       provider_nickName: service.provider_nickName,
       provider_email: service.provider_email,
       buyer_id: userInfo.uid,
+      buyer_nickName: userProfile.initials,
       options: price.chips,
       type: price.type,
+      isPaid: false,
     }
     
     listRef.set({
@@ -162,7 +164,24 @@ export const _cancel_order = (purchaseList_id) => {
   }
 }
 
-export const chatCreate = (userEmail, userNickName, history) => {
+export const _confirm_order = (purchaseList_id) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    const listRef = firestore.collection('purchaseList').doc(purchaseList_id);
+
+    listRef.update({
+      review: true,
+    })
+    .then(() => {
+      dispatch({ type : 'CONFIRM_ORDER_SUCCESS' })
+    })
+    .catch((err) => {
+      dispatch({ type : 'CONFIRM_ORDER_ERROR', err })
+    })
+  }
+}
+
+export const chatCreate = (userProfileImg, userEmail, userNickName, history) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userInfo = getState().firebase.auth;
@@ -172,12 +191,17 @@ export const chatCreate = (userEmail, userNickName, history) => {
     docRef.get().then(doc=> {
       if(doc.exists){
         return ;
-      }else{
-        docRef.set({
+      } else if(userProfile.email === userEmail) {
+        history.push('/chatDashboard');
+        return;
+      } else{
+        docRef.set({ 
+          [userEmail]: userProfile.profileImgURL,
+          [userInfo.email]: userProfileImg,
           deal: false, 
           users_email: [
-            userInfo.email,
-            userEmail,
+            userInfo.email, // buyer
+            userEmail,      // provider
           ],
           users_nickName : [
             userProfile.initials,

@@ -11,19 +11,18 @@ class ServiceProfileSummary extends Component {
   }
   handleChatCreate = (e) => {
     e.preventDefault();
-    this.props.chatCreate(this.props.provider_email, this.props.provider_nickName , this.props.history);
+    this.props.chatCreate(this.props.providerImg, this.props.provider_email, this.props.provider_nickName , this.props.history);
   }
   render() {
     // if(!isLoaded(this.props.providerInfo)) return <div className='container'>로딩중...</div>
-    const { provider_nickName } = this.props;
-    const { providerInfo } = this.props;
+    const { providerInfo, provider_nickName, providerImg } = this.props;
     const tools = (providerInfo !== null && providerInfo !== undefined) ? providerInfo.editorTool : [];
 
     return (
       <div className="provider-profile row">
         <div className="card col s12 z-depth-0">
           <div className="card-image">
-            <img src="/img/logo/myom_logo3.jpeg" alt="" className=''/>
+            <img src={providerImg ? providerImg : '/img/defaults/userProfile.jpeg'} alt="편집자 프로필사진" className=''/>
             <div className='profile-title'>
               <p className='profile-nickname'>{provider_nickName + '님'}</p>
               <p className='more-info'>상세보기<i style={{verticalAlign: 'middle'}} className="material-icons">chevron_right</i></p>
@@ -34,10 +33,11 @@ class ServiceProfileSummary extends Component {
 
           <div className="card-content row">
             <p className='col s4 scorehvy'>평균별점</p>
-            <span className="rate col s8"><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star_half</i></span>
+            {/* <span className="rate col s8"><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star</i><i className="material-icons">star_half</i></span> */}
+            <span className="col s8">...</span>
 
             <p className='col s4 scorehvy'>작업횟수</p>
-            <span className="col s8">32건</span>
+            <span className="col s8">0건</span>
 
             <p className='col s4 scorehvy'>사용툴</p>
             <span className="col s8 editorTools">
@@ -47,13 +47,13 @@ class ServiceProfileSummary extends Component {
             </span>
 
 
-            <p className="col s4 scorehvy">스타일</p>
+            {/* <p className="col s4 scorehvy">스타일</p>
             <div style={{marginTop: '.5rem'}} className="col s12 chips">
               <div className="chip">#브이로그</div>
               <div className="chip">#색감좋은</div>
               <div className="chip">#트렌디한</div>
               <div className="chip">#트렌디한</div>
-            </div>
+            </div> */}
           </div>
 
           <div className="chatBtn waves-effect waves-light col s12 btn scorehvy z-depth-0" onClick= {this.handleChatCreate}>1:1 문의하기</div>
@@ -72,7 +72,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return{
-    chatCreate: (userEmail, userNickName, history) => dispatch(chatCreate(userEmail, userNickName, history)),
+    chatCreate: (userProfileImg, userEmail, userNickName, history) => dispatch(chatCreate(userProfileImg, userEmail, userNickName, history)),
   }
 }
 

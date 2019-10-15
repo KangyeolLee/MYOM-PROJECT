@@ -22,7 +22,7 @@ class ProviderRegister extends Component {
       { history0: {history0_date: ['', ''], history0_content: '', history0_reference: ''} },
     ],
     editorTool: [
-      { tool0: { name: '', percent: ''} },
+      { tool0: { name: '', percent: 50} },
     ],
     account_person: '',
     account_bank: '',
@@ -30,9 +30,8 @@ class ProviderRegister extends Component {
   }
   componentDidUpdate(prevState, prevProps) {
     if(prevState.currentStep !== this.state.currentStep) {
-      M.Modal.init(document.querySelector('#pay-control.modal'));
+      M.Modal.init(document.querySelector('#pay-control.modal'));  
     }
-    
   }
   componentDidMount() {
     M.AutoInit();
@@ -224,7 +223,7 @@ class ProviderRegister extends Component {
           {
             [name]: {
               name: '',
-              percent: '',
+              percent: 50,
             }
           }
         ]
@@ -287,7 +286,7 @@ class ProviderRegister extends Component {
 
   render() {
     if(!isLoaded(this.props.profile)) return <div className='container'>로딩중...</div>
-
+    console.log(this.state);
     const profile = this.props.profile;
     if(profile.hasOwnProperty('editor')) return <Redirect to='/providerRegisterDone' />
         
@@ -299,7 +298,7 @@ class ProviderRegister extends Component {
             <div style={{width: '0%'}} className="determinate"></div>
           </div>
         </div>
-        
+
         <div className="row progress-bar">
           <div style={{height: '.8rem'}} className="progress col s12">
             <div style={{width: Math.floor(25 * this.state.currentStep) + '%'}} className="determinate"></div>
@@ -311,7 +310,7 @@ class ProviderRegister extends Component {
             <h4 className='scorehvy center'>편집자님의 등록을 환영합니다!</h4>
             <h6 style={{marginBottom: '3rem'}} className="center">주어진 항목을 작성해주세요!</h6>
 
-            <ProviderRegisterStep1 need={this.state.need ? this.state.need : ''} handleChange={this.handleChange} intro={this.state.intro ? this.state.intro : '' } profileImg={this.state.profileImg ? this.state.profileImg : ''} handleImgUpload={this.handleImgUpload} currentStep={this.state.currentStep} />
+            <ProviderRegisterStep1 need={this.state.need ? this.state.need : ''} personal_feelings={this.state.personal_feelings ? this.state.personal_feelings : ''} handleChange={this.handleChange} intro={this.state.intro ? this.state.intro : '' } profileImg={this.state.profileImg ? this.state.profileImg : ''} handleImgUpload={this.handleImgUpload} currentStep={this.state.currentStep} />
             <ProviderRegisterStep2 need={this.state.need ? this.state.need : ''} handleEditorHistory={this.handleEditorHistory} handleDatepicker={this.handleDatepicker} handleMoreBtn={this.handleMoreBtn} histories={this.state.histories} currentStep={this.state.currentStep} />
             <ProviderRegisterStep3 need={this.state.need ? this.state.need : ''} handleRange={this.handleRange} handleEditorTools={this.handleEditorTools} handleMoreBtn={this.handleMoreBtn} editorTool={this.state.editorTool} currentStep={this.state.currentStep} />
             <ProviderRegisterStep4 need={this.state.need ? this.state.need : ''} account_person={this.state.account_person} account_bank={this.state.account_bank} account_number={this.state.account_number} handleChange={this.handleChange} currentStep={this.state.currentStep} />

@@ -96,7 +96,7 @@ class AllService extends Component {
         <h4 className='all-title myomColor col s12 scorehvy'>둘러보기</h4>
         <div className="row">
           <video style={{width: '100%'}} className='' controls>
-            <source src='' type='video/mp4'/>
+            <source src='/video/myom.mp4' type='video/mp4'/>
             {/* https://console.firebase.google.com/project/marioplan-app-9bfcc/storage/marioplan-app-9bfcc.appspot.com/files~2Ftest~2F */}
           </video>
 

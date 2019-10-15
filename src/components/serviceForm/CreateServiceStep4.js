@@ -224,7 +224,7 @@ const CreateServiceStep4 = (props) => {
       <div className="divider col s10 offset-s1"></div>
 
       {/* ----- COMMON ----- */}
-      <div className='row' id="common-desc">
+      {/* <div className='row' id="common-desc">
       <div className="input-field col s10 offset-s1">
         <h5 className="scorehvy">#공통사항 <span className='guide-text'>(필수입력 사항은 아닙니다.)</span></h5>
       </div>
@@ -235,7 +235,7 @@ const CreateServiceStep4 = (props) => {
           <input type="text" id='personal-feeling-additional' className="custom-class" placeholder='ex) 따뜻한' onKeyDown={props.handleChips} />
         </div>
       </div>
-      </div>
+      </div> */}
 
     </Fragment>
   )

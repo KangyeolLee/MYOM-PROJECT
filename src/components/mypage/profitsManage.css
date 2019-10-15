@@ -1,7 +1,13 @@
 .profitsManage .recharts {
   margin: 4rem 0 8rem 0;
 }
-
+.profitsManage .no-data {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 0;
+}
 .profitsManage .collection.profits_details {
   display: flex;
   padding: 2rem 0 2rem 0;

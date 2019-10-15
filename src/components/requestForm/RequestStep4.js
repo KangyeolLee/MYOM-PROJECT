@@ -7,7 +7,7 @@ const RequestStep4 = (props) => {
 		<div className="card-content">
 			<div id="essential_cut">
 				<h6>꼭 들어갔으면 하는 컷이 있나요?</h6>
-				<span>예를 선택하신 경우 * 등으로 별도의 라벨링을해주세요</span>
+				<span>예를 선택하신 경우 * / @ / # 과 같은 기호등으로 편집자님이 알아보기 쉽게끔 별도의 라벨링을해주세요</span>
 				{
 					props.essential_cut.map((element => {
 						return(<RequestChkBox key={element.id} handleCheck = {props.handleCheck} {...element}/>)
@@ -51,7 +51,7 @@ const RequestStep4 = (props) => {
 			<div className="input-field">
 				<input type="text" id='wantMusic' onChange={props.handleChange} value={props.wantMusic}/>
 			</div>
-			<a href="/post/z6HWFnBVBA8EJJQKIXdZ" target='_blank' className='myomColor'>원하시는 음악을 찾기 어려우실 경우 눌러주세요!</a>
+			<a href="/post/gzysBg7PWE0AvO7SHmnj" target='_blank' className='myomColor'>원하시는 음악을 찾기 어려우실 경우 눌러주세요!</a>
 		</div>
 	)
 }

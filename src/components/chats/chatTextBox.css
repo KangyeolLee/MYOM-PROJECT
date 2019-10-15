@@ -20,7 +20,8 @@
 	resize: none;
 	background-color: white;
 	border-color: rgb(230,230,230);
-	height: 150px;
+  height: 150px;
+  width: 100%;
 }
 
 #message:focus {
@@ -31,9 +32,9 @@
 	width: 100%;
 	margin-right: 0;
 }
-@media only screen and (min-width: 1600px){
-	.text-box{
-		width: 1197.5px;
-		margin: auto;
-	}
+
+@media only screen and (max-height: 700px) {
+  .chat-text-box #message {
+    height: 75px;
+  }
 }

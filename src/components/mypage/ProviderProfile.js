@@ -7,10 +7,44 @@ import Preloader from '../functionalComponents/Preloader';
 
 class ProviderProfile extends Component {
 	render(){
-		console.log(this.props.profileData)
 		const { profileData } = this.props
-		return(
-			<Fragment>
+		return (
+      <div className="profileSetting">
+        <div className="row">
+          <div className="col s12">
+            <div style={{height: '500px'}} className="card">
+              <div style={{paddingTop: '5rem'}} className="card-title center">현재 준비중에 있습니다.</div>
+              <div className="card-content center">
+                <p>이용에 불편함이 없도록 최대한 빠르게 완료하겠습니다.</p>
+                <p>본인의 프로필과 관련된 문의사항은 아래 고객센터를 통해 문의 부탁드립니다.</p>
+                <p>감사합니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+			
+		)
+	}
+}
+
+const mapStateToProps = (state) => {
+	return{
+		auth: state.firebase.auth,
+		profileData: state.firestore.ordered.profileData,
+	}
+}
+
+export default compose(
+	connect(mapStateToProps),
+	firestoreConnect((props) => {
+		const uid = !isLoaded(props.auth.uid) ? null: props.auth.uid;
+		return [
+			{ collection: 'providersTest', where: ['uid', '==', uid], storeAs: 'profileData'}
+		]
+  }))(ProviderProfile);
+  
+  {/* <Fragment>
 			{
 				!isLoaded(profileData) ?
 				<Preloader />
@@ -41,23 +75,4 @@ class ProviderProfile extends Component {
 					</div>
 				</div>
 			}
-			</Fragment>
-		)
-	}
-}
-
-const mapStateToProps = (state) => {
-	return{
-		auth: state.firebase.auth,
-		profileData: state.firestore.ordered.profileData,
-	}
-}
-
-export default compose(
-	connect(mapStateToProps),
-	firestoreConnect((props) => {
-		const uid = !isLoaded(props.auth.uid) ? null: props.auth.uid;
-		return [
-			{ collection: 'providersTest', where: ['uid', '==', uid], storeAs: 'profileData'}
-		]
-	}))(ProviderProfile);
+			</Fragment> */}

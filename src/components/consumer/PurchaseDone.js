@@ -42,7 +42,7 @@ const PurchaseDone = (props) => {
             <tbody>
               <tr>
                 <td>국민은행</td>
-                <td>000-0000-00-000-00</td>
+                <td>454102-01-477851</td>
                 <td>이승복</td>
                 <td><font color='red'>미확인</font></td>
               </tr>
@@ -52,7 +52,7 @@ const PurchaseDone = (props) => {
           <div style={{marginTop: '1.5rem'}} className="pay-guide">
             <li>입금 확인여부는 2시간 이내로 진행되며, 새벽 시간 및 주말에는 다소 지연될 수 있습니다.</li>
             <li>입금이 확인되는대로 편집자가 작업을 시작합니다.</li>
-            <li>입금 확인여부는 [ 마이페이지 - 구매관리 - 상세내역 ] 에서 확인 가능합니다.</li>
+            <li>입금 확인여부는 <Link target='_blank' className='Link-purchaseDetails black-text' to={'/purchaseDetails/' + service_id}>[ 마이페이지 - 구매관리 - 상세내역 ]</Link> 에서 확인 가능합니다.</li>
           </div>
 
           <div className="center purchasedone-btns row">

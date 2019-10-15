@@ -9,7 +9,6 @@ class ServicePricesSummary extends Component {
 
   render() {
     const { service_id, price, prefix } = this.props;
-    console.log('price : ', this.props);
   
     return (
       <div className="price-wrapper row">

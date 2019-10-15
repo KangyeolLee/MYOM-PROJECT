@@ -6,7 +6,7 @@ const Banner = ({path}) => {
 
   switch(path) {
     case 'main':
-      imgURL = '/img/banner/banner14.jpg';
+      imgURL = '/img/banner/banner2.jpg';
       break;
 
     case 'editor':

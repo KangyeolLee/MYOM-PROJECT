@@ -1,8 +1,32 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write;
+    match /users/{userId} {
+      allow read, update, delete: if request.auth.uid == userId;
+      allow create: if request.auth.uid != null;
+    }
+    match /providersTest/{userId} {
+    	allow read; 
+      allow update, delete: if request.auth.uid == userId;
+      allow create: if request.auth.uid != null;
+    }
+    match /testService/{id} {
+    	allow read;
+      allow create: if request.auth.uid != null;
+      allow update, delete: if request.auth.uid == resource.data.provider_id;
+    }
+    match /purchaseList/{id} {
+    	allow read, update, delete : 
+      	if request.auth.uid == resource.data.buyer_id 
+      	|| request.auth.uid == resource.data.provider_id;
+      allow create: if request.auth.uid != null;
+    }
+    match /posts/{id} {
+    	allow create, update, delete: if request.auth.uid != null;
+      allow read;
+    }
+    match /chats/{id} {
+    	allow read, create, update, delete : if request.auth.uid != null;
     }
   }
 }

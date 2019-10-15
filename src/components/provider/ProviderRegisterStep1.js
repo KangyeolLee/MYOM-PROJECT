@@ -3,6 +3,9 @@ import React from 'react'
 const ProviderRegisterStep1 = (props) => {
   if(props.currentStep !== 1) return null;
 
+  const noEnter = (e) => {
+    if(e.keyCode === 13) e.preventDefault();
+  }
   return (
     <div className="row ProviderRegisterStep1">
       <h5 className="left col s10 offset-s1 scorehvy">프로필 소개란</h5>
@@ -46,6 +49,13 @@ const ProviderRegisterStep1 = (props) => {
             ? <span className='right red-text'>한 줄 소개를 꼭 작성해주세요!</span>
             : null
         }
+      </div>
+
+      <h5 style={{marginBottom: '1.5rem'}} className="left col s10 offset-s1 scorehvy">본인 편집영상의 느낌 및 분위기</h5>
+      <div className="input-field col s10 offset-s1">
+        <label id='personal-feeling-label' htmlFor="personal-feeling" className='active'>자신만의 느낌</label>
+        <input onKeyDown={(e) => noEnter(e)} placeholder='예시) 센스있는, 신나는, 따뜻한 ...' type="text" id='personal_feelings' onChange={props.handleChange} value={props.personal_feelings}/>
+        <span className="helper-text red-text">본인이 생각하는 자신 영상의 특징이나 강점이 있다면 적어주세요!</span>
       </div>
 
     </div>

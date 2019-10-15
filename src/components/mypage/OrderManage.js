@@ -36,7 +36,7 @@ class OrderManage extends Component {
         request_count = orderList.filter(item => item.hasOwnProperty('request') === false).length;
         proceed_count = orderList.filter(item => item.proceed === true).length;
         complete_count = orderList.filter(item => item.proceed === false).length;
-        review_count = orderList.filter(item => item.review === false && item.proceed === false).length;
+        review_count = orderList.filter(item => item.review === true && item.proceed === false).length;
         cancel_count = orderList.filter(item => item.cancel).length;
       }
        
@@ -62,6 +62,7 @@ class OrderManage extends Component {
     const { curPage, perPage, all_count, request_count, proceed_count, complete_count, review_count, cancel_count } = this.state;
     const selectorValueForOrders = pathname.includes('mypageBuyer');
     let indexOfLast = curPage * perPage; let indexOfFirst = indexOfLast - perPage;
+
     const finalResult = selectorValueForOrders 
       ? (
         <div className="ordersManage">
@@ -73,7 +74,7 @@ class OrderManage extends Component {
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderRequest">미접수 ({request_count})</a></li>
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderProceed">진행중 ({proceed_count})</a></li>
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderComplete">완료 ({complete_count})</a></li>
-                <li className="tab col s2"><a onClick={this._init_curPage} href="#orderReview">평가 미작성 ({review_count})</a></li>
+                <li className="tab col s2"><a onClick={this._init_curPage} href="#orderReview">구매확정 ({review_count})</a></li>
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderCanceled">취소 ({cancel_count})</a></li>
               </ul>
             </div>
@@ -164,10 +165,10 @@ class OrderManage extends Component {
 
             <div className='col s12' id="orderReview">
               {/* <SearchBoxDatepicker num={4} /> */}
-              {
+              { 
                 !isLoaded(orderList)
                   ? <div className="collection"><Preloader /></div>
-                  : isEmpty(orderList.filter(item => item.review === false))
+                  : isEmpty(orderList.filter(item => item.review === true))
                     ? (
                       <div className="collection">
                         <div className="collection-item-wrapper">
@@ -176,7 +177,7 @@ class OrderManage extends Component {
                         </div>
                       </div>
                     )
-                    : (orderList.filter(item => item.review === false && item.proceed === false).slice(indexOfFirst, indexOfLast).map(item => (
+                    : (orderList.filter(item => item.review === true && item.proceed === false).slice(indexOfFirst, indexOfLast).map(item => (
                       <OrderManagementSummary key={item.id} chk={selectorValueForOrders} purchaseList={item} />
                     )))
               }
@@ -206,7 +207,7 @@ class OrderManage extends Component {
             
 
           </div>
-          <WarningComponent />
+          {/* <WarningComponent /> */}
         </div>
       )
       : (
@@ -219,7 +220,7 @@ class OrderManage extends Component {
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderRequest">미접수 ({request_count})</a></li>
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderProceed">진행중 ({proceed_count})</a></li>
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderComplete">완료 ({complete_count})</a></li>
-                <li className="tab col s2"><a onClick={this._init_curPage} href="#orderReview">평가 미작성 ({review_count})</a></li>
+                <li className="tab col s2"><a onClick={this._init_curPage} href="#orderReview">구매확정 ({review_count})</a></li>
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderCanceled">취소 ({cancel_count})</a></li>
               </ul>
             </div>
@@ -313,7 +314,7 @@ class OrderManage extends Component {
               {
                 !isLoaded(orderList)
                   ? <div className="collection"><Preloader /></div>
-                  : isEmpty(orderList.filter(item => item.review === false))
+                  : isEmpty(orderList.filter(item => item.review === true))
                     ? (
                       <div className="collection">
                         <div className="collection-item-wrapper">
@@ -322,7 +323,7 @@ class OrderManage extends Component {
                         </div>
                       </div>
                     )
-                    : (orderList.filter(item => item.review === false && item.proceed === false).slice(indexOfFirst, indexOfLast).map(item => 
+                    : (orderList.filter(item => item.review === true && item.proceed === false).slice(indexOfFirst, indexOfLast).map(item => 
                       <OrderManagementSummary key={item.id} chk={selectorValueForOrders} purchaseList={item} />
                     ))
               }
@@ -352,7 +353,7 @@ class OrderManage extends Component {
             
 
           </div>
-          <WarningComponent />
+          {/* <WarningComponent /> */}
         </div>
       );
 

@@ -11,7 +11,7 @@ const Dashboard = () => {
       <Banner path='main'/>
       <ClassLink />
       <ServicePreview />
-      <Footer/>
+      <Footer />
     </div>
   )
 }

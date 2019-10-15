@@ -7,31 +7,49 @@ class ChatTextBox extends Component {
 	state = {
 		sender: this.props.profile.initials,
 		message: '',
-		file: '',
+    file: '',
+    fileName: '',
 	}
-
+  initState = () => {
+    this.setState({
+      message: '',
+      file: '',
+      fileName: '',
+    })
+  }
 	handleChange = (e) => {
 		this.setState({
 			[e.target.id] : e.target.value
 		})
 	}
-
+ 
 	handleSubmit = (e) => {
+    if(!this.state.message && !this.state.file) {
+      e.preventDefault();
+      return;
+    }
 		e.preventDefault();
 		document.querySelector('#message').value = '';
-		this.props.sendMessage(this.state, this.props.chatId);
+    this.props.sendMessage(this.state, this.props.chatId);
+    this.initState();
 	}
 
 	enterSubmit = (e) => {
+    if(!e.target.value && e.keyCode === 13) {
+      e.preventDefault();
+      return;
+    }
 		if(e.which === 13 && !e.shiftKey){
 			e.preventDefault();
 			this.handleSubmit(e);
-		}
+    }
 	}
 
 	handleUpload = (e) => {
+    const file = e.target.files[0];
 		this.setState({
-			[e.target.id] : e.target.files[0]
+      fileName: file.name,
+			[e.target.id] : file,
 		})
 	}
 	render() {
@@ -55,6 +73,17 @@ class ChatTextBox extends Component {
 						<button className="btn myomColor-background chat-send-btn">전송하기</button>
 					</div>
 				</form>
+        {
+          (this.state.fileName)
+            ? (
+              <div className="will-upload-area row">
+                <span style={{paddingLeft: '0'}} className='col s6 left'>{ this.state.fileName }</span>
+                <span style={{paddingRight: '0', textAlign: 'right'}} className='col s6 right red-text'>*파일은 한번에 최대 한개만 가능합니다. 가급적 알집으로 보내주세요!</span>
+              </div>
+            )
+            : null
+        }
+        
 			</div>
 		)
 	}

@@ -33,7 +33,7 @@ class ServiceSetting extends Component {
         }))
       });
 
-      if(this.props.myService[0].videos.length === 0) {
+      if(this.props.myService[0].videos.filter(valid => valid !== '').length === 0) {
         this.setState({
           videos: {
             video6: '',
@@ -258,6 +258,8 @@ class ServiceSetting extends Component {
   handleCancel = (e) => {
     e.preventDefault();
     const target_id = e.target.id;
+    console.log(target_id)
+    console.log(this.state)
     if(target_id === 'videos') {
       this.props.myService[0].videos.map((video, idx) => {
         this.setState(prevState => ({
@@ -269,6 +271,9 @@ class ServiceSetting extends Component {
           }
         }))
       });
+      this.setState({
+        ['re_' + target_id]: false,
+      })
     } else if(target_id === 'basic') {
       this.setState((prevState, props) => ({
         [target_id]: props.myService[0].price[0],
@@ -333,6 +338,7 @@ class ServiceSetting extends Component {
     const { myService } = this.props;
     const { service_title, re_service_title, service_content, re_service_content,
       images, re_images, videos, re_videos, basic, re_basic, pro, re_pro } = this.state;
+      console.log(videos)
 
     return (
       <div className="serviceSetting row">

@@ -7,6 +7,7 @@ import ProviderProfile from './ProviderProfile';
 import UserProfile from './UserProfile';
 import Changepwd from './Changepwd';
 import Withdrawal from './Withdrawal';
+import { connect } from 'react-redux';
 
 class MypageForProvider extends Component {
   renderSwitch(curURL) {
@@ -40,6 +41,12 @@ class MypageForProvider extends Component {
     }
   }
   render() {
+    const { profile } = this.props;
+    if(profile.isLoaded && profile.authority != 'user') {
+      alert('접근 권한이 없습니다.')
+      window.location.href = '/';
+      return;
+    }
     let curURL = this.props.location.pathname;
 
     return (
@@ -58,5 +65,9 @@ class MypageForProvider extends Component {
     )
   }
 }
-
-export default MypageForProvider;
+const mapStateToProps = (state) => {
+  return {
+    profile: state.firebase.profile,
+  }
+}
+export default connect(mapStateToProps)(MypageForProvider);

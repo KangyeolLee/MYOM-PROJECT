@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect, isLoaded } from 'react-redux-firebase';
 import { _buy_service } from '../../store/actions/serviceAction';
+import { Redirect } from 'react-router-dom';
 
 class Purchase extends Component {
   state = {
@@ -73,6 +74,15 @@ class Purchase extends Component {
     this.props._buy_service(this.props.match.params.service_id, this.props.will_purchase, price, this.state, this.props.history);
   }
 	render(){
+    const { auth } = this.props;
+    if(auth.isLoaded && !auth.uid) {
+      alert('로그인을 해주세요!');
+      return <Redirect to='/signin' />
+    } else if(auth.isLoaded && !auth.emailVerified) {
+      alert('이메일 인증을 해주세요!')
+      return <Redirect to='/emailVerification' />
+    }
+
     if(!isLoaded(this.props.will_purchase)) return <div className='container'>로딩중...</div>
 
     const { will_purchase } = this.props;
@@ -151,7 +161,7 @@ class Purchase extends Component {
                     <strong>쿠폰사용</strong>
                   </div>
                   <span className="col s6">
-                    <div data-target="modal-coupon" className="btn-small waves-effect waves-light indigo modal-trigger">쿠폰선택</div>
+                    <div data-target="modal-coupon" className="btn-small disable waves-effect waves-light indigo modal-trigger">쿠폰선택</div>
                   
                     { /* Modal Structure */}
                     <div id="modal-coupon" className="modal">
@@ -215,7 +225,6 @@ class Purchase extends Component {
 					<div className="panel-body">
 						<li>대금은 myom 가상계좌에 보관되며 작업이 완료되면 지불됩니다.</li>
 						<li>대금 지급은 소비자의 [구매확정] 이후 진행됩니다.</li>
-						<li>[구매확정] 이후 발생하는 환불, 수정 등은 의뢰인과 직접 연락하여 해결하여야 합니다.</li>
 						<li>[구매확정] 이후 발생하는 환불, 수정 등은 의뢰인과 직접 연락하여 해결하여야 합니다.</li>
 						<li>[구매확정] 지연으로 인해 대금 지급이 늦어지는 경우, 작업완료일로부터 7일 이내 의뢰인이 수정, 취소 등의 의사표시를 하지 않은 경우 구매확정 처리가 됩니다.</li>
 						<li>결제금액의 오입금으로 인한 모든 위험과 책임은 의뢰인이 부담하여야 합니다.</li>
@@ -290,6 +299,7 @@ class Purchase extends Component {
 const mapStateToProps = (state) => {
   return {
     will_purchase: state.firestore.data.will_purchase,
+    auth: state.firebase.auth,
   }
 }
 const mapDisptachToProps = (dispatch) => {

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Banner from '../banner/Banner';
+import { Redirect } from 'react-router-dom';
 import M from 'materialize-css';
 import './providerIntro.css';
 
@@ -24,6 +25,8 @@ class ProviderIntro extends Component {
   }
 
   render() {    
+    const { auth }  = this.props;
+
     return (
       <div className="providerIntro">
         <Banner path='editor'/>
@@ -253,8 +256,8 @@ class ProviderIntro extends Component {
                   <div className="collapsible-body">여행 영상을 편집한 것이 있으면 여행 영상이 좋습니다. 하지만 여행 영상을 편집한 적이 없는 경우, 자신의 영상 편집 스타일을 잘 보여줄 수 있는 영상을 추천합니다. 가능하다면 편집자 본인이 직접 여행을 다녀와서 편집을 하거나 일상을 간단하게 촬영하여 편집한 영상을 만들 것을 권장합니다.</div>
                 </li>
                 <li>
-                  <div className="collapsible-header"><i className="material-icons">feedback</i>영상은 어떻게 업로드하나요?</div>
-                  <div className="collapsible-body">몰라임마</div>
+                  <div className="collapsible-header"><i className="material-icons">feedback</i>영상은 어떻게 주고 받나요?</div>
+                  <div className="collapsible-body">상단메뉴 [메시지] 탭에서 구매자와 원본 영상 및 완성본을 주고 받을 수 있습니다.</div>
                 </li>
               </ul>
             </div>
@@ -276,9 +279,25 @@ class ProviderIntro extends Component {
           </div>
         </div>
         <footer>
-          <Link to='/providerRegister'>
-            <span className="scorehvy registerBtn myomColor-background btn-large waves-effect waves-light">등록하기</span>
-          </Link>
+          {
+            (auth.uid)
+              ? (auth.emailVerified)
+                ? (
+                  <Link to='/providerRegister'>
+                    <span className="scorehvy registerBtn myomColor-background btn-large waves-effect waves-light">등록하기</span>
+                  </Link>
+                )
+                : (
+                  <Link to='/emailVerification'>
+                    <span className="scorehvy registerBtn myomColor-background btn-large waves-effect waves-light">등록하기</span>
+                  </Link>
+                )              
+              : (
+                <Link to='/signin'>
+                  <span className="scorehvy registerBtn myomColor-background btn-large waves-effect waves-light">등록하기</span>
+                </Link>
+              )
+          }
         </footer>
       </div>
     )

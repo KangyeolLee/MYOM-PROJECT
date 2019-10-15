@@ -3,6 +3,10 @@ import Slider from '@material-ui/core/Slider'
 
 const ProviderRegisterStep3 = (props) => {
   if(props.currentStep !== 3) return null;
+
+  const noEnter = (e) => {
+    if(e.keyCode === 13) e.preventDefault();
+  }
   
   return (
     <div className="row ProviderRegisterStep3">
@@ -28,7 +32,7 @@ const ProviderRegisterStep3 = (props) => {
               <h5 className='scorehvy'>#{idx + 1}</h5>
             </div>
             <div className="input-field col s6">
-              <input className={className} onChange={props.handleEditorTools} value={default_taget.name} id={'tool' + idx + '_name'} type="text" placeholder='예시) 프리미어 프로'/>
+              <input onKeyDown={(e) => noEnter(e)} className={className} onChange={props.handleEditorTools} value={default_taget.name} id={'tool' + idx + '_name'} type="text" placeholder='예시) 프리미어 프로'/>
               <label htmlFor="editorTool"></label>
             </div>
 

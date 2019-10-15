@@ -6,7 +6,8 @@
 	width: 100%;
 	position: relative;
 	overflow: auto;
-	background-color:white;
+  background-color:white;
+  position: relative;
 }
 
 .user-sent{
@@ -59,10 +60,12 @@
 
 @media only screen and (max-width: 992px){
 	.user-sent-message{
-		width:50%;
+    width:50%;
+    /* min-width: 250px; */
 	}
 	.friend-sent-message{
-		width:50% !important;
+    width:50% !important;
+    /* min-width: 250px; */
 	}
 }
 
@@ -83,14 +86,15 @@
 }
 
 .user-sent-message cite{
-	position: absolute;
+  z-index: -1;
 	bottom: -2rem;
-	left: 4.5rem;
-	font-size: 1rem;
+  right: 0;
+  text-align: right;
+	font-size: 12.5px;
 	font-style: normal;
 	font-weight: 300;
 	letter-spacing: 0.5px;
-	color: black;
+	color: #fff;
 }
 
 .friend-sent-message {
@@ -129,18 +133,30 @@
 }
 
 .friend-sent-message cite{
-	position: absolute;
+  z-index: -1;
 	bottom: -2rem;
-	font-size: 1rem;
+	font-size: 12.5px;
 	font-style: normal;
 	font-weight: 300;
 	letter-spacing: 0.5px;
-	color: black;
+	color: #fff;
 }
 
 .default-content{
-	font-size: 5rem;
-	padding-top: 250px;
+  text-align: center;
+	font-size: 2rem;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+}
+
+.chat-content .fas.fa-comments {
+  font-size: 8rem;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
 }
 
 .default-content .material-icons{

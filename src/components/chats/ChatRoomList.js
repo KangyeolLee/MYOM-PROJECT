@@ -17,6 +17,16 @@ class ChatRoomList extends Component {
 						<ChatLists chat_type = 'dealChats' profile={ profile } chats = {chatInDeal} newChatBtnFn = {this.props.newChatBtnFn} selectChatFn = {this.props.selectChatFn} selectedChatIndex = {this.props.selectedChatIndex} selectUnreadMessage = {this.props.selectUnreadMessage}></ChatLists>
 					</div>
 				</div>
+        <div className="chatRoomList" id="dealing">
+					<div style={{display: 'flex', alignItems: 'center', height: '242.5px'}} className="row">
+            <div className="col s12 center">베타버전에선 지원되지 않습니다. 추후 구현 예정입니다.</div>
+					</div>
+				</div>
+        <div className="chatRoomList" id="completed">
+					<div style={{display: 'flex', alignItems: 'center', height: '242.5px'}} className="row">
+            <div className="col s12 center">베타버전에선 지원되지 않습니다. 추후 구현 예정입니다.</div>
+					</div>
+				</div>
 			</Fragment>
 		
 		)

@@ -95,23 +95,6 @@ class CreateService extends Component {
         item.classList.add('initial');
         item.removeAttribute('tabindex');
       });
-
-      M.Chips.init(document.querySelector('#personal-feeling'), {
-        data: [
-          { tag: '예시) 따뜻한'},
-          { tag: '예시) 몽환적인'},
-        ],
-        limit: 4,
-        onChipDelete: () => {
-          const chips = [...document.querySelectorAll('#personal-feeling .chip')];
-          const filter = chips.filter(chip => chip.className === 'chip');
-          const chip_value = filter.map(chip => chip.innerText.split('\n')[0]);
-  
-          this.setState({
-            personal_feeling: chip_value,
-          })
-        }
-      });
     }
 
 
@@ -146,15 +129,6 @@ class CreateService extends Component {
 
       this.setState({
         pro_chips: chip_value,
-      })
-    }
-    else if(e.keyCode === 13 && e.target.id === 'personal-feeling-additional') {
-      const chips = [...document.querySelectorAll('#personal-feeling .chip')];
-      const filter = chips.filter(item => item.className === 'chip');
-      const chip_value = filter.map(item => item.innerText.split('\n')[0]);
-
-      this.setState({
-        personal_feeling: chip_value,
       })
     }
   }

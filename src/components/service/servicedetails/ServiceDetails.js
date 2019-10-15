@@ -25,7 +25,7 @@ class ServiceDetails extends Component {
         <div id='service-details' className="row">
           {/* 고정스크롤 영역 */}
           <div className="col s4 fixed">  
-            <ServiceProfileSummary styles={service.personal_feeling} provider_id={service.provider_id} provider_email = {this.props.service.provider_email} provider_nickName= {this.props.service.provider_nickName} history={this.props.history} />
+            <ServiceProfileSummary styles={service.personal_feeling} providerImg={service.providerImg} provider_id={service.provider_id} provider_email = {this.props.service.provider_email} provider_nickName= {this.props.service.provider_nickName} history={this.props.history} />
             <ServicePricesSummary prefix='on-desktop' service_id={this.props.match.params.id} price={service.price} />      
           </div>
 
@@ -39,7 +39,7 @@ class ServiceDetails extends Component {
             <div className="hidden-over-desktop row">
               <div className="col l6 m6 s12">
                 <h5 className="sub-title scorehvy service-price">가격</h5>
-                <ServiceProfileSummary styles={service.personal_feeling} provider_id={service.provider_id} provider_email = {this.props.service.provider_email} provider_nickName= {this.props.service.provider_nickName} history={this.props.history} />         
+                <ServiceProfileSummary styles={service.personal_feeling} providerImg={service.providerImg} provider_id={service.provider_id} provider_email = {this.props.service.provider_email} provider_nickName= {this.props.service.provider_nickName} history={this.props.history} />         
               </div>
 
               <div className="col l6 m6 s12">
@@ -59,13 +59,13 @@ class ServiceDetails extends Component {
             <h5 className="service-intro scorehvy">다른 참고 영상</h5>
             <div className="video-wrapper">
             {
-              (service.videos.length)
+              (service.videos.length && service.videos[0])
                 ? service.videos.map((video, idx) => (
                   <video key={video + idx} style={{width: '100%'}} controls>
                     <source src={video} type='video/mp4'/>
                   </video>
                 ))
-                : <p>다른 참고영상이 없습니다.</p>
+                : <div className="collection"><p className='collection-item'>다른 참고영상이 없습니다.</p></div>
             }
             </div>
 

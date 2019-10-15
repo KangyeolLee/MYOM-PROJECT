@@ -133,11 +133,11 @@ class SignUp extends Component {
                 <input type="text" id="firstName" onChange={this.handleChange} required/>
               </div>
               <div className="input-field">
-                <label htmlFor="nickname">닉네임</label>
-                <input type="text" id="nickname" onChange={this.handleChange} required/>
+                <label className='active' htmlFor="nickname">닉네임</label>
+                <input placeholder='8글자 이내로 만들어주세요' maxLength='8' type="text" id="nickname" onChange={this.handleChange} required/>
               </div>
               <div className="input-field">
-                <label htmlFor="birth">생년월일</label>
+                <label className='active' htmlFor="birth">생년월일</label>
                 <input type="text" id='birth' onChange={this.handleChange} placeholder='950319' required/>
               </div>
               <div className="input-field">

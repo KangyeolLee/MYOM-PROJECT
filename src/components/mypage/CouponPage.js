@@ -39,7 +39,7 @@ class CouponPage extends Component {
           </tbody>
         </table>
          
-        <WarningComponent />
+        {/* <WarningComponent /> */}
       </div>
     )
   }

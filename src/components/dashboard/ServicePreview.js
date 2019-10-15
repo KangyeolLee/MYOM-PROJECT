@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import ServicesSummary from '../service/summary/ServicesSummary';
 import Preloader from '../functionalComponents/Preloader';
+import './servicePreview.css';
 
 const ServicePreview = (props) => {
   const { allService } = props;
@@ -13,7 +14,7 @@ const ServicePreview = (props) => {
       <div className="row">
         <h5 className="col s12 scorehvy myomColor">
           등록된 서비스
-          <Link to='/thema'><span style={{fontSize: '18px'}} className="right myomColor">더 보기</span></Link>
+          <Link to='/thema'><span style={{fontSize: '18px'}} className="moreBtn right myomColor">더 보기</span></Link>
         </h5>
 
         <ul className="row all_services_area">

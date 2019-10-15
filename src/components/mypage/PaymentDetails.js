@@ -8,6 +8,7 @@ import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import WarningComponent from './WarningComponent';
 import Preloader from '../functionalComponents/Preloader';
 import Pagination from '../functionalComponents/Pagination';
+import Loader from '../functionalComponents/Loader';
 
 class PaymentDetails extends Component {
   state = {
@@ -40,6 +41,7 @@ class PaymentDetails extends Component {
     const { curPage, perPage } = this.state;
     let indexOfLast = curPage * perPage;
     let indexOfFirst = indexOfLast - perPage;
+
     return (
       <div className="paymentDetails">
         <div className="row">
@@ -100,6 +102,7 @@ class PaymentDetails extends Component {
                         <th>할인 적용</th>
                         <th>구입 일자</th>
                         <th>결제 금액</th>
+                        <th>확인 여부</th>
                       </tr>
                     </thead>
                     <tbody className='white'>
@@ -110,6 +113,7 @@ class PaymentDetails extends Component {
                             <td className='red-text'>₩ 0원</td>
                             <td>{moment(list.purchasedAt.toDate()).format('YYYY.MM.DD HH:mm분')}</td>
                             <td>₩ {list.price}원</td>
+                            <td>{ list.isPaid ? <font color='blue'>확인</font> : <font color='red'>미확인</font> }</td>
                           </tr>
                         ))
                       }                      
@@ -140,7 +144,7 @@ class PaymentDetails extends Component {
 
         </div>
         
-        <WarningComponent />
+        {/* <WarningComponent /> */}
 
       </div>
     )
