@@ -87,6 +87,7 @@ class CreatePost extends Component {
 							localization={{
 								locale: 'ko',
 							}}
+							
 							onEditorStateChange={this.handleConvert}
 						/>
 					</div>

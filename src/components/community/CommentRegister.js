@@ -31,6 +31,7 @@ class CommentRegister extends Component{
 	handleSubmit = (e) => {
 		if(!this.props.auth.emailVerified){
 			alert('이메일 인증이 필요합니다.');
+			// this.props.history.push('/emailVerification')
 			return e.preventDefault();
 		}
 		e.preventDefault();
@@ -41,6 +42,7 @@ class CommentRegister extends Component{
 	}
 	render(){
 		const { update_data, _check_update, update_key } = this.props;
+		console.log(this.props);
 		return(
 			<Fragment>
 			{
