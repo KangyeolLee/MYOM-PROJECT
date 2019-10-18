@@ -108,7 +108,7 @@ class SignUp extends Component {
   // }
 
   render() {
-    const { auth, authError } = this.props;
+    const { auth, authError, nickNameError } = this.props;
     if(auth.uid) return <Redirect to='/emailVerification' />
     return (
       <div className="container signup">
@@ -135,6 +135,7 @@ class SignUp extends Component {
               <div className="input-field">
                 <label className='active' htmlFor="nickname">닉네임</label>
                 <input placeholder='8글자 이내로 만들어주세요' maxLength='8' type="text" id="nickname" onChange={this.handleChange} required/>
+                <div className="red-text">{ nickNameError ? nickNameError : null }</div>
               </div>
               <div className="input-field">
                 <label className='active' htmlFor="birth">생년월일</label>
@@ -174,7 +175,7 @@ class SignUp extends Component {
               </p>
               <div className="input-field center signupBtn">
                 <button className="btn indigo lighten-1">회원가입</button>
-                <div className="red-text center">{authError ? <p>{authError}</p> : null}</div>
+                <div style={{marginTop: '2rem'}} className="red-text center">{authError ? <p>{authError}</p> : null}</div>
               </div>
             </div>
           </div>
@@ -186,7 +187,7 @@ class SignUp extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
-    authError: state.auth.authError
+    nickNameError: state.auth.nickNameError,
   }
 }
 const mapDispatchToProps = (dispatch) => {

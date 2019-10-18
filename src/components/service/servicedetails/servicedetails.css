@@ -63,6 +63,9 @@
   border: 1px solid #4F328F;
   margin-bottom: 0;
 }
+.service-details .price-wrapper ul.tabs {
+  padding: 0;
+}
 .service-details .price-wrapper i.material-icons {
   vertical-align: middle;
 }

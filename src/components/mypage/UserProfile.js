@@ -38,7 +38,7 @@ class UserProfile extends Component {
 
 	render(){
     const { profile, auth } = this.props;
-    console.log(profile);
+
 		return(
 			<div className="profile_deatails">
 				<div className="row">
@@ -91,7 +91,11 @@ class UserProfile extends Component {
 										<label className='immer active' htmlFor="my_nickname">휴대전화</label>
 									</div>
                   <div className="right input-field col s8">
-										<input disabled value= {profile.emailRecieve_checked} id="my_nickname" type="text" />
+										<input disabled value= { profile.emailRecieve_checked === false ? '아니오' : '예' } id="my_nickname" type="text" />
+										<label className='immer active' htmlFor="my_nickname">이메일 수신여부</label>
+									</div>
+                  <div className="right input-field col s8">
+										<input disabled value= { auth.emailVerified === false ? '아니오' : '예' } id="my_nickname" type="text" />
 										<label className='immer active' htmlFor="my_nickname">이메일 인증여부</label>
 									</div>
 

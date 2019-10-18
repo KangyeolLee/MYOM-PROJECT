@@ -14,11 +14,16 @@ class Withdrawal extends Component {
 		});
 	}
 	handleSubmit = (e) => {
-		e.preventDefault();
-		this.props.withdrawal(this.state);
+    e.preventDefault();
+    if(window.confirm('정말 회원탈퇴 하시겠습니까? 이후 데이터는 복원 불가합니다.')) {
+      this.props.withdrawal(this.state);
+    } else {
+      return;
+    }
 	}
 	render(){
-	const { auth } = this.props;
+  const { auth } = this.props;
+
 	if(!auth.uid) return <Redirect to ='/' />
 	return(
 		<div className="profile_deatails">

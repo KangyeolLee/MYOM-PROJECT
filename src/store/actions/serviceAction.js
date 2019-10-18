@@ -198,6 +198,7 @@ export const chatCreate = (userProfileImg, userEmail, userNickName, history) => 
         docRef.set({ 
           [userEmail]: userProfile.profileImgURL,
           [userInfo.email]: userProfileImg,
+          updatedAt: new Date(), 
           deal: false, 
           users_email: [
             userInfo.email, // buyer
@@ -222,7 +223,7 @@ export const chatCreate = (userProfileImg, userEmail, userNickName, history) => 
       history.push('/chatDashboard');
     })
     .catch((err) => {
-      dispatch({type:'CHAT_CREATE_ERROR'});
+      dispatch({type:'CHAT_CREATE_ERROR', err});
     })
   }
 }

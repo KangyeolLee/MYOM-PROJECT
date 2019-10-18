@@ -8,7 +8,10 @@ export const signIn = (cred) => {
     firebase.auth().signInWithEmailAndPassword(
       cred.email,
       cred.password
-    ).then(() => { 
+    ).then(() => {
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+    })
+    .then(() => { 
       dispatch({type:'LOGIN_SUCCESS'})
     }).catch((err) => {
       switch(err.code) {
@@ -40,26 +43,44 @@ export const signUp = (newUser) => {
   return(dispatch, getState, { getFirestore }) => {
     //const firebase = getFirebase();
     const firestore = getFirestore();
-    firebase.auth().createUserWithEmailAndPassword(
-      newUser.email,
-      newUser.password
-    ).then((res) => {
-      return firestore.collection('users').doc(res.user.uid).set({
-        firstName: newUser.firstName,
-        initials: newUser.nickname,
-        email: newUser.email,
-        authority: 'user',
-        profileImgURL: '/img/defaults/userProfile.jpeg',
-        condition_checked: newUser.condition_checked,
-        privacy_checked: newUser.privacy_checked,
-        emailRecieve_checked: newUser.emailRecieve_checked,
-        timeStamp: new Date(),
-        birth: newUser.birth,
-        phoneNumber: newUser.phoneNumber,
+    const batch = firestore.batch();
+    const userNicknames = firestore.collection('users').doc('userNicknames');
+
+    userNicknames.get()
+    .then(doc => {
+      const userNicknamesList = doc.data();
+      if (userNicknamesList[newUser.nickname]) throw { code: 'auth/duplicate-nickname' }
+    })
+    .then(() => {
+      firebase.auth().createUserWithEmailAndPassword(
+        newUser.email,
+        newUser.password
+      )
+      .then((res) => {
+        const usersRef =  firestore.collection('users').doc(res.user.uid);
+        batch.set(usersRef, {
+          firstName: newUser.firstName,
+          initials: newUser.nickname,
+          email: newUser.email,
+          authority: 'user',
+          profileImgURL: '/img/defaults/userProfile.jpeg',
+          condition_checked: newUser.condition_checked,
+          privacy_checked: newUser.privacy_checked,
+          emailRecieve_checked: newUser.emailRecieve_checked,
+          timeStamp: new Date(),
+          birth: newUser.birth,
+          phoneNumber: newUser.phoneNumber,
+        });
+        batch.set(userNicknames, {
+          [newUser.nickname]: true,
+        }, {merge: true});
       })
-    }).then(() => {
-      dispatch({type: 'SIGNUP_SUCCESS'})
-    }).catch((err) => {
+      .then(() => {
+        batch.commit();
+        dispatch({type: 'SIGNUP_SUCCESS'})
+      })
+    }) 
+    .catch((err) => {
       switch(err.code) {
         case 'auth/email-already-in-use':
           dispatch({type: 'EMAILUSED_ERROR'});
@@ -73,6 +94,10 @@ export const signUp = (newUser) => {
         case 'auth/weak-password':
           dispatch({type: 'WEAKPWD_ERROR'});
           break;
+        case 'auth/duplicate-nickname':
+          dispatch({type: 'SIGNUP_NICKNAME_ERROR'});
+          break;
+
         default: 
           dispatch({type: 'SIGNUP_ERROR', err});
       }
@@ -84,18 +109,30 @@ export const withdrawal = (user) => {
   return(dispatch, getState, { getFirestore }) =>{
     //const firebase = getFirebase();
     const userInfo = firebase.auth().currentUser;
+    const userProfile = getState().firebase.profile;
     const firestore = getFirestore();
+    const userNicknames = firestore.collection('users').doc('userNicknames');
+
     if(user.email !== userInfo.email) {
-      alert('아이디가 일치하지 않습니다')
+      alert('아이디가 일치하지 않습니다');
+      return;
     } else {
-        firestore.collection('users').doc(userInfo.uid).delete()
-        .then(() => {
-          userInfo.delete()
-          .then(() => {
-          dispatch({type:'DELETE_SUCCESS'})
-          }).catch((err) => {
-          dispatch({type:'DELETE_ERROR', err})
+      userInfo.delete()
+      .then(() => {
+        firestore.collection('users').doc(userInfo.uid).delete();
+      })
+      .then(() => {
+        userNicknames.update({
+          [userProfile.initials]: firebase.firestore.FieldValue.delete()
         });
+      })
+      .then(() => {
+        window.location.href = '/';
+        dispatch({type: 'DELETE_SUCCESS'})
+      })
+      .catch((err) => {
+        dispatch({type: 'DELETE_ERROR', err})
+        console.log(err);
       });
     }
   }

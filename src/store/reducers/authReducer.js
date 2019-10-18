@@ -1,5 +1,6 @@
 const initState = {
-  authError: null
+  authError: null,
+  nickNameError: null,
 }
 
 const authReducer = (state=initState, action) => {
@@ -26,11 +27,15 @@ const authReducer = (state=initState, action) => {
 
     case 'SIGNUP_SUCCESS':
       console.log('signup success');
-      return {...state, authError: null}
+      return {...state, authError: null, nickNameError: null }
 
     case 'SIGNUP_ERROR':
       console.log('signup error', action.err, action.err.message);
       return {...state, authError: action.err.message}
+
+    case 'SIGNUP_NICKNAME_ERROR':
+      console.log('nickname duplicated');
+      return{...state, nickNameError: '이미 사용하고 있는 닉네임입니다.'}
 
     case 'DELETE_SUCCESS':
       alert('회원탈퇴에 성공하였습니다!');

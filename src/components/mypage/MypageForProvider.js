@@ -42,8 +42,7 @@ class MypageForProvider extends Component {
   }
   render() {
     const { profile } = this.props;
-    if(profile.isLoaded && profile.authority != 'user') {
-      alert('접근 권한이 없습니다.')
+    if(profile.isLoaded && profile.authority != 'editor') {
       window.location.href = '/';
       return;
     }

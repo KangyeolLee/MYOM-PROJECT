@@ -159,7 +159,7 @@ const serviceRuducer = (state=initState, action) => {
       return state;
     
     case 'CHAT_CREATE_ERROR':
-      console.log('error');
+      alert('로그인 후 이용해주세요!');
       return state;
 
     case 'SEND_REQUEST_SUCCESS':

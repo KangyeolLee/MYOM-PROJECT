@@ -54,7 +54,6 @@ class ChatDashboard extends Component {
     const dealingChat = !isLoaded(chats) ? null : chats.filter(chat => chat.deal === true);
     // const currentChat = !isLoaded(chats) ? null : chats.filter(chat => chat.users_nickName[1] === nickname);
 
-    console.log(chatId, this.state.selectedChat, this.state.newChatFormVisible);
 		return(
 			<div className="chatDashboard">
 				<div className="chatsTemplate container">
@@ -117,7 +116,8 @@ const mapStateToProps = (state) => {
 export default compose(
 	connect(mapStateToProps),
 	firestoreConnect((props) => {
-		const _usr = !isLoaded(props.profile.email) ? 'null' : props.profile.email;
+    const _usr = !isLoaded(props.profile.email) ? 'null' : props.profile.email;
+    console.log(_usr);
 		return [
 				{ collection: 'chats' , where: ['users_email', 'array-contains', _usr], orderBy: ['updatedAt', 'desc'], storeAs:'chatAll'},
 		]

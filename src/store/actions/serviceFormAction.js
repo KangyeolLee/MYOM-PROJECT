@@ -249,7 +249,7 @@ export const serviceVideoUpdate = (service_id, serviceVideos) => {
     const batch = firestore.batch();
     const videos = Object.entries(serviceVideos).filter(video => video[0].includes('file'))
       .map(name => ({ [name[0].split('_').shift()] : name[1] }));
-    console.log(videos);
+      
     const putStoageItem = async (item) => {
       let name = Object.keys(item)[0];
       let file = Object.values(item)[0] ? Object.values(item)[0] : null;

@@ -38,8 +38,7 @@ class MypageForBuyer extends Component {
   }
   render() {
     const { profile } = this.props;
-    if(profile.isLoaded && profile.authority != 'editor') {
-      alert('접근 권한이 없습니다.')
+    if(profile.isLoaded && profile.authority != 'user') {
       window.location.href = '/';
       return;
     }

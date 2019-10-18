@@ -27,7 +27,7 @@ export const sendMessage = (chatData, chatId) => {
 							sendAt: new Date(),
 						}),
             receiverHasRead: false,
-            updatedAt: new Date(),
+            updatedAt: new Date(), 
 					})
 				})
 			})
