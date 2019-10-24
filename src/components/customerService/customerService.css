@@ -1,0 +1,61 @@
+.customerService .swiper-container {
+  margin: 5rem 0;
+}
+.customerService .swiper-container .category {
+  padding: 2rem 0;
+  cursor: pointer;
+  transition: all .4s;
+}
+.customerService .swiper-container .category:hover {
+  opacity: 0.8;
+}
+
+.customerService #notification {
+  display: none;
+}
+.customerService #notification.active {
+  display: block;
+}
+.customerService #question-answer {
+  display: none;
+}
+.customerService #question-answer.active {
+  display: block;
+}
+.customerService #description {
+  display: none;
+}
+.customerService #description.active {
+  display: block;
+}
+
+.customerService .serviceTitle {
+  margin-top: 3rem;
+  animation: fade-in 2s;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.customerService pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 0;
+}
+
+@media only screen and (max-width: 1024px) {
+  .customerService .serviceTitle h2 {
+    font-size: 2.9rem;
+  }
+}
+@media only screen and (max-width: 520px) {
+  .customerService .serviceTitle h2 {
+    font-size: 1.9rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+  }
+}

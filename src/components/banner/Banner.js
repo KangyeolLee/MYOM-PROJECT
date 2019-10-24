@@ -1,5 +1,6 @@
 import React from 'react';
 import './banner.css';
+import ImageSlider from '../functionalComponents/ImageSlider';
 
 const Banner = ({path}) => { 
   let imgURL = '';
@@ -19,7 +20,22 @@ const Banner = ({path}) => {
  
   return (
     <div className="banner">
-      <img src={imgURL} alt="배너 이미지"/>    
+      {
+        imgURL === '/img/banner/productIntro.jpg'
+          ? <img src={imgURL} alt="배너 이미지"/>    
+          : <ImageSlider />       
+      }
+
+      {/* <div className="banner-img">
+        <div className="container banner-text-box">
+          <div className="text-box">
+            <h1 className="white-text scorehvy fade-in">특별한 순간을 더 특별하게</h1>
+            <h1 className="white-text scorehvy center fade-in">짧은 여행을 긴 추억으로</h1>
+            <h1 className="white-text scorehvy left fade-in">당신만의 영화를 제작합니다</h1>
+          </div>
+        </div>
+      </div> */}
+      {/* <img src={imgURL} alt="배너 이미지"/>     */}
       {/* <h1 className='banner-text1 scorehvy'>짧은 여행을,</h1>
       <h1 className='banner-text2 scorehvy'>긴 추억으로.</h1>
       <h1 className='banner-text3 scorehvy'><font color='#8624DE'>M</font>ake <font color='#9D2DE6'>Y</font>our <font color='#AE34EB'>O</font>wn <font color='#BF3AF1'>M</font>ovie</h1> */}

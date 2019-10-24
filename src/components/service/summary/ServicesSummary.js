@@ -3,7 +3,7 @@ import './servicesSummary.css';
 
 const ServicesSummary = ({service}) => {
   return (
-    <div className="service-wrapper col xl3 l4 m6 s12">
+    <div className="service-wrapper col xxl4 xl4 l4 m6 s12">
       <div className="card black-text">
         <div className="card-image">
           <img src={service.images.thumbnail} alt="서비스 섬네일 사진"/>

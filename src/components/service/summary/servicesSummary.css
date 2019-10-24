@@ -36,3 +36,9 @@
   font-size: 18px;
   color: #ffbf00;
 }
+
+@media only screen and (min-width: 1401px) {
+  .row .col.xxl4 {
+    width: 25% !important;
+  }
+}

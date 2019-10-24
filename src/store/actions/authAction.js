@@ -131,8 +131,14 @@ export const withdrawal = (user) => {
         dispatch({type: 'DELETE_SUCCESS'})
       })
       .catch((err) => {
-        dispatch({type: 'DELETE_ERROR', err})
-        console.log(err);
+        switch(err.code) {
+          case 'auth/requires-recent-login':
+            dispatch({type: 'DELETE_RECENT_LOGIN_ERROR'}); 
+            break;
+            
+          default:
+            dispatch({type: 'DELETE_ERROR', err});
+        }
       });
     }
   }

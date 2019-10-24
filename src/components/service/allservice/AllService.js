@@ -92,35 +92,42 @@ class AllService extends Component {
     console.log(match);
 
     return (
-      <div className="container allServices">
-        <h4 className='all-title myomColor col s12 scorehvy'>둘러보기</h4>
-        <div className="row">
-          <video style={{width: '100%'}} className='' controls>
-            <source src='/video/myom.mp4' type='video/mp4'/>
-            {/* https://console.firebase.google.com/project/marioplan-app-9bfcc/storage/marioplan-app-9bfcc.appspot.com/files~2Ftest~2F */}
-          </video>
-
-          <TipsForCategory category='영화같은 영상' url='/community/user'/>
-        </div> 
-        <ul className="all_services_area">
-          <h5 className='col s12 scorehvy'>전체</h5>
-          <div className="all_services row">
-          {
-            !isLoaded(serviceList)
-              ? <Preloader />
-              : isEmpty(moreServices)
-                ? <div>아직 등록된 서비스가 없습니다.</div>
-                : moreServices.map(item => {    
-                  let category = Object.entries(item).filter(category => category.pop() === 5 );
-                  return (
-                    <Link to={`${match.url}/${category[0]}/${item.id}`} key={item.id}>
-                      <ServicesSummary service={item} />
-                    </Link>
-                  )
-                })                 
-          }
+      <div className="allServices">
+        <div className="container">
+          <div className="row">
+            <h4 className='all-title myomColor col s12 scorehvy'>둘러보기</h4>
+            <div className="col s12">
+              <video style={{width: '100%'}} className='' controls>
+                <source src='/video/myom.mp4' type='video/mp4'/>
+                {/* https://console.firebase.google.com/project/marioplan-app-9bfcc/storage/marioplan-app-9bfcc.appspot.com/files~2Ftest~2F */}
+              </video>       
+            </div> 
           </div>
-        </ul>
+        </div>
+
+        <TipsForCategory category='영화같은 영상' url='/community/user'/>
+
+        <div className="container">
+          <ul className="all_services_area row">
+            <h5 className='col s12 scorehvy'>전체</h5>
+            <div className="all_services row">
+            {
+              !isLoaded(serviceList)
+                ? <Preloader />
+                : isEmpty(moreServices)
+                  ? <div>아직 등록된 서비스가 없습니다.</div>
+                  : moreServices.map(item => {    
+                    let category = Object.entries(item).filter(category => category.pop() === 5 );
+                    return (
+                      <Link to={`${match.url}/${category[0]}/${item.id}`} key={item.id}>
+                        <ServicesSummary service={item} />
+                      </Link>
+                    )
+                  })                 
+            }
+            </div>
+          </ul>
+        </div>
            
       </div>
     )

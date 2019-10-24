@@ -30,7 +30,7 @@ const authReducer = (state=initState, action) => {
       return {...state, authError: null, nickNameError: null }
 
     case 'SIGNUP_ERROR':
-      console.log('signup error', action.err, action.err.message);
+      console.log('signup error', action.err.message);
       return {...state, authError: action.err.message}
 
     case 'SIGNUP_NICKNAME_ERROR':
@@ -43,6 +43,10 @@ const authReducer = (state=initState, action) => {
        
     case 'DELETE_ERROR':
       console.log('withdrawal failed')
+      return state;
+    
+    case 'DELETE_RECENT_LOGIN_ERROR':
+      alert('재로그인 후 시도해주세요!');
       return state;
     
     case 'PWDUPDATE_SUCCESS':

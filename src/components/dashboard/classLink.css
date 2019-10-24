@@ -1,12 +1,27 @@
-.classLink .card {
-  overflow: hidden;
+/* overwrite Swiper CSS */
+.swiper-container .swiper-button-disabled {
+  display: none;
 }
-.classLink .card .card-image {
+.swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
+  right: 20px;
+}
+.swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
+  left: 20px;
+}
+/* overwrite Swiper CSS */
+
+.classLink .swiper-container {
+  padding: 0 .75rem;
+}
+
+.classLink .card-image {
   display: flex;
+  overflow: hidden;
   justify-content: center;
-  transition: transform 1.8s;
 }
-.classLink .card .card-image::after {
+.classLink .card-image::after {
   content: '';
   position: absolute;
   top: 0;
@@ -15,10 +30,15 @@
   background-color: black;
   opacity: .45;
 }
-.classLink .card .card-image:hover {
-  transform: scale(1.23);
+.classLink .card-image img {
+  width: 100%;
+  transition: all 1.8s;
 }
-.classLink .card .card-image span {
+.classLink .card-image:hover img {
+  transition: transform 1.8s;
+  transform: scale(1.05);
+}
+.classLink .card-image span {
   z-index: 5;
   position: absolute;
   top: 50%;
@@ -26,23 +46,34 @@
   color: white;
   font-size: 2.6rem;
   border-bottom: 2px solid white;
+  border-top: 2px solid white;
 }
 .classLink .divider {
   margin-top: 5rem;
   margin-bottom: 3rem;
 }
 
-@media only screen and (max-width: 1200px) {
-  .classLink .card .card-image span {
+
+@media only screen and (max-width: 1350px) {
+  .classLink .card-image span {
     font-size: 1.7rem;
   }
 }
 
 @media only screen and (max-width: 992px) {
-  .classLink .card .card-image img {
+  /* .classLink .card .card-image img {
     height: 15rem;
-  }
-  .classLink .card .card-image span {
+  } */
+  /* .classLink .card .card-image span {
     font-size: 2.4rem;
+  } */
+}
+
+@media only screen and (max-width: 450px) {
+  /* .classLink .card .card-image img {
+    height: 10rem;
+  } */
+  .classLink .card-image span {
+    font-size: 2rem;
   }
 }

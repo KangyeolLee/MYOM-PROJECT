@@ -37,6 +37,7 @@ import RequestForm from './components/requestForm/RequestForm';
 import ProviderRegister from './components/provider/ProviderRegister';
 import ProviderRegisterDone from './components/provider/ProviderRegisterDone';
 import Footer from './components/layout/Footer';
+import CustomerService from './components/customerService/CustomerService';
 
 class App extends Component {
   render(){
@@ -45,7 +46,7 @@ class App extends Component {
         <ScrollTop> {/* Route간 Link 연결 시 현재페이지의 스크롤을 그대로 가져가지 않고, Top으로 위치시키는 hoc */}
           <div className="App">
             <Navbar />
-              <Switch>
+              <Switch>                
                 <Route exact path='/' component={Dashboard} />
                 <Route exact path='/thema/:category' component={SingleCategory} />
                 <Route exact path='/thema/:category/:id' component={ServiceDetails} />
@@ -79,6 +80,7 @@ class App extends Component {
                 <Route path='/Servicepage-design' component={Servicepage} />
                 <Route path='/postEditor' component={PostEditor} />
                 <Route path='/requestForm/:id' component={RequestForm} />
+                <Route exact path='/customerService' component={CustomerService} />
               </Switch>
 
           </div>

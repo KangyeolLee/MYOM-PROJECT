@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './footer.css'
 
 const Footer = () => {
@@ -21,13 +22,15 @@ const Footer = () => {
 							<li><a style={{fontSize: '20px'}} target='_blank' href="https://www.instagram.com/myom__travel/" className="grey-text text-lighten-3"><i className="fab fa-instagram"></i> 인스타 바로가기</a></li>
 							<li><a style={{fontSize: '20px'}} target='_blank' href="https://www.facebook.com/Myom_travel-115307319843663/" className="grey-text text-lighten-3"><i className="fab fa-facebook-square"></i> 페이스북 바로가기</a></li>
 						</ul>
+            <br/>
+            <Link to='/customerService'><h5 className="white-text">고객센터</h5></Link>
 					</div>
 				</div>
 			</div>
 			<div className="footer-copyright">
 				<div className="container">
-					@ 2019 Copyright 언틸번아웃
-					<p className="grey-text text-lighten-4 right">본 사이트는 크롬에 최적화되어있습니다. </p>
+					<p className='center'>@ 2019 Copyright 언틸번아웃</p>
+					<p className="center">본 사이트는 크롬에 최적화되어있습니다. </p>
 				</div>
 			</div>
 		</footer>

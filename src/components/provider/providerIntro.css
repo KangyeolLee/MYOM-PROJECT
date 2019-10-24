@@ -77,7 +77,6 @@
   z-index: 10;
 }
 
-
 @media only screen and (max-width: 1260px) {
   .providerIntro .container {
     min-width: unset;
@@ -139,5 +138,17 @@
 @media only screen and (max-width: 400px) {
   .providerIntro .container .custom-m12 .title-in-tripple {
     font-size: 1.34rem;
+  }
+  .providerIntro footer {
+    width: 100vw;
+    height: 5rem;
+    position: fixed;
+    bottom: 0;
+    border-top: 1px solid grey;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
   }
 }

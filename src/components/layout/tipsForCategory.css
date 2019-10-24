@@ -1,27 +1,76 @@
-.tips-for-category .card {
-  padding: 0 !important;
+.tips-for-category {
   /* padding-left: 5rem !important; */
   /* background-color: #582455e8; */
   margin: 10rem 0;
+  background-color: #663764;
+  overflow: hidden;
 }
-.tips-for-category .card img {
-  min-height: 100px;
+.tips-for-category .tips-banner {
+  padding: 3rem 0rem;
+  background-color: #663764;
 }
-.tips-for-category .card .card-content h4 {
+.tips-for-category .tips-banner .banner-img {
+  width: 20rem;
+}
+.tips-for-category .tips-banner h4 {
   color: #e2cbe2;
 }
-.tips-for-category .card .card-content h3 .go-btn {
+.tips-for-category .tips-banner h3 {
+  position: relative;
+}
+.tips-for-category .tips-banner h3 .go-btn {
+  position: absolute;
+  height: 100%;
   margin-left: 5rem;
   padding: 0 2rem;
   font-size: 2rem;
   border: 1px solid white;
-  /* color: #582455e8; */
+  color: #663764;
   background-color: white;
   vertical-align: middle;
 }
 
-@media only screen and (max-width: 400px) {
-  .tips-for-category .card {
+@media only screen and (max-width: 1200px) {
+  .tips-for-category .tips-banner h4 {
+    font-size: 1.9rem;
+  }
+  .tips-for-category .tips-banner h3 {
+    font-size: 2.6rem;
+  }
+  .tips-for-category .tips-banner h3 .go-btn {
+    margin-left: 3rem;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .tips-for-category .tips-banner h4 {
+    font-size: 1.5rem;
+  }
+  .tips-for-category .tips-banner h3 {
+    font-size: 2.2rem;
+  }
+  .tips-for-category .tips-banner .banner-img {
+    width: 17rem;
+  }
+  .tips-for-category .tips-banner h3 .go-btn {
+    margin-left: 2rem;
+  }
+}
+@media only screen and (max-width: 666px) {
+  .tips-for-category .tips-banner h3 .go-btn {
+    height: 33px;
+  }
+  .tips-for-category .tips-banner .banner-img {
+    transform: translateY(-20px);
+  }
+}
+@media only screen and (max-width: 420px) {
+  .tips-for-category {
     margin: 4rem 0;
+  }
+  .tips-for-category .tips-banner .banner-img {
+    width: 14rem;
+  }
+  .tips-for-category .tips-banner h3 {
+    width: 150px;
   }
 }
