@@ -46,81 +46,66 @@ class UserProfile extends Component {
     const { profile, auth } = this.props;
 
 		return(
-			<div className="profile_deatails">
+			<div className="profile_details">
 				<div className="row">
-					<h5 className="col s12 scorehvy sub-title">나의 정보</h5>
-					<div className="col s12">
-						<div className="my_profile white">
-							<h6>기본정보</h6>
-							<div className="divider"></div>
-							<form onSubmit={this.handleSubmit}>
-							<div className="row">
-								<div className="col s12">
-									<div className="col s4">
-										<div className="profile-img">
-											<div className="image-area file-field input-field">
-												{
-													!(this.state.profile_img_preview)
-														? (
-															<Fragment>
-                                {
-                                  (profile.profileImgURL === '/img/defaults/userProfile.jpeg')
-                                    ? <img src="/img/defaults/userProfile.jpeg" alt="유저 기본 프로필 이미지"/>
-                                    : <img src="/img/defaults/lazy-loading.png" data-src={firebase.storage().refFromURL(profile.profileImgURL).getDownloadURL().then(url => {
-                                      const profile = document.getElementById('syncUserProfile');
-                                      profile.src = url;
-                                    })} width='127px' height='127px' className="circle" alt='유저 프로필 이미지' id='syncUserProfile'/>
-                                }
-
-																<button className="imgUpload_btn">
-																	<span>이미지 변경하기</span>
-																	<input type="file" id='profile_img' onChange={this.uploadFile}/>
-																</button>
-															</Fragment>
-														)
-														: (
-															<Fragment>
-																<img src= {this.state.profile_img_preview} width='127px' height='127px' className="circle" alt=''/>
-																<button className="imgUpload_btn">
-																	<span>이미지 변경하기</span>
-																	<input type="file" id='profile_img' onChange={this.uploadFile}/>
-																</button>
-															</Fragment>
-														)
-												}
-												<input type="text" style={{display:'none'}} className='file-path'/>
-											</div>
-										</div>
+					<h5 className="col s12 sub-title">나의정보</h5>
+					<form className="col s12">
+						<div className="image-area file-field input-field">
+						{
+							!(this.state.profile_img_preview)
+								? (
+									<Fragment>
+									{
+										(profile.profileImgURL === '/img/defaults/userProfile.jpeg')
+											? <img src="/img/defaults/userProfile.jpeg" alt="유저 기본 프로필 이미지" width='140' height='140' className="circle user-profileImg"/>
+											: <img src="/img/defaults/lazy-loading.png" data-src={firebase.storage().refFromURL(profile.profileImgURL).getDownloadURL().then(url => {
+												const profile = document.getElementById('syncUserProfile');
+												profile.src = url;
+											})} width='140' height='140' className="circle user-profileImg" alt='유저 프로필 이미지' id='syncUserProfile' />
+									}
+									<div className='image-update-btn'>
+										<i className="material-icons white-text">edit</i>
+										<input type="file" id='profile_img' onChange={this.uploadFile} />
 									</div>
-									<div className="right input-field col s8">
-										<input disabled value= {auth.email} id="my_email" type="text" />
-										<label className='immer active' htmlFor="my_email">이메일(아이디)</label>
-									</div>
-									<div className="right input-field col s8">
-										<input disabled value= {profile.initials} id="my_nickname" type="text" />
-										<label className='immer active' htmlFor="my_nickname">닉네임</label>
-									</div>
-                  <div className="right input-field col s8">
-										<input disabled value= {profile.phoneNumber} id="my_nickname" type="text" />
-										<label className='immer active' htmlFor="my_nickname">휴대전화</label>
-									</div>
-                  <div className="right input-field col s8">
-										<input disabled value= { profile.emailRecieve_checked === false ? '아니오' : '예' } id="my_nickname" type="text" />
-										<label className='immer active' htmlFor="my_nickname">이메일 수신여부</label>
-									</div>
-                  <div className="right input-field col s8">
-										<input disabled value= { auth.emailVerified === false ? '아니오' : '예' } id="my_nickname" type="text" />
-										<label className='immer active' htmlFor="my_nickname">이메일 인증여부</label>
-									</div>
-
-									<div className="input-field col s6 right">
-										<button className="right btn myomColor-background">수정하기</button>
-									</div>
-								</div>
-							</div>
-							</form>
+									</Fragment>
+								)
+								: (
+									<Fragment>
+									<img src={this.state.profile_img_preview} width='140' height='140' className="circle user-profileImg" alt='변경될 유저 프로필 이미지' />
+									<input type="file" id='profile_img' onChange={this.uploadFile} />
+									</Fragment>
+								)
+						}
 						</div>
-					</div>
+
+						<p className="info-title">이메일 (아이디)</p>
+						<div className="input-field with-border">
+							<p className="info-content">{auth.email}</p>
+						</div>
+
+						<p className="info-title">닉네임</p>
+						<div className="input-field with-border">
+							<p className="info-content">{profile.initials}</p>
+						</div>
+
+						<p className="info-title">휴대전화</p>
+						<div className="input-field with-border">
+							<p className="info-content">{profile.phoneNumber}</p>
+						</div>
+
+						<p className="info-title">이메일 수신여부</p>
+						<div className="input-field with-border">
+							<p className="info-content">{profile.emailRecieve_checked === false ? '아니오' : '예'}</p>
+						</div>
+
+						<p className="info-title">이메일 인증여부</p>
+						<div className="input-field with-border">
+							<p className="info-content">{auth.emailVerified === false ? '아니오' : '예'}</p>							
+						</div>
+
+						<button className="btn waves-effect submit-btn">수정완료</button>
+					</form>
+
 				</div>
 			</div>
 		)
