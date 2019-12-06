@@ -117,7 +117,6 @@ export default compose(
 	connect(mapStateToProps),
 	firestoreConnect((props) => {
     const _usr = !isLoaded(props.profile.email) ? 'null' : props.profile.email;
-    console.log(_usr);
 		return [
 				{ collection: 'chats' , where: ['users_email', 'array-contains', _usr], orderBy: ['updatedAt', 'desc'], storeAs:'chatAll'},
 		]

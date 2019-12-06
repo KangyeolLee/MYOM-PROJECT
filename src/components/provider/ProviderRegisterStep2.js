@@ -9,9 +9,7 @@ const ProviderRegisterStep2 = (props) => {
       <p className="col s10 offset-s1 editor-history">
         해당사항은 소비자가 편집자 프로필 확인을 통해 볼 수 있는 내용입니다.<br/>
         알리고 싶은 경력과 이력이 있다면 간단하게 적어주세요!<br/>
-        PDF 또는 다른 파일의 포트폴리오, 또는 더 자세한 양식의 퐅트폴리오는 아래 메일로 보내주시기 바랍니다.<br/>
-        해당 포트폴리오는 편집자 등록 심사에만 사용되고, 소비자에게 노출되지 않습니다.<br/>
-        소비자에게 어필할 수 있는 활동들을 간단명료하게만 적어주세요!
+        PDF 또는 다른 파일의 포트폴리오, 또는 더 자세한 양식의 포트폴리오는 아래 메일로 보내주시기 바랍니다.<br/><br/>
       </p>
 
       <div className="input-field editHistory col s10 offset-s1">
@@ -67,6 +65,7 @@ const ProviderRegisterStep2 = (props) => {
       <h5 className="left col s10 offset-s1 scorehvy">포트폴리오</h5>
       <p className="col s10 offset-s1 portfolio">
         위 경력 및 이력사항에 기입하기 어렵거나, 더 자세한 이력서 및 포트폴리오는 심사를 위해 아래 메일로 보내주시기 바랍니다. <br />
+        메일로 보내주시는 포트폴리오는 등록 심사에만 이용되고, 홈페이지 내 소비자에게 별도로 공개되지 않습니다. <br/>
         메일주소 : untilburnout@naver.com
       </p>
 

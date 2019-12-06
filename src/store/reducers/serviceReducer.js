@@ -24,8 +24,7 @@ const initState = {
   etc: {
     title : '기타형', 
     content : '기타형은 앞 카테고리에 뚜렷하게 속하지 않은 나머지 영상들이 모여 있습니다. 자신의 영상이 앞 카테고리 어디에도 해당되지 않을 거 같다면, 이곳에서 당신의 영상만을 위한 분위기를 찾아보세요!' 
-  }
-  ,
+  },
 }
 
 const serviceRuducer = (state=initState, action) => {

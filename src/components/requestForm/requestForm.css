@@ -1,8 +1,138 @@
-.requestForm .card{
-	width: 70%;
-  margin-left: 15%;
+.requestResult .requestResult-wrapper {
+  margin-bottom: calc(1rem + 80px);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* ********************************************************** */
+.requestForm .progress-bar {
+  margin-top: 5rem;
+  position: relative;
+}
+.requestForm .progress-bar .progress {
+  border-radius: 10px;
+  background-color: #d8d8d8;
+  height: .8rem;
+  overflow: unset;
+  margin: 0;
+}
+.requestForm .progress-bar .progress .determinate {
+  border-radius: 10px;
+  background-image: linear-gradient(to left, #4c20e1, #8343f2 45%);
+}
+.requestForm .progress-bar .progress .determinate::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #4c20e1;
+  right: 0;
+  top: calc((30px - 0.8rem ) / -2);
+  transform: translateX(15px);
+}
+.requestForm .progress-bar .progress .progress-helper-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #171717;
+  position: absolute;
+  top: 30px;
+  opacity: .4;
+  display: none;
+}
+.requestForm .progress-bar .progress .progress-helper-text.active {
+  opacity: 1;
+}
+.requestForm .progress-bar .progress .progress-helper-text:nth-child(2) {
+  left: -1.7rem;
+  display: block;
+}
+.requestForm .progress-bar .progress .progress-helper-text:nth-child(3) {
+  left: calc(-1.7rem + 50%);
+}
+.requestForm .progress-bar .progress .progress-helper-text:nth-child(4) {
+  left: calc(-1.7rem + 100%);
+}
+.requestForm .progress-bar .progress .progress-helper-text:nth-child(5) {
+  left: calc(-1.7rem + 99.9999999%);
+}
+.requestForm .btn-wrapper {
   margin-top: 5rem;
 }
+.requestForm .btn-wrapper .btn {
+  width: 300px;
+  height: 58px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: 2px solid #4c20e1;
+  box-shadow: none;
+}
+.requestForm .btn-wrapper .btn.left {
+  color: #171717;
+  background-color: #fff !important;
+}
+
+
+.requestForm .step-wrapper {
+  margin-top: 5rem;
+}
+.requestForm .step-wrapper .request-title {
+  font-size: 19px;
+  font-weight: bold;
+  color: #171717;
+  margin: 0 0 20px 0;
+}
+.requestForm .step-wrapper .input-field {
+  border-radius: 8px;
+  border: solid 2px #dedede;
+  background-color: #ffffff;
+  margin: 0 0 40px 0;
+}
+.requestForm .step-wrapper .input-field.radio-btns {
+  padding: 1rem 5rem;
+}
+.requestForm .step-wrapper .input-field input {
+  border: none;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  padding-left: 1.5rem;
+}
+.requestForm .step-wrapper .input-field input:focus {
+  box-shadow: none;
+  border: none;
+}
+.requestForm .step-wrapper .link-to-music {
+  font-size: 14px;
+}
+.requestForm .step-wrapper .link-to-music:hover {
+  color: #824ed2;
+}
+
+.requestResult .requestResult-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #171717;
+}
+.requestResult .requestResult-content {
+  margin-bottom: 20px;
+}
+.requestResult .sub-options {
+  padding: 0;
+}
+.requestResult .circle-icons {
+  transform: translateY(6px);
+}
+
+/* ********************************************************** */
+
+
+
+
+
+
+
 @media only screen and (max-width: 992px){
 	.requestForm .card{
 		width: 100%;

@@ -57,7 +57,7 @@
 }
 .createService .input-field textarea {
   height: 15rem !important;
-  overflow-y: scroll !important;
+  overflow-y: auto !important;
 }
 .createService .btn-wrapper {
   display: flex;

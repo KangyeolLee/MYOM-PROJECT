@@ -194,9 +194,9 @@ class CreateService extends Component {
     let file_size = (file.size / 1024 / 1024).toFixed(2);
     reader.readAsDataURL(file);
 
-    if(file_size > 100) {
+    if(file_size > 300) {
       e.target.value = '';
-      alert('100MB 이하의 영상파일로 업로드 해주세요!');
+      alert('300MB 이하의 영상파일로 업로드 해주세요!');
       return;
     }
 

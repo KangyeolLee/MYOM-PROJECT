@@ -1,33 +1,65 @@
 .tips-for-category {
   /* padding-left: 5rem !important; */
   /* background-color: #582455e8; */
-  margin: 10rem 0;
-  background-color: #663764;
+  position: relative;
+  margin: 10rem 0 5rem 0;
   overflow: hidden;
+  background-image: url('/img/banner/tip-banner.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 240px;
 }
-.tips-for-category .tips-banner {
-  padding: 3rem 0rem;
-  background-color: #663764;
+.tips-for-category::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.068), rgba(0, 0, 0, 0.74) 70%);
 }
 .tips-for-category .tips-banner .banner-img {
   width: 20rem;
 }
+.tips-for-category .text-wrapper {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
 .tips-for-category .tips-banner h4 {
-  color: #e2cbe2;
+  font-size: 22px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  margin: 0;
 }
 .tips-for-category .tips-banner h3 {
   position: relative;
+  font-size: 36px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  margin: 0;
 }
-.tips-for-category .tips-banner h3 .go-btn {
-  position: absolute;
-  height: 100%;
-  margin-left: 5rem;
-  padding: 0 2rem;
-  font-size: 2rem;
-  border: 1px solid white;
-  color: #663764;
-  background-color: white;
-  vertical-align: middle;
+.tips-for-category .tips-banner .btn {
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: center;
+  width: 110px;
+  background-color: #4c20e1;
+  border-radius: 8px;
+  margin-top: 1rem;
 }
 
 @media only screen and (max-width: 1200px) {

@@ -1,46 +1,125 @@
 .tabs .tab a:hover, .tabs .tab a.active {
-  color: #4F328F !important;
+  color: #4d20e19c !important;
 }
 .tabs .tab a {
-    color: rgba(80, 50, 143, 0.568) !important;
+  color: #4c20e1 !important;
+  border-radius: 8px;
 }
 .tabs .tab a:focus, .tabs .tab a:focus.active {
-  background-color: rgba(80, 50, 143, 0.199) !important;
+  background-color: #4d20e10c !important;
+  border-radius: 8px;
 }
 .tabs .tab.disabled a, .tabs .tab.disabled a:hover {
-  color: rgba(129, 126, 126, 0.4) !important;
+  color: rgba(73, 73, 73, 0.678) !important;
 }
 .tabs .tab.disabled a:focus, .tabs .tab.disabled a:focus.active {
   background-color: transparent !important;
 }
 .tabs .indicator {
-  background-color: #4F328F !important;
+  background-color: #4c20e1 !important;
+}
+
+.service-details .tabs {
+  height: auto !important;
+  padding: 0 1.5rem !important;
+  background-color: transparent;
+}
+.service-details .tabs .indicator {
+  background-color: transparent !important;
+}
+.service-details .tabs .tab {
+  height: auto !important;
+}
+.service-details .tabs .tab .tab-title {
+  font-size: 20px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  padding: 0;
+  text-overflow: unset;
+  overflow: unset;
+  background-color: transparent;
+  margin-top: 1.5rem;
+  width: 90% !important;
+}
+.service-details .tabs .tab .tab-title.active {
+  color: #fff !important;
+  background-color: #4c20e1 !important;
+  border-radius: 8px;
 }
 .service-details .fixed {
-  position: fixed !important;
-  width: 70% !important;
-  max-width: 1280px !important;
+  margin-top: 5rem;
+  top: 64px;
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  /* max-width: 1280px !important; */
 }
 .service-details .service-title {
   margin-top: 5rem;
   margin-bottom: 3rem;
   word-break: break-all;
+  font-size: 30px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.07;
+  letter-spacing: normal;
+  color: #3c3d3f;
 }
 .service-details .service-content {
   white-space: pre-wrap;
   word-break: break-all;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
 }
 .service-details .container {
   position: relative;
 }
+.service-details .service-description .divider {
+  margin: 3rem 0;
+  background-color: #cfcfcf;
+}
+.service-details .service-description .video-wrapper .swiper-pagination .swiper-pagination-bullet {
+  width: 36px;
+  height: 36px;
+  border: solid 2px #d4d4d4;
+  background-color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.7;
+  letter-spacing: normal;
+  text-align: center;
+  color: #9b9b9b;
+  opacity: 1;
+}
+.service-details .service-description .video-wrapper .swiper-pagination .swiper-pagination-bullet-active {
+  color: #fff;
+  background-color: #4c20e1;
+  border: solid 2px #4c20e1;
+}
 .service-details .service-description .video-wrapper video {
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
 }
 .serviceSetting .service-description .service-intro,
 .service-details .service-description .service-intro {
-  display: inline-block;
+  /* display: inline-block;
   border-bottom: 3px solid black;
-  padding-bottom: .35rem;
+  padding-bottom: .35rem; */
+  font-size: 28px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
 }
 .serviceSetting .service-description .images-area,
 .service-details .service-description .images-area {
@@ -55,12 +134,32 @@
 .service-details .service-description .images-area .indicators .indicator-item.active {
   background-color: black;
 }
+.service-details .service-description .refund-text {
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.56;
+  letter-spacing: normal;
+  color: #272727;
+}
+.service-details .service-description .no-reference-text {
+  margin: 1em 0;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.56;
+  letter-spacing: normal;
+  color: #272727;
+}
 
 .service-details .price-wrapper {
   width: 33.33333333%;
   background-color: #fff;
   position: relative;
-  border: 1px solid #4F328F;
+  border-radius: 8px;
+  border: solid 2px #dedede;
   margin-bottom: 0;
 }
 .service-details .price-wrapper ul.tabs {
@@ -69,8 +168,55 @@
 .service-details .price-wrapper i.material-icons {
   vertical-align: middle;
 }
+.service-details .price-wrapper .divider {
+  float: unset;
+  margin: 0 auto;
+}
+.service-details .price-wrapper .basic-title {
+  margin-top: 1.5rem;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
+}
 .service-details .price-wrapper .basic-intro {
-  margin: 0.6rem 0;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
+  margin: 0 0 1.5rem 0;
+}
+.service-details .price-wrapper .option-text {
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
+}
+.service-details .price-wrapper .subOptions {
+  margin-top: 1.5rem;
+}
+.service-details .price-wrapper .subOptions .suboption-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
+}
+.service-details .price-wrapper .subOptions .img-icons {
+  margin-right: .5rem;
+  transform: translateY(4.5px);
 }
 .service-details .price-wrapper .subOptions i.left {
   margin-right: 0.15rem;
@@ -78,24 +224,33 @@
 }
 
 .service-details .price-wrapper .options {
-  padding-bottom: .75rem;
+  padding-bottom: 1.5rem;
   margin: 0;
+}
+.service-details .price-wrapper .options .circle-icons {
+  transform: translateY(7px);
 }
 .service-details .price-wrapper .price {
   margin-top: 1rem;
   margin-bottom: 5rem;
 }
 .service-details .price-wrapper .buyBtn {
-  background-color: #4F328F;
-  position: absolute;
+  padding: 0 .75rem;
+  background-color: #4c20e1;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: unset;
   height: 4rem;
-  left: 0 !important;
-  bottom: 0;
-  font-size: 1.5rem;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .service-details #BASIC, .service-details #PRO {
@@ -108,7 +263,9 @@
   margin-bottom: 0;
 }
 .service-details .provider-profile .card {
-  border: 1px solid #4F328F;
+  border-radius: 8px;
+  border: solid 2px #dedede;
+  background-color: #ffffff;
   margin-top: 0;
   max-height: 403px;
 }
@@ -130,16 +287,40 @@
   margin-left: 1rem;
 }
 .service-details .provider-profile .card .card-image .profile-nickname {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #424242;
   margin: 0;
+}
+.service-details .provider-profile .card .card-content .profile-list {
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #3c3d3f;
+  margin-bottom: 1rem;
+}
+.service-details .provider-profile .card .card-content .profile-list-ans {
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #3c3d3f;
+  margin-bottom: 1rem;
 }
 .service-details .provider-profile .card .card-image .more-info {
   /*  */
 }
 .service-details .provider-profile .card .card-image img{
-  border-radius: 30%;
-  border: 1px solid rgba(70, 69, 69, 0.288);
+  border-radius: 50%;
   width: 100px;
   height: 100px;
 }
@@ -152,7 +333,7 @@
 }
 .service-details .provider-profile .card .card-content {
   padding: .75rem;
-  margin-bottom: 60px;
+  margin-bottom: .75rem;
 }
 .service-details .provider-profile .card .chips input {
   display: none;
@@ -162,18 +343,26 @@
   margin-bottom: 2rem;
 }
 .service-details .provider-profile .card .chatBtn {
-  background-color: #4F328F;
-  position: absolute;
+  padding: 0 .75rem;
+  background-color: #4c20e1;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: unset;
   height: 4rem;
-  left: 0;
-  bottom: 0;
-  font-size: 1.5rem;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  margin-top: 1rem;
 }
 
+.service-details .thumbnail {
+  margin-bottom: 5rem;
+}
 .service-details .review .date-time {
   color: gray !important;
   margin-left: 1.5rem;
@@ -182,7 +371,8 @@
 .serviceSetting .thumbnail .thumb,
 .service-details .thumbnail .thumb {
   width: 100%;
-  height: 30rem;
+  height: 382px;
+  border-radius: 10px;
 }
 .serviceSetting .re_thumbnail .side-img,
 .serviceSetting .thumbnail .side-img,
@@ -191,12 +381,15 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  padding-left: 0;
 }
 .serviceSetting .re_thumbnail .side,
 .serviceSetting .thumbnail .side,
 .service-details .thumbnail .side {
   width: 100%;
-  height: 10rem;
+  height: 120px;
+  margin-bottom: 11px;
+  border-radius: 8px;
 }
 .serviceSetting .thumbnail .under-side,
 .service-details .thumbnail .under-side {
@@ -210,17 +403,18 @@
   min-width: 950px;
 }
 .service-details #service-details .fixed {
-  margin-left: -0.75rem;
+  padding: 0 0 0 1.5rem;
 }
 .service-details #service-details .fixed .provider-profile {
-  min-width: 330px;
+  width: 100%;
+  margin: 0;
 }
 .service-details #service-details .fixed .price-wrapper {
-  min-width: 330px;
+  width: 100%;
+  margin: 0;
 }
 .service-details #service-details .service-description {
   min-width: 600px;
-  margin-left: 36%;
 }
 .service-details #service-details .hidden-over-desktop {
   display: none;
@@ -231,7 +425,7 @@
   padding-bottom: .35rem;
 }
 
-@media only screen and (max-width: 1024px), screen and (max-height: 900px) {
+@media only screen and (max-width: 1024px), screen and (max-height: 850px) {
   .service-details {
     min-width: unset;
     width: 100% !important;
@@ -250,6 +444,7 @@
     margin-left: 0;
     padding: 0 5rem;
   }
+
   .service-details #service-details .hidden-over-desktop {
     display: block;
   }
@@ -263,7 +458,7 @@
     height: 500px;
     max-height: unset;
   }
-  .service-details .provider-profile .card .card-content .col {
+  .service-details .provider-profile .card .card-content .col.profile-list {
     margin: 1rem 0;
   }
   .service-details .price-wrapper {

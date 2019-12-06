@@ -19,8 +19,24 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+.service-wrapper .card {
+  background-color: transparent;
+  margin-bottom: 8rem;
+}
 .service-wrapper .card .card-image img {
-  height: 15rem;
+  height: 180px;
+  border-radius: 8px;
+}
+.service-wrapper .card .card-content {
+  padding: 1rem 0;
+}
+.service-wrapper .card .card-content .nickname {
+  font-size: 14px;
+  font-weight: bold;
+}
+.service-wrapper .card .card-content .title-name {
+  font-size: 16px;
+  font-weight: 500;
 }
 .service-wrapper .card .card-content p.service-content {
   clear: both;

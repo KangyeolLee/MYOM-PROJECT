@@ -1,0 +1,11 @@
+.mypageForProvider .mypage-title,
+.mypageForBuyer .mypage-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #272727;
+  padding: 0 0 20px 0;
+  margin-left: .75rem !important;
+  margin-right: .75rem !important;
+  margin-bottom: 40px !important;
+  border-bottom: 4px solid #2f2f2f;
+}

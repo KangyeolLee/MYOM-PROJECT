@@ -12,28 +12,28 @@ const ServicePreview = (props) => {
   return (
     <div className='container servicePreview'>
       <div className="row">
-        <h5 className="col s12 scorehvy myomColor">
+        <h5 className="col s12 notoSans dashboard-subtitle">
           등록된 서비스
-          <Link to='/thema'><span style={{fontSize: '18px'}} className="moreBtn right myomColor">더 보기</span></Link>
+          <Link to='/thema'><span style={{fontSize: '15px', fontWeight: '500', color: '#3b3b3b'}} className="moreBtn right notoSans">전체보기</span></Link>
         </h5>
-
-        <ul className="row all_services_area">
-        {
-          !isLoaded(allService)
-            ? <Preloader />
-            : isEmpty(allService)
-              ? <div>아직 등록된 서비스가 없습니다.</div>
-              : allService.map(item => {
-                  let category = Object.entries(item).filter(category => category.pop() === 5 );                   
-                  return (
-                    <Link key={item.id} to={'/thema/' + category[0] + '/' + item.id}>
-                      <ServicesSummary service={item} />
-                    </Link>
-                  )
-                })                 
-        }
-        </ul>
       </div>
+
+
+      <ul className="row all_services_area">
+      {
+        !isLoaded(allService)
+          ? <Preloader />
+          : isEmpty(allService)
+            ? <div>아직 등록된 서비스가 없습니다.</div>
+            : allService.map(item => {
+                let category = Object.entries(item).filter(category => category.pop() === 5 );                   
+                return (
+                  <ServicesSummary key={item.id} service={item} category={category[0]}/>
+                )
+              })                 
+      }
+      </ul>
+
     </div>
   )
 }

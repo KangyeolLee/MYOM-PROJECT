@@ -45,7 +45,7 @@ class MyPageSidenav extends Component {
                 </ul>
               </div>
             </li> */}
-            <li style={{cursor: 'unset'}} className="yellow darken-3 scorehvy collapsible-direct white-text">메뉴</li>
+            {/* <li style={{cursor: 'unset'}} className="yellow darken-3 scorehvy collapsible-direct white-text">메뉴</li> */}
             <NavLink to='/mypageBuyer/orderManage' className='collapsible-direct black-text'>구매 관리</NavLink>
             <NavLink to='/mypageBuyer/paymentDetails' className='collapsible-direct black-text'>결제 내역</NavLink>
             {/* <NavLink to='/mypageBuyer/coupons' className='collapsible-direct black-text'>쿠폰</NavLink> */}
@@ -95,7 +95,7 @@ class MyPageSidenav extends Component {
               </div>
             </li> */}
 
-            <li style={{cursor: 'unset'}} className="red darken-3 scorehvy collapsible-direct white-text">메뉴</li>
+            {/* <li style={{cursor: 'unset'}} className="red darken-3 scorehvy collapsible-direct white-text">메뉴</li> */}
             <NavLink to='/mypageProvider/profileSetting' className='collapsible-direct black-text'>프로필 관리</NavLink>
             <NavLink to='/mypageProvider/serviceSetting' className='collapsible-direct black-text'>나의 서비스</NavLink>
             <NavLink to='/mypageProvider/sellManage' className='collapsible-direct black-text'>판매 관리</NavLink>

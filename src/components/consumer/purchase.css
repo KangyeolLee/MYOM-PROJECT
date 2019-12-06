@@ -1,7 +1,449 @@
+.purchase-page {
+  margin-top: 5rem;
+}
+.purchase-page .purchase-title {
+  font-size: 28px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
+  margin-bottom: 1.5rem;
+}
+.purchaseDetails .orderdetails-wrapper .preview-img,
+.purchase-page .orderdetails-wrapper .preview-img {
+  border-radius: 8px;
+  width: 200px !important;
+  height: 120px !important;
+  padding: 0;
+  margin: 0 .75rem !important;
+}
+.purchaseDetails .orderdetails-wrapper .text-wrapper .syncImg,
+.purchase-page .orderdetails-wrapper .text-wrapper .syncImg {
+  margin-right: .75rem;
+}
+.purchaseDetails .orderdetails-wrapper .text-wrapper .service-title,
+.purchase-page .orderdetails-wrapper .text-wrapper .service-title {
+  font-size: 20px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #3c3d3f;
+}
+.purchaseDetails .orderdetails-wrapper .text-wrapper .provider-nickname,
+.purchase-page .orderdetails-wrapper .text-wrapper .provider-nickname {
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #424242;
+}
+.purchaseDetails table,
+.purchasedone table,
+.purchase-page table {
+  overflow: hidden;
+  border-collapse: separate;
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  border: solid 2px #dedede;
+  background-color: #ffffff;
+}
+.purchaseDetails table thead,
+.purchasedone table thead,
+.purchase-page table thead {
+  background-color: #eef2ff;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
+}
+.purchaseDetails table thead th,
+.purchasedone table thead th,
+.purchase-page table thead th {
+  border-radius: unset;
+}
+.purchaseDetails table tbody,
+.purchasedone table tbody,
+.purchase-page table tbody {
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
+}
+
+.purchaseDetails .basic-purchase .type-title,
+.purchase-page .basic-purchase .type-title {
+  font-size: 20px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #424242;
+}
+.purchaseDetails .basic-purchase .options,
+.purchase-page .basic-purchase .options {
+  display: flex;
+  /* justify-content: center; */
+  padding-left: 10%;
+  font-weight: 400;
+}
+.purchaseDetails .basic-purchase .options .circle-icons,
+.purchase-page .basic-purchase .options .circle-icons {
+  transform: translateY(6.5px);
+}
+
 .purchase-page .category{
 	margin-top: 5rem;
-	margin-bottom: 3rem;
 }
+.purchaseDetails .option-purchase,
+.purchase-page .option-purchase {
+  margin-bottom: 20px;
+}
+.purchaseDetails .option-purchase .options-purchase-contents,
+.purchase-page .option-purchase .options-purchase-contents {
+  font-size: 15px;
+  font-weight: 500;
+}
+.purchase-page .option-purchase .plus_time-wrapper {
+  position: relative;
+  width: 100px;
+  margin: 0 auto;
+}
+.purchase-page .option-purchase .plus_time-wrapper #plus_time {
+  max-width: 20px;
+  text-align: center;
+  border-bottom: none;
+}
+.purchase-page .option-purchase .plus_time-wrapper #plus_time:focus {
+  box-shadow: none !important;
+}
+.purchase-page .option-purchase .plus_time-wrapper .btn-floating {
+  width: 20px;
+  height: 20px;
+  line-height: 10px;
+  text-align: center;
+  box-shadow: none;
+  background-color: #fff;
+  border: solid 2px #cecece;
+  color: #171717;
+  font-weight: 900;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(calc(-50% + -3px));
+}
+.purchase-page .option-purchase .plus_time-wrapper .decreBtn {
+  font-size: 30px;
+  font-weight: 500;
+  left: 0;
+  padding-bottom: 6px;
+}
+.purchase-page .option-purchase .plus_time-wrapper .increBtn {
+  right: 0;
+}
+
+.purchase-page .purchase-detailSetting {
+  margin-top: 5rem;
+}
+.purchase-page .purchase-detailSetting .final-cost {
+  font-size: 32px;
+  font-weight: 900;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #424242;
+  max-width: 300px;
+}
+
+.purchaseDetails .table-head,
+.purchasedone .table-head,
+.purchase-page .guide-line .table-head,
+.purchase-page .purchase-module .table-head {
+  padding: 15px 5px;
+  background-color: #eef2ff;
+  border-top: solid 2px #dedede;
+  border-left: solid 2px #dedede;
+  border-right: solid 2px #dedede;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
+  padding-left: 10%;
+}
+.purchase-page .purchase-module .table-head .helper-text {
+  font-size: 13px;
+  font-weight: 300;
+  width: 370px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.purchaseDetails .table-body,
+.purchasedone .table-body,
+.purchase-page .guide-line .table-body,
+.purchase-page .purchase-module .table-body {
+  padding: 15px 5px;
+  border-left: solid 2px #dedede;
+  border-right: solid 2px #dedede;
+  border-bottom: solid 2px #dedede;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
+}
+.purchaseDetails ul.table-body li,
+.purchase-page ul.table-body li {
+  list-style-type: disc;
+}
+
+.purchase-page .purchase-btn {
+	margin-top: 30px;
+  margin-bottom: 5rem;
+  width: 410px;
+  background-color: #4c20e1;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;;
+}
+
+.purchase-page #modal-verify-payment {
+  width: calc(70% - 1.5rem);
+  border-radius: 8px;
+}
+.purchase-page #modal-verify-payment .modal-content {
+  padding: 4rem;
+  height: calc(100% - 175px);
+}
+.purchase-page #modal-verify-payment .modal-title {
+  font-size: 28px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
+  border-bottom: 1px solid #cfcfcf;
+  padding-bottom: 1.5rem;
+  margin-bottom: 0;
+}
+.purchase-page #modal-verify-payment .table-collections {
+  font-size: 18px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #171717;
+}
+.purchase-page #modal-verify-payment .table-details {
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #171717;
+}
+.purchase-page #modal-verify-payment .button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.purchase-page #modal-verify-payment .modal-btn {
+  width: 25%;
+  min-width: 160px;
+  height: 50px;
+  border-radius: 8px;
+  border: solid 2px #4c20e1;
+  background-color: #4c20e1;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+.purchase-page #modal-verify-payment .modal-btn.modal-close {
+  background-color: #ffffff;
+  color: #171717;
+  margin-right: .75rem;
+  margin-left: calc(25% - .75rem); 
+}
+.purchase-page #modal-verify-payment .modal-footer {
+  height: 175px;
+  border-top: none;
+}
+/* ******************************************* */
+.purchaseDetails .orderdetails-wrapper {
+  margin-top: 5rem;
+}
+.purchaseDetails .purchaseDetails-title {
+  font-size: 28px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
+  margin: 0 0 20px 0;
+}
+.purchaseDetails .coupon-discount {
+  border-radius: 8px;
+  border: solid 2px #dedede;
+  background-color: #ffffff;
+  font-weight: 500;
+  margin: 0 0 20px 0;
+}
+.purchaseDetails .account-wrapper {
+  margin-top: 5rem;
+}
+.purchaseDetails .request-wrapper {
+  margin-top: 5rem;
+}
+.purchaseDetails .request-wrapper .request-paper {
+  position: relative;
+  min-height: 600px;
+  border-radius: 8px;
+  border: solid 2px #dedede;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.purchaseDetails .request-wrapper .request-paper .collection-item {
+  padding: 2.5rem 5rem;
+}
+.purchaseDetails .request-wrapper .request-paper .btn {
+  width: 238px;
+  height: 46px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.purchaseDetails .btn-wrapper {
+  margin-top: 4rem;
+}
+.purchaseDetails .btn-wrapper .btn {
+  height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: solid 2px #4c20e1;
+  box-shadow: none;
+}
+/* ******************************************* */
+.purchasedone .card {
+  box-shadow: none;
+}
+.purchasedone .card .card-content {
+  padding: 0;
+}
+.purchasedone .purchagedone-title {
+  font-size: 28px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
+  margin: 0;
+}
+.purchasedone .helper-text {
+  font-size: 14px;
+  color: red;
+  font-weight: 300;
+  margin: 0 0 20px 0;
+}
+.purchaseDetails .table-wrapper .table-head,
+.purchasedone .table-wrapper .table-head {
+  margin-top: 20px;
+}
+.purchaseDetails .table-wrapper .table-body,
+.purchasedone .table-wrapper .table-body {
+  margin: 0;
+  padding-left: 10%;
+  font-size: 14px;
+  font-weight: 400;
+}
+.purchasedone .table-wrapper .table-body li {
+  list-style-type: disc;
+}
+.purchasedone .btn-wrapper .btn {
+  margin-top: 3rem;
+  height: 50px;
+  border-radius: 8px;
+  border: 2px solid #4c20e1;
+  background-color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #272727;
+  box-shadow: none;
+}
+/* .purchasedone .btn-wrapper .btn:hover {
+  background-color: #4c20e1;
+  color: #fff;
+} */
+
+
+
+
+/* ******************************************* */
+/* ******************************************* */
+/* ******************************************* */
+/* ******************************************* */
+/* ******************************************* */
+
+
+
+
+
 .purchase-page .service-preview .image-area {
   padding: 0;
 }
@@ -17,26 +459,15 @@
 .additionalPrice {
   margin-bottom: 3rem;
 }
-.additionalPrice thead {
-  background-color: rgba(200, 200, 255, 0.658);
-}
 
-.purchase-page tbody {
-  background-color: #fff;
-}
 
-.basic-purchase thead {
-	background-color: rgb(246, 224, 247);
-}
+
+
 .basic-purchase {
 	margin-bottom: 20px;
 	line-height: 2rem;
 }
-.basic-purchase .options {
-  display: flex;
-  justify-content: center;
-  clear: both;
-}
+
 @media only screen and (max-width: 400px) {
   .basic-purchase .options i.material-icons.left {
     display: none;
@@ -44,9 +475,7 @@
 }
 
 
-.option-purchase thead {
-	background-color: rgb(245, 208, 208);
-}
+
 
 /* .purchase-form {
 	border: 1px solid rgb(241,241,241);
@@ -55,10 +484,6 @@
 
 .option-purchase label{
 	color: black;
-}
-.option-purchase #plus_time {
-  width: 100px;
-  text-align: center;
 }
 
 .purchase-price {
@@ -100,11 +525,7 @@
 	padding: 10px;
 }
 
-.purchase-btn {
-	margin-top: 30px;
-  margin-bottom: 5rem;
-  width: 450px;
-}
+
 @media only screen and (max-width: 1200px) {
   .purchase-btn {
     width: 100%;
@@ -117,9 +538,11 @@
   transform: translateX(-50%);
   margin-top: 5rem;
 }
+.purchaseDetails .Link-purchaseDetails,
 .purchasedone .Link-purchaseDetails {
   cursor: pointer;
 }
+.purchaseDetails .Link-purchaseDetails:hover,
 .purchasedone .Link-purchaseDetails:hover {
   color: grey !important;
 }

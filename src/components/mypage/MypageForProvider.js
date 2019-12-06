@@ -8,6 +8,8 @@ import UserProfile from './UserProfile';
 import Changepwd from './Changepwd';
 import Withdrawal from './Withdrawal';
 import { connect } from 'react-redux';
+import Loader from '../functionalComponents/Loader';
+import './mypage.css';
 
 class MypageForProvider extends Component {
   renderSwitch(curURL) {
@@ -49,8 +51,16 @@ class MypageForProvider extends Component {
     let curURL = this.props.location.pathname;
 
     return (
-      <div className="container mypageForBuyer">
+      <div className="container mypageForProvider">
+        <div id="hidden-for-loading">
+          <Loader />
+          <div className="progress for-loading">
+            <div style={{width: '0%'}} className="determinate"></div>
+          </div>
+        </div>
+
         <div className="row">
+          <div className="col s12 mypage-title">마이페이지</div>
           <div className="col s3">
             <MyPageSidenav pathname={curURL} />
           </div>

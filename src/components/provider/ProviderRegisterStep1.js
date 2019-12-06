@@ -1,4 +1,5 @@
 import React from 'react'
+import firebase from 'firebase/app';
 
 const ProviderRegisterStep1 = (props) => {
   if(props.currentStep !== 1) return null;
@@ -6,6 +7,7 @@ const ProviderRegisterStep1 = (props) => {
   const noEnter = (e) => {
     if(e.keyCode === 13) e.preventDefault();
   }
+
   return (
     <div className="row ProviderRegisterStep1">
       <h5 className="left col s10 offset-s1 scorehvy">프로필 소개란</h5>
@@ -21,7 +23,16 @@ const ProviderRegisterStep1 = (props) => {
           )
           : (
             <div className="btn-floating grey lighten-2 z-depth-0 col s4">
-              <i className="material-icons large">person</i>
+              {
+                (props.profile.profileImgURL === '/img/defaults/userProfile.jpeg')
+                  ? <img src="/img/defaults/userProfile.jpeg" alt="유저 기본 프로필 이미지" className="profile-img"/>
+                  : <img src='/img/defaults/lazy-loading.png' data-src={firebase.storage().refFromURL(props.profile.profileImgURL).getDownloadURL().then(url => {
+                    const profile = document.getElementById('original-downloadedImg');
+                    profile.src = url;
+                  })} className="profile-img" id='original-downloadedImg' alt='유저 프로필 이미지' />
+              }
+              {/* <img src={props.profile.profileImgURL === '/img/defaults/userProfile.jpeg' ? '/img/defaults/userProfile.jpeg' : '/img/defaults/lazy-loading.png'} alt="프로필 이미지" className="profile-img" id='original-downloadedImg'/> */}
+              {/* <i className="material-icons large">person</i> */}
               <input onChange={(e) => props.handleImgUpload(e)} type="file" className='img-uploader required'/>
             </div>
           )
@@ -29,7 +40,7 @@ const ProviderRegisterStep1 = (props) => {
           
         <div className="profileImg-desc col m7 s12 right">
           <p>
-            <strong className='scorelt' style={{fontWeight: 'bolder'}}>프로필 사진을 설정해주세요!</strong><br/>
+            <strong className='scorelt' style={{fontWeight: 'bolder'}}>프로필 사진을 설정해주세요!</strong><font color='red'> (5MB 이하)</font><br/>
             프로필 사진은 소비자에게 노출되는 항목이므로 신뢰도를 줄 수 있는 사진을 추천 드립니다. <br/>
             개인 프로필 사진이나, 본인을 잘 나타낼 수 있는 섬네일 이미지 등을 골라보세요!
           </p>

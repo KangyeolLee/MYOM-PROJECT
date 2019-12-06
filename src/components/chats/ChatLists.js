@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
 import { readMessage } from '../../store/actions/chatAction'
 import './ChatLists.css'
+import firebase from 'firebase/app';
 
 class ChatLists extends Component {
 	state = {
@@ -25,7 +26,6 @@ class ChatLists extends Component {
 	}
 	render(){
     const { chats, profile } = this.props;
-    console.log(chats);
 	
 		return(
 			<Fragment>
@@ -48,7 +48,18 @@ class ChatLists extends Component {
 
 									<div className="card-content black-text">
 										<span className="card-title one-chat">
-											<img src={chat[profile.email]} width='60px' height='60px' className='circle' alt="상대방 프로필 이미지"/>
+                      { 
+                        (chat[profile.email] === '/img/defaults/userProfile.jpeg')
+                          ? <img src="/img/defaults/userProfile.jpeg" width='60px' height='60px' className='circle' alt="상대방 프로필 이미지"/>
+                          : <img src="/img/defaults/lazy-loading.png" data-src={firebase.storage().refFromURL(chat[profile.email]).getDownloadURL().then(url => {
+                            const chatProfiles = document.getElementById('profile-in-chat' + index);
+                            chatProfiles.src = url;
+                          })} width='60px' height='60px' id={'profile-in-chat' + index} className='circle' alt="상대방 프로필 이미지"/>
+                      }
+											{/* <img src={chat[profile.email] === '/img/defaults/userProfile.jpeg' ? '/img/defaults/userProfile.jpeg' : firebase.storage().refFromURL(chat[profile.email]).getDownloadURL().then(url => {
+                        const chatProfiles = document.getElementById('profile-in-chat' + index);
+                        chatProfiles.src = url;
+                      })} width='60px' height='60px' id={'profile-in-chat' + index} className='circle' alt="상대방 프로필 이미지"/> */}
 											<div className='userNickname scorelt'>{chat.users_nickName.filter(_user => _user !== profile.initials)}</div>
 											{/* {chat.users.filter(_user => _user !== profile.email)[0].split('')[0]} */}
 

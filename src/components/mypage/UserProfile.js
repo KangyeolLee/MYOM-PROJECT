@@ -3,6 +3,8 @@ import './profile.css'
 import M from 'materialize-css'
 import { connect } from 'react-redux'
 import { profileImgRegister } from '../../store/actions/authAction'
+import { isLoaded } from 'react-redux-firebase';
+import firebase from 'firebase/app';
 
 class UserProfile extends Component {
 	state = {
@@ -12,6 +14,7 @@ class UserProfile extends Component {
   componentDidMount() {
     M.AutoInit();
   }
+
 	uploadFile = (e) => {
     if(!e.target.value) return;
 		let reader = new FileReader();
@@ -28,15 +31,18 @@ class UserProfile extends Component {
 	}
 
 	handleSubmit = (e) => {
-		e.preventDefault();
+    e.preventDefault();
+    const profiles = [...document.querySelectorAll('#syncProfile')];
+
 		if(this.state.profile_img){
-			this.props.profileImgRegister(this.state);
+      this.props.profileImgRegister(this.state, profiles);
 		} else {
 			alert('변경하실 프로필사진을 등록해주세요.');
 		}
 	}
 
 	render(){
+    if(!isLoaded(this.props.profile) || !isLoaded(this.props.auth)) return <div className='container'>로딩중...</div>  
     const { profile, auth } = this.props;
 
 		return(
@@ -57,7 +63,15 @@ class UserProfile extends Component {
 													!(this.state.profile_img_preview)
 														? (
 															<Fragment>
-																<img src= {profile.profileImgURL} width='127px' height='127px' className="circle" alt=''/>
+                                {
+                                  (profile.profileImgURL === '/img/defaults/userProfile.jpeg')
+                                    ? <img src="/img/defaults/userProfile.jpeg" alt="유저 기본 프로필 이미지"/>
+                                    : <img src="/img/defaults/lazy-loading.png" data-src={firebase.storage().refFromURL(profile.profileImgURL).getDownloadURL().then(url => {
+                                      const profile = document.getElementById('syncUserProfile');
+                                      profile.src = url;
+                                    })} width='127px' height='127px' className="circle" alt='유저 프로필 이미지' id='syncUserProfile'/>
+                                }
+
 																<button className="imgUpload_btn">
 																	<span>이미지 변경하기</span>
 																	<input type="file" id='profile_img' onChange={this.uploadFile}/>
@@ -132,7 +146,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		profileImgRegister : (profileImg) => dispatch(profileImgRegister(profileImg))
+		profileImgRegister : (profileImg, profiles) => dispatch(profileImgRegister(profileImg, profiles))
 	}
 }
 

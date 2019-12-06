@@ -18,7 +18,7 @@ class SingleCategory extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.infiniteScroll, true);
+    window.addEventListener('scroll', this.infiniteScroll);
 
     const carousels = document.querySelectorAll('.carousel');
     M.AutoInit();
@@ -28,6 +28,9 @@ class SingleCategory extends Component {
       padding: 30,
       indicators: true,
     })
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.infiniteScroll);
   }
 
   componentWillReceiveProps(nextProps) {  // match the next changable props to state for initailizing

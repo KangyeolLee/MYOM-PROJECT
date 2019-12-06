@@ -1,3 +1,5 @@
+import { _initJoin_login } from '../actions/chatAction';
+
 const initState = {
   authError: null,
   nickNameError: null,
@@ -19,6 +21,7 @@ const authReducer = (state=initState, action) => {
     
     case 'LOGIN_SUCCESS':
       console.log('log in success');
+      _initJoin_login();
       return {...state, authError: null}
 
     case 'SIGNOUT_SUCCESS':

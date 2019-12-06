@@ -12,7 +12,9 @@
 }
 /* overwrite Swiper CSS */
 
-.classLink .swiper-container {
+/* original Version with real-image */
+/* ************************************************************ */
+/* .classLink .swiper-container {
   padding: 0 .75rem;
 }
 
@@ -20,6 +22,7 @@
   display: flex;
   overflow: hidden;
   justify-content: center;
+  align-items: flex-start;
 }
 .classLink .card-image::after {
   content: '';
@@ -51,9 +54,49 @@
 .classLink .divider {
   margin-top: 5rem;
   margin-bottom: 3rem;
+} */
+/* ************************************************************ */
+
+.classLink .swiper-container {
+  padding: 0 .75rem;
+  margin-bottom: 9rem;
 }
-
-
+.classLink .category-link {
+  color: #272727;
+}
+.classLink .category-link .category-wrapper {
+  border-radius: 8px;
+  border: solid 2px #dedede;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  padding: 2px .75rem;
+}
+.classLink .category-link .category-wrapper:hover {
+  border: solid 4px #4c20e1;
+  box-shadow: rgba(128, 128, 128, 0.541) 2px 2px 10px 2px;
+  padding: 0 calc(.75rem - 2px);
+}
+.classLink .category-link .category-wrapper .initial-width {
+  padding: 0;
+  width: 81px;
+  transform: translate(10px, 63px);
+}
+.classLink .category-link .category-wrapper .text-wrapper {
+  padding: 58px 0;
+  padding-left: 3rem;
+}
+.classLink .category-link .category-wrapper .text-wrapper p {
+  margin: 0;
+}
+.classLink .category-link .category-wrapper .text-wrapper .category-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+.classLink .category-link .category-wrapper .text-wrapper .category-contents {
+  font-size: 14px;
+  color: #5b5b5b;
+}
 @media only screen and (max-width: 1350px) {
   .classLink .card-image span {
     font-size: 1.7rem;

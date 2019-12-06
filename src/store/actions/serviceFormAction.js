@@ -118,6 +118,7 @@ export const createService = (serviceData, history) => {
       }
       batch.update(userRef, {
         hasOwnService: true,
+        ownServiceId: docRef.id,
       });
 
       batch.set(docRef, {
@@ -198,7 +199,37 @@ export const serviceImgUpdate = (service_id, serviceImgs) => {
     const imgs = Object.entries(serviceImgs).filter(img => img[0].includes('file'))
       .map(name => ({ [name[0].split('_').shift()] : name[1] }));    
 
-    const putStoageItem = (item) => {
+    async function uploadTaskPromise(name, item) {
+      return new Promise(function(resolve, reject) {
+        const uploadTask = storageRef.child(name).put(item);
+        uploadTask.on('state_changed', function(snapshot) {
+          let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          let loader = document.querySelector('#hidden-for-loading');
+          let determinate = document.querySelector('#hidden-for-loading .progress .determinate');
+    
+          loader.style.display = 'block';
+          determinate.style.width = progress + '%';           
+        }, function(err) {
+          switch(err.code) {
+            case 'storage/unauthorized':
+              console.log('no authorization')
+              break;
+                
+            case 'storage/canceled':
+              console.log('canceled')
+              break;
+                
+            case 'storage/unknown':
+              console.log('unknown error');
+              break;
+          }
+        }, function complete() {
+          uploadTask.snapshot.ref.getDownloadURL().then(url => resolve(url))
+        })
+      })
+    }
+
+    const putStoageItem = async (item) => {
       let name = Object.keys(item)[0];
       let file = Object.values(item)[0] ? Object.values(item)[0] : null;
 
@@ -210,17 +241,31 @@ export const serviceImgUpdate = (service_id, serviceImgs) => {
         }, {merge: true});
       }
 
-      return storageRef.child(name).put(file)
-      .then((snapshot) => { return snapshot.ref.getDownloadURL() })
-      .then((url) => { 
-        console.log('one success!') 
+      try {
+        const url = await uploadTaskPromise(name, file);
+        console.log('one success!');
+
         batch.set(docRef, { images: 
           {
-            [name]: url,
+            [name] : url,
           }
         }, {merge: true});
-      })
-      .catch((err) => console.log('one failed', err.message))
+      }
+      catch(err) {
+        console.log('one failes', err.message);
+      }
+
+      // return storageRef.child(name).put(file)
+      // .then((snapshot) => { return snapshot.ref.getDownloadURL() })
+      // .then((url) => { 
+      //   console.log('one success!') 
+      //   batch.set(docRef, { images: 
+      //     {
+      //       [name]: url,
+      //     }
+      //   }, {merge: true});
+      // })
+      // .catch((err) => console.log('one failed', err.message))
     }
 
     Promise.all(imgs.map(async (item) => {
@@ -228,6 +273,8 @@ export const serviceImgUpdate = (service_id, serviceImgs) => {
     }))
     .then(() => {
       batch.commit();
+      const loader = document.querySelector('#hidden-for-loading');
+      loader.style.display = 'none';
       console.log('all uploaded');
     })
     .then(() => {
@@ -249,12 +296,51 @@ export const serviceVideoUpdate = (service_id, serviceVideos) => {
     const batch = firestore.batch();
     const videos = Object.entries(serviceVideos).filter(video => video[0].includes('file'))
       .map(name => ({ [name[0].split('_').shift()] : name[1] }));
-      
+    
+    async function uploadTaskPromise(name, item) {
+      return new Promise(function(resolve, reject) {
+        const uploadTask = storageRef.child(name).put(item);
+        uploadTask.on('state_changed', function(snapshot) {
+          let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          let loader = document.querySelector('#hidden-for-loading');
+          let determinate = document.querySelector('#hidden-for-loading .progress .determinate');
+  
+          loader.style.display = 'block';
+          determinate.style.width = progress + '%';           
+        }, function(err) {
+          switch(err.code) {
+            case 'storage/unauthorized':
+              console.log('no authorization')
+              break;
+              
+            case 'storage/canceled':
+              console.log('canceled')
+              break;
+              
+            case 'storage/unknown':
+              console.log('unknown error');
+              break;
+          }
+        }, function complete() {
+          uploadTask.snapshot.ref.getDownloadURL().then(url => resolve(url))
+        })
+      })
+    }
+
     const putStoageItem = async (item) => {
       let name = Object.keys(item)[0];
       let file = Object.values(item)[0] ? Object.values(item)[0] : null;
 
-      if(file === null) {
+      console.log(name, file);
+
+      if(typeof(file) === 'string' && file.includes('firebasestorage')) {
+        if(name.includes('video6')) videoFiles[0] = file;
+        else if(name.includes('video7')) videoFiles[1] = file;
+        else if(name.includes('video8')) videoFiles[2] = file;
+
+        return;
+      }
+      else if(file === null) {
         // videoFiles.push('');
         return;
         // return batch.set(docRef, { videos: 
@@ -265,12 +351,15 @@ export const serviceVideoUpdate = (service_id, serviceVideos) => {
       }
 
       try {
-        const snapshot = await storageRef.child(name).put(file);
-        const url = await snapshot.ref.getDownloadURL();
-        videoFiles.push(url);
-        console.log(url);
+        // const snapshot = await storageRef.child(name).put(file);
+        // const url = await snapshot.ref.getDownloadURL();
+        const url = await uploadTaskPromise(name, file);
         console.log('one success!');
-        console.log(videoFiles)
+
+        if(name.includes('video6')) videoFiles[0] = url;
+        else if(name.includes('video7')) videoFiles[1] = url;
+        else if(name.includes('video8')) videoFiles[2] = url;
+
       }
       catch (err) {
         return console.log('one failed', err);
@@ -278,7 +367,7 @@ export const serviceVideoUpdate = (service_id, serviceVideos) => {
     }
   
     Promise.all(videos.map(async (item) => {
-      await putStoageItem(item);
+      return await putStoageItem(item);
     }))
     .then(() => {
       batch.update(docRef, {
@@ -286,7 +375,8 @@ export const serviceVideoUpdate = (service_id, serviceVideos) => {
       });
 
       batch.commit();
-      console.log(videoFiles);
+      const loader = document.querySelector('#hidden-for-loading');
+      loader.style.display = 'none';
       console.log('all uploaded');
     })
     .then(() => {
@@ -345,8 +435,10 @@ export const providerRegister = (providerData, history) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userAuth = getState().firebase.auth;
+    const userProfile = getState().firebase.profile;
     const userRef = firestore.collection('users').doc(userAuth.uid);
     const docRef = firestore.collection('providersTest').doc(userAuth.uid);
+    const chatRealtimeImg = firestore.collection('chats').doc('realtimeImg');
     const storageRef = firebase.storage().ref('images/users/' + userAuth.uid).child('profileImg');
     const uploadTask = storageRef.put(providerData.profileFile);
 
@@ -376,16 +468,22 @@ export const providerRegister = (providerData, history) => {
       uploadTask.snapshot.ref.getDownloadURL().then(url => {
         userRef.update({
           profileImgURL: url,
+          // profileImgURL: 'gs://myom-d144a.appspot.com/images/users/' + userAuth.uid + '/profileImg',
           editor: false,
         });
         docRef.set({
+          // profileImgURL: 'gs://myom-d144a.appspot.com/images/users/' + userAuth.uid + '/profileImg',
           profileImgURL: url,
+        })
+        chatRealtimeImg.update({
+          [userProfile.initials] : url,
         })
       })
       .then(() => {
         docRef.update({
           email: userAuth.email,
           uid: userAuth.uid,
+          nickname: userProfile.initials,
           personal_feelings: providerData.personal_feelings,
           account_bank: providerData.account_bank,
           account_person: providerData.account_person,
@@ -393,6 +491,7 @@ export const providerRegister = (providerData, history) => {
           editorTool: providerData.editorTool,
           histories: providerData.histories,
           intro: providerData.intro,
+          registerAt: new Date(),
         })
       })
       .then(() => {

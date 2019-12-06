@@ -19,16 +19,22 @@ class ServiceSetting extends Component {
       this.setState({
         service_title: this.props.myService[0].service_title,
         service_content: this.props.myService[0].service_content,
+        service_refund: this.props.myService[0].service_refund,
         images: this.props.myService[0].images,
         basic: this.props.myService[0].price[0],
         pro: this.props.myService[0].price[1],
         // videos: this.props.myService[0].videos.map((video, idx) => ({ ['video' +(idx + 6)]: video })),
       });
+
+      console.log(this.props.myService[0].videos);
+
       this.props.myService[0].videos.filter(valid => valid !== '').map((video, idx) => {
         this.setState(prevState => ({
           videos: {
             ...prevState.videos,
-            ['video' + (idx+6)]: video,
+            ['video' + (idx+6) +'-original_file']: video,
+            ['video' + (idx+6)]: true,
+            ['video' + (idx+6) + '_file']: '',
           }
         }))
       });
@@ -41,8 +47,9 @@ class ServiceSetting extends Component {
         })
       }
     }
+
     if(prevState.re_service_title !== this.state.re_service_title || prevState.re_service_content !== this.state.re_service_content
-        || prevState.re_basic !== this.state.re_basic || prevState.re_pro !== this.state.re_pro) {
+        || prevState.re_service_refund !== this.state.re_service_refund || prevState.re_basic !== this.state.re_basic || prevState.re_pro !== this.state.re_pro) {
       M.CharacterCounter.init(document.querySelectorAll('.has-character-counter'));
       M.AutoInit();
     }
@@ -258,8 +265,7 @@ class ServiceSetting extends Component {
   handleCancel = (e) => {
     e.preventDefault();
     const target_id = e.target.id;
-    console.log(target_id)
-    console.log(this.state)
+
     if(target_id === 'videos') {
       this.props.myService[0].videos.map((video, idx) => {
         this.setState(prevState => ({
@@ -302,6 +308,7 @@ class ServiceSetting extends Component {
           ...prevState.videos,
           [target_id]: '',
           [target_id + '_file']: '',
+          [target_id + '-original_file']: '',
         }
       }));
     } else {
@@ -320,8 +327,10 @@ class ServiceSetting extends Component {
           ...prevState.videos,
           video7: '',
           video7_file: '',
+          'video7-original_file': '',
           video8: '',
           video8_file: '',
+          'video8-original_file': '',
         }
       }))
     } else if(target_id === 'video7') {
@@ -330,15 +339,17 @@ class ServiceSetting extends Component {
           ...prevState.videos,
           video8: '',
           video8_file: '',
+          'video8-original_file': '',
         }
       }))
     }
   }
   render() {
     const { myService } = this.props;
-    const { service_title, re_service_title, service_content, re_service_content,
+    const { service_title, re_service_title, service_content, re_service_content, service_refund, re_service_refund,
       images, re_images, videos, re_videos, basic, re_basic, pro, re_pro } = this.state;
-      console.log(videos)
+
+    console.log(service_refund, re_service_refund);
 
     return (
       <div className="serviceSetting row">
@@ -429,7 +440,7 @@ class ServiceSetting extends Component {
                               : (
                                 <div className="file-field input-field new-update side">
                                   <i className="material-icons large">photo</i>
-                                  <span>용량제한 3MB</span>
+                                  <span>용량제한 5MB</span>
                                   <h6 className="pointer scorehvy white-text">1</h6>
                                   <input className='file-path validate' onChange={this.handleImgUpdate} id='details1' type="file" accept='image/*' />
                                 </div>
@@ -447,7 +458,7 @@ class ServiceSetting extends Component {
                               : (
                                 <div className="file-field input-field new-update side">
                                   <i className="material-icons large">photo</i>
-                                  <span>용량제한 3MB</span>
+                                  <span>용량제한 5MB</span>
                                   <h6 className="pointer scorehvy white-text">2</h6>
                                   <input className='file-path validate' onChange={this.handleImgUpdate} id='details2' type="file" accept='image/*' />
                                 </div>
@@ -465,7 +476,7 @@ class ServiceSetting extends Component {
                               : (
                                 <div className="file-field input-field new-update side">
                                   <i className="material-icons large">photo</i>
-                                  <span>용량제한 3MB</span>
+                                  <span>용량제한 5MB</span>
                                   <h6 className="pointer scorehvy white-text">3</h6>
                                   <input className='file-path validate' onChange={this.handleImgUpdate} id='details3' type="file" accept='image/*' />
                                 </div>
@@ -485,7 +496,7 @@ class ServiceSetting extends Component {
                                 <div className="img-uploader col s6 ">
                                   <div className="file-field input-field new-update col s12 under-side">
                                     <i className="material-icons large">photo</i>
-                                    <span>용량제한 3MB</span>
+                                    <span>용량제한 5MB</span>
                                     <h6 className="pointer scorehvy white-text">4</h6>
                                     <input className='file-path validate' onChange={this.handleImgUpdate} id='details4' type="file" accept='image/*' />
                                   </div>
@@ -505,7 +516,7 @@ class ServiceSetting extends Component {
                                 <div className="img-uploader col s6">
                                   <div className="file-field input-field new-update col s12 under-side">
                                     <i className="material-icons large">photo</i>
-                                    <span>용량제한 3MB</span>
+                                    <span>용량제한 5MB</span>
                                     <h6 className="pointer scorehvy white-text">5</h6>
                                     <input className='file-path validate' onChange={this.handleImgUpdate} id='details5' type="file" accept='image/*' />
                                   </div>
@@ -536,7 +547,7 @@ class ServiceSetting extends Component {
                         <form id='service_content' onSubmit={this.updateContent}>
                           <h5 className="service-intro scorehvy">서비스 소개</h5>
                           <div className="input-field">
-                            <textarea className='has-character-counter materialize-textarea' onChange={this.handleRewrite} value={service_content} type="text" id="service_content" data-length='501' maxLength='500'/>
+                            <textarea className='has-character-counter materialize-textarea' onChange={this.handleRewrite} value={service_content} type="text" id="service_content" data-length='1000' maxLength='1001'/>
                             <button className="rewrite-btn btn waves-effect right myomColor-background">확인</button>
                             <div onClick={this.handleCancel} id='service_content' className="rewrite-btn btn-flat waves-effect right">취소</div>                                               
                           </div>
@@ -559,9 +570,9 @@ class ServiceSetting extends Component {
                   {
                     (re_videos)
                       ? (
-                        <form id='videos' onSubmit={this.handleVideoUpload}>
-                          <h5 className="service-intro scorehvy">다른 참고 영상</h5>
-                          <div className="file-field input-field video-file">
+                        <form className='row' id='videos' onSubmit={this.handleVideoUpload}>
+                          <h5 style={{marginLeft: '.75rem'}} className="service-intro scorehvy">다른 참고 영상</h5>
+                          <div className="file-field input-field video-file col s12">
                             {
                               (videos.video6)
                                 ? (
@@ -576,7 +587,7 @@ class ServiceSetting extends Component {
                                         )
                                         : (
                                           <video style={{width: '100%'}} controls>
-                                            <source src={videos.video6}  />
+                                            <source src={videos['video6-original_file']}  />
                                           </video>
                                         )
                                     }
@@ -589,7 +600,7 @@ class ServiceSetting extends Component {
                                   <div className="video-wrapper new-update">
                                     <i className="material-icons large">videocam</i>
                                     <input onChange={this.handleVideoUpdate} type="file" id="video6" className="file-uploader" accept='video/*' />                            
-                                    <span>용량제한 100MB</span>
+                                    <span>용량제한 300MB</span>
                                     <h6 className="pointer scorehvy white-text">1</h6>
                                   </div>
                                 )
@@ -609,7 +620,7 @@ class ServiceSetting extends Component {
                                           )
                                           : (
                                             <video style={{width: '100%'}} controls>
-                                              <source src={videos.video7}  />
+                                              <source src={videos['video7-original_file']}  />
                                             </video>
                                           )
                                       }
@@ -621,7 +632,7 @@ class ServiceSetting extends Component {
                                     <div className="video-wrapper new-update">
                                       <i className="material-icons large">videocam</i>
                                       <input onChange={this.handleVideoUpdate} type="file" id="video7" className="file-uploader" accept='video/*' />                            
-                                      <span>용량제한 100MB</span>
+                                      <span>용량제한 300MB</span>
                                       <h6 className="pointer scorehvy white-text">2</h6>
                                     </div>
                                   )
@@ -642,7 +653,7 @@ class ServiceSetting extends Component {
                                           )
                                           : (
                                             <video style={{width: '100%'}} controls>
-                                              <source src={videos.video8}  />
+                                              <source src={videos["video8-original_file"]}  />
                                             </video>
                                           )
                                       }
@@ -654,16 +665,17 @@ class ServiceSetting extends Component {
                                     <div className="video-wrapper new-update">
                                       <i className="material-icons large">videocam</i>
                                       <input onChange={this.handleVideoUpdate} type="file" id="video8" className="file-uploader" accept='video/*' />                            
-                                      <span>용량제한 100MB</span>
+                                      <span>용량제한 300MB</span>
                                       <h6 className="pointer scorehvy white-text">3</h6>
                                     </div>
                                   )
                                 : null
                             }
-                            <div style={{marginBottom: '2rem'}} className="rewrite-btn-area col s12">
-                              <button className="rewrite-btn btn waves-effect right myomColor-background">확인</button>
-                              <div onClick={this.handleCancel} id='videos' className="rewrite-btn btn-flat waves-effect right">취소</div>                         
-                            </div>
+                          </div>
+
+                          <div className="rewrite-btn-area col s12">
+                            <button className="rewrite-btn btn waves-effect right myomColor-background">확인</button>
+                            <div onClick={this.handleCancel} id='videos' className="rewrite-btn btn-flat waves-effect right">취소</div>                         
                           </div>
                         </form>
                       )
@@ -689,7 +701,35 @@ class ServiceSetting extends Component {
                   }
 
                   </div>
+
+                  <div className="re_refund">
+                  {
+                    (re_service_refund)
+                      ? (
+                        <form id="service_refund" onSubmit={this.updateContent}>
+                          <h5 className="service-intro scorehvy">수정 안내사항</h5>
+                          <div className="input-field">
+                            <textarea placeholder='미기입시 myom 환불규정과 동일합니다.' onChange={this.handleRewrite} value={service_refund} id='service_refund' className='has-character-counter materialize-textarea' type='text' data-length='500' maxLength='501'></textarea>
+                            <button className="rewrite-btn btn waves-effect right myomColor-background">확인</button>
+                            <div onClick={this.handleCancel} id="service_refund" className="rewrite-btn btn-flat waves-effect right">취소</div>
+                          </div>
+                        </form>
+                      )
+                      : (
+                        <Fragment>
+                        <div className="re_refund_wrapper">
+                          <h5 className="service-intro scorehvy">수정 안내사항</h5>
+                          <pre className="service-refund">{ myService[0].service_refund ? myService[0].service_refund : 'myom 환불규정과 동일합니다.' }</pre>
+                        </div>
+                        <h5 onClick={this.handleClick} id='service_refund' className='service-title-rewrite scorehvy'>수정을 원하시면 클릭하세요!</h5>
+                        </Fragment>
+                      )
+                  }
+                  </div>
+
                 </div>
+
+                
 
                 <div id="price-rewrite" className="col s12 collection service-price">
                   <div className="price-wrapper col s6">
@@ -701,7 +741,7 @@ class ServiceSetting extends Component {
                             <h5 className="price-title scorehvy">{basic.type}</h5>
                             <div className="input-field">
                               <h6 className="scorehvy">{basic.type} 소개</h6>
-                              <input onChange={this.handlePriceRewrite} value={basic.intro} type="text" id="basic-intro" 
+                              <input onKeyDown={(e) => e.preventDefault()} onChange={this.handlePriceRewrite} value={basic.intro} type="text" id="basic-intro" 
                                 className='has-character-counter' data-length='40' maxLength='41' required/>
                             </div>
 
@@ -740,6 +780,32 @@ class ServiceSetting extends Component {
                                   <option value="15회">15회</option>
                                   <option value="무제한">무제한</option>
                                 </select>
+                              </div>
+                            </div>
+
+                            <div className="input-field row">
+                              <div className="col s6">
+                                <h6 className="scorehvy">러닝타임</h6>
+                                <select onChange={this.handlePriceRewrite} value={basic.runningTime} name="" id="basic-runningTime" required>
+                                  <option value="" disabled>러닝타임</option>
+                                  <option value="1분이내">1분이내</option>
+                                  <option value="2분이내">2분이내</option>
+                                  <option value="3분이내">3분이내</option>
+                                  <option value="4분이내">4분이내</option>
+                                  <option value="5분이내">5분이내</option>
+                                  <option value="6분이내">6분이내</option>
+                                  <option value="7분이내">7분이내</option>
+                                  <option value="8분이내">8분이내</option>
+                                  <option value="9분이내">9분이내</option>
+                                  <option value="10분이내">10분이내</option>
+                                  <option value="제한없음">제한없음</option>
+                                </select>
+                              </div>
+
+                              <div className="col s6">
+                                <h6 className="scorehvy">추가금액</h6>
+                                <input onKeyDown={(e) => e.preventDefault()} onChange={this.handlePriceRewrite} value={basic.additional_price} id='basic-additional_price' type="number" min='0' step='5000' max='100000' />
+                                <span style={{fontSize: '12px'}} className="right red-text">미기입 시 추가금액 없음</span>
                               </div>
                             </div>
 
@@ -789,6 +855,17 @@ class ServiceSetting extends Component {
                               <div className="col s6">
                                 <h6 className="scorehvy">수정횟수</h6>
                                 <p>{basic.modify}</p>
+                              </div>
+                            </div>
+
+                            <div className="row">
+                              <div className="col s6">
+                                <h6 className="scorehvy">러닝타임</h6>
+                                <p>{basic.runningTime}</p>
+                              </div>
+                              <div className="col s6">
+                                <h6 className="scorehvy">추가금액</h6>
+                                <p>{basic.additional_price}원</p>
                               </div>
                             </div>
 
@@ -854,6 +931,32 @@ class ServiceSetting extends Component {
                             </div>
 
                             <div className="input-field row">
+                              <div className="col s6">
+                                <h6 className="scorehvy">러닝타임</h6>
+                                <select onChange={this.handlePriceRewrite} value={pro.runningTime} name="" id="pro-runningTime" required>
+                                  <option value="" disabled>러닝타임</option>
+                                  <option value="1분이내">1분이내</option>
+                                  <option value="2분이내">2분이내</option>
+                                  <option value="3분이내">3분이내</option>
+                                  <option value="4분이내">4분이내</option>
+                                  <option value="5분이내">5분이내</option>
+                                  <option value="6분이내">6분이내</option>
+                                  <option value="7분이내">7분이내</option>
+                                  <option value="8분이내">8분이내</option>
+                                  <option value="9분이내">9분이내</option>
+                                  <option value="10분이내">10분이내</option>
+                                  <option value="제한없음">제한없음</option>
+                                </select>
+                              </div>
+
+                              <div className="col s6">
+                                <h6 className="scorehvy">추가금액</h6>
+                                <input onKeyDown={(e) => e.preventDefault()} onChange={this.handlePriceRewrite} value={pro.additional_price} id='pro-additional_price' type="number" min='0' step='5000' max='100000' />
+                                <span style={{fontSize: '12px'}} className="right red-text">미기입 시 추가금액 없음</span>
+                              </div>
+                            </div>
+
+                            <div className="input-field row">
                               <h6 className="col s12 scorehvy">가격</h6>
                               <div className="col s12">
                                 <Slider
@@ -899,6 +1002,17 @@ class ServiceSetting extends Component {
                               <div className="col s6">
                                 <h6 className="scorehvy">수정횟수</h6>
                                 <p>{pro.modify}</p>
+                              </div>
+                            </div>
+
+                            <div className="row">
+                              <div className="col s6">
+                                <h6 className="scorehvy">러닝타임</h6>
+                                <p>{pro.runningTime}</p>
+                              </div>
+                              <div className="col s6">
+                                <h6 className="scorehvy">추가금액</h6>
+                                <p>{pro.additional_price}원</p>
                               </div>
                             </div>
 

@@ -7,6 +7,7 @@ import UserProfile from './UserProfile';
 import Changepwd from './Changepwd';
 import Withdrawal from './Withdrawal';
 import { connect } from 'react-redux';
+import './mypage.css';
 
 class MypageForBuyer extends Component {
   renderSwitch(curURL) {
@@ -45,8 +46,10 @@ class MypageForBuyer extends Component {
     let curURL = this.props.location.pathname;
 
     return (
-      <div className="container mypageForBuyer">
+      <div className="container mypageForBuyer notoSans">
         <div className="row">
+          <div className="col s12 mypage-title">마이페이지</div>
+
           <div className="col s3">
             <MyPageSidenav pathname={curURL} />
           </div>

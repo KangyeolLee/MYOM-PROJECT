@@ -1,9 +1,9 @@
+.mypageForProvider,
 .mypageForBuyer {
   min-width: 900px;
-}
-.mypageForBuyer {
   margin-top: 5rem;
 }
+.mypageForProvider .profile-infos .btn-floating,
 .mypageForBuyer .profile-infos .btn-floating {
   width: 10rem;
   height: 10rem;
@@ -11,15 +11,24 @@
   justify-content: center;
   align-items: center;
 }
+.mypageForProvider .profile-infos .btn-floating i,
 .mypageForBuyer .profile-infos .btn-floating i {
   font-size: 8rem;
 }
-
-.mypageForBuyer .collapsible .collapsible-body a {
-  color: black !important;
-  display: block;
-  margin: 1rem 0 1rem 0;
+.mypageForProvider .collapsible,
+.mypageForBuyer .collapsible {
+  border: none;
+  font-size: 20px;
+  font-weight: 500;
+  color: #272727;
 }
+.mypageForProvider .collapsible .collapsible-body a,
+.mypageForBuyer .collapsible .collapsible-body a {
+  color: #272727b0;
+  display: block;
+  /* margin: 1rem 0 1rem 0; */
+}
+.mypageForProvider .collapsible .collapsible-direct,
 .mypageForBuyer .collapsible .collapsible-direct {
   display: flex;
   cursor: pointer;
@@ -27,7 +36,20 @@
   line-height: 1.5;
   padding: 1rem;
   background-color: #fff;
-  border-bottom: 1px solid #ddd;
+  color: #272727 !important;
+  /* border-bottom: 1px solid #ddd; */
+}
+.mypageForProvider .collapsible .collapsible-header,
+.mypageForBuyer .collapsible .collapsible-header,
+.mypageForProvider .collapsible .collapsible-body,
+.mypageForBuyer .collapsible .collapsible-body {
+  border: none;
+}
+.mypageForProvider .collapsible .collapsible-body .collection-item,
+.mypageForBuyer .collapsible .collapsible-body .collection-item {
+  border: none;
+  padding: 1rem;
+
 }
 
 .myPageSidenav .profile-infos {
@@ -44,10 +66,10 @@
   padding: 0;
 }
 
-.myPageSidenav .collection-item{
+/* .myPageSidenav .collection-item{
   padding: 0px 20px;
   background-color: rgb(240, 240, 240);
-}
+} */
 
 .myPageSidenav .collection{
   background-color: rgb(240,240,240);

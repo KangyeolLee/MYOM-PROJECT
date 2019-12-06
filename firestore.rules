@@ -1,11 +1,17 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function isAdmin() {
+    	return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.authority;
+  	}
   	match /users/userNicknames {
     	allow read, update, delete, create: if true;
     }
     match /users/{userId} {
-      allow read, update, delete: if request.auth.uid == userId;
+      allow read; 
+      allow update, delete: 
+      	if request.auth.uid == userId 
+        || isAdmin() == 'admin';
       allow create: if request.auth.uid != null;
     }
     match /providersTest/{userId} {

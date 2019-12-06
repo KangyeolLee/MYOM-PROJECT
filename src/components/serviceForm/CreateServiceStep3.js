@@ -188,7 +188,7 @@ const CreateServiceStep3 = (props) => {
             ? (
               <div className="btn z-depth-0 grey lighten-4 black-text">
                 <i className="material-icons">videocam</i>
-                <span className="size-limit">용량제한 100MB 이하</span>
+                <span className="size-limit">용량제한 300MB 이하</span>
                 <input type="file" id='video1' className='file-uploader'
                   onChange={props.handleVideoUpload} accept="video/*" />
               </div>
@@ -223,7 +223,7 @@ const CreateServiceStep3 = (props) => {
               : (
                 <div className="btn z-depth-0 grey lighten-4 black-text">
                   <i className="material-icons">videocam</i>
-                  <span className="size-limit">용량제한 100MB 이하</span>
+                  <span className="size-limit">용량제한 300MB 이하</span>
                   <input type="file" id='video2' className='file-uploader'
                     onChange={props.handleVideoUpload} accept="video/*" />
                 </div>
@@ -248,7 +248,7 @@ const CreateServiceStep3 = (props) => {
               : (
                 <div className="btn z-depth-0 grey lighten-4 black-text">
                   <i className="material-icons">videocam</i>
-                  <span className="size-limit">용량제한 100MB 이하</span>
+                  <span className="size-limit">용량제한 300MB 이하</span>
                   <input type="file" id='video3' className='file-uploader'
                     onChange={props.handleVideoUpload} accept="video/*" />
                 </div>

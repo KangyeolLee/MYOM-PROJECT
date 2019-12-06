@@ -8,13 +8,23 @@ import './navbar.css';
 import Loader from '../functionalComponents/Loader';
 
 const Navbar = (props) => {
+  if(!isLoaded(props.auth) || !isLoaded(props.profile)) return (
+    <div className="navbar-fixed">
+      <nav className="">
+        <div className="nav-wrapper">
+          <Link to='/' className='brand-logo'><img src="/img/logo/myom_logo13.png" width="120px" height="35px" className="myom_logo" /></Link>
+        </div>
+      </nav>
+    </div>
+  )
+
   const { auth, profile} = props;
   const links = auth.uid ? <SignedInLinks profile={profile} auth={ auth }/> : <SignedOutLinks />;
 
 	return (
     <Fragment>
       <div className="navbar-fixed">
-        <nav className='z-depth-0'>
+        <nav className=''>
           <div className="nav-wrapper">
             
               <Link to='/' className='brand-logo'><img src="/img/logo/myom_logo13.png" width="120px" height="35px" className="myom_logo" /></Link>

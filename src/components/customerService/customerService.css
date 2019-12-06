@@ -1,10 +1,9 @@
-.customerService .swiper-container {
-  margin: 5rem 0;
-}
+
 .customerService .swiper-container .category {
   padding: 2rem 0;
   cursor: pointer;
   transition: all .4s;
+  border-radius: 50px;
 }
 .customerService .swiper-container .category:hover {
   opacity: 0.8;
@@ -45,6 +44,149 @@
   white-space: pre-wrap;
   word-break: break-word;
   margin-bottom: 0;
+}
+
+
+.customerService .banner {
+  position: relative;
+  background-image: url('/img/banner/customer-banner.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 400px;
+  margin: 0;
+}
+.customerService .banner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1e1e1e;
+  opacity: 0.65;
+}
+.customerService .text-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  z-index: 10;
+}
+.customerService .text-wrapper h2 {
+  font-size: 45px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.44;
+  letter-spacing: normal;
+  margin: 0;
+}
+.customerService .text-wrapper h3 {
+  font-size: 35px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.64;
+  letter-spacing: normal;
+  margin: 0;
+}
+.customerService .search-box {
+  width: 650px;
+  height: 40px;
+  border-radius: 20px;
+  box-shadow: 0 6px 14px 0 rgba(0, 0, 0, 0.06);
+  background-color: #ffffff;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2.3;
+  letter-spacing: normal;
+  text-align: left;
+  color: #b8b8b8;
+  padding: 0 1.5rem;
+  margin-top: 4rem;
+}
+
+.customerService .category-title {
+  font-size: 22px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  opacity: .35;
+  color: #171717;
+}
+.customerService .category-title.active {
+  opacity: 1;
+}
+.customerService .category-title:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.customerService .swiper-container {
+  margin: 0;
+  padding: 2rem 0;
+  border-bottom: 4px solid #2f2f2f;
+}
+.customerService .swiper-container .right-text {
+  text-align: right;
+}
+.customerService .swiper-container .left-text {
+  text-align: left;
+}
+.customerService .collapsible {
+  margin: 0;
+  box-shadow: unset;
+}
+.customerService .collapsible li.active {
+  background-color: #f4f4f4;
+}
+.customerService .collapsible li.active .collapsible-header {
+  background-color: #f4f4f4;
+  border-bottom: unset;
+}
+.customerService .collapsible .collapsible-header.row {
+  padding: 1.5rem;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
+  margin-bottom: 0;
+}
+.customerService .collapsible .collapsible-body.row {
+  padding: 1.5rem;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
+  padding-bottom: 3rem;
+}
+.customerService .collapsible .collapsible-body .answer-title {
+  font-weight: bold;
+}
+.customerService .collapsible .number {
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #272727;
+}
+.customerService .collapsible.service-terms .collapsible-header {
+  justify-content: center;
 }
 
 @media only screen and (max-width: 1024px) {

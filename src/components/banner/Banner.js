@@ -1,6 +1,7 @@
 import React from 'react';
 import './banner.css';
 import ImageSlider from '../functionalComponents/ImageSlider';
+import BannerSlider from '../functionalComponents/BannerSlider';
 
 const Banner = ({path}) => { 
   let imgURL = '';
@@ -23,7 +24,7 @@ const Banner = ({path}) => {
       {
         imgURL === '/img/banner/productIntro.jpg'
           ? <img src={imgURL} alt="배너 이미지"/>    
-          : <ImageSlider />       
+          : <BannerSlider />       
       }
 
       {/* <div className="banner-img">

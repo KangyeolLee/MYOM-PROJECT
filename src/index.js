@@ -13,6 +13,8 @@ import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import { createFirestoreInstance, getFirestore, reduxFirestore  } from 'redux-firestore';
 import fbConfig from './config/fbConfig';
 import rootReducer from './store/reducers/rootReducer';
+import AppContainer from './AppContainer';
+import { BrowserRouter } from 'react-router-dom'
 
 // import { createFirestoreInstance, getFirestore, reduxFirestore, firestoreReducer } from 'redux-firestore';
 // import { ReactReduxFirebaseProvider, firebaseReducer } from 'react-redux-firebase';
@@ -59,7 +61,7 @@ const rrfProps = {
 
 ReactDOM.render(<Provider store={store}>
     <ReactReduxFirebaseProvider {...rrfProps}>
-      <App />
+      <BrowserRouter><AppContainer /></BrowserRouter>
     </ReactReduxFirebaseProvider>
   </Provider>, document.getElementById('root'));
 

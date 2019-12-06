@@ -4,6 +4,9 @@ import Theme from '../dashboard/Theme';
 import ClassLink from './ClassLink';
 import ServicePreview from './ServicePreview';
 import Footer from '../layout/Footer';
+import './dashboard.css';
+import EventBanner from './EventBanner';
+import LoungePreview from './LoungePreview';
 
 const Dashboard = () => {
   return (
@@ -11,6 +14,8 @@ const Dashboard = () => {
       <Banner path='main'/>
       <ClassLink />
       <ServicePreview />
+      <EventBanner />
+      <LoungePreview />
       <Footer />
     </div>
   )

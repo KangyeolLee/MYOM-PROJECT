@@ -4,7 +4,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f8f9fa;
+  background-color: #fff;
 }
 
 code {
@@ -16,5 +16,38 @@ code {
   color: #4F328F !important;
 }
 .myomColor-background {
-  background-color: #4F328F !important;
+  background-color: #4c20e1 !important;
+}
+.circle-icons {
+  width: 10px;
+  height: 10px;
+  border: solid 2px #4c20e1;
+  background-color: #ffffff;
+  border-radius: 50%;
+  float: left;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+/* input number type default button deleted */
+input[type="number"] {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+}
+
+/* input radio type default color changed */
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:before, [type="radio"].with-gap:checked+span:after {
+  border: 2px solid #4c20e1 !important;
+}
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:after {
+  background-color: #4c20e1 !important;
+}
+
+[type="checkbox"].filled-in:checked+span:not(.lever):after {
+  border: 2px solid #4c20e1 !important;
+  background-color: #4c20e1 !important;
 }

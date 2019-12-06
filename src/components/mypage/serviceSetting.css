@@ -17,6 +17,7 @@
 }
 .serviceSetting #contents-rewrite .re_video,
 .serviceSetting #contents-rewrite .re_content,
+.serviceSetting #contents-rewrite .re_refund,
 .serviceSetting #contents-rewrite .re_thumbnail,
 .serviceSetting #contents-rewrite .re_title {
   margin: 1.5rem 0;
@@ -40,7 +41,8 @@
 .serviceSetting #contents-rewrite .re_video:hover .service-title-rewrite,
 .serviceSetting #contents-rewrite .re_content:hover .service-title-rewrite,
 .serviceSetting #contents-rewrite .re_thumbnail:hover .service-title-rewrite,
-.serviceSetting #contents-rewrite .re_title:hover .service-title-rewrite {
+.serviceSetting #contents-rewrite .re_title:hover .service-title-rewrite,
+.serviceSetting #contents-rewrite .re_refund:hover .service-title-rewrite {
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -98,6 +100,19 @@
 .serviceSetting #contents-rewrite .re_video:hover .re_video_wrapper {
   filter: blur(3px);
   background-color: rgba(255, 255, 255, 0.712);
+  box-shadow: 
+    0 3px 3px 0 rgba(0,0,0,0.14), 
+    0 6px 2px -3px rgba(0,0,0,0.12), 
+    0 2px 6px 0 rgba(0,0,0,0.2);
+}
+
+.serviceSetting #contents-rewrite .re_refund_wrapper {
+  padding: 1.5rem 0;
+}
+.serviceSetting #contents-rewrite .re_refund:hover .re_refund_wrapper { 
+  filter: blur(4px);
+  font-family: sans-serif;
+  background-color: rgb(255, 255, 255);
   box-shadow: 
     0 3px 3px 0 rgba(0,0,0,0.14), 
     0 6px 2px -3px rgba(0,0,0,0.12), 

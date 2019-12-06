@@ -1,0 +1,262 @@
+.ChattingBoard ::-webkit-scrollbar {
+  width: 5px;
+}
+.ChattingBoard ::-webkit-scrollbar-track {
+  background: transparent;
+}
+.ChattingBoard ::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 20px;
+}
+.ChattingBoard ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.ChattingBoard .chattingBox {
+  margin-top: 5rem;
+}
+.ChattingBoard .chattingLists .collection {
+  height: 80vh;
+  overflow-y: auto;
+}
+.ChattingBoard .chattingLists .collection .collection-header {
+  font-size: 2rem;
+}
+.ChattingBoard .chattingLists .swiper-container .swiper-slide {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: #fff;
+  border: 2px solid #dedede;
+  border-radius: 8px;
+  box-sizing: border-box;
+} 
+.ChattingBoard .chattingLists .swiper-container .swiper-slide .no-messages {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.ChattingBoard .chattingLists .swiper-container .swiper-slide .collection-header {
+  border-bottom: none;
+}
+.ChattingBoard .chattingLists .swiper-container .swiper-slide .collection-item:last-child {
+  border-bottom: 1px solid #e0e0e0;
+}
+.ChattingBoard .chattingLists .swiper-container .swiper-button-prev {
+  position: absolute;
+  top: 2.2rem;
+  left: 30px;
+}
+.ChattingBoard .chattingLists .swiper-container .swiper-button-next {
+  position: absolute;
+  top: 2.2rem;
+  right: 30px;
+}
+.ChattingBoard .chattingLists .collection .chattingList {
+  cursor: pointer;
+  transition: background-color .3s;
+  box-sizing: content-box;
+}
+.ChattingBoard .chattingLists .collection .chattingList:hover {
+  background-color: rgb(230, 230, 230);
+}
+.ChattingBoard .chattingLists .collection .chattingList.readFalse {
+  background-color: rgba(110, 6, 102, 0.527);
+}
+.ChattingBoard .chattingLists .collection .timestamp {
+  font-size: 11px;
+}
+.ChattingBoard .chattingLists .collection .text-preview {
+  max-height: 44px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: .85rem;
+  margin-top: 1rem;
+}
+
+.ChattingBoard .chattingScreen .collection {
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  height: 80vh;
+  background-color: #f3f4f8;
+}
+.ChattingBoard .chattingScreen .collection.waitingRoom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ChattingBoard .chattingScreen .chattingRoom {
+  /* overflow-y: auto; */
+  display: flex;
+  flex-direction: column;
+}
+.ChattingBoard .chattingScreen .chattingViewport {
+  height: 100%;
+  overflow-y: auto;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-navbar {
+  padding-top: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #f3f4f8;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-navbar .partner-nickname {
+  position: absolute;
+  margin-left: 1rem;
+  font-size: 20px;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-navbar .divider {
+  margin-top: 1rem;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message {
+  position: relative;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message::after {
+  clear: both;
+  content: '';
+  display: block;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message .text-message,
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message .file-message {
+  padding: 1rem;
+  max-width: 65%;
+  word-break: break-word;
+  white-space: pre-wrap;
+  min-width: 100px;
+  margin: .5rem 0;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .uploadingMessage .file-message {
+  margin-right: calc(1rem + 42px);
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message .file-message .progress {
+  min-width: 200px;
+  height: 8px !important;
+  border-radius: 15px !important;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message .file-message .file-downloader .download-file {
+  position: relative;
+  padding: 1rem;
+  padding-left: 3.5rem;
+  padding-right: 3rem;
+  margin: 0;
+  min-width: 200px;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message .file-message .file-downloader .download-file span {
+  color: black;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message .file-message .file-downloader .download-file i.material-icons {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message .file-message .file-img {
+  font-size: 2.5rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: .5rem;
+  color: black;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message.inLeft .left {
+  position: relative;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: #ffffff;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message.inLeft .timestamp {
+  font-size: 11px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateX(calc(100% + 10px));
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message.inLeft .text-sender {
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message.inLeft .readMark,
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message.inLeft .unreadMark
+{
+  font-size: 11px;
+  float: left;
+  margin: 10px 0px 0 10px;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message.inRight .right {
+  position: relative;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: #e0e5f8;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message.inRight .timestamp {
+  font-size: 11px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateX(calc(-100% - 10px));
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message.inRight .text-sender {
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message.inRight .readMark,
+.ChattingBoard .chattingScreen .chattingRoom .chatting-messages .message.inRight .unreadMark
+{
+  font-size: 11px;
+  float: right;
+  margin: 10px 10px 0 0;
+}
+
+.ChattingBoard .chattingScreen .chattingRoom .chatting-textbox {
+  position: sticky;
+  bottom: 0;
+  padding-bottom: 2rem;
+  z-index: 10;
+  background-color: #f3f4f8;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-textbox #message-sendbox {
+  max-height: 150px;
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-textbox .btn-flat {
+  transition: background-color .35s; 
+}
+.ChattingBoard .chattingScreen .chattingRoom .chatting-textbox .btn-flat:hover {
+  background-color: #ffffff81;
+}
+
+.ChattingBoard .chattingScreen .chattingRoom .chatting-textbox .btn-flat i {
+  font-size: 1.5rem;
+}
+
+.ChattingBoard .chattingScreen .collection .guide-mention-wrapper .fas.fa-comments {
+  font-size: 8rem;
+}
+.ChattingBoard .chattingScreen .collection .guide-mention-wrapper .guide-mention {
+  font-size: 2rem;
+}

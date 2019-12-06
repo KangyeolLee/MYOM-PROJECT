@@ -7,23 +7,36 @@ const Footer = () => {
 		<footer className='page-footer myomFooter'>
 			<div className="container">
 				<div className="row">
-					<div className="col l6 s12">
-						<h5 className="white-text">언틸번아웃 사업자 정보</h5>
+					<div className="col l6 m6 s12">
+						<h6 className="white-text scorelt">언틸번아웃 사업자 정보</h6>
 						<p className="grey-text text-lighten-4">언틸번아웃 | 서울시 강남구 언주로 98길 25, 5층</p>
 						<p className="grey-text text-lighten-4">대표: 황제홍,이승복,이한결,이강열 </p>
 						<p className="grey-text text-lighten-4">사업자등록번호 : 101-35-92673</p>
 						<p className="grey-text text-lighten-4">01092609694 | untilburnout@myom.co.kr</p>
 						<p className="grey-text text-lighten-4">호스팅 사업자: Firebase</p>
 					</div>
-					<div className="col l4 offset-l2 s12">
-						<h5 className="white-text">SNS</h5>
-						<ul>
-							<li><a style={{fontSize: '20px'}} target='_blank' href="https://www.youtube.com/channel/UC9BIXe8YjejWnqd2r4w11-w" className="grey-text text-lighten-3"><i className="fab fa-youtube"></i> 유튜브 바로가기</a></li>
-							<li><a style={{fontSize: '20px'}} target='_blank' href="https://www.instagram.com/myom__travel/" className="grey-text text-lighten-3"><i className="fab fa-instagram"></i> 인스타 바로가기</a></li>
-							<li><a style={{fontSize: '20px'}} target='_blank' href="https://www.facebook.com/Myom_travel-115307319843663/" className="grey-text text-lighten-3"><i className="fab fa-facebook-square"></i> 페이스북 바로가기</a></li>
-						</ul>
-            <br/>
-            <Link to='/customerService'><h5 className="white-text">고객센터</h5></Link>
+
+					<div className="col l6 m6 s12">
+            <div style={{position: 'relative'}} className="row">
+              <div className="col s6">
+                <h6 className="white-text scorelt">SNS</h6>
+                <ul className='sns-list'>
+                  <li><p><a target='_blank' href="https://www.youtube.com/channel/UC81qyqnHPfxzP34G7__ZXdg" className="grey-text text-lighten-3"><i style={{fontSize: '20.5px'}} className="fab fa-youtube"></i><span className='sns-text'>유튜브</span></a></p></li>
+                  <li><p><a target='_blank' href="https://www.instagram.com/myom__travel/" className="grey-text text-lighten-3"><i style={{fontSize: '22.5px'}} className="fab fa-instagram"></i><span className='sns-text'>인스타</span></a></p></li>
+                  <li><p><a target='_blank' href="https://www.facebook.com/Myom_travel-115307319843663/" className="grey-text text-lighten-3"><i style={{fontSize: '22.5px'}} className="fab fa-facebook-square"></i><span className='sns-text'>페이스북</span></a></p></li>
+                </ul>
+              </div>
+
+              <br/>
+
+              <Link to='/customerService' className="col s6 white-text" style={{position: 'absolute', top: 0}}>
+                <h6 className="white-text scorelt">고객센터</h6>
+                <p>공지사항</p>
+                <p>FAQ</p>
+                <p>약관전문</p>
+              </Link>
+
+            </div>
 					</div>
 				</div>
 			</div>

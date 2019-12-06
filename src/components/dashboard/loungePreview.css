@@ -1,0 +1,58 @@
+.loungePreview  {
+  margin-top: 9rem !important;
+}
+.loungePreview .lounge-wrapper {
+  position: relative;
+}
+.loungePreview .responsive-img {
+  height: 240px;
+  width: 100%;
+  border-radius: 8px;
+}
+.loungePreview .lounge-title {
+  font-size: 20px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #171717;
+  margin-bottom: .5rem;
+}
+.loungePreview .lounge-contents {
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #5b5b5b;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.loungePreview .category-tag {
+  position: absolute;
+  border-radius: 15.5px;
+  text-align: center;
+  line-height: 2;
+  font-size: 14px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  top: 20px;
+  left: calc(.75rem + 20px);
+}
+.loungePreview .category-tag.knowhow {
+  width: 100px;
+  height: 30px;
+  background-color: #613edb;
+}
+.loungePreview .category-tag.traveltip {
+  width: 72px;
+  height: 30px;
+  background-color: #f27516;
+}

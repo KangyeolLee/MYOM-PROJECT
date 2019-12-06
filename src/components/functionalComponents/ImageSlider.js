@@ -24,7 +24,7 @@ class ImageSlider extends Component {
 
           <li>
             <img src="/img/banner/banner3.jpg" alt=""/>
-            <h3 className="scorehvy caption right-align">당신의 여행을 영화로</h3>
+            <h3 className="scorehvy caption right-align">당신의 여행을 한 편의 영화로</h3>
           </li>
 
           <li>
@@ -39,7 +39,7 @@ class ImageSlider extends Component {
 
           <li>
             <img src="/img/banner/banner6.jpg" alt=""/>
-            <h3 className="scorehvy caption left-align">당신의 여행을 영화로</h3>
+            <h3 className="scorehvy caption left-align">당신의 여행을 한 편의 영화로</h3>
           </li>
         </ul>
       </div>

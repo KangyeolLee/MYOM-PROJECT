@@ -4,16 +4,13 @@ import firebase from 'firebase/app';
 
 export const signIn = (cred) => {
   return(dispatch) => {
-    //const firebase = getFirebase();
-    firebase.auth().signInWithEmailAndPassword(
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(() => firebase.auth().signInWithEmailAndPassword(
       cred.email,
       cred.password
-    ).then(() => {
-      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
-    })
-    .then(() => { 
-      dispatch({type:'LOGIN_SUCCESS'})
-    }).catch((err) => {
+    ))
+    .then(() => dispatch({type:'LOGIN_SUCCESS'}))
+    .catch((err) => {
       switch(err.code) {
         case 'auth/user-not-found' :
           dispatch({type: 'NO_REGISTER_EMAIL_ERROR'});
@@ -29,13 +26,28 @@ export const signIn = (cred) => {
 }
 
 export const signOut = () => {
-  return(dispatch) => {
-    //const firebase = getFirebase();
+  return(dispatch, getState, { getFirestore }) => {
+    // const firestore = getFirestore();
+    // const userProfile = getState().firebase.profile;
+    // const userChats = firestore.collection('chats').where('users_email', 'array-contains', userProfile.email);
+    // const userChats = firestore.collection('chats').doc('1234@naver.com:acrkdduf@naver.com');
+
+    // userChats.update({
+    //   Logout: true,
+    // })
+    // userChats.get()
+    // .then(snapshot => Promise.all())
+    // .then(snapshot => {
+    //   snapshot.forEach(doc => {
+    //     const chatRef = firestore.collection('chats').doc(doc.id);
+    //     return chatRef.update({
+    //       ['isJoined_' + userProfile.initials]: false,
+    //     });
+    //   })
+    // })
     firebase.auth().signOut()
-      .then(() => {
-        window.location.href = '/';
-        dispatch({type: 'SIGNOUT_SUCCESS'})
-      })
+    .then(() => window.location.href = '/')
+    .then(() => dispatch({type: 'SIGNOUT_SUCCESS'}))
   }
 }
 
@@ -245,21 +257,33 @@ export const sendEmailVerification = (user) => {
   }
 }
 
-export const profileImgRegister = (profileImg) => {
+export const profileImgRegister = (profileImg, profiles) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     const userAuth = getState().firebase.auth;
-    let docRef = firestore.collection('users').doc(userAuth.uid);
-    let storageRef = firebase.storage().ref('images/users/' + docRef.id).child('profileImg');
+    const userProfile = getState().firebase.profile;
+    const docRef = firestore.collection('users').doc(userAuth.uid);
+    const chatRealtimImg = firestore.collection('chats').doc('realtimeImg');
+    const storageRef = firebase.storage().ref('images/users/' + docRef.id).child('profileImg');
+
     storageRef.put(profileImg.profile_img)
-      .then(() => {
-        storageRef.getDownloadURL()
-          .then((url) => {
-            docRef.update({
-              profileImgURL: url
-            })
-          })
+    .then(() => storageRef.getDownloadURL().then(url => {
+      docRef.update({
+        profileImgURL: url,
       })
+      chatRealtimImg.update({
+        [userProfile.initials]: url,
+      })
+    }))
+    // .then(() => {
+    //   docRef.update({
+    //     profileImgURL: 'gs://myom-d144a.appspot.com/images/users/' + userAuth.uid + '/profileImg'
+    //   })
+    // })
+    // .then(() => {
+    //   firebase.storage().refFromURL('gs://myom-d144a.appspot.com/images/users/' + userAuth.uid + '/profileImg').getDownloadURL().then(url => profiles.map(profile => profile.src = url));
+    // })
+
     .then(()=>{
       dispatch({type: 'PROFILEIMGREGISTER_SUCCESS'});
     }).catch((err) => {

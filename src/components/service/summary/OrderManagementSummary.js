@@ -59,7 +59,7 @@ const OrderManagementSummary = ({_proceed_order, _complete_order, _cancel_order,
   let complete_class = disabled_complete_btn();
   let cancel_class = disabled_cancle_btn();
   let review_class = disabled_review_btn();
-  console.log(purchaseList.proceed);
+
   return (
     <div className="collection notEmpty" key={purchaseList.date}>
     {
@@ -72,7 +72,7 @@ const OrderManagementSummary = ({_proceed_order, _complete_order, _cancel_order,
             </div>
             <div className="options-area col s8">
               <h6 className='scorehvy'>{ purchaseList.service_title }</h6>
-              <p>판매자 : { purchaseList.provider_nickName }</p> 
+              { (chk) ? (<p>판매자 : { purchaseList.provider_nickName }</p>) : (<p>구매자 : { purchaseList.buyer_nickName }</p>) }
               <p>구매일자 : { moment(purchaseList.purchasedAt.toDate()).format('YYYY년 / MM월 / DD일 HH:mm분') }</p>
             </div>
           </div>

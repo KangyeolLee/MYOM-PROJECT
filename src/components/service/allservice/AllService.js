@@ -17,7 +17,10 @@ class AllService extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.infiniteScroll, true);
+    window.addEventListener('scroll', this.infiniteScroll);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.infiniteScroll)
   }
 
   componentWillReceiveProps(nextProps) {  // match the next changable props to state for initailizing
@@ -89,13 +92,12 @@ class AllService extends Component {
   render() {
     const { match, serviceList } = this.props;
     const { moreServices } = this.state;
-    console.log(match);
 
     return (
       <div className="allServices">
         <div className="container">
           <div className="row">
-            <h4 className='all-title myomColor col s12 scorehvy'>둘러보기</h4>
+            <h4 className='all-title col s12 notoSans'>둘러보기</h4>
             <div className="col s12">
               <video style={{width: '100%'}} className='' controls>
                 <source src='/video/myom.mp4' type='video/mp4'/>
@@ -109,7 +111,7 @@ class AllService extends Component {
 
         <div className="container">
           <ul className="all_services_area row">
-            <h5 className='col s12 scorehvy'>전체</h5>
+            <h5 className='col s12 all-title notoSans'>등록된 서비스</h5>
             <div className="all_services row">
             {
               !isLoaded(serviceList)
@@ -119,9 +121,7 @@ class AllService extends Component {
                   : moreServices.map(item => {    
                     let category = Object.entries(item).filter(category => category.pop() === 5 );
                     return (
-                      <Link to={`${match.url}/${category[0]}/${item.id}`} key={item.id}>
-                        <ServicesSummary service={item} />
-                      </Link>
+                      <ServicesSummary key={item.id} service={item} category={category[0]} />
                     )
                   })                 
             }

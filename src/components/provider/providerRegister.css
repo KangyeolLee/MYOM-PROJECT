@@ -32,7 +32,7 @@
   font-size: 8rem;
 }
 .ProviderRegisterStep1 .input-field.file-field .btn-floating .profile-img {
-  width: 10rem;
+  /* width: 10rem; */
   height: 10rem;
 }
 .ProviderRegisterStep1 .input-field.file-field .profileImg-desc {
@@ -113,6 +113,7 @@
 .providerRegisterDone .card {
   margin-top: 5rem;
 }
+#hidden-for-loading,
 .createService #hidden-for-loading,
 .providerRegister #hidden-for-loading {
   display: none;
@@ -124,6 +125,7 @@
   background: #000000a6;
   z-index: 9999;
 }
+#hidden-for-loading .progress.for-loading,
 .createService #hidden-for-loading .progress.for-loading,
 .providerRegister #hidden-for-loading .progress.for-loading {
   width: 200px;
@@ -134,6 +136,7 @@
   transform: translate(-50%, -60%);
   background-color: #9ba5a4;
 }
+#hidden-for-loading .progress.for-loading .determinate,
 .createService #hidden-for-loading .progress.for-loading .determinate,
 .providerRegister #hidden-for-loading .progress.for-loading .determinate {
   border-radius: 20px;

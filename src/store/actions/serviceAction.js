@@ -11,7 +11,9 @@ export const _buy_service = (service_id, service, price, plus, history) => {
     const chatRef = firestore.collection('chats').doc(userInfo.email+':'+ service.provider_email);
     const totalPrice = plus.total_price ? plus.total_price : price.price;
     const plusMinute = plus.plus_time ? plus.plus_time : '';
+
     let userPurchase = {
+      providerImg: service.providerImg,
       service_id: service_id,
       service_title: service.service_title,
       // category: service.category,
@@ -79,6 +81,7 @@ export const _buy_service = (service_id, service, price, plus, history) => {
          })
        }else{
          chatRef.set({
+           updatedAt: new Date(), 
            deal: true,
            users_email: [
              userInfo.email,
@@ -101,7 +104,8 @@ export const _buy_service = (service_id, service, price, plus, history) => {
     })
     .then(() => {
       dispatch({ type: 'BUY_SERVICE_SUCCESS'});
-      history.push('/purchasedone/' + listRef.id);
+      const totalPrice = plus.total_price ? plus.total_price : price.price;
+      history.push('/purchasedone/' + listRef.id + '&pricetag=' + totalPrice);
     }).catch((err) => {
       dispatch({ type: 'BUY_SERVICE_ERROR', err })
     })
@@ -192,12 +196,10 @@ export const chatCreate = (userProfileImg, userEmail, userNickName, history) => 
       if(doc.exists){
         return ;
       } else if(userProfile.email === userEmail) {
-        history.push('/chatDashboard');
+        history.push('/chattingBoard');
         return;
       } else{
         docRef.set({ 
-          [userEmail]: userProfile.profileImgURL,
-          [userInfo.email]: userProfileImg,
           updatedAt: new Date(), 
           deal: false, 
           users_email: [
@@ -220,7 +222,7 @@ export const chatCreate = (userProfileImg, userEmail, userNickName, history) => 
     })
     .then(() => {
       dispatch({type: 'CHAT_CREATE_SUCCESS'});
-      history.push('/chatDashboard');
+      history.push('/chattingBoard');
     })
     .catch((err) => {
       dispatch({type:'CHAT_CREATE_ERROR', err});

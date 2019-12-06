@@ -22,7 +22,11 @@ const CustomerServiceCategory = () => {
   }
   return (
     <Swiper {...Settings}>
-      <div className='category forNotification center myomColor-background'>
+      <div className='forNotification active right-text category-title notoSans'>공지사항</div>
+      <div className='forQuestionAnswer center category-title notoSans'>FAQ</div>
+      <div className='forDescription left-text category-title notoSans'>약관전문</div>
+
+      {/* <div className='category forNotification center myomColor-background'>
         <i className="forNotification material-icons large white-text">notifications</i>
         <h4 className='forNotification scorelt white-text'>공지사항</h4>
       </div>
@@ -35,7 +39,7 @@ const CustomerServiceCategory = () => {
       <div className='category forDescription center myomColor-background'>
         <i className="forDescription material-icons large white-text">description</i>
         <h4 className='forDescription scorelt white-text'>약관전문</h4>
-      </div>
+      </div> */}
     </Swiper>
   )
 }

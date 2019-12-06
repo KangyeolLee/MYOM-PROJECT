@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signOut } from '../../store/actions/authAction';
 import M from 'materialize-css';
+import firebase from 'firebase/app';
 
 class SignedInLinks extends Component {
   componentDidMount() {
@@ -20,11 +21,29 @@ class SignedInLinks extends Component {
       <Fragment>
         <ul style={{marginRight: '2rem'}} className="right hide-on-small-only">
           <li><NavLink to='/productIntro' className="black-text">편집자 등록</NavLink></li>
-          <li><NavLink to='/chatDashboard' className='black-text'>메시지</NavLink></li>
+          <li><NavLink to='/chattingBoard' className='black-text'>메시지</NavLink></li>
           {
             (profile.authority === 'editor')
-            ? <li><NavLink to='/mypageProvider/profile' className='btn btn-floating grey lighten-1'><img src= {this.props.profile.profileImgURL} width="40px" height="40px" className="circle"/></NavLink></li>
-            : <li><NavLink to='/mypageBuyer/profile' className='btn btn-floating grey lighten-1'><img src= {this.props.profile.profileImgURL} width="40px" height="40px" className="circle"/></NavLink></li>
+            ? <li><NavLink to='/mypageProvider/profile' className='btn btn-floating grey lighten-1'>
+              { 
+                (profile.profileImgURL === '/img/defaults/userProfile.jpeg')
+                  ? <img src="/img/defaults/userProfile.jpeg" width="40px" height="40px" className="circle" alt="유저 기본 프로필 이미지"/>
+                  : <img src="/img/defaults/lazy-loading.png" data-src={firebase.storage().refFromURL(profile.profileImgURL).getDownloadURL().then(url => {
+                    const profile = document.getElementById('syncProfile');
+                    profile.src = url;
+                  })} width="40px" height="40px" className="circle" alt="유저 프로필 이미지" id='syncProfile'/>
+              }
+            </NavLink></li>
+            : <li><NavLink to='/mypageBuyer/profile' className='btn btn-floating grey lighten-1'>
+              { 
+                (profile.profileImgURL === '/img/defaults/userProfile.jpeg')
+                  ? <img src="/img/defaults/userProfile.jpeg" width="40px" height="40px" className="circle" alt="유저 기본 프로필 이미지"/>
+                  : <img src="/img/defaults/lazy-loading.png" data-src={firebase.storage().refFromURL(profile.profileImgURL).getDownloadURL().then(url => {
+                    const profile = document.getElementById('syncProfile');
+                    profile.src = url;
+                  })} width="40px" height="40px" className="circle" alt="유저 프로필 이미지" id='syncProfile'/>
+              }
+            </NavLink></li>
           }
           <li className='dropdown-trigger no-autoinit' data-target='dropdown_mypage'><span className="black-text"style={{display: 'flex'}}>{this.props.profile.initials}님&nbsp;<i className="material-icons">arrow_drop_down</i></span></li>
 
@@ -50,15 +69,33 @@ class SignedInLinks extends Component {
         <ul style={{marginRight: '2rem'}} className="right hide-on-med-and-up">
           {
             (profile.authority === 'editor')
-            ? <li><NavLink to='/mypageProvider/profile' className='hide-on-mobile-only btn btn-floating grey lighten-1'><img src= {this.props.profile.profileImgURL} width="40px" height="40px" className="circle"/></NavLink></li>
-            : <li><NavLink to='/mypageBuyer/profile' className='hide-on-mobile-only btn btn-floating grey lighten-1'><img src= {this.props.profile.profileImgURL} width="40px" height="40px" className="circle"/></NavLink></li>
+            ? <li><NavLink to='/mypageProvider/profile' className='hide-on-mobile-only btn btn-floating grey lighten-1'>
+              { 
+                (profile.profileImgURL === '/img/defaults/userProfile.jpeg')
+                  ? <img src="/img/defaults/userProfile.jpeg" width="40px" height="40px" className="circle" alt="유저 기본 프로필 이미지"/>
+                  : <img src="/img/defaults/lazy-loading.png" data-src={firebase.storage().refFromURL(profile.profileImgURL).getDownloadURL().then(url => {
+                    const profile = document.getElementById('syncProfile-on-med');
+                    profile.src = url;
+                  })} width="40px" height="40px" className="circle" alt="유저 프로필 이미지" id='syncProfile-on-med'/>
+              }
+            </NavLink></li>
+            : <li><NavLink to='/mypageBuyer/profile' className='hide-on-mobile-only btn btn-floating grey lighten-1'>
+            { 
+                (profile.profileImgURL === '/img/defaults/userProfile.jpeg')
+                  ? <img src="/img/defaults/userProfile.jpeg" width="40px" height="40px" className="circle" alt="유저 기본 프로필 이미지"/>
+                  : <img src="/img/defaults/lazy-loading.png" data-src={firebase.storage().refFromURL(profile.profileImgURL).getDownloadURL().then(url => {
+                    const profile = document.getElementById('syncProfile-on-med');
+                    profile.src = url;
+                  })} width="40px" height="40px" className="circle" alt="유저 프로필 이미지" id='syncProfile-on-med'/>
+              }
+            </NavLink></li>
           }
           <li className='dropdown-trigger no-autoinit' data-target='dropdown_mypage2'><span className="black-text"style={{display: 'flex'}}>{this.props.profile.initials}님&nbsp;<i className="material-icons">arrow_drop_down</i></span></li>
 
           {/* about dropdown option for UserMyPage */}
           <ul id="dropdown_mypage2" className="dropdown-content">
             <li><NavLink to='/productIntro' className="black-text">편집자 등록</NavLink></li>
-            <li><NavLink to='/chatDashboard' className='black-text'>메시지</NavLink></li>
+            <li><NavLink to='/chattingBoard' className='black-text'>메시지</NavLink></li>
             { 
               (profile.authority === 'editor') 
               ? <li><NavLink to='/mypageProvider/sellManage' className="black-text">마이 페이지</NavLink></li>
