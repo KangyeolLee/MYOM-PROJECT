@@ -26,6 +26,7 @@ const PurchaseDetails = (props) => {
   }
   const { isPaid, providerImg, runningTime, additionalCost, plusMinute, requestData, type, purchasedAt, provider_nickName, service_title, imgURL, price, options, working } = props.purchased_service;
   const purchased_id = props.match.params.service_id;
+
   return (
     <div className="container purchaseDetails notoSans">
       <div className="row orderdetails-wrapper">

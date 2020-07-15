@@ -67,9 +67,9 @@ class OrderManage extends Component {
       ? (
         <div className="ordersManage">
           <div className="row">
-            <h5 className='col s12 scorehvy sub-title'>구매 관리</h5>
+            <h5 className='col s12 sub-title'>구매 관리</h5>
             <div className="col s12">
-              <ul className="tabs scorehvy">
+              <ul className="tabs">
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderAll">전체 ({all_count})</a></li>
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderRequest">미접수 ({request_count})</a></li>
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderProceed">진행중 ({proceed_count})</a></li>
@@ -86,9 +86,9 @@ class OrderManage extends Component {
                   ? <div className="collection"><Preloader /></div>
                   : isEmpty(orderList)
                     ? (
-                      <div className="collection">
+                      <div className="collection no-data">
                         <div className="collection-item-wrapper">
-                          <i className="material-icons large">info_outline</i>
+                          <i className="material-icons grey-text large">error_outline</i>
                           <p>내역이 없습니다</p>
                         </div>
                       </div>
@@ -107,9 +107,9 @@ class OrderManage extends Component {
                   ? <div className="collection"><Preloader /></div>
                   : isEmpty(orderList.filter(item => item.hasOwnProperty('request') === false))
                     ? (
-                      <div className="collection">
+                      <div className="collection no-data">
                         <div className="collection-item-wrapper">
-                          <i className="material-icons large">info_outline</i>
+                          <i className="material-icons grey-text large">error_outline</i>
                           <p>내역이 없습니다</p>
                         </div>
                       </div>
@@ -128,9 +128,9 @@ class OrderManage extends Component {
                   ? <div className="collection"><Preloader /></div>
                   : isEmpty(orderList.filter(item => item.proceed === true))
                     ? (
-                      <div className="collection">
+                      <div className="collection no-data">
                         <div className="collection-item-wrapper">
-                          <i className="material-icons large">info_outline</i>
+                          <i className="material-icons grey-text large">error_outline</i>
                           <p>내역이 없습니다</p>
                         </div>
                       </div>
@@ -149,9 +149,9 @@ class OrderManage extends Component {
                   ? <div className="collection"><Preloader /></div>
                   : isEmpty(orderList.filter(item => item.proceed === false))
                     ? (
-                      <div className="collection">
+                      <div className="collection no-data">
                         <div className="collection-item-wrapper">
-                          <i className="material-icons large">info_outline</i>
+                          <i className="material-icons grey-text large">error_outline</i>
                           <p>내역이 없습니다</p>
                         </div>
                       </div>
@@ -170,9 +170,9 @@ class OrderManage extends Component {
                   ? <div className="collection"><Preloader /></div>
                   : isEmpty(orderList.filter(item => item.review === true))
                     ? (
-                      <div className="collection">
+                      <div className="collection no-data">
                         <div className="collection-item-wrapper">
-                          <i className="material-icons large">info_outline</i>
+                          <i className="material-icons grey-text large">error_outline</i>
                           <p>내역이 없습니다</p>
                         </div>
                       </div>
@@ -191,9 +191,9 @@ class OrderManage extends Component {
                   ? <div className="collection"><Preloader /></div>
                   : isEmpty(orderList.filter(item => item.cancel))
                     ? (
-                      <div className="collection">
+                      <div className="collection no-data">
                         <div className="collection-item-wrapper">
-                          <i className="material-icons large">info_outline</i>
+                          <i className="material-icons grey-text large">error_outline</i>
                           <p>내역이 없습니다</p>
                         </div>
                       </div>
@@ -213,9 +213,9 @@ class OrderManage extends Component {
       : (
         <div className="ordersManage">
           <div className="row">
-            <h5 className='col s12 scorehvy sub-title'>판매 관리</h5>
+            <h5 className='col s12 sub-title'>판매 관리</h5>
             <div className="col s12">
-              <ul className="tabs scorehvy">
+              <ul className="tabs">
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderAll">전체 ({all_count})</a></li>
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderRequest">미접수 ({request_count})</a></li>
                 <li className="tab col s2"><a onClick={this._init_curPage} href="#orderProceed">진행중 ({proceed_count})</a></li>
@@ -232,9 +232,9 @@ class OrderManage extends Component {
                   ? <div className="collection"><Preloader /></div>
                   : isEmpty(orderList)
                     ? (
-                      <div className="collection">
+                      <div className="collection no-data">
                         <div className="collection-item-wrapper">
-                          <i className="material-icons large">info_outline</i>
+                          <i className="material-icons grey-text large">error_outline</i>
                           <p>내역이 없습니다</p>
                         </div>
                       </div>
@@ -253,9 +253,9 @@ class OrderManage extends Component {
                   ? <div className="collection"><Preloader /></div>
                   : isEmpty(orderList.filter(item => item.hasOwnProperty('request') === false))
                     ? (
-                      <div className="collection">
+                      <div className="collection no-data">
                         <div className="collection-item-wrapper">
-                          <i className="material-icons large">info_outline</i>
+                          <i className="material-icons grey-text large">error_outline</i>
                           <p>내역이 없습니다</p>
                         </div>
                       </div>
@@ -274,9 +274,9 @@ class OrderManage extends Component {
                   ? <div className="collection"><Preloader /></div>
                   : isEmpty(orderList.filter(item => item.proceed === true))
                     ? (
-                      <div className="collection">
+                      <div className="collection no-data">
                         <div className="collection-item-wrapper">
-                          <i className="material-icons large">info_outline</i>
+                          <i className="material-icons grey-text large">error_outline</i>
                           <p>내역이 없습니다</p>
                         </div>
                       </div>
@@ -295,9 +295,9 @@ class OrderManage extends Component {
                   ? <div className="collection"><Preloader /></div>
                   : isEmpty(orderList.filter(item => item.proceed === false))
                     ? (
-                      <div className="collection">
+                      <div className="collection no-data">
                         <div className="collection-item-wrapper">
-                          <i className="material-icons large">info_outline</i>
+                          <i className="material-icons grey-text large">error_outline</i>
                           <p>내역이 없습니다</p>
                         </div>
                       </div>
@@ -316,9 +316,9 @@ class OrderManage extends Component {
                   ? <div className="collection"><Preloader /></div>
                   : isEmpty(orderList.filter(item => item.review === true))
                     ? (
-                      <div className="collection">
+                      <div className="collection no-data">
                         <div className="collection-item-wrapper">
-                          <i className="material-icons large">info_outline</i>
+                          <i className="material-icons grey-text large">error_outline</i>
                           <p>내역이 없습니다</p>
                         </div>
                       </div>
@@ -337,9 +337,9 @@ class OrderManage extends Component {
                   ? <div className="collection"><Preloader /></div>
                   : isEmpty(orderList.filter(item => item.cancel))
                     ? (
-                      <div className="collection">
+                      <div className="collection no-data">
                         <div className="collection-item-wrapper">
-                          <i className="material-icons large">info_outline</i>
+                          <i className="material-icons grey-text large">error_outline</i>
                           <p>내역이 없습니다</p>
                         </div>
                       </div>

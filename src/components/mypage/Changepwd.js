@@ -22,30 +22,27 @@ class Changepwd extends Component{
 
 		render(){
 		return(
-			<div className="profile_deatails">
+			<div className="profile_details">
 				<div className="row">
-					<h5 className="col s12 scorehvy sub-title">비밀번호 변경</h5>
-					<div className="col s12 ">
-						<form onSubmit = {this.handleSubmit} className="changepwd white">
-							<div className="row">
-								<div className="input-field col s10 offset-s1">
-									<input type="password" id="oldpwd" className="validate" onChange = {this.handleChange}/>
-									<label htmlFor="oldpwd">현재 비밀번호</label>
-								</div>
-								<div className="input-field col s5 offset-s1">
-									<input type="password" id="newpwd" className="validate" onChange = {this.handleChange}/>
-									<label htmlFor="newpwd">변경할 비밀번호</label>
-								</div>
-								<div className="input-field col s5">
-									<input type="password" id="chknewpwd" className="validate" onChange = {this.handleChange}/>
-									<label htmlFor="chknewpwd">변경할 비밀번호 재입력</label>
-								</div>
-								<div className="input-field col s10 offset-s1">
-									<button className="btn right myomColor-background">비밀번호 변경하기</button>
-								</div>
-							</div>
-						</form>
-					</div>
+          <h5 className="col s12 sub-title">비밀번호 변경</h5>
+          <form onSubmit={this.handleSubmit} className="col s12">
+            <p className="info-title">현재 비밀번호</p>
+						<div className="input-field with-border">
+              <input placeholder='사용하고 있는 비밀번호를 입력해주세요.' type="password" id="oldpwd" className="validate" onChange = {this.handleChange}/>
+						</div>
+
+            <p className="info-title">변경할 비밀번호</p>
+						<div className="input-field with-border">
+              <input placeholder='변경하실 비밀번호를 입력해주세요.' type="password" id="newpwd" className="validate" onChange = {this.handleChange}/>
+						</div>
+
+            <p className="info-title">변경할 비밀번호 재입력</p>
+						<div className="input-field with-border">
+						  <input placeholder='변경하실 비밀번호를 다시 한 번 입력해주세요.' type="password" id="chknewpwd" className="validate" onChange = {this.handleChange}/>
+						</div>
+
+            <button className="btn waves-effect submit-btn">수정완료</button>
+          </form>
 				</div>
 			</div>
 		)

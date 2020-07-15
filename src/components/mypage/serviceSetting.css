@@ -1,5 +1,10 @@
+.serviceSetting {
+  color: #272727;
+}
 .serviceSetting .sub-title {
   margin-bottom: 3rem;
+  font-size: 24px;
+  font-weight: bold;
 }
 .serviceSetting .service-rewrite {
   margin-bottom: 5rem;
@@ -8,7 +13,133 @@
   padding: 3rem;
   background-color: #fff;
 }
-
+.serviceSetting .tabs .tab a {
+  font-size: 20px;
+  font-weight: bold;
+}
+/* ****************************************************** */
+.serviceSetting .collection {
+  border-radius: 8px;
+  border: solid 2px #dedede;
+} 
+.serviceSetting .register-btn {
+  border-radius: 8px;
+  box-shadow: none;
+  height: 40px;
+  width: 200px;
+  line-height: 40px;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 1.5rem;
+}
+/* ****************************************************** */
+.serviceSetting .content-rewrite .rewrite-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 5rem 0 3rem 0;
+}
+.serviceSetting .content-rewrite .modify-btn {
+  border-radius: 18px;
+  background-color: #4c20e1;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: none;
+  margin-top: 5rem;
+}
+.serviceSetting .content-rewrite .rewrite-btn {
+  border-radius: 8px;
+  box-shadow: none;
+}
+.serviceSetting .content-rewrite .rewrite-contents {
+  margin-bottom: 5rem;
+  font-size: 15px;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.serviceSetting .content-rewrite .input-field input,
+.serviceSetting .content-rewrite .input-field textarea {
+  font-size: 15px;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+/* ****************************************************** */
+.serviceSetting .service-img-rewrite-area .thumbnail {
+  margin-bottom: 5rem;
+}
+.serviceSetting .service-img-rewrite-area .file-field.input-field.new-update {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #e8e8e8;
+  border: 1px dashed rgba(128, 128, 128, 0.493);
+}
+.serviceSetting .service-img-rewrite-area .file-field.input-field.new-update span {
+  position: absolute;
+  bottom: 5px; 
+}
+.serviceSetting .service-img-rewrite-area .file-field.input-field.new-update p {
+  position: absolute;
+  top: 50%;
+  transform: translateY(calc(-50% + 60px));
+}
+/* ****************************************************** */
+.serviceSetting .service-video-rewrite-area {
+  margin-bottom: 5rem;
+}
+.serviceSetting .service-video-rewrite-area .video-wrapper video {
+  margin-bottom: 5rem;
+}
+.serviceSetting .video-wrapper .swiper-pagination .swiper-pagination-bullet {
+  width: 36px;
+  height: 36px;
+  border: solid 2px #d4d4d4;
+  background-color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.7;
+  letter-spacing: normal;
+  text-align: center;
+  color: #9b9b9b;
+  opacity: 1;
+}
+.serviceSetting .video-wrapper .swiper-pagination .swiper-pagination-bullet-active {
+  color: #fff;
+  background-color: #4c20e1;
+  border: solid 2px #4c20e1;
+}
+/* ****************************************************** */
+.serviceSetting .file-field .icons-wrapper {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+.serviceSetting .side-img .file-field .icons-wrapper {
+  width: 55px;
+  height: 55px;
+}
+.serviceSetting .side-img .file-field .icons-wrapper img {
+  width: 25px;
+  height: 33px;
+}
+.serviceSetting .material-icons.close-btn {
+  font-size: 20px;
+  border-top-left-radius: 8px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: .2rem;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, .3);
+}
+/* ****************************************************** */
+/* ****************************************************** */
+/* ****************************************************** */
 
 .serviceSetting #price-rewrite .price-wrapper .price-title {
   border-bottom: 1px solid black;
@@ -181,34 +312,17 @@
 .serviceSetting .thumb-img {
   position: relative;
 }
-.serviceSetting .material-icons.close-btn {
-  font-size: 20px;
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: .2rem;
-  opacity: 1;
-  background-color: rgba(0, 0, 0, .3);
-}
+
 .serviceSetting .material-icons.close-btn:hover {
   opacity: .8;
 }
 .serviceSetting .side-img .file-field.input-field {
   position: relative;
-  height: 10rem;
+  height: 120px;
+  margin-bottom: 11px;
 }
-.serviceSetting .file-field.input-field.new-update {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f5f5f5;
-  border: 1px dashed black;
-}
-.serviceSetting .file-field.input-field.new-update span {
-  position: absolute;
-  bottom: 10px; 
-}
+
+
 .serviceSetting .file-field.input-field.new-update h6 {
   position: absolute;
   left: 50%;

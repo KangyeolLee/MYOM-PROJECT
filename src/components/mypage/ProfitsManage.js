@@ -47,7 +47,7 @@ class ProfitsManage extends Component {
     return (
       <div className="profitsManage">
         <div className="row">
-          <h5 className='col s12 scorehvy sub-title'>수익 관리</h5>
+          <h5 className='col s12 sub-title'>수익 관리</h5>
           <div className="col s12">               
             {
               !isLoaded(orderList)
@@ -56,7 +56,7 @@ class ProfitsManage extends Component {
                   ? (
                     <div className="collection no-data">
                       <div className="collection-item-wrapper center">
-                        <i className="material-icons large">info_outline</i>
+                        <i className="material-icons large grey-text">error_outline</i>
                         <p>내역이 없습니다</p>
                       </div>
                     </div>
@@ -64,7 +64,7 @@ class ProfitsManage extends Component {
                   : (
                     <Fragment>
                     <table style={{marginBottom: '3rem'}} className='centered'>
-                      <thead className='grey lighten-3 scorehvy'>
+                      <thead className=''>
                         <tr>
                           <th>구매자</th>
                           <th>할인 및 수수료</th>

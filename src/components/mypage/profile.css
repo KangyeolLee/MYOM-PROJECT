@@ -8,6 +8,7 @@
 .profile_details .sub-title {
 	font-size: 24px;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 .profile_details .image-area {
 	position: relative;
@@ -31,9 +32,26 @@
 	border-radius: 8px;
 	background-color: #fff; 
 }
+.profile_details .input-field.with-border input {
+  border: none;
+  box-shadow: none;
+  padding-left: 1.5rem;
+  margin: 0;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+.profile_details .input-field.with-border input:focus {
+  box-shadow: none;
+  border: none;
+}
 .profile_details .info-title {
 	font-size: 14px;
   font-weight: 500;
+}
+.profile_details .reason-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 40px;
 }
 .profile_details .info-content {
 	font-size: 16px;
@@ -53,109 +71,9 @@
 	box-shadow: none;
 	float: right;
 }
+.profile_details .helper-text {
+  font-size: 14px;
+  padding-left: 1.5rem;
+}
 
 /* ********************************************* */
-
-.profile_deatails {
-	margin: 0;
-}
-
-
-.profile_deatails .my_profile {
-	border: 1px solid rgb(224,224,224);
-	padding: 16px;
-	margin-top : 9px;
-}
-
-.profile_deatails .my_profile .row{
-	margin-top: 2rem;
-}
-
-.profile_deatails .alarm-onoff label .lever{
-	margin: 15px 0 0 10px;
-}
-
-.profile_deatails .alarm-setting h6{
-	font-weight: bold;
-}
-
-.profile_deatails .alarm-setting{
-	border: 1px solid rgb(224,224,224);
-	padding: 16px;
-	margin-top: 9px;
-}
-
-.profile_deatails .changepwd {
-	border: 1px solid rgb(224,224,224);
-	padding: 16px;
-	margin-top : 9px;
-}
-
-.profile_deatails .withdrawal {
-	border: 1px solid rgb(224,224,224);
-	padding: 16px;
-	margin-top : 9px;
-}
-
-.profile_deatails .withdrawal_button {
-	margin-top: 16px;
-}
-
-.profile_deatails .certifications {
-	border: 1px solid rgb(224,224,224);
-	padding: 16px;
-	margin-top : 9px;
-	width: 800px;
-}
-
-.profile_deatails .cert_phone {
-	margin-top: 30px;
-}
-
-.profile_deatails .cert_group_radio {
-	display: flex;
-	border: 1px solid rgb(224,224,224);
-}
-
-.profile_deatails .cert_group_radio span {
-	margin-right: 4rem;
-}
-
-.profile_deatails .padding_zero{
-	padding: 0px !important;
-}
-
-.profile_deatails .pro_cert{
-	margin-top: 24px;
-}
-
-.profile_deatails .terms{
-	margin-top: 24px;
-}
-
-.profile_deatails .file-field .btn {
-	height: 3rem;
-	line-height:3rem
-}
-.profile_deatails .profile-img .image-area {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-.profile_deatails .file-path-wrapper {
-	visibility: hidden;
-}
-
-.profile_deatails .imgUpload_btn{
-	background-color: rgb(245,245,245);
-	border: none;
-	padding: 12px;
-  border-radius: 12px;
-  margin-top: 2.8rem;
-}
-.profile_deatails .input-field label.immer {
-  transform: translateY(-14px) scale(0.8);
-  transform-origin: 0 0;
-}

@@ -20,14 +20,27 @@ class UserProfile extends Component {
 		let reader = new FileReader();
 		let file = e.target.files[0];
     let target_id = e.target.id;
+    let file_exe = file.name.split('.').pop().toLowerCase();
+    let file_size = (file.size / 1024 / 1024).toFixed(2);
     reader.readAsDataURL(file);
 
-		reader.onloadend = () => {
-			this.setState({
-				[target_id] : file,
-				[target_id + '_preview']: reader.result,
-			})
-		}
+    if(file_size > 5) {
+      e.target.value = '';
+      alert('5MB 이하의 사진파일로 업로드 해주세요!');
+      return;
+    }
+
+    if(file_exe === 'jpg' || file_exe === 'jpeg' || file_exe === 'png') {
+      reader.onloadend = () => {
+        this.setState({
+          [target_id] : file,
+          [target_id + '_preview']: reader.result,
+        })
+      }
+    } else {
+      alert('이미지 파일(jpg, jpeg, png)만 지원합니다.');
+      return;
+    }
 	}
 
 	handleSubmit = (e) => {
@@ -49,7 +62,7 @@ class UserProfile extends Component {
 			<div className="profile_details">
 				<div className="row">
 					<h5 className="col s12 sub-title">나의정보</h5>
-					<form className="col s12">
+					<form onSubmit={this.handleSubmit} className="col s12">
 						<div className="image-area file-field input-field">
 						{
 							!(this.state.profile_img_preview)
@@ -57,22 +70,25 @@ class UserProfile extends Component {
 									<Fragment>
 									{
 										(profile.profileImgURL === '/img/defaults/userProfile.jpeg')
-											? <img src="/img/defaults/userProfile.jpeg" alt="유저 기본 프로필 이미지" width='140' height='140' className="circle user-profileImg"/>
+											? <img src="/img/defaults/userProfile.jpeg" alt="유저 기본 프로필 이미지" width='140' height='140' className="circle user-profileImg" />
 											: <img src="/img/defaults/lazy-loading.png" data-src={firebase.storage().refFromURL(profile.profileImgURL).getDownloadURL().then(url => {
 												const profile = document.getElementById('syncUserProfile');
 												profile.src = url;
 											})} width='140' height='140' className="circle user-profileImg" alt='유저 프로필 이미지' id='syncUserProfile' />
 									}
-									<div className='image-update-btn'>
+									<div className='image-update-btn btn waves-effect'>
 										<i className="material-icons white-text">edit</i>
-										<input type="file" id='profile_img' onChange={this.uploadFile} />
+										<input type="file" id='profile_img' onChange={this.uploadFile} accept="image/*"/>
 									</div>
 									</Fragment>
 								)
 								: (
 									<Fragment>
 									<img src={this.state.profile_img_preview} width='140' height='140' className="circle user-profileImg" alt='변경될 유저 프로필 이미지' />
-									<input type="file" id='profile_img' onChange={this.uploadFile} />
+									<div className='image-update-btn btn waves-effect'>
+										<i className="material-icons white-text">edit</i>
+										<input type="file" id='profile_img' onChange={this.uploadFile} accept="image/*"/>
+									</div>
 									</Fragment>
 								)
 						}

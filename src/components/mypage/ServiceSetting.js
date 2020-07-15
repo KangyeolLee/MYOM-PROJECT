@@ -9,10 +9,21 @@ import { compose } from 'redux';
 import Preloader from '../functionalComponents/Preloader';
 import ServiceThumbnailSummary from '../service/summary/ServiceThumbnailSummary';
 import { serviceContentUpdate, serviceImgUpdate, serviceVideoUpdate, servicePriceUpdate } from '../../store/actions/serviceFormAction';
+import Swiper from 'react-id-swiper';
 
 class ServiceSetting extends Component {
   state = {
-
+    params: {
+      spaceBetween: 30,
+      rebuildOnUpdate: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        renderBullet: (index, className) => {
+          return '<span class="notoSans ' + className + '">' + (index + 1) + '</span>';
+        }
+      }
+    }
   }
   componentDidUpdate(prevProps, prevState) {
     if(prevProps.myService !== this.props.myService && this.props.myService.length) {
@@ -26,7 +37,7 @@ class ServiceSetting extends Component {
         // videos: this.props.myService[0].videos.map((video, idx) => ({ ['video' +(idx + 6)]: video })),
       });
 
-      console.log(this.props.myService[0].videos);
+      
 
       this.props.myService[0].videos.filter(valid => valid !== '').map((video, idx) => {
         this.setState(prevState => ({
@@ -46,6 +57,10 @@ class ServiceSetting extends Component {
           }
         })
       }
+
+      
+
+
     }
 
     if(prevState.re_service_title !== this.state.re_service_title || prevState.re_service_content !== this.state.re_service_content
@@ -349,14 +364,12 @@ class ServiceSetting extends Component {
     const { service_title, re_service_title, service_content, re_service_content, service_refund, re_service_refund,
       images, re_images, videos, re_videos, basic, re_basic, pro, re_pro } = this.state;
 
-    console.log(service_refund, re_service_refund);
-
     return (
       <div className="serviceSetting row">
-        <h5 className="col s12 scorehvy sub-title">서비스 수정</h5>
+        <h5 className="col s12 sub-title">나의 서비스</h5>
 
         <div className="col s12 myService-rewrite-tabs">
-          <ul className="tabs scorehvy">
+          <ul className="tabs">
             <li className="tab col s6"><a className='active' href="#contents-rewrite">내용</a></li>
             <li className="tab col s6"><a href="#price-rewrite">가격 및 옵션</a></li>
           </ul>
@@ -371,21 +384,22 @@ class ServiceSetting extends Component {
                 <div className="collection">
                   <div className="collection-wrapper center">
                     <p className="grey-text lighten-2">아직 등록한 서비스가 없습니다</p>
-                    <p className="grey-text lighten-2">'등록하기'를 눌러 판매할 서비스를 등록해 보세요!'</p>
-                    <Link to="/createService" className="myomColor-background btn waves-effect">등록하기</Link>
+                    <p className="grey-text lighten-2">'등록하기'를 눌러 판매할 서비스를 등록해 보세요!</p>
+                    <Link to="/createService" className="myomColor-background btn register-btn waves-effect">등록하기</Link>
                   </div>
                 </div>
               )
               : (
                 <Fragment>
-                <div id='contents-rewrite' className="col s12 collection service-description">
-                  <div className="re_title">
+                <div className="content-rewrite row">
+                  <div className="service-title-rewrite-area col s12">
                   {
                     (re_service_title)
                       ? (
                         <form id='service_title' onSubmit={this.updateContent}>
+                          <h6 className="rewrite-title">서비스 제목</h6>
                           <div className="input-field">
-                            <input className='has-character-counter' id='service_title' type="text" onChange={this.handleRewrite} value={service_title} data-length='40' maxLength='41'/>
+                            <input className='has-character-counter notoSans' id='service_title' type="text" onChange={this.handleRewrite} value={service_title} data-length='40' maxLength='41'/>
                             <button className="rewrite-btn btn waves-effect right myomColor-background">확인</button>
                             <div onClick={this.handleCancel} id='service_title' className="rewrite-btn btn-flat waves-effect right">취소</div>
                           </div>
@@ -393,159 +407,131 @@ class ServiceSetting extends Component {
                       )
                       : (
                         <Fragment>
-                        <h4 className="service-title scorehvy">{myService[0].service_title}</h4>
-                        <h5 onClick={this.handleClick} id='service_title' className="service-title-rewrite scorehvy">수정을 원하시면 클릭하세요!</h5>
+                          <button onClick={this.handleClick} id='service_title' className='modify-btn btn waves-effect right'>수정하기</button>
+                          <h6 className="rewrite-title">서비스 제목</h6>
+                          <p className='rewrite-contents'>{myService[0].service_title}</p>
                         </Fragment>
                       )
-
                   }
+
                   </div>
 
-                  <div className="re_thumbnail">
+                  <div className="col s12 divider"></div>
+                  
+                  <div className="service-img-rewrite-area col s12">
                   {
                     (re_images)
                       ? (
-                        <form id='images' className='re_thumbnail row' onSubmit={this.handleImgUpload}>
-                          <div className="thumb-img col s9">
-                          {
-                            (images.thumbnail)
-                              ? (
-                                <div className='file-field input-field'>                           
-                                  <img src={images.thumbnail} alt="섬네일 이미지" className='thumb'/>
-                                  <input onChange={this.handleImgUpdate} className='file-path validate' id='thumbnail' type="file" accept='image/*' />
-                                  <i id='thumbnail' onClick={this.handleClose} className="material-icons close-btn white-text">close</i>
-                                </div>
-                              )
-                              : (
-                                <div style={{height: '30rem'}} className="file-field input-field new-update">
-                                  <i className="material-icons large">photo</i>
-                                  <span>용량제한 5MB</span>
-                                  <h6 className="pointer scorehvy red-text">필수</h6>
-                                  <input type="file" className='file-path validate' id='thumbnail' onChange={this.handleImgUpdate} accept='image/*' required/>
-                                </div>
-                              )
-                          }
-                          </div>
+                        <form id='images' onSubmit={this.handleImgUpload}>
+                          <h6 className="rewrite-title">서비스 이미지</h6>
+                          <div className="thumbnail row">
+                            <div className="thumb-img col s9">
+                            {
+                              (images.thumbnail)
+                                ? (
+                                  <div className='file-field input-field'>                           
+                                    <img src={images.thumbnail} alt="섬네일 이미지" className='thumb'/>
+                                    <input onChange={this.handleImgUpdate} className='file-path validate' id='thumbnail' type="file" accept='image/*' />
+                                    <i id='thumbnail' onClick={this.handleClose} className="material-icons close-btn white-text">close</i>
+                                  </div>
+                                )
+                                : (
+                                  <div style={{height: '382px'}} className="file-field input-field new-update">
+                                    <div className="icons-wrapper">
+                                      <img src="/img/icons/image-rep.png" alt="섬네일 등록 아이콘 이미지" width='44' height='52' />
+                                    </div>
+                                    <p>섬네일 대표 사진 (필수)</p>
+                                    <input type="file" className='file-path validate' id='thumbnail' onChange={this.handleImgUpdate} accept='image/*' required/>
+                                  </div>
+                                )
+                            }
+                            </div>
 
-                          <div className="side-img col s3">
-                          { 
-                            (images.details1) 
-                              ? (
-                                <div className="file-field input-field">
-                                  <img src={images.details1} alt="부가 이미지1" className="side"/>
-                                  <input className='file-path validate' onChange={this.handleImgUpdate} id='details1' type="file" accept='image/*' />
-                                  <i id='details1' onClick={this.handleClose} className="material-icons close-btn white-text">close</i>
-                                </div>
-                              )
-                              : (
-                                <div className="file-field input-field new-update side">
-                                  <i className="material-icons large">photo</i>
-                                  <span>용량제한 5MB</span>
-                                  <h6 className="pointer scorehvy white-text">1</h6>
-                                  <input className='file-path validate' onChange={this.handleImgUpdate} id='details1' type="file" accept='image/*' />
-                                </div>
-                              )
-                          }
-                          { 
-                            images.details2 
-                              ? (
-                                <div className="file-field input-field">
-                                  <img src={images.details2} alt="부가 이미지2" className="side"/> 
-                                  <input className='file-path validate' onChange={this.handleImgUpdate} id='details2' type="file" accept='image/*' />
-                                  <i id='details2' onClick={this.handleClose} className="material-icons close-btn white-text">close</i>
-                                </div>
-                              )
-                              : (
-                                <div className="file-field input-field new-update side">
-                                  <i className="material-icons large">photo</i>
-                                  <span>용량제한 5MB</span>
-                                  <h6 className="pointer scorehvy white-text">2</h6>
-                                  <input className='file-path validate' onChange={this.handleImgUpdate} id='details2' type="file" accept='image/*' />
-                                </div>
-                              ) 
-                          }
-                          { 
-                            images.details3 
-                              ? (
-                                <div className="file-field input-field">
-                                  <img src={images.details3} alt="부가 이미지3" className="side"/> 
-                                  <input className='file-path validate' onChange={this.handleImgUpdate} id='details3' type="file" accept='image/*' />
-                                  <i id='details3' onClick={this.handleClose} className="material-icons close-btn white-text">close</i>
-                                </div>
-                              )
-                              : (
-                                <div className="file-field input-field new-update side">
-                                  <i className="material-icons large">photo</i>
-                                  <span>용량제한 5MB</span>
-                                  <h6 className="pointer scorehvy white-text">3</h6>
-                                  <input className='file-path validate' onChange={this.handleImgUpdate} id='details3' type="file" accept='image/*' />
-                                </div>
-                              )
-                          }
-                          </div>
-                          { 
-                            images.details4
-                              ? (
-                                <div className="file-field input-field col s6 under-side-area">
-                                  <img src={images.details4} alt="부가 이미지4" className="under-side"/> 
-                                  <input className='file-path validate' onChange={this.handleImgUpdate} id='details4' type="file" accept='image/*' />
-                                  <i id='details4' onClick={this.handleClose} className="material-icons close-btn white-text">close</i>
-                                </div>
-                              )
-                              : (
-                                <div className="img-uploader col s6 ">
-                                  <div className="file-field input-field new-update col s12 under-side">
-                                    <i className="material-icons large">photo</i>
-                                    <span>용량제한 5MB</span>
-                                    <h6 className="pointer scorehvy white-text">4</h6>
-                                    <input className='file-path validate' onChange={this.handleImgUpdate} id='details4' type="file" accept='image/*' />
+                            <div className="side-img col s3">
+                            { 
+                              (images.details1) 
+                                ? (
+                                  <div className="file-field input-field">
+                                    <img src={images.details1} alt="부가 이미지1" className="side"/>
+                                    <input className='file-path validate' onChange={this.handleImgUpdate} id='details1' type="file" accept='image/*' />
+                                    <i id='details1' onClick={this.handleClose} className="material-icons close-btn white-text">close</i>
                                   </div>
-                                </div>
-                              ) 
-                          }
-                          { 
-                            images.details5 
-                              ? (
-                                <div className="file-field input-field col s6 under-side-area">
-                                  <img src={images.details5} alt="부가 이미지5" className="under-side"/> 
-                                  <input className='file-path validate' onChange={this.handleImgUpdate} id='details5' type="file" accept='image/*' />
-                                  <i id='details5' onClick={this.handleClose} className="material-icons close-btn white-text">close</i>
-                                </div>
-                              )
-                              : (
-                                <div className="img-uploader col s6">
-                                  <div className="file-field input-field new-update col s12 under-side">
-                                    <i className="material-icons large">photo</i>
-                                    <span>용량제한 5MB</span>
-                                    <h6 className="pointer scorehvy white-text">5</h6>
-                                    <input className='file-path validate' onChange={this.handleImgUpdate} id='details5' type="file" accept='image/*' />
+                                )
+                                : (
+                                  <div className="file-field input-field new-update side">
+                                    <div className="icons-wrapper">
+                                      <img src="/img/icons/image-rep.png" alt="섬네일 등록 아이콘 이미지" width='44' height='52' />
+                                    </div>
+                                    <span>서브이미지1 (선택) </span>
+                                    <input className='file-path validate' onChange={this.handleImgUpdate} id='details1' type="file" accept='image/*' />
                                   </div>
-                                </div>
-                              )
-                          }
-                          
-                          <div className="rewrite-btn-area col s12">
-                            <button className="rewrite-btn btn waves-effect right myomColor-background">확인</button>
-                            <div onClick={this.handleCancel} id='images' className="rewrite-btn btn-flat waves-effect right">취소</div>                         
+                                )
+                            }
+                            { 
+                              images.details2 
+                                ? (
+                                  <div className="file-field input-field">
+                                    <img src={images.details2} alt="부가 이미지2" className="side"/> 
+                                    <input className='file-path validate' onChange={this.handleImgUpdate} id='details2' type="file" accept='image/*' />
+                                    <i id='details2' onClick={this.handleClose} className="material-icons close-btn white-text">close</i>
+                                  </div>
+                                )
+                                : (
+                                  <div className="file-field input-field new-update side">
+                                    <div className="icons-wrapper">
+                                      <img src="/img/icons/image-rep.png" alt="섬네일 등록 아이콘 이미지" width='44' height='52' />
+                                    </div>
+                                    <span>서브이미지2 (선택) </span>
+                                    <input className='file-path validate' onChange={this.handleImgUpdate} id='details2' type="file" accept='image/*' />
+                                  </div>
+                                ) 
+                            }
+                            { 
+                              images.details3 
+                                ? (
+                                  <div className="file-field input-field">
+                                    <img src={images.details3} alt="부가 이미지3" className="side"/> 
+                                    <input className='file-path validate' onChange={this.handleImgUpdate} id='details3' type="file" accept='image/*' />
+                                    <i id='details3' onClick={this.handleClose} className="material-icons close-btn white-text">close</i>
+                                  </div>
+                                )
+                                : (
+                                  <div className="file-field input-field new-update side">
+                                    <div className="icons-wrapper">
+                                      <img src="/img/icons/image-rep.png" alt="섬네일 등록 아이콘 이미지" width='44' height='52' />
+                                    </div>
+                                    <span>서브이미지3 (선택) </span>
+                                    <input className='file-path validate' onChange={this.handleImgUpdate} id='details3' type="file" accept='image/*' />
+                                  </div>
+                                )
+                            }
+                            </div>
+
+                            <div className="rewrite-btn-area col s12">
+                              <button className="rewrite-btn btn waves-effect right myomColor-background">확인</button>
+                              <div onClick={this.handleCancel} id='images' className="rewrite-btn btn-flat waves-effect right">취소</div>                         
+                            </div>
                           </div>
                         </form>
                       )
                       : (
                         <Fragment>
-                        <ServiceThumbnailSummary files={myService[0].images} no_init={true} />
-                        <h5 onClick={this.handleClick} id='images' className="service-title-rewrite scorehvy">수정을 원하시면 클릭하세요!</h5>
+                          <button onClick={this.handleClick} id='images' className='modify-btn btn waves-effect right'>수정하기</button>
+                          <h6 className="rewrite-title">서비스 이미지</h6>
+                          <ServiceThumbnailSummary files={myService[0].images} no_init={true} />
                         </Fragment>
                       )
                   }
-
                   </div>
 
-                  <div className="re_content">
+                  <div className="col s12 divider"></div>
+
+                  <div className="service-content-rewrite-area col s12">
                   {
                     (re_service_content)
                       ? (
                         <form id='service_content' onSubmit={this.updateContent}>
-                          <h5 className="service-intro scorehvy">서비스 소개</h5>
+                          <h6 className="rewrite-title">서비스 소개</h6>
                           <div className="input-field">
                             <textarea className='has-character-counter materialize-textarea' onChange={this.handleRewrite} value={service_content} type="text" id="service_content" data-length='1000' maxLength='1001'/>
                             <button className="rewrite-btn btn waves-effect right myomColor-background">확인</button>
@@ -555,17 +541,90 @@ class ServiceSetting extends Component {
                       )
                       : (
                         <Fragment>
-                        <div className="re_content_wrapper">
-                          <h5 className="service-intro scorehvy">서비스 소개</h5>
-                          <pre className="service-content">{myService[0].service_content}</pre>
-                        </div>
-                        <h5 onClick={this.handleClick} id='service_content' className="service-title-rewrite scorehvy">수정을 원하시면 클릭하세요!</h5>
+                          <button onClick={this.handleClick} id='service_content' className='modify-btn btn waves-effect right'>수정하기</button>
+                          <h6 className="rewrite-title">서비스 소개</h6>
+                          <pre className='rewrite-contents'>{myService[0].service_content}</pre>
                         </Fragment>
                       )
-
                   }
                   </div>
 
+                  <div className="col s12 divider"></div>
+
+                  <div className="service-video-rewrite-area col s12">
+                  {
+                    (re_videos)
+                      ? (
+                        <form id='videos' onSubmit={this.handleVideoUpload}>
+                          <h6 className="rewrite-title">다른 참고영상</h6>
+                          <div className="video-box-area row">
+                            <div className="col s4">VIDEO</div>
+                            <div className="col s8">CONTENT</div>
+                            <div className="rewrite-btn-area col s12">
+                              <button className="rewrite-btn btn waves-effect right myomColor-background">확인</button>
+                              <div onClick={this.handleCancel} id='videos' className="rewrite-btn btn-flat waves-effect right">취소</div>                         
+                            </div>
+                          </div>
+                        </form>
+                      )
+                      : (
+                        <Fragment>
+                          <button onClick={this.handleClick} id='videos' className='modify-btn btn waves-effect right'>수정하기</button>
+                          <h6 className="rewrite-title">다른 참고영상</h6>
+                          <div className="video-wrapper">
+                          {
+                            (myService[0].videos.length && myService[0].videos[0]) 
+                              ? (
+                                <Swiper {...this.state.params}>
+                                {
+                                  myService[0].videos.map((video, idx) => (
+                                    <video key={video + idx} style={{width: '100%'}} controls>
+                                      <source src={video} type='video/mp4'/>
+                                    </video>
+                                  ))
+                                }
+                                </Swiper>
+                              ) 
+                              : <p>등록한 참고영상이 없습니다.</p>
+                          }
+                          </div>
+                        </Fragment>
+                      )
+                  }                    
+                  </div>
+
+                  <div className="col s12 divider"></div>
+
+                  <div className="service-correction-rewrite-area col s12">
+                  {
+                    (re_service_refund)
+                      ? (
+                        <form id="service_refund" onSubmit={this.updateContent}>
+                          <h6 className="rewrite-title">수정 안내사항</h6>
+                          <div className="input-field">
+                            <textarea placeholder='미기입시 myom 환불규정과 동일합니다.' onChange={this.handleRewrite} value={service_refund} id='service_refund' className='has-character-counter materialize-textarea' type='text' data-length='500' maxLength='501'></textarea>
+                            <button className="rewrite-btn btn waves-effect right myomColor-background">확인</button>
+                            <div onClick={this.handleCancel} id="service_refund" className="rewrite-btn btn-flat waves-effect right">취소</div>
+                          </div>
+                        </form>
+                      )
+                      : (
+                        <Fragment>
+                          <button onClick={this.handleClick} id='service_refund' className='modify-btn btn waves-effect right'>수정하기</button>
+                          <h6 className="rewrite-title">수정 안내사항</h6>
+                          <pre className='rewrite-contents'>{ myService[0].service_refund ? myService[0].service_refund : 'myom 환불규정과 동일합니다.' }</pre>
+                        </Fragment>
+                      )
+                  }
+
+                  </div>
+
+                  <div className="col s12 divider"></div>
+
+                  
+                </div>
+
+                <div id='contents-rewrite' className="col s12 collection service-description">                                                                                    
                   <div className="re_video">
                   {
                     (re_videos)
@@ -587,7 +646,7 @@ class ServiceSetting extends Component {
                                         )
                                         : (
                                           <video style={{width: '100%'}} controls>
-                                            <source src={videos['video6-original_file']}  />
+                                            <source src={videos['video6-original_file']} />
                                           </video>
                                         )
                                     }
@@ -1076,3 +1135,15 @@ export default compose(
     ]
   })
 )(ServiceSetting);
+
+
+// original video wrapper
+// {
+//   (myService[0].videos[0] !== '' || myService[0].videos[1] !== '' || myService[0].videos[2] !== '')
+//     ? myService[0].videos.filter(valid => valid !== '').map(video => (
+//       <video key={video} style={{width: '100%', marginBottom: '2rem'}} controls>
+//         <source src={video} type='video/mp4'/>
+//       </video>
+//     ))
+//     : <p>다른 참고영상이 없습니다.</p>
+// }

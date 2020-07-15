@@ -26,65 +26,53 @@ class Withdrawal extends Component {
 
 	if(!auth.uid) return <Redirect to ='/' />
 	return(
-		<div className="profile_deatails">
+		<div className="profile_details">
 			<div className="row">
-				<h5 className="col s12 scorehvy sub-title">회원탈퇴</h5>
-				<div className="col s12">
-					<div className="withdrawal white">
-						<h6 className=''>탈퇴사유</h6>
-						<div className="divider"></div>
-						<div className="row">
-							<form onSubmit = {this.handleSubmit}>
-                <div className="input-field col s12">
-                  <p>
-                    <label>
-                      <input className="with-gap" type="radio" name="withdrawal-menu" required/>
-                      <span>사용빈도가 낮아서</span>
-                    </label>
-                  </p>
-                  <p>
-                    <label>
-                      <input className="with-gap" type="radio" name="withdrawal-menu" required/>
-                      <span>사이트가 마음에 들지 않아서</span>
-                    </label>
-                  </p>
-                  <p>
-                    <label>
-                      <input className="with-gap" type="radio" name="withdrawal-menu" required/>
-                      <span>사이트 운영팀의 친절도가 불만족스러워서</span>
-                    </label>
-                  </p>
-                  <p>
-                    <label>
-                      <input className="with-gap" type="radio" name="withdrawal-menu" required/>
-                      <span>개인정보 유출이 우려되어서</span>
-                    </label>
-                  </p>
-                  <p>
-                    <label>
-                      <input className="with-gap" type="radio" name="withdrawal-menu" required/>
-                      <span>기타</span>
-                    </label>
-                  </p>
-                </div>
-                
-                <div className="col s12">
-                  <h6 className=''>이메일 확인</h6>
-                  <div style={{marginBottom: '1rem'}} className="divider"></div>
-                </div>
+        <h5 className="col s12 sub-title">회원탈퇴</h5>
+        <h6 className="col s12 reason-title">탈퇴사유</h6>
+        <form onSubmit={this.handleSubmit} className="col s12">
+          <p className="label-area">
+            <label>
+              <input name="withdrawal-menu" type="radio" className="with-gap" required/>
+              <span>사용빈도가 낮아서</span>
+            </label>
+          </p>
+          <p className="label-area">
+            <label>
+              <input name="withdrawal-menu" type="radio" className="with-gap" required/>
+              <span>사이트가 마음에 들지 않아서</span>
+            </label>
+          </p>
+          <p className="label-area">
+            <label>
+              <input name="withdrawal-menu" type="radio" className="with-gap" required/>
+              <span>사이트 운영팀의 친절도가 불만족스러워서</span>
+            </label>
+          </p>
+          <p className="label-area">
+            <label>
+              <input name="withdrawal-menu" type="radio" className="with-gap" required/>
+              <span>개인정보 유출이 우려되어서</span>
+            </label>
+          </p>
+          <p className="label-area">
+            <label>
+              <input name="withdrawal-menu" type="radio" className="with-gap" required/>
+              <span>기타</span>
+            </label>
+          </p>
 
-							  <div className="input-field col s12">
-                  <label className='active' htmlFor="email">이메일 주소</label>
-									<input type="text" placeholder='가입한 이메일을 적어주세요' className="validate" id="email" onChange= { this.handleChange } required/>
-                  <p style={{fontSize: '12px'}} className="guide-text red-text">회원탈퇴 시 모든 기록과 쿠폰이 소멸합니다.</p>
+          <br/><br/>
 
-									<button className="btn myomColor-background right">회원탈퇴</button>
+          <p className="info-title">이메일 (아이디) 확인</p>
+          <div className="input-field with-border">
+            <input type="text" placeholder='가입한 이메일을 적어주세요' className="validate" id="email" onChange= { this.handleChange } required/>
+          </div>
+          <p className="helper-text red-text">회원탈퇴 시 모든 기록과 쿠폰이 소멸합니다.</p>
 
-							  </div>
-              </form>
-						</div>
-					</div>
-				</div>
+          <button className="btn waves-effect submit-btn">회원탈퇴</button>
+        </form>
+
 			</div>
 		</div>
 	)

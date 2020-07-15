@@ -53,12 +53,13 @@ const authReducer = (state=initState, action) => {
       return state;
     
     case 'PWDUPDATE_SUCCESS':
+      window.location.replace('/');
       alert('비밀번호가 변경되었습니다.');
       return state;
     
-    case 'PWDUPDATE_ERROR':
-      console.log('pwd update failed');
-      return state;
+    // case 'PWDUPDATE_ERROR':
+    //   alert('변경할 비밀번호가 너무 짧거나 잘못되었습니다.');
+    //   return state;
     
     case 'REAUTHENTICATE_ERROR':
       alert('기존의 비밀번호를 다시 입력해주세요.');

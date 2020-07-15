@@ -1,6 +1,27 @@
+.ordersManage {
+  color: #3c3d3f;
+}
+.ordersManage .no-paid-msg {
+  font-size: 30px;
+  font-weight: bold;
+}
 .ordersManage .sub-title {
   margin-bottom: 3rem;
 }
+.ordersManage .options-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+.ordersManage .options-subtitle {
+  font-size: 16px;
+  font-weight: bold;
+}
+.ordersManage .options-subtitle font {
+  font-weight: 500;
+  margin-left: 1rem;
+}
+
+/* ************************************ */
 .ordersManage .collection {
   display: flex;
   justify-content: center;
@@ -16,47 +37,105 @@
 .ordersManage .collection .collection-item.preloader {
   list-style: none;
 }
+/* ************************************ */
+.serviceSetting .tabs,
+.ordersManage .tabs {
+  border-radius: 8px;
+  border: solid 2px #dedede;
+  background-color: #ffffff;
+  height: 58px;
+}
+.serviceSetting .tabs .tab,
+.ordersManage .tabs .tab {
+  height: 56px;
+}
+.serviceSetting .tabs .tab a,
+.ordersManage .tabs .tab a {
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: unset !important;
+  line-height: 56px;
+  padding: 0;
+  color: #27272760 !important;
+}
+.serviceSetting .tabs .tab a.active,
+.ordersManage .tabs .tab a.active {
+  background-color: #4c20e1 !important;
+  color: #fff !important;
+  border-radius: unset !important;
+}
+
+/* ************************************ */
 .ordersManage .collection.notEmpty {
-  display: block;
-  justify-content: unset;
-  align-items: unset;
+  border-radius: 8px;
+  border: solid 2px #dedede;
+  margin: 1rem 0;
   position: relative;
-  cursor: pointer;
-  /* transition: all 1.2s ease-out; */
 }
 .ordersManage .collection.notEmpty .collection-item {
   border-bottom: none !important;
 }
-.ordersManage .collection.notEmpty .collection-item .image-area img {
+.ordersManage .collection.notEmpty .record-table {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
-  height: 15rem;
+  font-size: 16px;
+  font-weight: bold;
 }
+.ordersManage .collection.notEmpty .record-table font {
+  margin-left: 1rem;
+  font-weight: 500;
+}
+.ordersManage .collection.notEmpty .collection-item {
+  margin: 0;
+  padding: .75rem 0 0 0;
+}
+.ordersManage .collection.notEmpty .image-area {
+  
+}
+.ordersManage .collection.notEmpty .image-area img {
+  width: 100%;
+  min-height: 200px;
+  border-radius: 8px;
+}
+.ordersManage .collection.notEmpty .status-table {
+  padding: 1.5rem 0;
+  margin-top: 1rem;
+  background-color: #f3f3f3;
+  display: flex;
+  justify-content: space-around;
+}
+.ordersManage .collection.notEmpty .status-table .col {
+  margin-left: 0;
+}
+.ordersManage .collection.notEmpty .status-table .btn {
+  box-shadow: none;
+  border-radius: 8px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 40px;
+}
+
+/* ************************************ */
+
 .ordersManage .collection-item.order-status {
   margin: 0;
   width: 100%;
   height: 100%;
+  left: .75rem;
   top: 0;
   background: transparent;
   position: absolute;
 }
 .ordersManage .collection-item.order-status .box {
-  width: 50px;
+  width: 60px;
   text-align: center;
-  font-weight: bold;
+  font-weight: 500;
+  border-radius: 8px;
 }
-.ordersManage .hidden-buttons {
-  position: absolute;
-  margin: unset !important;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  transform: translateY(10%);
-  transition: transform 0.4s ease-in-out;
-}
-.ordersManage .hidden-buttons .btn {
-  margin: 0 2rem;
-}
+
+/* ************************************ */
+
 .ordersManage .collection.notEmpty:hover .warning-Message {
   display: flex;
 }
@@ -72,22 +151,13 @@
   background-color: rgba(38, 38, 38, 0.671);
   display: none;
 }
-.ordersManage .collection.notEmpty:hover .collection-item.paid {
-  filter: blur(1.8px);
-}
-.ordersManage .collection.notEmpty .collection-item.paid::before {
-  content:'';
-  transform: translate(-20px, -10px);
-  position: absolute;
-  display: none;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(38, 38, 38, 0.2);
-}
-.ordersManage .collection.notEmpty:hover .collection-item.paid::before {
-  display: block;
-}
-.ordersManage .collection.notEmpty:hover .hidden-buttons {
-  transform: translateY(-50%);
-  z-index: 10;
-}
+
+/* ************************************ */
+
+
+
+
+
+
+
+

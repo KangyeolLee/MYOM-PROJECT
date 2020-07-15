@@ -27,6 +27,12 @@
 .mypageForBuyer .collapsible .collapsible-body a {
   color: #272727b0;
   display: block;
+  padding: 1rem;
+  /* margin: 1rem 0 1rem 0; */
+}
+.mypageForProvider .collapsible .collapsible-body a.active,
+.mypageForBuyer .collapsible .collapsible-body a.active {
+  background-color: #4d20e113;
   /* margin: 1rem 0 1rem 0; */
 }
 .mypageForProvider .collapsible .collapsible-direct,
@@ -40,6 +46,10 @@
   color: #272727 !important;
   /* border-bottom: 1px solid #ddd; */
 }
+.mypageForProvider .collapsible .collapsible-direct.active, 
+.mypageForBuyer .collapsible .collapsible-direct.active {
+  background-color: #4d20e113;
+}
 .mypageForProvider .collapsible .collapsible-header,
 .mypageForBuyer .collapsible .collapsible-header,
 .mypageForProvider .collapsible .collapsible-body,
@@ -49,8 +59,7 @@
 .mypageForProvider .collapsible .collapsible-body .collection-item,
 .mypageForBuyer .collapsible .collapsible-body .collection-item {
   border: none;
-  padding: 1rem;
-
+  padding: 0
 }
 
 .myPageSidenav .profile-infos {

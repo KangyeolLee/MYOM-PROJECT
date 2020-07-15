@@ -1,3 +1,58 @@
+.ordersManage .sub-title,
+.paymentDetails .sub-title,
+.profitsManage .sub-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #272727;
+  margin-bottom: 3rem;
+}
+.ordersManage .collection.no-data,
+.paymentDetails .collection.no-data,
+.profitsManage .collection.no-data {
+  border: 2px solid #dedede;
+  border-radius: 12px;
+}
+.paymentDetails table,
+.profitsManage table {
+  overflow: hidden;
+  border-collapse: separate;
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  border: solid 2px #dedede;
+  background-color: #ffffff;
+}
+.paymentDetails table thead,
+.profitsManage table thead {
+  background-color: #eef2ff;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
+}
+.paymentDetails table thead th,
+.profitsManage table thead th {
+  border-radius: unset;
+  font-size: 16px;
+  font-weight: 500;
+}
+.paymentDetails table tbody,
+.profitsManage table tbody {
+  font-size: 15px;
+  font-weight: 400;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #272727;
+}
+
+/* ******************************************** */
+
 .profitsManage .recharts {
   margin: 4rem 0 8rem 0;
 }

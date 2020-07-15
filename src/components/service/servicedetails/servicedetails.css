@@ -3,7 +3,7 @@
 }
 .tabs .tab a {
   color: #4c20e1 !important;
-  border-radius: 8px;
+  border-radius: 8px !important;
 }
 .tabs .tab a:focus, .tabs .tab a:focus.active {
   background-color: #4d20e10c !important;

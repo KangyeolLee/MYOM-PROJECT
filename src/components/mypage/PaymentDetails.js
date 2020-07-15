@@ -45,7 +45,7 @@ class PaymentDetails extends Component {
     return (
       <div className="paymentDetails">
         <div className="row">
-          <h5 className='col s12 scorehvy sub-title'>결제 내역</h5>
+          <h5 className='col s12 sub-title'>결제 내역</h5>
           {/* <form action="" className='row'>
             <div className="input-field col s1">
               <select name="" id="payment_range">
@@ -86,9 +86,9 @@ class PaymentDetails extends Component {
               ? <div className="collection"><Preloader /></div>
               : isEmpty(orderList)
                 ? (
-                  <div className="collection">
+                  <div className="collection no-data">
                     <div className="collection-item-wrapper">
-                      <i className="material-icons large">info_outline</i>
+                      <i className="material-icons grey-text large">error_outline</i>
                       <p>내역이 없습니다</p>
                     </div>
                   </div>
@@ -96,7 +96,7 @@ class PaymentDetails extends Component {
                 : (
                   <Fragment>
                   <table style={{marginBottom: '3rem'}} className='centered'>
-                    <thead className='grey lighten-3 scorehvy'>
+                    <thead className=''>
                       <tr>
                         <th>구입한 서비스</th>
                         <th>할인 적용</th>

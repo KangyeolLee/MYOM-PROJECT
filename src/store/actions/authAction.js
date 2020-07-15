@@ -189,18 +189,21 @@ export const changePwd = (pwdInfo, history) => {
   //   })
   // }
   return(dispatch) => {
+    const passRule = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z]).*$/;
     let user = firebase.auth().currentUser;
     let cred = firebase.auth.EmailAuthProvider.credential(user.email, pwdInfo.oldpwd);
     user.reauthenticateWithCredential(cred).then(() => {
       if(pwdInfo.newpwd !== pwdInfo.chknewpwd){
         alert('변경할 비밀번호와 재입력 값이 다릅니다.');
-      }else{
+        return;
+      }
+      else if(!passRule.test(pwdInfo.newpwd) || !passRule.test(pwdInfo.chknewpwd)) {
+        alert('비밀번호는 문자/숫자를 포함한 8~15자리 이내로 해주시기 바랍니다.');
+        return;
+      } else {
         user.updatePassword(pwdInfo.newpwd).then(() =>{
           dispatch({type: 'PWDUPDATE_SUCCESS'});
-          history.push('/');
-        }).catch((err) => {
-          dispatch({type:'PWDUPDATE_ERROR', err});
-        });
+        })
       }
     }).catch((err) => {
       dispatch({type:'REAUTHENTICATE_ERROR', err});

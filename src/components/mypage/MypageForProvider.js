@@ -51,7 +51,7 @@ class MypageForProvider extends Component {
     let curURL = this.props.location.pathname;
 
     return (
-      <div className="container mypageForProvider">
+      <div className="container mypageForProvider notoSans">
         <div id="hidden-for-loading">
           <Loader />
           <div className="progress for-loading">
